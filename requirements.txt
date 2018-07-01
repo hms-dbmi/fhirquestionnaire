@@ -20,7 +20,7 @@ jmespath==0.9.3
 jwcrypto==0.5.0
 markdown2==2.3.5
 orderedmultidict==1.0
-py-auth0-jwt==0.2.14
+pyjwt==1.6.4
 pyasn1==0.4.3
 pycparser==2.18
 python-dateutil==2.7.3
@@ -29,6 +29,7 @@ PyYAML==3.12
 raven==6.9.0
 requests==2.19.1
 rsa==3.4.2
+sciservices==0.1.1
 s3transfer==0.1.13
 six==1.11.0
 urllib3==1.23

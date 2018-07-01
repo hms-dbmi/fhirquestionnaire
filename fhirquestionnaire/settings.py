@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+from django.contrib.messages import constants as message_constants
+
+from fhirquestionnaire import environment
+#from scilogging.logging import LoggingConfiguration
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,23 +25,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mc-l6)e*9)9b)27rj$htppegd%r0-6*zs&4y7t+_^lekv7(ok$'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = environment.ENV_BOOL("DJANGO_DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = environment.ENV_LIST("ALLOWED_HOSTS")
 
+# Set the message level
+MESSAGE_LEVEL = message_constants.INFO if not DEBUG else message_constants.DEBUG
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'questionnaire.apps.QuestionnaireConfig',
+    'contact',
+    'bootstrap3',
+    'markdown_deux',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +129,73 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Authentication
+AUTH0_CLIENT_ID_LIST = environment.ENV_LIST("AUTH0_CLIENT_ID_LIST", ",")
+AUTH0_SECRET = os.environ.get("AUTH0_SECRET")
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+AUTH0_CALLBACK_URL = os.environ.get("AUTH0_CALLBACK_URL")
+AUTH0_SUCCESS_URL = os.environ.get("AUTH0_SUCCESS_URL")
+AUTH0_LOGOUT_URL = os.environ.get("AUTH0_LOGOUT_URL")
+AUTHENTICATION_LOGIN_URL = os.environ.get("AUTHENTICATION_LOGIN_URL")
+COOKIE_DOMAIN = os.environ.get("COOKIE_DOMAIN")
+
+# App configurations
+FHIR_APP_ID = os.environ.get("FHIR_APP_ID", "ppm")
+FHIR_URL = os.environ.get("FHIR_URL")
+RETURN_URL = os.environ.get("RETURN_URL")
+
+# Get email details and enable SSL for SSL backend
+EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
+EMAIL_USE_SSL = EMAIL_BACKEND == 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+TEST_EMAIL_ACCOUNTS = os.environ.get("TEST_EMAIL_ACCOUNTS", "")
+CONTACT_FORM_RECIPIENTS = os.environ.get('CONTACT_FORM_RECIPIENTS')
+DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
+
+# Logging
+#LOGGING = LoggingConfiguration("FHIR-QUESTIONNAIRE").django_log_config
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}
