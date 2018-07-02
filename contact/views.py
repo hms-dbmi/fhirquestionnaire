@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
-from questionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
 from contact.forms import ContactForm
 
 import logging

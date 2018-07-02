@@ -55,23 +55,30 @@ def validate_request(request):
 def retrieve_public_key(jwt_string):
 
     try:
-        jwks = get_public_keys_from_auth0()
+        # Get the JWK
+        jwks = get_public_keys_from_auth0(refresh=False)
 
+        # Decode the JWTs header component
         unverified_header = jwt.get_unverified_header(str(jwt_string))
 
-        rsa_key = {}
+        # Check the JWK for the key the JWT was signed with
+        rsa_key = get_rsa_from_jwks(jwks, unverified_header['kid'])
+        if not rsa_key:
+            logger.debug('No matching key found in JWKS, refreshing')
+            logger.debug('Unverified JWT key id: {}'.format(unverified_header['kid']))
+            logger.debug('Cached JWK keys: {}'.format([jwk['kid'] for jwk in jwks['keys']]))
 
-        for key in jwks["keys"]:
-            if key["kid"] == unverified_header["kid"]:
-                rsa_key = {
-                    "kty": key["kty"],
-                    "kid": key["kid"],
-                    "use": key["use"],
-                    "n": key["n"],
-                    "e": key["e"]
-                }
+            # No match found, refresh the jwks
+            jwks = get_public_keys_from_auth0(refresh=True)
+            logger.debug('Refreshed JWK keys: {}'.format([jwk['kid'] for jwk in jwks['keys']]))
+
+            # Try it again
+            rsa_key = get_rsa_from_jwks(jwks, unverified_header['kid'])
+            if not rsa_key:
+                logger.error('No matching key found despite refresh, failing')
 
         return rsa_key
+
     except KeyError as e:
         logger.debug('Could not compare keys, probably old HS256 session')
         logger.exception(e)
@@ -79,11 +86,65 @@ def retrieve_public_key(jwt_string):
     return None
 
 
-def get_public_keys_from_auth0():
-    jwks_return = requests.get("https://" + settings.AUTH0_DOMAIN + "/.well-known/jwks.json")
-    jwks = jwks_return.json()
+def get_rsa_from_jwks(jwks, jwt_kid):
 
-    return jwks
+    # Build the dict containing rsa values
+    for key in jwks["keys"]:
+        if key["kid"] == jwt_kid:
+            rsa_key = {
+                "kty": key["kty"],
+                "kid": key["kid"],
+                "use": key["use"],
+                "n": key["n"],
+                "e": key["e"]
+            }
+
+            return rsa_key
+
+    # No matching key found, must refresh JWT keys
+    return None
+
+
+def get_public_keys_from_auth0(refresh=False):
+
+    # If refresh, delete cached key
+    if refresh:
+        delattr(settings, 'AUTH0_JWKS')
+
+    try:
+        # Look in settings
+        if hasattr(settings, 'AUTH0_JWKS'):
+            logger.debug('Using cached JWKS')
+
+            # Parse the cached dict and return it
+            return json.loads(settings.AUTH0_JWKS)
+
+        else:
+
+            logger.debug('Fetching remote JWKS')
+
+            # Make the request
+            response = requests.get("https://" + settings.AUTH0_DOMAIN + "/.well-known/jwks.json")
+            response.raise_for_status()
+
+            # Parse it
+            jwks = response.json()
+
+            # Cache it
+            setattr(settings, 'AUTH0_JWKS', json.dumps(jwks))
+
+            return jwks
+
+    except KeyError as e:
+        logging.exception(e)
+
+    except json.JSONDecodeError as e:
+        logging.exception(e)
+
+    except requests.HTTPError as e:
+        logging.exception(e)
+
+    return None
 
 
 def validate_rs256_jwt(jwt_string):
@@ -92,7 +153,10 @@ def validate_rs256_jwt(jwt_string):
     payload = None
 
     if rsa_pub_key:
-        jwk_key = jwk.JWK(**rsa_pub_key)
+        try:
+            jwk_key = jwk.JWK(**rsa_pub_key)
+        except jwk.InvalidJWKValue as e:
+            logger.exception(e)
 
         # Determine which Auth0 Client ID (aud) this JWT pertains to.
         try:

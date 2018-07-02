@@ -5,7 +5,7 @@ from django.views.generic import View
 
 from questionnaire.forms import QuestionnaireForm
 from questionnaire.fhir import FHIR
-from questionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
 
 import logging
 logger = logging.getLogger(__name__)

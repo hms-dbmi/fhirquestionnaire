@@ -4,20 +4,18 @@ export SECRET_KEY=$(aws ssm get-parameters --names $PS_PATH.secret_key --with-de
 export RETURN_URL=$(aws ssm get-parameters --names $PS_PATH.return_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export FHIR_URL=$(aws ssm get-parameters --names $PS_PATH.fhir_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export FHIR_APP_ID=$(aws ssm get-parameters --names $PS_PATH.fhir_app_id --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
-export RAVEN_URL=$(aws ssm get-parameters --names $PS_PATH.raven_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export ALLOWED_HOSTS=$(aws ssm get-parameters --names $PS_PATH.allowed_hosts --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
+export COOKIE_DOMAIN=$(aws ssm get-parameters --names $PS_PATH.cookie_domain --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 
 export AUTH0_DOMAIN=$(aws ssm get-parameters --names $PS_PATH.auth0_domain --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export AUTH0_CLIENT_ID_LIST=$(aws ssm get-parameters --names $PS_PATH.auth0_client_id_list --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
-export AUTH0_SECRET=$(aws ssm get-parameters --names $PS_PATH.auth0_secret --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
-export AUTH0_LOGOUT_URL=$(aws ssm get-parameters --names $PS_PATH.auth0_logout_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
-export AUTH0_SUCCESS_URL=$(aws ssm get-parameters --names $PS_PATH.auth0_success_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export AUTHENTICATION_LOGIN_URL=$(aws ssm get-parameters --names $PS_PATH.authentication_login_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 
 export EMAIL_HOST=$(aws ssm get-parameters --names $PS_PATH.email_host --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export EMAIL_HOST_USER=$(aws ssm get-parameters --names $PS_PATH.email_host_user --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export EMAIL_HOST_PASSWORD=$(aws ssm get-parameters --names $PS_PATH.email_host_password --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export EMAIL_PORT=$(aws ssm get-parameters --names $PS_PATH.email_port --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
+export TEST_EMAIL_ACCOUNTS=$(aws ssm get-parameters --names $PS_PATH.test_email_accounts --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 
 # Specify where we will install
 SSL_DIR="/etc/nginx/ssl"

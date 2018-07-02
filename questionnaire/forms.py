@@ -85,8 +85,37 @@ class QuestionnaireForm(forms.Form):
                 fields[item.linkId] = forms.TypedChoiceField(
                     label=item.text,
                     choices=choices,
-                    widget=forms.RadioSelect
+                    widget=forms.CheckboxSelectMultiple
                 )
+
+            elif item.type == 'question':
+
+                # Set the choices
+                choices = ()
+                for option in item.option:
+
+                    # Assume valueString
+                    if not option.valueString:
+                        logger.error(
+                            '{}: Unsupported choice type for question {}'.format(questionnaire_id, item.linkId))
+                    else:
+                        choices = choices + ((option.valueString, option.valueString),)
+
+                # Check if repeats
+                if item.repeats:
+                    # Set the input
+                    fields[item.linkId] = forms.TypedChoiceField(
+                        label=item.text,
+                        choices=choices,
+                        widget=forms.CheckboxSelectMultiple
+                    )
+                else:
+                    # Set the input
+                    fields[item.linkId] = forms.TypedChoiceField(
+                        label=item.text,
+                        choices=choices,
+                        widget=forms.RadioSelect
+                    )
 
             elif item.type == 'group':
 

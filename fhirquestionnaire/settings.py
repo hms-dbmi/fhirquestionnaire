@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import sys
 
 from django.contrib.messages import constants as message_constants
 
 from fhirquestionnaire import environment
-#from scilogging.logging import LoggingConfiguration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,16 +136,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Authentication
 AUTH0_CLIENT_ID_LIST = environment.ENV_LIST("AUTH0_CLIENT_ID_LIST", ",")
-AUTH0_SECRET = os.environ.get("AUTH0_SECRET")
 AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
-AUTH0_CALLBACK_URL = os.environ.get("AUTH0_CALLBACK_URL")
-AUTH0_SUCCESS_URL = os.environ.get("AUTH0_SUCCESS_URL")
-AUTH0_LOGOUT_URL = os.environ.get("AUTH0_LOGOUT_URL")
 AUTHENTICATION_LOGIN_URL = os.environ.get("AUTHENTICATION_LOGIN_URL")
 COOKIE_DOMAIN = os.environ.get("COOKIE_DOMAIN")
+SCIAUTH_BRANDING = {
+    'title': 'People-Powered Medicine',
+    'description': 'People-Powered Medicine (PPM) is a project that aims to gather as much information'
+                   ' as possible about individuals with particular conditions into one secure '
+                   'research database.',
+    'icon_url': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
+}
 
 # App configurations
-FHIR_APP_ID = os.environ.get("FHIR_APP_ID", "ppm")
+FHIR_APP_ID = os.environ.get("FHIR_APP_ID")
 FHIR_URL = os.environ.get("FHIR_URL")
 RETURN_URL = os.environ.get("RETURN_URL")
 
@@ -161,41 +164,32 @@ CONTACT_FORM_RECIPIENTS = os.environ.get('CONTACT_FORM_RECIPIENTS')
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
 
 # Logging
-#LOGGING = LoggingConfiguration("FHIR-QUESTIONNAIRE").django_log_config
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
+        'console': {
+            'format': '[DJANGO] - [QUESTIONNAIRE] - [%(asctime)s][%(levelname)s]'
+                      '[%(name)s.%(funcName)s:%(lineno)d] - %(message)s',
         },
     },
     'handlers': {
         'console': {
             'level': 'DEBUG',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'console',
+            'stream': sys.stdout,
         },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
+            'level': 'WARNING',
             'propagate': True,
         },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-    }
+    },
 }
