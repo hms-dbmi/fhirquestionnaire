@@ -36,7 +36,7 @@ sed -i "/allow xxx.xxx.xxx.xxx\/xx/c\    allow $EC2_SUBNET;" /etc/nginx/sites-av
 PASSPHRASE="$(openssl rand -base64 15)"
 
 # Set the wildcarded domain we want to use
-commonname="*.${SSL_ROOT_DOMAIN}"
+commonname="*.${COOKIE_DOMAIN}"
 country=US
 state=Massachusetts
 locality=Boston
