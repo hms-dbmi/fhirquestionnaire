@@ -9,6 +9,7 @@ cryptography==2.2.2
 Django==2.0.6
 django-bootstrap3==10.0.1
 django-crispy-forms==1.7.2
+django-health-check==3.6.1
 django-markdown-deux==1.0.5
 docutils==0.14
 fhirclient==3.2.0

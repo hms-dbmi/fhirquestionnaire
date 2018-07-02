@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'markdown_deux',
     'crispy_forms',
+    'health_check',
 ]
 
 MIDDLEWARE = [

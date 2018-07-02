@@ -22,7 +22,7 @@ SSL_DIR="/etc/nginx/ssl"
 mkdir -p ${SSL_DIR}
 
 # Get the EC2 host IP
-export EC2_HOST=$(wget -O - http://169.254.169.254/latest/meta-data/local-ipv4 2> /dev/null)
+export EC2_HOST=$(curl -sL http://169.254.169.254/latest/meta-data/local-ipv4)
 export ALLOWED_HOSTS=$ALLOWED_HOSTS,$EC2_HOST
 echo "Running on EC2: $EC2_HOST - Updated ALLOWED_HOSTS: $ALLOWED_HOSTS"
 
