@@ -93,11 +93,9 @@ class QuestionnaireView(View):
         questionnaire_id = kwargs.get('questionnaire_id')
         if not questionnaire_id:
             return QuestionnaireView.render_error(request,
-                                                  title='Patient Does Not Exist',
-                                                  message='A FHIR resource does not yet exist for the current user. '
-                                                          'Please sign into the People-Powered dashboard to '
-                                                          'create your user.',
-                                                  support=False)
+                                                  title='Questionnaire Not Specified',
+                                                  message='A questionnaire must be specified.',
+                                                  support=True)
 
         # Get the patient email
         patient_email = dbmi_jwt_payload(request).get('email')

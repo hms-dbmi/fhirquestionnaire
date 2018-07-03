@@ -1,5 +1,6 @@
 import requests
 import datetime
+from urllib.parse import quote
 from furl import furl
 
 from django.conf import settings
@@ -56,7 +57,7 @@ class FHIR:
         # Add the request for the patient
         transaction['entry'].append({
             'request': {
-                'url': 'Patient?identifier=http://schema.org/email|{}'.format(patient_email),
+                'url': 'Patient?identifier=http://schema.org/email|{}'.format(quote(patient_email)),
                 'method': 'GET'
             }
         })
