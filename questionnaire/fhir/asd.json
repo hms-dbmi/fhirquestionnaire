@@ -1,0 +1,267 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-asd-questionnaire",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "title": "PPM ASD Questionnaire",
+  "status": "active",
+  "date": "2016-12-21",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-1",
+      "text": "Did you join the PPM pilot because you have autism or your child has autism?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "I have autism"
+        },
+        {
+          "valueString": "My child has autism"
+        }
+      ]
+    },
+    {
+      "linkId": "display-1",
+      "text": "From now on we will call the person you selected above the study Subject.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-2",
+      "text": "Who else has autism spectrum disorder in your family?",
+      "type": "question",
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "My son has autism"
+        },
+        {
+          "valueString": "My daughter has autism"
+        },
+        {
+          "valueString": "My father has autism"
+        },
+        {
+          "valueString": "My mother has autism"
+        },
+        {
+          "valueString": "My brother has autism"
+        },
+        {
+          "valueString": "My sister has autism"
+        },
+        {
+          "valueString": "My grandmother has autism"
+        },
+        {
+          "valueString": "My grandfather has autism"
+        },
+        {
+          "valueString": "My uncle has autism"
+        },
+        {
+          "valueString": "My aunt has autism"
+        },
+        {
+          "valueString": "My nephew has autism"
+        },
+        {
+          "valueString": "My niece has autism"
+        },
+        {
+          "valueString": "My cousin has autism (M or F)"
+        }
+      ]
+    },
+    {
+      "linkId": "question-3",
+      "text": "Do any of the family members checked above have autism AND any of the following disorders? Please indicate which family member from the list above has any of the following:",
+      "type": "question",
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "Irritable Bowel Syndrome (IBS)"
+        },
+        {
+          "valueString": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "valueString": "Rheumatoid Arthritis"
+        },
+        {
+          "valueString": "Type 1 diabetes"
+        },
+        {
+          "valueString": "Scleroderma"
+        },
+        {
+          "valueString": "Lupus"
+        },
+        {
+          "valueString": "Don’t know"
+        }
+      ],
+      "item": [
+        {
+          "linkId": "question-3-1",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Irritable Bowel Syndrome (IBS)"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-3-2",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Inflammatory Bowel Disease (IBD)"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-3-3",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Rheumatoid Arthritis"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-3-4",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Type 1 diabetes"
+            }
+          ]
+        },
+        {
+          "linkId": "question-3-5",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Scleroderma"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-3-6",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-3",
+              "answerString": "Lupus"
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "question-4",
+      "text": "Does the Subject take any of the following medications:",
+      "type": "question",
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "Anti-anxiety medications"
+        },
+        {
+          "valueString": "Attention Deficit Disorder (ADHD) medications"
+        },
+        {
+          "valueString": "Anti-inflammatory medications"
+        },
+        {
+          "valueString": "Any other medications"
+        },
+        {
+          "valueString": "Vitamins"
+        }
+      ],
+      "item": [
+        {
+          "linkId": "question-4-1",
+          "text": "Which:",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-4",
+              "answerString": "Anti-anxiety medications"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-4-2",
+          "text": "Which:",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-4",
+              "answerString": "Attention Deficit Disorder (ADHD) medications"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-4-3",
+          "text": "Which:",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-4",
+              "answerString": "Anti-inflammatory medications"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-4-4",
+          "text": "Which:",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-4",
+              "answerString": "Any other medications"
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "question-4-5",
+          "text": "Which:",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-4",
+              "answerString": "Vitamins"
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

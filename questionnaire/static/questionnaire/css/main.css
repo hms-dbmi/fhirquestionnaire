@@ -1,0 +1,11 @@
+html {}
+body {}
+
+.navbar-brand {
+    height: 60px;
+    padding: 10px;
+}
+
+#footer {
+    margin-top: 50px;
+}

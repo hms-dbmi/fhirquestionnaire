@@ -1,0 +1,24 @@
+{% extends "contact/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>{{ error_title|default_if_none:"Application Error" }}</h1>
+            <p>
+                {{ error_message|default_if_none:"Uh oh! This application has experienced an unknown error, please contact support or try again" }}
+            </p>
+            {% if support %}
+            <p>
+                <a href={% url 'contact:contact' %} class='contact-form-button'>Contact support</a>
+            </p>
+            {% endif %}
+            <p>
+                <a href="{{ return_url }}">Return to the People-Powered Medicine dashboard</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

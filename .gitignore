@@ -1,3 +1,5 @@
+# Ignore django static files
+/static
 
 # Created by https://www.gitignore.io/api/osx,linux,django,python,windows,pycharm,pycharm+iml,pycharm+all
 

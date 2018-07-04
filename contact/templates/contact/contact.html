@@ -1,0 +1,22 @@
+{% extends "contact/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+        <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Contact Us</h1>
+            <form id="contact-form" class="contact-form" method="POST" action="{% url 'contact:contact' %}">
+                {% csrf_token %}
+                {% bootstrap_form contact_form %}
+
+                {% buttons %}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit {% bootstrap_icon "send" %} </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

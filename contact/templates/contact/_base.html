@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>People-Powered Medicine</title>
+
+    {% load staticfiles %}
+    {% load static %}
+    {% load markdown_deux_tags %}
+    {% load bootstrap3 %}
+
+    <meta name="intercoolerjs:use-actual-http-method" content="true"/>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type='text/javascript' src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.0.min.js"></script>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <script type='text/javascript' src="{% static 'questionnaire/js/bootstrap-notify.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'questionnaire/css/main.css' %}" />
+
+    {% block includes %}{% endblock %}
+
+</head>
+<body>
+
+    <nav id="nav-bar" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ return_url }}">People-Powered Medicine</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="container" class="container">
+        {% if messages %}
+            {% include 'questionnaire/messages.html' %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <script type="application/javascript" src="{% static 'questionnaire/js/main.js' %}"></script>
+    {% block javascript %}{% endblock %}
+
+    {# Add a placeholder for the modal contact form #}
+    <div id='contact-form-modal' class='modal fade' tabindex='-1'></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "questionnaire/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Submission Successful</h1>
+            <p class="lead">
+                You've successfully submitted your questionnaire. An administrator will review your submission and contact you via e-mail.
+            </p>
+            <p>
+                You are being redirected to the <a href={{ return_url }}>People-Powered Medicine Dashboard</a>.
+            </p>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        window.setTimeout(function() {
+            window.location.href = '{{ return_url }}';
+        }, 2000);
+    </script>
+
+{% endblock %}

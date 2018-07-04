@@ -1,0 +1,25 @@
+{% extends "contact/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Support Request Successful</h1>
+            <p>
+                Your support message was successfully sent! A representative should contact you soon.<br /><br />
+            </p>
+            <p>
+                <a href="{{ return_url }}">Return to the People-Powered Medicine dashboard</a>
+            </p>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        window.setTimeout(function() {
+            window.location.href = '{{ return_url }}';
+        }, 2000);
+    </script>
+
+{% endblock %}
