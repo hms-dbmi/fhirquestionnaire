@@ -52,7 +52,31 @@ class QuestionnaireForm(forms.Form):
             # Check type
             if item.type == 'text':
 
-                fields[item.linkId] = forms.CharField(label=item.text, required=item.required)
+                # Check for options
+                if item.option:
+
+                    # Set the choices
+                    choices = ()
+                    for option in item.option:
+
+                        # Assume valueString
+                        if not option.valueString:
+                            logger.error(
+                                '{}: Unsupported choice type for question {}'.format(questionnaire_id, item.linkId))
+                        else:
+                            choices = choices + ((option.valueString, option.valueString),)
+
+                    # Set the input
+                    fields[item.linkId] = forms.TypedChoiceField(
+                        label=item.text,
+                        choices=choices,
+                        widget=forms.RadioSelect(attrs={"required": "required"}),
+                        required=item.required
+                    )
+
+                else:
+
+                    fields[item.linkId] = forms.CharField(label=item.text, required=item.required)
 
             elif item.type == 'date':
 
@@ -65,7 +89,8 @@ class QuestionnaireForm(forms.Form):
                     label=item.text,
                     coerce=lambda x: bool(int(x)),
                     choices=((0, 'No'), (1, 'Yes')),
-                    widget=forms.RadioSelect
+                    widget=forms.RadioSelect(attrs={"required": "required"}),
+                    required=True
                 )
 
             elif item.type == 'choice':
@@ -85,7 +110,8 @@ class QuestionnaireForm(forms.Form):
                 fields[item.linkId] = forms.TypedChoiceField(
                     label=item.text,
                     choices=choices,
-                    widget=forms.CheckboxSelectMultiple
+                    widget=forms.CheckboxSelectMultiple,
+                    required=item.required
                 )
 
             elif item.type == 'question':
@@ -107,14 +133,16 @@ class QuestionnaireForm(forms.Form):
                     fields[item.linkId] = forms.TypedChoiceField(
                         label=item.text,
                         choices=choices,
-                        widget=forms.CheckboxSelectMultiple
+                        widget=forms.CheckboxSelectMultiple,
+                        required=item.required
                     )
                 else:
                     # Set the input
                     fields[item.linkId] = forms.TypedChoiceField(
                         label=item.text,
                         choices=choices,
-                        widget=forms.RadioSelect
+                        widget=forms.RadioSelect,
+                        required=item.required
                     )
 
             elif item.type == 'group':

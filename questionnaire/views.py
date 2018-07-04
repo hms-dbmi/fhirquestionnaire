@@ -105,9 +105,16 @@ class QuestionnaireView(View):
 
         # check whether it's valid:
         if not form.is_valid():
+            # Get the return URL
+
+            context = {
+                'form': form,
+                'questionnaire_id': questionnaire_id,
+                'return_url': settings.RETURN_URL,
+            }
 
             # Get the passed parameters
-            return render(request, template_name='questionnaire/questionnaire.html', context={'form': form})
+            return render(request, template_name='questionnaire/questionnaire.html', context=context)
 
         # Process the form
         try:
@@ -115,7 +122,8 @@ class QuestionnaireView(View):
 
             # Get the return URL
             context = {
-                   'return_url': settings.RETURN_URL,
+                'questionnaire_id': questionnaire_id,
+               'return_url': settings.RETURN_URL,
             }
 
             # Get the passed parameters

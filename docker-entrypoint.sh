@@ -6,6 +6,7 @@ export FHIR_URL=$(aws ssm get-parameters --names $PS_PATH.fhir_url --with-decryp
 export FHIR_APP_ID=$(aws ssm get-parameters --names $PS_PATH.fhir_app_id --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export ALLOWED_HOSTS=$(aws ssm get-parameters --names $PS_PATH.allowed_hosts --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export COOKIE_DOMAIN=$(aws ssm get-parameters --names $PS_PATH.cookie_domain --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
+export STATIC_URL=$(aws ssm get-parameters --names $PS_PATH.static_url --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 
 export AUTH0_DOMAIN=$(aws ssm get-parameters --names $PS_PATH.auth0_domain --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export AUTH0_CLIENT_ID_LIST=$(aws ssm get-parameters --names $PS_PATH.auth0_client_id_list --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
