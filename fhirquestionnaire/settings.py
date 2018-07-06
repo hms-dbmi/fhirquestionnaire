@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sys
+import raven
 
 from django.contrib.messages import constants as message_constants
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'markdown_deux',
     'crispy_forms',
     'health_check',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +166,17 @@ TEST_EMAIL_ACCOUNTS = os.environ.get("TEST_EMAIL_ACCOUNTS", "")
 CONTACT_FORM_RECIPIENTS = os.environ.get('CONTACT_FORM_RECIPIENTS')
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
 
+# Check for sentry
+RAVEN_URL = os.environ.get("RAVEN_URL")
+
+if RAVEN_URL:
+    RAVEN_CONFIG = {
+        'dsn': RAVEN_URL,
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    }
+
 # Logging
 LOGGING = {
     'version': 1,
@@ -175,6 +188,11 @@ LOGGING = {
         },
     },
     'handlers': {
+        'sentry': {
+            'level': 'ERROR', # To capture more than ERROR, change to WARNING, INFO, etc.
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -191,6 +209,16 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'WARNING',
             'propagate': True,
+        },
+        'raven': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
         },
     },
 }
