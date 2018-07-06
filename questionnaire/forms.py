@@ -31,6 +31,7 @@ class QuestionnaireForm(forms.Form):
 
         # Get fields
         self.fields = QuestionnaireForm._get_form_fields(questionnaire.item, questionnaire_id)
+        self.fields['questionnaire_id'] = forms.CharField(empty_value=questionnaire_id, widget=forms.HiddenInput)
 
         # Create the crispy helper
         self.helper = FormHelper(self)
@@ -70,7 +71,7 @@ class QuestionnaireForm(forms.Form):
                     fields[item.linkId] = forms.TypedChoiceField(
                         label=item.text,
                         choices=choices,
-                        widget=forms.RadioSelect(attrs={"required": "required"}),
+                        widget=forms.RadioSelect(attrs={"required": "required"} if item.required else {}),
                         required=item.required
                     )
 
@@ -88,8 +89,8 @@ class QuestionnaireForm(forms.Form):
                 fields[item.linkId] = forms.TypedChoiceField(
                     label=item.text,
                     coerce=lambda x: bool(int(x)),
-                    choices=((0, 'No'), (1, 'Yes')),
-                    widget=forms.RadioSelect(attrs={"required": "required"}),
+                    choices=((1, 'Yes'), (0, 'No')),
+                    widget=forms.RadioSelect(attrs={"required": "required"} if item.required else {}),
                     required=True
                 )
 
@@ -141,7 +142,7 @@ class QuestionnaireForm(forms.Form):
                     fields[item.linkId] = forms.TypedChoiceField(
                         label=item.text,
                         choices=choices,
-                        widget=forms.RadioSelect,
+                        widget=forms.RadioSelect(attrs={"required": "required"} if item.required else {}),
                         required=item.required
                     )
 
