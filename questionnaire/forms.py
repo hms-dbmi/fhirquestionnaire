@@ -51,7 +51,7 @@ class QuestionnaireForm(forms.Form):
         for item in items:
 
             # Check type
-            if item.type == 'text':
+            if item.type == 'string' or item.type == 'text':
 
                 # Check for options
                 if item.option:
@@ -75,8 +75,16 @@ class QuestionnaireForm(forms.Form):
                         required=item.required
                     )
 
+                elif item.initialString:
+
+                    # Make this a textbox-style input with minimum width
+                    fields[item.linkId] = forms.CharField(label=item.text,
+                                                          required=item.required,
+                                                          widget=forms.Textarea(attrs={'placeholder': item.initialString}))
+
                 else:
 
+                    # Plain old text field
                     fields[item.linkId] = forms.CharField(label=item.text, required=item.required)
 
             elif item.type == 'date':

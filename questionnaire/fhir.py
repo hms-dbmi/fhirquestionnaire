@@ -150,7 +150,7 @@ class FHIR:
             answer = QuestionnaireResponseItemAnswer()
 
             # Check type
-            if question.type in ['text', 'date', 'datetime']:
+            if question.type in ['text', 'date', 'datetime', 'string']:
                 answer.valueString = form[question.linkId]
 
             elif question.type == 'boolean':
