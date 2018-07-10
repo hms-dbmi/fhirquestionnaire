@@ -1,0 +1,20 @@
+{% extends "fhirquestionnaire/_base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+{% load markdown_deux_tags %}
+{% load bootstrap3 %}
+
+{% block includes %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'consent/css/main.css' %}" />
+
+{% endblock %}
+
+{% block javascript %}
+
+    <script type='text/javascript' src="{% static 'consent/js/main.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}{% endblock %}

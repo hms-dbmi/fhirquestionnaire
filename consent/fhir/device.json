@@ -1,0 +1,26 @@
+{
+    "resourceType": "Device",
+    "id": "hms-dbmi-ppm-consent",
+    "meta": {
+    "security": [{
+            "system": "http://smarthealthit.org/security/users",
+            "code": "public"
+        }]
+    },
+    "identifier": [
+        {
+            "system": "https://github.com/",
+            "value": "hms-dbmi/fhirquestionnaire"
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "706689003",
+                "display": "Application program software"
+            }
+        ]
+    }
+}
