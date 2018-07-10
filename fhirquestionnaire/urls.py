@@ -18,5 +18,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^questionnaire/', include("questionnaire.urls", namespace="questionnaire")),
     url(r'^contact/', include("contact.urls", namespace="contact")),
+    url(r'^consent/', include("consent.urls", namespace="consent")),
     url(r'^healthcheck/?', include('health_check.urls')),
 ]
