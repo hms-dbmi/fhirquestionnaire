@@ -8,7 +8,7 @@ from fhirclient import client
 from fhirclient.server import FHIRNotFoundException
 from fhirclient.models.questionnaire import Questionnaire
 
-from questionnaire.fhir import FHIR
+from fhirquestionnaire.fhir import FHIR
 
 import logging
 logger = logging.getLogger(__name__)

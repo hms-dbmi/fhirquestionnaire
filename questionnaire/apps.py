@@ -5,7 +5,7 @@ import json
 from django.apps import AppConfig
 from django.conf import settings
 
-from questionnaire.fhir import FHIR
+from fhirquestionnaire.fhir import FHIR
 
 
 class QuestionnaireConfig(AppConfig):
