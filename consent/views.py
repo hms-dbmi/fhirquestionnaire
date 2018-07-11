@@ -165,10 +165,6 @@ class ConsentView(View):
                 'return_url': settings.RETURN_URL,
             }
 
-            # Set a message.
-            messages.success(request, 'Your consent submission has succeeded!',
-                             extra_tags='success', fail_silently=True)
-
             # Get the passed parameters
             return render(request, template_name='consent/success.html', context=context)
 
