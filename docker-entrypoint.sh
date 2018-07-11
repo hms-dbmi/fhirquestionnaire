@@ -19,6 +19,11 @@ export EMAIL_HOST_PASSWORD=$(aws ssm get-parameters --names $PS_PATH.email_host_
 export EMAIL_PORT=$(aws ssm get-parameters --names $PS_PATH.email_port --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 export TEST_EMAIL_ACCOUNTS=$(aws ssm get-parameters --names $PS_PATH.test_email_accounts --with-decryption --region us-east-1 | jq -r '.Parameters[].Value')
 
+# Check for a static root
+if [[ -n $STATIC_URL ]]; then
+    sed -i "/location \/static {/c\    location $STATIC_URL {" /etc/nginx/sites-available/site.conf
+fi
+
 # Specify where we will install
 SSL_DIR="/etc/nginx/ssl"
 mkdir -p ${SSL_DIR}
