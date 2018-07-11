@@ -1,0 +1,24 @@
+{% extends "consent/_base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div>
+                {% include 'consent/neer-signature/_consent.html' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form id="form" class="form-horizontal" action="{% url 'consent:consent' questionnaire_id %}" method="post">
+                {% csrf_token %}
+                {% include 'consent/neer-signature/_signature.html' %}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

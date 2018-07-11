@@ -8,8 +8,8 @@ from django.conf import settings
 from fhirquestionnaire.fhir import FHIR
 
 
-class QuestionnaireConfig(AppConfig):
-    name = 'questionnaire'
+class ConsentConfig(AppConfig):
+    name = 'consent'
 
     def ready(self):
 
@@ -17,7 +17,7 @@ class QuestionnaireConfig(AppConfig):
         logger = logging.getLogger(__name__)
 
         # Load FHIR resources and update the FHIR server
-        fhir_dir = join(dirname(settings.STATIC_ROOT), QuestionnaireConfig.name, 'fhir')
+        fhir_dir = join(dirname(settings.STATIC_ROOT), ConsentConfig.name, 'fhir')
         for file in [f for f in listdir(fhir_dir) if isfile(join(fhir_dir, f))]:
             with open(join(fhir_dir, file)) as f:
                 logger.debug('Loading {}'.format(file))

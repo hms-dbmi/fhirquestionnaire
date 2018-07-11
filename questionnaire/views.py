@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
 from questionnaire.forms import QuestionnaireForm
-from questionnaire.fhir import FHIR
+from fhirquestionnaire.fhir import FHIR
 from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
 
 import logging
@@ -20,6 +20,37 @@ class IndexView(View):
                                               title='Questionnaire Not Specified',
                                               message='A questionnaire must be specified.',
                                               support=True)
+
+
+class ProjectView(View):
+
+    @method_decorator(dbmi_jwt)
+    def get(self, request, *args, **kwargs):
+
+        # Get the project ID
+        project_id = kwargs.get('project_id')
+        if not project_id:
+            return QuestionnaireView.render_error(request,
+                                            title='Project Not Specified',
+                                            message='A project must be specified in order to load the needed consent.',
+                                            support=False)
+
+        # Redirect them
+        if project_id == 'neer':
+
+            return redirect(reverse('questionnaire:questionnaire',
+                                    kwargs={'questionnaire_id': 'ppm-neer-registration-questionnaire'}))
+
+        #elif project_id == 'autism':
+
+            #return redirect(reverse('consent:consent',
+                            # kwargs={'questionnaire_id': 'ppm-asd-questionnaire'}))
+
+        else:
+            return QuestionnaireView.render_error(request,
+                                            title='Invalid Project Specified',
+                                            message='A valid project must be specified in order to load the needed consent.',
+                                            support=False)
 
 
 class QuestionnaireView(View):
@@ -83,8 +114,11 @@ class QuestionnaireView(View):
 
         except Exception as e:
             logger.exception(e)
-            return render(request, template_name='questionnaire/error.html',
-                   context={'error': '{}'.format(e)})
+            return QuestionnaireView.render_error(request,
+                                            title='Application Error',
+                                            message='The application has experienced an unknown error {}'
+                                            .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                            support=True)
 
     @method_decorator(dbmi_jwt)
     def post(self, request, *args, **kwargs):
@@ -126,6 +160,8 @@ class QuestionnaireView(View):
                'return_url': settings.RETURN_URL,
             }
 
+            # Set a message
+
             # Get the passed parameters
             return render(request, template_name='questionnaire/success.html', context=context)
 
@@ -146,7 +182,11 @@ class QuestionnaireView(View):
                                                   support=False)
         except Exception as e:
             logger.exception(e)
-            return QuestionnaireView.render_error(request)
+            return QuestionnaireView.render_error(request,
+                                            title='Application Error',
+                                            message='The application has experienced an unknown error{}'
+                                            .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                            support=True)
 
     @staticmethod
     def render_error(request, title=None, message=None, support=False):
@@ -164,5 +204,5 @@ class QuestionnaireView(View):
                    'return_url': settings.RETURN_URL,
                    'support': support}
 
-        return render(request, template_name='questionnaire/error.html', context=context)
+        return render(request, template_name='fhirquestionnaire/error.html', context=context)
 

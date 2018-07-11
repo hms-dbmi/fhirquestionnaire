@@ -137,7 +137,8 @@
     },
     {
       "linkId": "question-22",
-      "text": "Why do you describe yourself as a “super” responder (please provide a detailed answer, as this will help us determine your eligibility for the study):",
+      "text": "Why do you describe yourself as a “super” responder:",
+      "initialString": "Please provide a detailed answer, as this will help us determine your eligibility for the study",
       "type": "text",
       "required": true
     },

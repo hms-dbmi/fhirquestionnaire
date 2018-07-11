@@ -43,11 +43,15 @@ class ContactView(View):
         if form.is_valid():
             logger.debug("Form is valid")
 
+            # Get the user's browser
+            user_agent = request.META.get('HTTP_USER_AGENT', 'unknown')
+
             # Form the context.
             context = {
                 'from_email': form.cleaned_data['email'],
                 'from_name': form.cleaned_data['name'],
                 'message': form.cleaned_data['message'],
+                'user_agent': user_agent,
             }
 
             # List out the recipients.
