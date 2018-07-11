@@ -1,11 +1,14 @@
 import requests
 import datetime
+from dateutil.parser import parser
 import uuid
 import base64
 from urllib.parse import quote
 from furl import furl
 
+from django.template.loader import render_to_string
 from django.conf import settings
+
 from fhirclient import client
 from fhirclient.models.bundle import Bundle, BundleEntry
 from fhirclient.models.fhirreference import FHIRReference
@@ -191,14 +194,20 @@ class FHIR:
 
         elif questionnaire_id == 'neer-signature':
 
-            # Set the date to use for everything
-            date = datetime.datetime.utcnow()
-
             # Get the exception codes from the form
             data = dict(form)
             codes = data.get('except', [])
             name = data['name-of-participant'][0]
             signature = data['signature-of-participant'][0]
+
+            # Parse the date
+            try:
+                date = datetime.datetime.strptime(data['date'][0], '%Y-%m-%d')
+            except ValueError as e:
+                logger.exception(e)
+
+                # Default to now
+                date = datetime.datetime.utcnow()
 
             # Create needed resources
             questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, codes)
@@ -206,8 +215,11 @@ class FHIR:
             exceptions = FHIR._consent_exceptions(codes)
             consent = FHIR._consent(patient, date, exceptions)
 
-            # TODO: Add actual text from consent!
-            composition = FHIR._composition(patient, date, 'adawdawd', consent, contract)
+            # Get the signature HTML
+            text = '<div>{}</div>'.format(render_to_string('consent/neer-signature/_consent.html'))
+
+            # Generate composition
+            composition = FHIR._composition(patient, date, text, consent, contract)
 
             # Bundle it into a transaction
             bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
