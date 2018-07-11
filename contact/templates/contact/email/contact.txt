@@ -1,4 +1,5 @@
 Name: {{ from_name }}
 Email: {{ from_email }}
+Browser: {{ user_agent }}
 Comment:
 {{ message }}

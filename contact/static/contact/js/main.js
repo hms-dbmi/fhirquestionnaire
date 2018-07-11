@@ -5,7 +5,7 @@ $(function() {
         console.log("Loading contact form");
         $.ajax({
             type: 'GET',
-            url: '/contact/',
+            url: $('#contact-form-modal').data( 'contact-url' ),
             success: function (data, textStatus, jqXHR) {
                 $('#contact-form-modal').html(data);
                 $('#contact-form-modal').modal('show');
@@ -20,7 +20,7 @@ $(function() {
     $('#contact-form-modal').on('submit', '#contact-form', function() {
         console.log("Sending contact form");
         $.ajax({
-            url : "/contact/",
+            url : $('#contact-form-modal').data( 'contact-url' ),
             type : "POST",
             data: $(this).serialize(),
             context: this,
