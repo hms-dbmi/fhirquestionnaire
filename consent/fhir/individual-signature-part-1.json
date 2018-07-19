@@ -1,0 +1,62 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "individual-signature-part-1",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "status": "active",
+  "date": "2017-05-19",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "display-1",
+      "text": "I have read the information in this consent form including risks and possible benefits. All my questions about the research have been answered to my satisfaction. I understand that I am free to withdraw at any time without penalty or loss of benefits to which I am otherwise entitled.",
+      "type": "display"
+    },
+    {
+      "linkId": "display-2",
+      "text": "Please indicate if you DO NOT wish to provide a saliva sample for this study. Saliva samples will be stored and later analyzed for genetic data.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-1",
+      "text": "I DO NOT WISH TO PROVIDE A SALIVA SAMPLE FOR THIS STUDY.",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "display-3",
+      "text": "Please indicate if you DO NOT wish to wear a Fitbit™ for this study.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-2",
+      "text": "I DO NOT WISH TO WEAR A FITBIT™ FOR THIS STUDY.",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "display-4",
+      "text": "Please indicate if you DO NOT wish to be contacted with additional questionnaires for this study.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-3",
+      "text": "I DO NOT WISH TO BE CONTACTED WITH ADDITIONAL QUESTIONNAIRES FOR THIS STUDY.",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "display-5",
+      "text": "I agree to participate in the study.",
+      "type": "display"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-asd-consent-guardian-quiz",
+  "status": "active",
+  "date": "2017-04-13",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-1",
+      "text": "In this consent, which is TRUE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "You agreed that you could be contacted in the future."
+        },
+        {
+          "valueString": "You agreed to call us with yearly updates."
+        },
+        {
+          "valueString": "You agreed to send us monthly lists of your child's medications."
+        }
+      ]
+    },
+    {
+      "linkId": "question-2",
+      "text": "Which of the following is TRUE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "This study will store your child's social web data (e.g., Facebook, Twitter) with your permission, along with your child's health record data."
+        },
+        {
+          "valueString": "This study will post your child's electronic health data on Twitter."
+        },
+        {
+          "valueString": "This study will share your child's Twitter data with insurers."
+        }
+      ]
+    },
+    {
+      "linkId": "question-3",
+      "text": "Which of the following is FALSE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "We will use your child's donated saliva sample for DNA (genetic code) sequencing."
+        },
+        {
+          "valueString": "We will share your child's DNA data with your child's doctor."
+        },
+        {
+          "valueString": "You will get a copy of all your child's genetic data obtained from sequencing your child's DNA."
+        }
+      ]
+    },
+    {
+      "linkId": "question-4",
+      "text": "Which of the following is FALSE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "You can download all stored data you provide us with and send it wherever you wish."
+        },
+        {
+          "valueString": "You and your child can withdraw from the study whenever you wish."
+        },
+        {
+          "valueString": "Although we will do our best to safeguard the data you provide us with, there is always a small chance that a hacker might access the data illegally."
+        },
+        {
+          "valueString": "Data from this study will go into your child's medical record."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "guardian-signature-part-3",
+  "status": "active",
+  "date": "2017-05-19",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "display-1",
+      "text": "If you DO NOT want to give us a saliva sample for this study, please check here.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-1",
+      "text": "I DO NOT WISH TO PROVIDE A SALIVA SAMPLE FOR THIS STUDY.",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "display-2",
+      "text": "If you DO NOT want to wear a Fitbit™ for this study, please check here.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-2",
+      "text": "I DO NOT WISH TO WEAR A FITBIT™ FOR THIS STUDY.",
+      "type": "boolean",
+      "required": true
+    }
+  ]
+}

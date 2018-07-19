@@ -1,0 +1,44 @@
+{% extends "consent/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="no-js col-md-8 col-md-offset-2">
+        <h1>
+            <span class="glyphicon glyphicon-warning-sign" style="color: red;"></span>
+            Incompatible Browser
+        </h1>
+        <p class="lead">
+            This application requires a browser with Javascript enabled. Please retry with another browser.
+        </p>
+        <br /><br />
+        <p>
+            <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Return to the People-Powered Medicine dashboard</a>
+        </p>
+    </div>
+
+    <div id="consent-content" class="js">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd' %}"
+                      ic-post-to="{% url 'consent:asd' %}"
+                      ic-target="#consent-content" ic-replace-target="false" ic-indicator="#submit"
+                      ic-select-from-response="#consent-content">
+                    {% csrf_token %}
+
+                    {% bootstrap_form_errors form error_types='non_field_errors' %}
+
+                    {% bootstrap_field form.individual form_group_class='form-group col-md-12' show_label=False %}
+
+                    <div class="col-md-12">
+                    {% buttons %}
+                        <button id="submit" type="submit" class="btn btn-default">Continue</button>
+                    {% endbuttons %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

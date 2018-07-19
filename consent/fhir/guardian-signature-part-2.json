@@ -1,0 +1,52 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "guardian-signature-part-2",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "status": "active",
+  "date": "2017-05-19",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "display-1",
+      "text": "If you are consenting to participation of your child or an individual in your care, please review this study with them, using the assent form and assent aid provided with this consent form to assist in explaining the requirements of this study.",
+      "type": "display"
+    },
+    {
+      "linkId": "question-1",
+      "text": "I acknowledge that I have explained this study to my child or individual in my care who will be participating.",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "yes"
+        },
+        {
+          "valueString": "no"
+        }
+      ],
+      "item": [
+        {
+          "linkId": "question-1-1",
+          "text": "no",
+          "type": "question",
+          "enableWhen": [
+            {
+              "question": "question-1",
+              "answerString": "no"
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

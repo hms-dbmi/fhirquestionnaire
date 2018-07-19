@@ -6,7 +6,10 @@ app_name = "consent"
 
 # Add views.
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^p/(?P<project_id>.+)/$', views.ProjectView.as_view(), name='project'),
-    url(r'^q/(?P<questionnaire_id>.+)/$', views.ConsentView.as_view(), name='consent'),
+    url(r'^c/neer/$', views.NEERView.as_view(), name='neer'),
+    url(r'^c/asd/$', views.ASDView.as_view(), name='asd'),
+    url(r'^c/asd/quiz/$', views.ASDQuizView.as_view(), name='asd-quiz'),
+    url(r'^c/asd/signature/$', views.ASDSignatureView.as_view(), name='asd-signature'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 ]
