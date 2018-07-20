@@ -15,47 +15,8 @@
             {% bootstrap_form_errors form error_types='non_field_errors' %}
 
             {% csrf_token %}
-      <div>
-        <p>
-          We are researchers at Harvard Medical School in the Department of Biomedical Informatics. We are trying to learn more about how to find people to join a study using Facebook, Twitter, and the internet and, also, how to collect different types of information about their health and put it all together so that other researchers can study it.
-        </p>
-        <p>
-          We are asking you and other people to take part in our research study. A research study is a way to learn more about something. You are being asked to join this research study because you are at least 10 years old and you have autism or autism spectrum disorder (ASD).
-        </p>
-        <p>
-          If you agree to join this study, you will be asked to:
-        </p>
-        <ul>
-          <li>Let us use information that we can see on your Facebook and Twitter pages, if you have them
-          </li>
-          <li>There is a Facebook page about this study that you may visit if you want to learn more about the research we are doing. If you choose to “Like” this page, people who are friends with you on Facebook, and the people who manage Facebook, might be able to see that you liked the page. We have also developed a “secret group” on Facebook for people who participate in this study if they want to talk about the research or to other people who are in the study. If you choose to join this group, your friends will not see that you are a part of the group unless they are also in the group. However, the people who manage Facebook may know that you are a part of the group.
-          </li>
-          <li>Tell us your zip code so that we can see what might be in the area for chemicals
-          </li>
-          <li>Wear a Fitbit™ , like a bracelet or watch that tells us information about your health (if you choose to)
-          </li>
-          <li>Let us get copies of your medical records from your doctors
-          </li>
-          <li>Let your parent or guardian to tell us information about your health and your family’s health
-          </li>
-          <li>Give us a spit sample (if you choose to) by spitting into a tube so that we can look at your genes (made up of DNA – the instructions that tell your body what to do)
-          </li>
-          <li>All of this will take about 6 months.
-          </li>
-        </ul>
-        <p>
-          If you join this study, you will be letting us see information about your health that is private. We will do our best to keep this information private, but there is a small possibility that someone might see it who isn’t part of this study.
-        </p>
-        <p>
-          This study might help us learn more about autism and ASD, and will also help us to create bigger studies to look at other diseases and conditions. Also, people who participate in this study will have all of their health information combined for them to share with anyone they wish to in the future.
-        </p>
-        <p>
-          You do not have to join this study. It is up to you. You can say okay now and change your mind later. All you have to do is tell us you want to stop. No one will be mad at you if you don’t want to be in the study or if you join the study and change your mind later and stop. You may talk to your parent or guardian if you want.
-        </p>
-        <p>
-          Before you say yes or no to being in this study, we will answer any questions you have. If you join the study, you can ask questions at any time. Just contact the Project Manager, <strong>Cassandra Perry</strong>, at <strong>617-432-5484</strong> or at <strong>Cassandra_Perry@hms.harvard.edu</strong>.
-        </p>
-      </div>
+
+            {% include 'consent/asd/_ward_assent.html' %}
       <p>
         If you DO NOT want to give us a saliva sample for this study, please check here.
       </p>
