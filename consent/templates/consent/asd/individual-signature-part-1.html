@@ -45,10 +45,10 @@
                 <p>I agree to participate in the study.</p>
                 <p>(Typing your name below acts as your signature and indicates your permission to take part in this research.)</p>
 
-                {% bootstrap_field form.name form_group_class='form-group col-md-8' %}
+                {% bootstrap_field form.name form_group_class='form-group col-md-8' placeholder='' %}
 
                 <div class="form-group">
-                    {% bootstrap_field form.signature form_group_class='col-md-8' %}
+                    {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
                     {% bootstrap_field form.date form_group_class='col-md-4' %}
                 </div>
 

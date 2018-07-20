@@ -61,15 +61,15 @@
         (Typing your name below acts as your signature and indicates your permission for your child to take part in this research.)
       </p>
 
-        {% bootstrap_field form.name form_group_class='form-group col-md-8' %}
+        {% bootstrap_field form.name form_group_class='form-group col-md-8' placeholder='' %}
 
         <div class="form-group">
-            {% bootstrap_field form.guardian form_group_class='col-md-8' %}
+            {% bootstrap_field form.guardian form_group_class='col-md-8' placeholder='' %}
             {% bootstrap_field form.relationship form_group_class='col-md-4' %}
         </div>
 
         <div class="form-group">
-            {% bootstrap_field form.signature form_group_class='col-md-8' %}
+            {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
             {% bootstrap_field form.date form_group_class='col-md-4' %}
         </div>
 
@@ -95,10 +95,10 @@
                     </label>
                 </div>
             </div>
-            {% bootstrap_field form.reason form_group_class='col-md-6' %}
+            {% bootstrap_field form.reason form_group_class='col-md-6' placeholder='' %}
         </div>
 
-        {% bootstrap_field form.explained_signature form_group_class='form-group col-md-12' %}
+        {% bootstrap_field form.explained_signature form_group_class='form-group col-md-12' placeholder='' %}
 
         <div class="col-xs-12">
         {% buttons %}
