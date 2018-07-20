@@ -96,7 +96,10 @@ class NEERView(View):
                 'return_url': settings.RETURN_URL
             }
 
-            return render(request, template_name='consent/neer.html', context=context)
+            # Build the template response
+            response = render(request, template_name='consent/neer.html', context=context)
+
+            return response
 
         except FHIR.PatientDoesNotExist:
             logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
@@ -425,11 +428,10 @@ class ASDSignatureView(View):
                     return render(request, template_name='consent/asd/individual-signature-part-1.html', context=context)
 
                 # Build the data
-                data = dict(form.cleaned_data)
-                data.update(request.session['quiz'])
+                forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
 
-                # TODO: SAVE THE FORM!
-                logger.debug(data)
+                # Submit the data
+                FHIR.submit_asd_individual(settings.FHIR_URL, patient_email, forms)
 
                 # Get the return URL
                 context = {
@@ -460,16 +462,13 @@ class ASDSignatureView(View):
                         return render(request, template_name='consent/asd/guardian-signature-part-3.html',
                                       context=context)
 
-                    # Fix the date
-                    form.cleaned_data['date'] = form.cleaned_data['date'].isoformat()
-
                     # Build the data
-                    data = dict({'ward': form.cleaned_data,
+                    forms = dict({'ward': form.cleaned_data,
                                  'guardian': request.session['guardian'],
                                  'quiz': request.session['quiz']})
 
-                    # TODO: SAVE THE FORM!
-                    logger.debug(data)
+                    # Submit the data
+                    FHIR.submit_asd_guardian(settings.FHIR_URL, patient_email, forms)
 
                     # Get the return URL
                     context = {
@@ -496,10 +495,13 @@ class ASDSignatureView(View):
                         return render(request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context)
 
                     # Fix the date
-                    form.cleaned_data['date'] = form.cleaned_data['date'].isoformat()
+                    date = form.cleaned_data['date'].isoformat()
+                    form.cleaned_data['date'] = date
 
                     # Retain their responses
                     request.session['guardian'] = form.cleaned_data
+
+                    logger.debug('Guardian: {}'.format(request.session['guardian']))
 
                     # Make the ward signature form
                     form = ASDWardSignatureForm()
@@ -565,10 +567,3 @@ def render_error(request, title=None, message=None, error=None, support=False):
                'support': support}
 
     return render(request, template_name='fhirquestionnaire/error.html', context=context)
-
-
-def is_ic(request):
-    # Returns whether a request is an Intercooler request or not
-    return request.GET.get('ic-request', False) \
-           or request.POST.get('ic-request', False) \
-           or QueryDict(request.body).get('ic-request', False)
