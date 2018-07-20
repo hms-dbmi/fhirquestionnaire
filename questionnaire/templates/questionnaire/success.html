@@ -4,9 +4,13 @@
 
 {% block content %}
 
+    <div id="consent-content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Submission Successful</h1>
+            <h1>
+                <span class="glyphicon glyphicon-ok" style="color: green;"></span>
+                Submission Successful
+            </h1>
             <p class="lead">You've successfully submitted your questionnaire. An administrator will review your submission and contact you via e-mail.</p>
             <div class="no-js"><p> <a href={{ return_url }}><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Click to return to the People-Powered Medicine Dashboard</a>.</p></div>
             <div class="js"><p><a href={{ return_url }}><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;You are being redirected to the People-Powered Medicine Dashboard</a>.</p></div>
@@ -18,5 +22,6 @@
             window.location.href = '{{ return_url }}';
         }, 2000);
     </script>
+    </div>
 
 {% endblock %}
