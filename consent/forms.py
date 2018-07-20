@@ -1,39 +1,97 @@
 import datetime
+import os
+import json
+
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import mark_safe
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Hidden, Div
-from crispy_forms.bootstrap import FormActions, Field
-
-from fhirclient import client
-from fhirclient.server import FHIRNotFoundException
-from fhirclient.models.questionnaire import Questionnaire
-
-from fhirquestionnaire.fhir import FHIR
+from consent.apps import ConsentConfig
 
 import logging
 logger = logging.getLogger(__name__)
 
 
+def _exception_choices(questionnaire_id):
+    '''
+    Takes the FHIR Questionnaire resource and returns a tuple of choices to be used
+    for the exception options on the signature portion of the consents
+    :param resource: The FHIR Questionnaire resource as a dict
+    :return: choices
+    '''
+
+    # Open resource
+    fhir_dir = os.path.join(os.path.dirname(settings.STATIC_ROOT), ConsentConfig.name, 'fhir')
+    with open(os.path.join(fhir_dir, '{}.json'.format(questionnaire_id))) as f:
+
+        # Load the file
+        questionnaire = json.loads(f.read())
+
+        # Get the exception items
+        texts = [item['text'] for item in questionnaire['item'] if item['type'].lower() == 'boolean']
+
+        # Set the codes and the relevant section of text
+        codes = {
+            '82078001': 'BLOOD SAMPLE',
+            '165334004': 'STOOL SAMPLE',
+            '258435002': 'TUMOR SAMPLES',
+            '284036006': 'FITBIT',
+            '702475000': 'ADDITIONAL QUESTIONNAIRES',
+            '225098009': 'SALIVA SAMPLE',
+        }
+
+        # Build the choices tuple
+        choices = []
+        for text in texts:
+
+            # Get the code
+            code = next(key for key, value in codes.items() if value in text)
+
+            # Add emphasis to 'DO NOT'
+            label = text.replace('I DO NOT', 'I <strong><em>DO NOT</em></strong>')
+
+            # Add it
+            choices.append((code, mark_safe(label)))
+
+        # Return the field
+        return forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=tuple(choices),
+        )
+
+def _quiz_fields(questionnaire_id):
+    '''
+    Takes the id of a Questionnaire resource and returns the form fields
+    rekated to the quiz question items. All questions are assumed to be
+    single choice items rendered as radio inputs. Returns a dictionary
+    of form fields keyed by the question's linkId.
+    :param questionnaire_id: FHIR resource ID
+    :return: dict
+    '''
+    # Open resource
+    fhir_dir = os.path.join(os.path.dirname(settings.STATIC_ROOT), ConsentConfig.name, 'fhir')
+    with open(os.path.join(fhir_dir, '{}.json'.format(questionnaire_id))) as f:
+
+        # Load the file
+        quiz = json.loads(f.read())
+
+        # Get questions and answers
+        fields = {}
+        for question in quiz['item']:
+            fields[question['linkId']] = forms.ChoiceField(
+                label=question['text'],
+                required=True,
+                widget=forms.RadioSelect,
+                choices=tuple([(option['valueString'], option['valueString']) for option in question['option']])
+            )
+
+        return fields
+
+
 class NEERSignatureForm(forms.Form):
 
-    EXCEPTION_CHOICES = (
-        ('82078001', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO PROVIDE A BLOOD SAMPLE FOR THIS STUDY.')),
-        ('165334004', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO PROVIDE A STOOL SAMPLE FOR THIS STUDY.')),
-        ('258435002', mark_safe(
-            'I <strong><em>DO NOT</em></strong> GIVE PERMISSION FOR MY EXISTING TUMOR SAMPLES TO BE USED FOR THIS STUDY.')),
-        ('284036006', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO WEAR A FITBIT™ FOR THIS STUDY.')),
-        ('702475000', mark_safe(
-            'I <strong><em>DO NOT</em></strong> WISH TO BE CONTACTED WITH ADDITIONAL QUESTIONNAIRES FOR THIS STUDY.')),
-    )
-
-    exceptions = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=EXCEPTION_CHOICES,
-    )
+    exceptions = _exception_choices('neer-signature')
 
     name = forms.CharField(label='Name of participant',
                            required=True,
@@ -69,142 +127,29 @@ class ASDTypeForm(forms.Form):
 
 class ASDGuardianQuiz(forms.Form):
 
-    QUESTION_1_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_2_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_3_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_4_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
+    resource = 'ppm-asd-consent-guardian-quiz'
 
     def __init__(self, *args, **kwargs):
         super(ASDGuardianQuiz, self).__init__(*args, **kwargs)
 
-        # Set fields
-        self.fields['question-1'] = forms.ChoiceField(
-                                                      label='In this consent, which is TRUE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_1_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-2'] = forms.ChoiceField(
-                                                      label='In this consent, which is TRUE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_2_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-3'] = forms.ChoiceField(
-                                                      label='In this consent, which is FALSE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_3_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-4'] = forms.ChoiceField(
-                                                      label='In this consent, which is FALSE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_4_CHOICES,
-                                                    )
+        # Get fields
+        self.fields = _quiz_fields(self.resource)
 
 
 class ASDIndividualQuiz(forms.Form):
 
-    QUESTION_1_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_2_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_3_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
-
-    QUESTION_4_CHOICES = (
-        ('You agreed that you could be contacted in the future.', 'You agreed that you could be contacted in the future.'),
-        ('You agreed to call us with yearly updates.', 'You agreed to call us with yearly updates.'),
-        ('You agreed to send us monthly lists of your medications.', 'You agreed to send us monthly lists of your medications.'),
-    )
+    resource = 'ppm-asd-consent-individual-quiz'
 
     def __init__(self, *args, **kwargs):
         super(ASDIndividualQuiz, self).__init__(*args, **kwargs)
 
-        # Set fields
-        self.fields['question-1'] = forms.ChoiceField(
-                                                      label='In this consent, which is TRUE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_1_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-2'] = forms.ChoiceField(
-                                                      label='In this consent, which is TRUE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_2_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-3'] = forms.ChoiceField(
-                                                      label='In this consent, which is FALSE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_3_CHOICES,
-                                                    )
-
-        # Set fields
-        self.fields['question-4'] = forms.ChoiceField(
-                                                      label='In this consent, which is FALSE?',
-                                                      required=True,
-                                                      widget=forms.RadioSelect,
-                                                      choices=self.QUESTION_4_CHOICES,
-                                                    )
+        # Get fields
+        self.fields = _quiz_fields(self.resource)
 
 
 class ASDIndividualSignatureForm(forms.Form):
 
-    EXCEPTION_CHOICES = (
-        ('225098009', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO PROVIDE A SALIVA SAMPLE FOR THIS STUDY.')),
-        ('284036006', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO WEAR A FITBIT™ FOR THIS STUDY.')),
-        ('702475000', mark_safe(
-            'I <strong><em>DO NOT</em></strong> WISH TO BE CONTACTED WITH ADDITIONAL QUESTIONNAIRES FOR THIS STUDY.')),
-    )
-
-    exceptions = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=EXCEPTION_CHOICES,
-    )
+    exceptions = _exception_choices('individual-signature-part-1')
 
     name = forms.CharField(label='Name of participant',
                            required=True,
@@ -223,13 +168,6 @@ class ASDIndividualSignatureForm(forms.Form):
 
 class ASDGuardianSignatureForm(forms.Form):
 
-    EXCEPTION_CHOICES = (
-        ('225098009', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO HAVE MY CHILD PROVIDE A SALIVA SAMPLE FOR THIS STUDY.')),
-        ('284036006', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO HAVE MY CHILD WEAR A FITBIT™ FOR THIS STUDY.')),
-        ('702475000', mark_safe(
-            'I <strong><em>DO NOT</em></strong> WISH TO BE CONTACTED WITH ADDITIONAL QUESTIONNAIRES ABOUT MY CHILD FOR THIS STUDY.')),
-    )
-
     RELATIONSHIP_CHOICES = (
         ('Parent/Legal Guardian', 'Parent/Legal Guardian'),
         ('Healthcare Proxy', 'Healthcare Proxy'),
@@ -241,11 +179,7 @@ class ASDGuardianSignatureForm(forms.Form):
         ('no', 'I was not able to explain this study to my child or individual in my care who will be participating.')
     )
 
-    exceptions = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=EXCEPTION_CHOICES,
-    )
+    exceptions = _exception_choices('guardian-signature-part-1')
 
     name = forms.CharField(label='Name of participant',
                            required=True,
@@ -286,16 +220,7 @@ class ASDGuardianSignatureForm(forms.Form):
 
 class ASDWardSignatureForm(forms.Form):
 
-    EXCEPTION_CHOICES = (
-        ('225098009', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO PROVIDE A SALIVA SAMPLE FOR THIS STUDY.')),
-        ('284036006', mark_safe('I <strong><em>DO NOT</em></strong> WISH TO WEAR A FITBIT™ FOR THIS STUDY.')),
-    )
-
-    exceptions = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=EXCEPTION_CHOICES,
-    )
+    exceptions = _exception_choices('guardian-signature-part-3')
 
     signature = forms.CharField(label='Signature of participant (Please type your name)',
                                 required=True,
