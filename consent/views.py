@@ -1,10 +1,7 @@
-import datetime
-
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
-from django.contrib import messages
 
 from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
@@ -66,15 +63,6 @@ class NEERView(View):
 
     @method_decorator(dbmi_jwt)
     def get(self, request, *args, **kwargs):
-
-        # # Make sure the cookie worked
-        # if not request.session.test_cookie_worked():
-        #     return render_error(request,
-        #                         title='Browser Incompatible',
-        #                         message='This site requires the use of cookies in order to stare your progress '
-        #                                 'through the consent form. Please enable cookies or visit this site with a '
-        #                                 'browser that supports cookies.',
-        #                         support=False)
 
         # Clearing any leftover sessions
         request.session.clear()
@@ -153,7 +141,7 @@ class NEERView(View):
 
         # Process the form
         try:
-            FHIR.submit(settings.FHIR_URL, self.questionnaire_id, patient_email, form.cleaned_data)
+            FHIR.submit_neer_consent(patient_email, form.cleaned_data)
 
             # Get the return URL
             context = {
@@ -195,15 +183,6 @@ class ASDView(View):
 
     @method_decorator(dbmi_jwt)
     def get(self, request, *args, **kwargs):
-
-        # # Make sure the cookie worked
-        # if not request.session.items():
-        #     return render_error(request,
-        #                         title='Browser Incompatible',
-        #                         message='This site requires the use of cookies in order to store your progress '
-        #                                 'through the consent form. Please enable cookies or visit this site with a '
-        #                                 'browser that supports cookies.',
-        #                         support=False)
 
         # Clearing any leftover sessions
         request.session.clear()
@@ -431,7 +410,7 @@ class ASDSignatureView(View):
                 forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
 
                 # Submit the data
-                FHIR.submit_asd_individual(settings.FHIR_URL, patient_email, forms)
+                FHIR.submit_asd_individual(patient_email, forms)
 
                 # Get the return URL
                 context = {
@@ -468,7 +447,7 @@ class ASDSignatureView(View):
                                  'quiz': request.session['quiz']})
 
                     # Submit the data
-                    FHIR.submit_asd_guardian(settings.FHIR_URL, patient_email, forms)
+                    FHIR.submit_asd_guardian(patient_email, forms)
 
                     # Get the return URL
                     context = {
