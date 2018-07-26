@@ -19,7 +19,7 @@ class IndexView(View):
         return render_error(request,
                             title='Questionnaire Not Specified',
                             message='A questionnaire must be specified.',
-                            support=True)
+                            support=False)
 
 
 class ProjectView(View):
@@ -95,7 +95,7 @@ class NEERView(View):
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
-                                support=True)
+                                support=False)
 
         except FHIR.QuestionnaireResponseAlreadyExists:
             logger.warning('Questionnaire already finished')
@@ -103,7 +103,7 @@ class NEERView(View):
                                 title='Questionnaire Already Completed',
                                 message='You have already filled out and submitted this '
                                         'questionnaire.',
-                                support=True)
+                                support=False)
 
         except Exception as e:
             logger.exception(e)
@@ -111,7 +111,7 @@ class NEERView(View):
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
-                                support=True)
+                                support=False)
 
     @method_decorator(dbmi_jwt)
     def post(self, request, *args, **kwargs):
@@ -153,7 +153,7 @@ class NEERView(View):
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
-                                support=True)
+                                support=False)
 
         except FHIR.PatientDoesNotExist:
             logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
@@ -169,7 +169,7 @@ class NEERView(View):
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
-                                support=True)
+                                support=False)
 
 
 class ASDView(View):
@@ -217,7 +217,7 @@ class ASDView(View):
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
-                                support=True)
+                                support=False)
 
         except FHIR.QuestionnaireResponseAlreadyExists:
             logger.warning('Questionnaire already finished')
@@ -225,7 +225,7 @@ class ASDView(View):
                                 title='Questionnaire Already Completed',
                                 message='You have already filled out and submitted this '
                                         'questionnaire.',
-                                support=True)
+                                support=False)
 
         except Exception as e:
             logger.exception(e)
@@ -234,7 +234,7 @@ class ASDView(View):
                                 message='The application has experienced an unknown error {}'.format(
                                     ': {}'.format(e) if settings.DEBUG else '.'
                                 ),
-                                support=True)
+                                support=False)
 
     @method_decorator(dbmi_jwt)
     def post(self, request, *args, **kwargs):
@@ -276,7 +276,7 @@ class ASDView(View):
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
-                                support=True)
+                                support=False)
 
         except FHIR.PatientDoesNotExist:
             logger.error('Patient does not exist: {}'.format(patient_email[:3] + '****' + patient_email[-4:]))
@@ -292,7 +292,7 @@ class ASDView(View):
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
-                                support=True)
+                                support=False)
 
 
 def render_error(request, title=None, message=None, support=False):
