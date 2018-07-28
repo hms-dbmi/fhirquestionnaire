@@ -568,7 +568,11 @@ class FHIR:
                 # Get the items
                 question_items = FHIR._questionnaire_response_items(question.item, form)
                 if question_items:
-                    item.item = question_items
+                    # TODO: Uncomment the following line after resource parsing is updated
+                    #item.item = question_items
+
+                    # Save all answers flat for now
+                    items.extend(question_items)
 
             # Add the item
             items.append(item)

@@ -4,12 +4,12 @@
 
 {% block content %}
 
-<div id="consent-content">
+<div id="fhirquestionnaire-content">
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
         <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-signature' %}"
-                  ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#consent-content"
-                  ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#consent-content"
+                  ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#fhirquestionnaire-content"
+                  ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
                   ic-scroll-to-target="true" ic-scroll-offset="-100">
 
             {% bootstrap_form_errors form error_types='non_field_errors' %}

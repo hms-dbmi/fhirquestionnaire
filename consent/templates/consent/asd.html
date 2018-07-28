@@ -18,13 +18,13 @@
         </p>
     </div>
 
-    <div id="consent-content" class="js">
+    <div id="fhirquestionnaire-content" class="js">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd' %}"
                       ic-post-to="{% url 'consent:asd' %}"
-                      ic-target="#consent-content" ic-replace-target="false" ic-indicator="#submit"
-                      ic-select-from-response="#consent-content">
+                      ic-target="#fhirquestionnaire-content" ic-replace-target="false" ic-indicator="#submit"
+                      ic-select-from-response="#fhirquestionnaire-content">
                     {% csrf_token %}
 
                     {% bootstrap_form_errors form error_types='non_field_errors' %}

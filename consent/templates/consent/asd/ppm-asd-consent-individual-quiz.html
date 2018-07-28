@@ -3,7 +3,7 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<div id="consent-content">
+<div id="fhirquestionnaire-content">
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div>
@@ -15,9 +15,9 @@
       </h1>
 
     <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-quiz' %}"
-          ic-post-to="{% url 'consent:asd-quiz' %}" ic-target="#consent-content"
+          ic-post-to="{% url 'consent:asd-quiz' %}" ic-target="#fhirquestionnaire-content"
           ic-replace-target="false" ic-indicator="#submit" ic-scroll-to-target="true" ic-scroll-offset="-100"
-          ic-select-from-response="#consent-content">
+          ic-select-from-response="#fhirquestionnaire-content">
 
                 {% csrf_token %}
                 <div class="col-md-12">
