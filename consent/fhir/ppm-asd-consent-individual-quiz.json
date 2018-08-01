@@ -1,0 +1,90 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-asd-consent-individual-quiz",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "status": "active",
+  "date": "2017-04-13",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-1",
+      "text": "In this consent, which is TRUE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "You agreed that you could be contacted in the future."
+        },
+        {
+          "valueString": "You agreed to call us with yearly updates."
+        },
+        {
+          "valueString": "You agreed to send us monthly lists of your medications."
+        }
+      ]
+    },
+    {
+      "linkId": "question-2",
+      "text": "Which of the following is TRUE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "This study will store your social web data (e.g., Facebook, Twitter) with your permission, along with your health record data."
+        },
+        {
+          "valueString": "This study will post your electronic health data on Twitter."
+        },
+        {
+          "valueString": "This study will share your Twitter data with insurers."
+        }
+      ]
+    },
+    {
+      "linkId": "question-3",
+      "text": "Which of the following is FALSE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "We will use your donated saliva sample for DNA (genetic code) sequencing."
+        },
+        {
+          "valueString": "We will share your DNA data with your doctor."
+        },
+        {
+          "valueString": "You will get a copy of all your genetic data obtained from sequencing your DNA."
+        }
+      ]
+    },
+    {
+      "linkId": "question-4",
+      "text": "Which of the following is FALSE?",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "You can download all data you give us that we store and send it wherever you wish."
+        },
+        {
+          "valueString": "You can withdraw from the study whenever you wish."
+        },
+        {
+          "valueString": "Although we will do our best to safeguard your data, there is always a small chance that a hacker might access your data illegally."
+        },
+        {
+          "valueString": "Data from this study will go into your medical record."
+        }
+      ]
+    }
+  ]
+}

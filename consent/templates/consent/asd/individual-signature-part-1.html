@@ -1,0 +1,65 @@
+{% extends "consent/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div id="fhirquestionnaire-content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-signature' %}"
+                  ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#fhirquestionnaire-content"
+                  ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
+                  ic-scroll-to-target="true" ic-scroll-offset="-100">
+
+                {% bootstrap_form_errors form error_types='non_field_errors' %}
+
+                {% csrf_token %}
+
+                <h1>Signature</h1>
+                <p>I have read the information in this consent form including risks and possible benefits. All my questions about the research have been answered to my satisfaction. I understand that I am free to withdraw at any time without penalty or loss of benefits to which I am otherwise entitled.</p>
+                <p>Please indicate if you DO NOT wish to provide a saliva sample for this study. Saliva samples will be stored and later analyzed for genetic data.</p>
+                 <div class="form-group">
+                    <div class="checkbox col-md-12">
+                       <label>
+                          <input name="exceptions" value="{{ form.exceptions.field.choices.0.0 }}" type="checkbox">{{ form.exceptions.field.choices.0.1 }}
+                       </label>
+                    </div>
+                 </div>
+                <p>Please indicate if you DO NOT wish to wear a Fitbit™ for this study.</p>
+                <div class="form-group">
+                    <div class="checkbox col-md-12">
+                       <label>
+                          <input name="exceptions" value="{{ form.exceptions.field.choices.1.0 }}" type="checkbox">{{ form.exceptions.field.choices.1.1 }}
+                       </label>
+                    </div>
+                 </div>
+                <p>Please indicate if you DO NOT wish to be contacted with additional questionnaires for this study.</p>
+                <div class="form-group">
+                    <div class="checkbox col-md-12">
+                       <label>
+                          <input name="exceptions" value="{{ form.exceptions.field.choices.2.0 }}" type="checkbox">{{ form.exceptions.field.choices.2.1 }}
+                       </label>
+                    </div>
+                 </div>
+                <p>I agree to participate in the study.</p>
+                <p>(Typing your name below acts as your signature and indicates your permission to take part in this research.)</p>
+
+                {% bootstrap_field form.name form_group_class='form-group col-md-8' placeholder='' %}
+
+                <div class="form-group">
+                    {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
+                    {% bootstrap_field form.date form_group_class='col-md-4' %}
+                </div>
+
+                <div class="col-xs-12">
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                {% endbuttons %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
