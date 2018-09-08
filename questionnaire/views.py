@@ -82,7 +82,7 @@ class NEERView(View):
             return render(request, template_name='questionnaire/neer.html', context=context)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -91,7 +91,7 @@ class NEERView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
@@ -106,7 +106,9 @@ class NEERView(View):
                                 support=False)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while rendering questionnaire: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'neer',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'
@@ -149,14 +151,14 @@ class NEERView(View):
             return render(request, template_name='questionnaire/success.html', context=context)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
                                 support=False)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -164,7 +166,9 @@ class NEERView(View):
                                         'create your user.',
                                 support=False)
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting questionnaire: {}".format(e), exc_info=True, extra={
+                'project': 'neer',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'
@@ -204,7 +208,7 @@ class ASDView(View):
             return render(request, template_name='questionnaire/asd.html', context=context)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3] + '****' + patient_email[-4:]))
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3] + '****' + patient_email[-4:]))
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -213,7 +217,7 @@ class ASDView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
@@ -228,7 +232,9 @@ class ASDView(View):
                                 support=False)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while rendering questionnaire: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'asd',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'.format(
@@ -272,14 +278,14 @@ class ASDView(View):
             return render(request, template_name='questionnaire/success.html', context=context)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
             return render_error(request,
                                 title='Questionnaire Does Not Exist',
                                 message='The requested questionnaire does not exist!',
                                 support=False)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3] + '****' + patient_email[-4:]))
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3] + '****' + patient_email[-4:]))
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -287,7 +293,9 @@ class ASDView(View):
                                         'create your user.',
                                 support=False)
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting questionnaire: {}".format(e), exc_info=True, extra={
+                'project': 'asd',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'

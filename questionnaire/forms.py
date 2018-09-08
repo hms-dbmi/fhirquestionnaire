@@ -62,8 +62,8 @@ class FHIRQuestionnaireForm(forms.Form):
 
                         # Assume valueString
                         if not option.valueString:
-                            logger.error(
-                                '{}: Unsupported choice type for question {}'.format(questionnaire_id, item.linkId))
+                            logger.error('Unsupported choice type for question on Questionnaire',
+                                         extra={'questionnaire': questionnaire_id, 'question': item.linkId,})
                         else:
                             choices = choices + ((option.valueString, option.valueString),)
 
@@ -118,8 +118,8 @@ class FHIRQuestionnaireForm(forms.Form):
 
                     # Assume valueString
                     if not option.valueString:
-                        logger.error(
-                            '{}: Unsupported choice type for question {}'.format(questionnaire_id, item.linkId))
+                        logger.error('Unsupported choice type for question on Questionnaire',
+                                     extra={'questionnaire': questionnaire_id, 'question': item.linkId,})
                     else:
                         choices = choices + ((option.valueString, option.valueString),)
 
@@ -139,8 +139,8 @@ class FHIRQuestionnaireForm(forms.Form):
 
                     # Assume valueString
                     if not option.valueString:
-                        logger.error(
-                            '{}: Unsupported choice type for question {}'.format(questionnaire_id, item.linkId))
+                        logger.error('Unsupported choice type for question on Questionnaire',
+                                     extra={'questionnaire': questionnaire_id, 'question': item.linkId,})
                     else:
                         choices = choices + ((option.valueString, option.valueString),)
 
@@ -194,7 +194,8 @@ class FHIRQuestionnaireForm(forms.Form):
                 fields.update(FHIRQuestionnaireForm._get_form_fields(item.item, questionnaire_id))
 
             else:
-                logger.error('{}: Unsupported type {} for question {}'.format(questionnaire_id, item.type, item.linkId))
+                logger.error('Unsupported question type on Questionnaire',
+                             extra={'questionnaire': questionnaire_id, 'question': item.linkId, 'type': item.type})
                 continue
 
         return fields

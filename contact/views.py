@@ -83,7 +83,8 @@ class ContactView(View):
                                   context={'return_url': settings.RETURN_URL})
 
             except Exception as e:
-                logger.exception(e)
+                logger.error('Contact form error: {}'.format(e), exc_info=True,
+                             extra={'request': request, 'context': context})
 
                 if request.is_ajax():
                     return HttpResponse('ERROR', status=500)
@@ -155,6 +156,6 @@ class ContactView(View):
                 logger.debug("No test accounts found!")
 
         except Exception as e:
-            logger.exception("Failed looking for test email: {}".format(e))
+            logger.error('Test account search failure: {}'.format(e), exc_info=True)
 
         return None

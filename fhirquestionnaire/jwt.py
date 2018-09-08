@@ -75,7 +75,7 @@ def retrieve_public_key(jwt_string):
             # Try it again
             rsa_key = get_rsa_from_jwks(jwks, unverified_header['kid'])
             if not rsa_key:
-                logger.error('No matching key found despite refresh, failing')
+                logger.warning('No matching key found despite refresh, failing')
 
         return rsa_key
 
@@ -162,13 +162,13 @@ def validate_rs256_jwt(jwt_string):
         try:
             auth0_client_id = str(jwt.decode(jwt_string, verify=False)['aud'])
         except Exception as e:
-            logger.error('Failed to get the aud from jwt payload')
+            logger.warning('Failed to get the aud from jwt payload: {}'.format(e))
             return None
 
         # Check that the Client ID is in the allowed list of Auth0 Client IDs for this application
         allowed_auth0_client_id_list = settings.AUTH0_CLIENT_ID_LIST
         if auth0_client_id not in allowed_auth0_client_id_list:
-            logger.error('Auth0 Client ID not allowed')
+            logger.warning('Auth0 Client ID not allowed')
             return None
 
         # Attempt to validate the JWT (Checks both expiry and signature)
@@ -179,9 +179,8 @@ def validate_rs256_jwt(jwt_string):
                                  leeway=120,
                                  audience=auth0_client_id)
 
-        except jwt.InvalidTokenError as err:
-            logger.error(str(err))
-            logger.error("Invalid JWT Token.")
+        except jwt.InvalidTokenError as e:
+            logger.warning("Invalid JWT Token: {}".format(e))
             payload = None
 
     return payload
