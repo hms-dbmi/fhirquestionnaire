@@ -5,9 +5,11 @@
 {% block content %}
 <div id="fhirquestionnaire-content">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-sm-2 text-right icon-col">
+            <h1><span class="glyphicon glyphicon-warning-sign" style="color: #d9534f;"></span></h1>
+        </div>
+        <div class="col-sm-8 bs-callout bs-callout-danger">
             <h1>
-                <span class="glyphicon glyphicon-warning-sign" style="color: red;"></span>
                 {{ error_title|default_if_none:"Application Error" }}
             </h1>
             <p class="lead">
@@ -18,12 +20,15 @@
                 If you think this is an error, please <a href={% url 'contact:contact' %} class='contact-form-button'>click here to contact support</a>.
             </p>
             {% endif %}
-            <br /><br />
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
             <p>
                 <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Return to the People-Powered Medicine dashboard</a>
             </p>
         </div>
-
     </div>
 </div>
 {% endblock %}
