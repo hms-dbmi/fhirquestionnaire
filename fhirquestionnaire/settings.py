@@ -116,6 +116,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configure sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_DOMAIN = os.environ.get('COOKIE_DOMAIN')
+SESSION_COOKIE_AGE = 86400
+SESSION_COOKIE_SECURE = not os.environ.get('DJANGO_DEBUG', False)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -150,9 +156,6 @@ AUTHENTICATION_LOGIN_URL = os.environ.get("AUTHENTICATION_LOGIN_URL")
 COOKIE_DOMAIN = os.environ.get("COOKIE_DOMAIN")
 SCIAUTH_BRANDING = {
     'title': 'People-Powered Medicine',
-    'description': 'People-Powered Medicine (PPM) is a project that aims to gather as much information'
-                   ' as possible about individuals with particular conditions into one secure '
-                   'research database.',
     'icon_url': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
 }
 
@@ -192,7 +195,7 @@ LOGGING = {
     },
     'handlers': {
         'sentry': {
-            'level': 'ERROR', # To capture more than ERROR, change to WARNING, INFO, etc.
+            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
             'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
             'tags': {'custom-tag': 'x'},
         },
@@ -204,7 +207,7 @@ LOGGING = {
         },
     },
     'root': {
-        'handlers': ['console'],
+        'handlers': ['console', 'sentry'],
         'level': 'DEBUG',
     },
     'loggers': {

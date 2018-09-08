@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
-from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
 from contact.forms import ContactForm
 
 import logging
@@ -24,7 +24,7 @@ class ContactView(View):
 
         # Set initial values.
         initial = {
-            'email': dbmi_jwt_payload(request).get('email')
+            'email': validate_request(request).get('email')
         }
 
         # Generate and render the form.
@@ -58,7 +58,7 @@ class ContactView(View):
             recipients = settings.CONTACT_FORM_RECIPIENTS.split(',')
 
             # Check for test accounts.
-            test_admin = ContactView.check_test_account(email=dbmi_jwt_payload(request).get('email'))
+            test_admin = ContactView.check_test_account(email=validate_request(request).get('email'))
             if test_admin is not None:
                 recipients = [test_admin]
 
@@ -83,7 +83,8 @@ class ContactView(View):
                                   context={'return_url': settings.RETURN_URL})
 
             except Exception as e:
-                logger.exception(e)
+                logger.error('Contact form error: {}'.format(e), exc_info=True,
+                             extra={'request': request, 'context': context})
 
                 if request.is_ajax():
                     return HttpResponse('ERROR', status=500)
@@ -155,6 +156,6 @@ class ContactView(View):
                 logger.debug("No test accounts found!")
 
         except Exception as e:
-            logger.exception("Failed looking for test email: {}".format(e))
+            logger.error('Test account search failure: {}'.format(e), exc_info=True)
 
         return None

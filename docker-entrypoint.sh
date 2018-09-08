@@ -60,6 +60,10 @@ openssl x509 -req -days 365 -in "$SSL_DIR/server.csr" -signkey "$SSL_DIR/server.
 mkdir -p /app/static
 python /app/manage.py collectstatic --no-input
 
+# Update FHIR resources
+python /app/manage.py updatefhirconsents
+python /app/manage.py updatefhirquestionnaires
+
 # Link nginx logs to stdout/stderr
 ln -sf /dev/stdout /var/log/nginx/access.log
 ln -sf /dev/stdout /var/log/nginx/error.log

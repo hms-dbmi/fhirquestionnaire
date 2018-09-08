@@ -1,0 +1,122 @@
+{% extends "consent/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div id="fhirquestionnaire-content">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+        <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-signature' %}"
+              ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#fhirquestionnaire-content"
+              ic-replace-target="false" ic-indicator="#submit" ic-scroll-to-target="true" ic-scroll-offset="-100"
+              ic-select-from-response="#fhirquestionnaire-content">
+
+            {% bootstrap_form_errors form error_types='non_field_errors' %}
+
+            {% csrf_token %}
+      <h1>
+        Signature
+      </h1>
+      <p>
+        I have read the information in this consent form including risks and possible benefits. All my questions about the research have been answered to my satisfaction. I understand that I and my child are free to withdraw at any time without penalty or loss of benefits to which we are otherwise entitled.
+      </p>
+      <p>
+        Please indicate if you DO NOT wish to have your child provide a saliva sample for this study. Saliva samples will be stored and later analyzed for genetic data.
+      </p>
+      <div class="form-group">
+        <div class="checkbox col-md-12">
+           <label id="{{ form.exceptions.0.id_for_label }}">
+              <input id="{{ form.exceptions.0.id_for_label }}" name="exceptions" value="{{ form.exceptions.field.choices.0.0 }}" type="checkbox">{{ form.exceptions.field.choices.0.1 }}
+           </label>
+        </div>
+      </div>
+      <p>
+        Please indicate if you DO NOT wish to have your child wear a Fitbit™ for this study.
+      </p>
+      <div class="form-group">
+        <div class="checkbox col-md-12">
+           <label id="{{ form.exceptions.1.id_for_label }}">
+              <input id="{{ form.exceptions.1.id_for_label }}" name="exceptions" value="{{ form.exceptions.field.choices.1.0 }}" type="checkbox">{{ form.exceptions.field.choices.1.1 }}
+           </label>
+        </div>
+      </div>
+      <p>
+        Please indicate if you DO NOT wish to be contacted with additional questionnaires about your child for this study.
+      </p>
+      <div class="form-group">
+        <div class="checkbox col-md-12">
+           <label id="{{ form.exceptions.2.id_for_label }}">
+              <input id="{{ form.exceptions.2.id_for_label }}" name="exceptions" value="{{ form.exceptions.field.choices.2.0 }}" type="checkbox">{{ form.exceptions.field.choices.2.1 }}
+           </label>
+        </div>
+      </div>
+      <p>
+        Please note: If your child turns 18 years of age during his/her participation in this study, we will contact you at that time for your child’s contact information in order to offer him/her enrollment as an adult in this study.
+      </p>
+      <p>
+        I agree to my child’s participation in the study.
+      </p>
+      <p>
+        (Typing your name below acts as your signature and indicates your permission for your child to take part in this research.)
+      </p>
+
+        {% bootstrap_field form.name form_group_class='form-group col-md-8' placeholder='' %}
+
+        <div class="form-group">
+            {% bootstrap_field form.guardian form_group_class='col-md-8' placeholder='' %}
+            {% bootstrap_field form.relationship form_group_class='col-md-4' %}
+        </div>
+
+        <div class="form-group">
+            {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
+            {% bootstrap_field form.date form_group_class='col-md-4' %}
+        </div>
+
+          <p>
+            If you are consenting to participation of your child or an individual in your care, please review this study with them, using the assent form and assent aid provided with this consent form to assist in explaining the requirements of this study.
+          </p>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="radio">
+                    <label>
+                        <input id="id_explained_0" name="explained" value="{{ form.explained.field.choices.0.0 }}" required="" type="radio">{{ form.explained.field.choices.0.1 }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="radio">
+                    <label>
+                        <input id="id_explained_1" name="explained" value="{{ form.explained.field.choices.1.0 }}" required="" type="radio">{{ form.explained.field.choices.1.1 }}
+                    </label>
+                </div>
+            </div>
+            {% bootstrap_field form.reason form_group_class='col-md-6' placeholder='' %}
+        </div>
+
+        {% bootstrap_field form.explained_signature form_group_class='form-group col-md-12' placeholder='' %}
+
+        <div class="col-xs-12">
+        {% buttons %}
+            <button id="submit" type="submit" class="btn btn-default">Continue</button>
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
+<script type="application/javascript">
+$(function() {
+    $('#id_explained_0,#id_explained_1').change(function () {
+        if($('#id_explained_1').is(':checked')) {
+            $('#id_reason').attr('required', 'required');
+        } else {
+            $('#id_reason').removeAttr('required');
+        }
+    });
+});
+</script>
+</div>
+{% endblock %}

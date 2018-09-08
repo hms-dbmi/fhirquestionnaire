@@ -1,0 +1,54 @@
+{% extends "consent/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div id="fhirquestionnaire-content">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+        <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-signature' %}"
+                  ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#fhirquestionnaire-content"
+                  ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
+                  ic-scroll-to-target="true" ic-scroll-offset="-100">
+
+            {% bootstrap_form_errors form error_types='non_field_errors' %}
+
+            {% csrf_token %}
+
+            {% include 'consent/asd/_ward_assent.html' %}
+      <p>
+        If you DO NOT want to give us a saliva sample for this study, please check here.
+      </p>
+     <div class="form-group">
+        <div class="checkbox col-md-12">
+           <label>
+              <input name="exceptions" value="{{ form.exceptions.field.choices.0.0 }}" type="checkbox">{{ form.exceptions.field.choices.0.1 }}
+           </label>
+        </div>
+     </div>
+      <p>
+        If you DO NOT want to wear a Fitbit™ for this study, please check here.
+      </p>
+     <div class="form-group">
+        <div class="checkbox col-md-12">
+           <label>
+              <input name="exceptions" value="{{ form.exceptions.field.choices.1.0 }}" type="checkbox">{{ form.exceptions.field.choices.1.1 }}
+           </label>
+        </div>
+     </div>
+        <div class="form-group">
+            {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
+            {% bootstrap_field form.date form_group_class='col-md-4' %}
+        </div>
+
+        <div class="col-xs-12">
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
+</div>
+
+{% endblock %}
