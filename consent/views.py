@@ -7,7 +7,7 @@ from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
 from consent.forms import NEERSignatureForm
-from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
 
 import logging
 logger = logging.getLogger(__name__)
@@ -69,7 +69,7 @@ class NEERView(View):
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             FHIR.check_patient(patient_email)
@@ -128,7 +128,7 @@ class NEERView(View):
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # Get the form
         form = NEERSignatureForm(request.POST)
@@ -193,7 +193,7 @@ class ASDView(View):
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             FHIR.check_patient(patient_email)
@@ -396,7 +396,7 @@ class ASDSignatureView(View):
         logger.debug('Signature view')
 
         # Get the patient's email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # Process the form
         try:

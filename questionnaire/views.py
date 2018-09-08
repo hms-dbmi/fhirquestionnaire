@@ -5,7 +5,7 @@ from django.views.generic import View
 
 from questionnaire.forms import NEERQuestionnaireForm, ASDQuestionnaireForm
 from fhirquestionnaire.fhir import FHIR
-from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
 
 import logging
 logger = logging.getLogger(__name__)
@@ -59,7 +59,7 @@ class NEERView(View):
     def get(self, request, *args, **kwargs):
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             # Check the current patient
@@ -119,7 +119,7 @@ class NEERView(View):
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # create a form instance and populate it with data from the request:
         form = NEERQuestionnaireForm(self.questionnaire_id, request.POST)
@@ -185,7 +185,7 @@ class ASDView(View):
     def get(self, request, *args, **kwargs):
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             # Check the patient
@@ -246,7 +246,7 @@ class ASDView(View):
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # create a form instance and populate it with data from the request:
         form = ASDQuestionnaireForm(self.questionnaire_id, request.POST)
