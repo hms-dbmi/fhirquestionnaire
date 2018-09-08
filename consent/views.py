@@ -7,7 +7,7 @@ from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
 from consent.forms import NEERSignatureForm
-from fhirquestionnaire.jwt import dbmi_jwt, dbmi_jwt_payload
+from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
 
 import logging
 logger = logging.getLogger(__name__)
@@ -50,6 +50,7 @@ class ProjectView(View):
             return redirect(reverse('consent:asd'))
 
         else:
+            logger.warning('Invalid project ID: {}'.format(project_id))
             return render_error(request,
                                 title='Invalid Project Specified',
                                 message='A valid project must be specified in order to load the needed consent.',
@@ -68,7 +69,7 @@ class NEERView(View):
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             FHIR.check_patient(patient_email)
@@ -90,7 +91,7 @@ class NEERView(View):
             return response
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist')
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -99,7 +100,7 @@ class NEERView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: NEER')
             return render_error(request,
                                 title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
                                 message='The requested consent does not exist!',
@@ -114,7 +115,9 @@ class NEERView(View):
                                 support=False)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'neer', 'questionnaire': self.questionnaire_id,
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'
@@ -125,7 +128,7 @@ class NEERView(View):
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # Get the form
         form = NEERSignatureForm(request.POST)
@@ -152,14 +155,14 @@ class NEERView(View):
             return render(request, template_name='consent/success.html', context=context)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: NEER')
             return render_error(request,
                                 title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
                                 message='The requested consent does not exist!',
                                 support=False)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -167,7 +170,9 @@ class NEERView(View):
                                         'create your user.',
                                 support=False)
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'neer', 'questionnaire': self.questionnaire_id,
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'
@@ -188,7 +193,7 @@ class ASDView(View):
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         try:
             FHIR.check_patient(patient_email)
@@ -208,7 +213,7 @@ class ASDView(View):
             return render(request, template_name='consent/asd.html', context=context)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist')
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -217,7 +222,7 @@ class ASDView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: NEER')
             return render_error(request,
                                 title='Consent Does Not Exist',
                                 message='The requested consent does not exist!',
@@ -232,7 +237,9 @@ class ASDView(View):
                                 support=False)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                 'request': request, 'project': 'asd',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'
@@ -288,7 +295,9 @@ class ASDView(View):
                 return render(request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html', context=context)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
+                'project': 'asd',
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'
@@ -370,7 +379,9 @@ class ASDQuizView(View):
                 return render(request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting consent quiz: {}".format(e), exc_info=True, extra={
+                'project': 'asd', 'request': request,
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error {}'
@@ -385,7 +396,7 @@ class ASDSignatureView(View):
         logger.debug('Signature view')
 
         # Get the patient's email
-        patient_email = dbmi_jwt_payload(request).get('email')
+        patient_email = validate_request(request).get('email')
 
         # Process the form
         try:
@@ -495,7 +506,7 @@ class ASDSignatureView(View):
                     return render(request, template_name='consent/asd/guardian-signature-part-3.html', context=context)
 
         except FHIR.PatientDoesNotExist:
-            logger.error('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            logger.warning('Patient does not exist')
             return render_error(request,
                                 title='Patient Does Not Exist',
                                 message='A FHIR resource does not yet exist for the current user. '
@@ -504,7 +515,7 @@ class ASDSignatureView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.error('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: NEER')
             return render_error(request,
                                 title='Consent Does Not Exist',
                                 message='The requested consent does not exist!',
@@ -519,7 +530,9 @@ class ASDSignatureView(View):
                                 support=False)
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Error while submitting consent signature: {}".format(e), exc_info=True, extra={
+                'project': 'asd', 'request': request,
+            })
             return render_error(request,
                                 title='Application Error',
                                 message='The application has experienced an unknown error{}'

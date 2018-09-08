@@ -41,7 +41,7 @@ class FHIR:
     def submit_asd_individual(patient_email, forms):
 
         # Get the questionnaires and patient
-        bundle = FHIR._get_resources([
+        bundle = FHIR._query_resources([
             'Questionnaire?_id={}'.format(','.join([
                 'ppm-asd-consent-individual-quiz',
                 'individual-signature-part-1'
@@ -55,14 +55,18 @@ class FHIR:
                                       if entry.resource.id == 'ppm-asd-consent-individual-quiz')
             signature_questionnaire = next(entry.resource for entry in bundle.entry[0].resource.entry
                                            if entry.resource.id == 'individual-signature-part-1')
-        except (IndexError, KeyError, StopIteration) as e:
-            logger.exception(e)
+        except (IndexError, KeyError, StopIteration):
+            logger.error("Questionnaire could not be fetched", exc_info=True, extra={
+                'questionnaires': ['ppm-asd-consent-individual-quiz', 'individual-signature-part-1'],
+            })
             raise FHIR.QuestionnaireDoesNotExist
 
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
-        except (IndexError, KeyError) as e:
-            logger.exception(e)
+        except (IndexError, KeyError):
+            logger.error("Patient could not be fetched", exc_info=True, extra={
+                'patient': FHIR._obfuscate_email(patient_email),
+            })
             raise FHIR.PatientDoesNotExist
 
         # Get the exception codes from the form
@@ -105,7 +109,7 @@ class FHIR:
     def submit_asd_guardian(patient_email, forms):
 
         # Get the questionnaires and patient
-        bundle = FHIR._get_resources([
+        bundle = FHIR._query_resources([
             'Questionnaire?_id={}'.format(','.join([
                 'ppm-asd-consent-guardian-quiz',
                 'guardian-signature-part-1',
@@ -125,14 +129,18 @@ class FHIR:
                                            if entry.resource.id == 'guardian-signature-part-2')
             ward_signature_questionnaire = next(entry.resource for entry in bundle.entry[0].resource.entry
                                            if entry.resource.id == 'guardian-signature-part-3')
-        except (IndexError, KeyError, StopIteration) as e:
-            logger.exception(e)
+        except (IndexError, KeyError, StopIteration):
+            logger.error("Questionnaire could not be fetched", exc_info=True, extra={
+                'questionnaires': ['ppm-asd-consent-guardian-quiz', 'guardian-signature-part-x'],
+            })
             raise FHIR.QuestionnaireDoesNotExist
 
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
-        except (IndexError, KeyError, StopIteration) as e:
-            logger.exception(e)
+        except (IndexError, KeyError, StopIteration):
+            logger.error("Patient could not be fetched", exc_info=True, extra={
+                'patient': FHIR._obfuscate_email(patient_email),
+            })
             raise FHIR.PatientDoesNotExist
 
         # Process the guardian's resources first
@@ -339,12 +347,13 @@ class FHIR:
             return True
 
         except Exception as e:
-            logger.exception(e)
-
+            logger.error("Could not update resources: {}".format(e), exc_info=True, extra={
+                'resource': json,
+            })
             return False
 
     @staticmethod
-    def _get_resources(queries=[]):
+    def _query_resources(queries=[]):
 
         # Build the transaction
         transaction = {
@@ -410,6 +419,9 @@ class FHIR:
 
         # Check for the questionnaire
         if not bundle.entry[0].resource.entry or bundle.entry[0].resource.entry[0].resource.resource_type != 'Questionnaire':
+            logger.error("Questionnaire could not be fetched", exc_info=True, extra={
+                'questionnaires': questionnaire_id,
+            })
             raise FHIR.QuestionnaireDoesNotExist()
 
         # Instantiate it
@@ -417,6 +429,11 @@ class FHIR:
 
         # Check for the patient
         if not bundle.entry[1].resource.entry or bundle.entry[1].resource.entry[0].resource.resource_type != 'Patient':
+            logger.error("Patient could not be fetched", exc_info=True, extra={
+                'patient': FHIR._obfuscate_email(patient_email),
+                'questionnaires': questionnaire_id,
+                'bundle': bundle.as_json(),
+            })
             raise FHIR.PatientDoesNotExist()
 
         # Get it
@@ -437,6 +454,7 @@ class FHIR:
         search = Patient.where(struct=struct)
         resources = search.perform_resources(fhir.server)
         if not resources:
+            logger.warning('Patient not found: {}'.format(FHIR._obfuscate_email(patient_email)))
             raise FHIR.PatientDoesNotExist
 
     @staticmethod
@@ -453,6 +471,7 @@ class FHIR:
         search = QuestionnaireResponse.where(struct=struct)
         resources = search.perform_resources(fhir.server)
         if resources:
+            logger.warning('Questionnaire not found: {}'.format(questionnaire_id))
             raise FHIR.QuestionnaireResponseAlreadyExists
 
     @staticmethod
@@ -885,12 +904,34 @@ class FHIR:
     @staticmethod
     def _post_bundle(bundle):
 
+        # Track response for debugging
+        content = None
         try:
             # Post it
             response = requests.post(settings.FHIR_URL,
                                      headers={'content-type': 'application/json'},
                                      json=bundle.as_json())
+            content = response.content
             response.raise_for_status()
 
         except Exception as e:
-            logger.exception(e)
+            logger.error("Could not post bundle: {}".format(e), exc_info=True, extra={
+                'response': content,
+            })
+
+    @staticmethod
+    def _obfuscate_email(email):
+
+        # Parts
+        parts = email.split('@')
+        username = parts[0]
+        domain = parts[1]
+
+        # Mask segment of username
+        shown_length = int(len(username) / 4 if len(username) > 7 else 1)
+        mask_length = len(username) - shown_length * 2
+
+        return '{}{}{}@{}'.format(username[:shown_length],
+                                  '*' * mask_length,
+                                  username[-shown_length:],
+                                  domain)

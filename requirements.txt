@@ -18,15 +18,14 @@ gunicorn==19.8.1
 idna==2.7
 isodate==0.6.0
 jmespath==0.9.3
-jwcrypto==0.5.0
 markdown2==2.3.5
 orderedmultidict==1.0
-pyjwt==1.6.4
 pyasn1==0.4.3
 pycparser==2.18
 python-dateutil==2.7.3
 pytz==2018.5
 PyYAML==3.12
+py-auth0-jwt==0.3.2
 raven==6.9.0
 requests==2.19.1
 rsa==3.4.2
