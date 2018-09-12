@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = environment.ENV_STR("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environment.ENV_BOOL("DJANGO_DEBUG", False)
@@ -118,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Configure sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_COOKIE_DOMAIN = os.environ.get('COOKIE_DOMAIN')
+SESSION_COOKIE_DOMAIN = environment.ENV_STR('COOKIE_DOMAIN')
 SESSION_COOKIE_AGE = 86400
-SESSION_COOKIE_SECURE = not os.environ.get('DJANGO_DEBUG', False)
+SESSION_COOKIE_SECURE = not environment.ENV_BOOL('DJANGO_DEBUG', False)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Internationalization
@@ -140,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = os.environ.get("STATIC_URL", '/static/')
+STATIC_URL = environment.ENV_STR("STATIC_URL", '/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
@@ -151,32 +151,32 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Authentication
 AUTH0_CLIENT_ID_LIST = environment.ENV_LIST("AUTH0_CLIENT_ID_LIST", ",")
-AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
-AUTHENTICATION_LOGIN_URL = os.environ.get("AUTHENTICATION_LOGIN_URL")
-COOKIE_DOMAIN = os.environ.get("COOKIE_DOMAIN")
+AUTH0_DOMAIN = environment.ENV_STR("AUTH0_DOMAIN")
+AUTHENTICATION_LOGIN_URL = environment.ENV_STR("AUTHENTICATION_LOGIN_URL")
+COOKIE_DOMAIN = environment.ENV_STR("COOKIE_DOMAIN")
 SCIAUTH_BRANDING = {
     'title': 'People-Powered Medicine',
     'icon_url': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
 }
 
 # App configurations
-FHIR_APP_ID = os.environ.get("FHIR_APP_ID")
-FHIR_URL = os.environ.get("FHIR_URL")
-RETURN_URL = os.environ.get("RETURN_URL")
+FHIR_APP_ID = environment.ENV_STR("FHIR_APP_ID")
+FHIR_URL = environment.ENV_STR("FHIR_URL")
+RETURN_URL = environment.ENV_STR("RETURN_URL")
 
 # Get email details and enable SSL for SSL backend
-EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
+EMAIL_BACKEND = environment.ENV_STR("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
 EMAIL_USE_SSL = EMAIL_BACKEND == 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = os.environ.get("EMAIL_PORT")
-TEST_EMAIL_ACCOUNTS = os.environ.get("TEST_EMAIL_ACCOUNTS", "")
-CONTACT_FORM_RECIPIENTS = os.environ.get('CONTACT_FORM_RECIPIENTS')
+EMAIL_HOST = environment.ENV_STR("EMAIL_HOST")
+EMAIL_HOST_USER = environment.ENV_STR("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = environment.ENV_STR("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = environment.ENV_STR("EMAIL_PORT")
+TEST_EMAIL_ACCOUNTS = environment.ENV_STR("TEST_EMAIL_ACCOUNTS", "")
+CONTACT_FORM_RECIPIENTS = environment.ENV_STR('CONTACT_FORM_RECIPIENTS')
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
 
 # Check for sentry
-RAVEN_URL = os.environ.get("RAVEN_URL")
+RAVEN_URL = environment.ENV_STR("RAVEN_URL")
 
 if RAVEN_URL:
     RAVEN_CONFIG = {

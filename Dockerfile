@@ -50,7 +50,7 @@ ENV PPM_APP_DOMAIN=p2m2.dbmi.hms.harvard.edu
 
 # Static files
 ENV PPM_STATIC_FILES=true
-ENV PPM_APP_STATIC_URL_PATH=/fhirquestionnaire/static/
+ENV PPM_APP_STATIC_URL_PATH=/fhirquestionnaire/static
 ENV PPM_APP_STATIC_ROOT=/app/static
 
 # Set nginx and network parameters
