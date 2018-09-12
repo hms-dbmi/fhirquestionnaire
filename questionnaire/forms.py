@@ -193,6 +193,10 @@ class FHIRQuestionnaireForm(forms.Form):
                 # Process the group
                 fields.update(FHIRQuestionnaireForm._get_form_fields(item.item, questionnaire_id))
 
+            elif item.type == 'display':
+                # Nothing to do here
+                pass
+
             else:
                 logger.error('Unsupported question type on Questionnaire',
                              extra={'questionnaire': questionnaire_id, 'question': item.linkId, 'type': item.type})

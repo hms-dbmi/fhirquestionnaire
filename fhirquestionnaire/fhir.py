@@ -587,7 +587,8 @@ class FHIR:
                 # Get the items
                 question_items = FHIR._questionnaire_response_items(question.item, form)
                 if question_items:
-                    # TODO: Uncomment the following line after resource parsing is updated
+                    # TODO: Uncomment the following line after QuestionnaireResponse parsing is updated to
+                    # TODO: look for subanswers in subitems as opposed to one flat list
                     #item.item = question_items
 
                     # Save all answers flat for now
