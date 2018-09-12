@@ -566,8 +566,6 @@ class FHIR:
             # Get the value
             value = form.get(question.linkId, form.get(question.linkId, None))
 
-            logger.debug('Processing "{}" with value "{}"'.format(question.linkId, value))
-
             # Add the item
             if value is None or not str(value):
                 logger.debug('No answer for {}'.format(question.linkId))
