@@ -1,72 +1,66 @@
-FROM python:3.6-slim
+FROM python:3.6-alpine3.8 AS builder
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        nginx \
-        jq \
-        curl \
-        openssl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install some pip packages
-RUN pip install awscli boto3 gunicorn shinto-cli dumb-init
+# Install dependencies
+RUN apk add --update \
+    build-base \
+    g++ \
+    openssl-dev \
+    libffi-dev
 
 # Add requirements
 ADD requirements.txt /requirements.txt
 
-# Build and install python requirements
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    g++ \
-    && pip install -r /requirements.txt && \
-    apt-get remove --purge -y g++ \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/* \
-    && apt-get autoremove -y
+# Install Python packages
+RUN pip install -r /requirements.txt
 
-# Copy templates
-ADD docker-entrypoint-templates.d/ /docker-entrypoint-templates.d/
+FROM hmsdbmitc/dbmisvc:3.6-alpine
 
-# Setup entry scripts
-ADD docker-entrypoint-init.d/ /docker-entrypoint-init.d/
-ADD docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod a+x docker-entrypoint.sh
+RUN apk add --no-cache --update \
+    bash \
+    nginx \
+    curl \
+    openssl \
+    jq \
+  && rm -rf /var/cache/apk/*
+
+# Copy pip packages from builder
+COPY --from=builder /root/.cache /root/.cache
+
+# Add requirements
+ADD requirements.txt /requirements.txt
+
+# Install Python packages
+RUN pip install -r /requirements.txt
+
+# Add additional init scripts
+COPY docker-entrypoint-init.d/* /docker-entrypoint-init.d/
 
 # Copy app source
 COPY /app /app
 
 # Set the build env
-ENV PPM_ENV=prod
+ENV DBMI_ENV=prod
 
 # Set app parameters
-ENV PPM_PARAMETER_STORE_PREFIX=ppm.questionnaire.${PPM_ENV}
-ENV PPM_PARAMETER_STORE_PRIORITY=true
-ENV PPM_AWS_REGION=us-east-1
+ENV DBMI_PARAMETER_STORE_PREFIX=ppm.questionnaire.${DBMI_ENV}
+ENV DBMI_PARAMETER_STORE_PRIORITY=true
+ENV DBMI_AWS_REGION=us-east-1
 
-ENV PPM_APP_ROOT=/app
-ENV PPM_APP_HEALTHCHECK_PATH=/healthcheck
-ENV PPM_APP_DOMAIN=p2m2.dbmi.hms.harvard.edu
+ENV DBMI_APP_WSGI=fhirquestionnaire
+ENV DBMI_APP_ROOT=/app
+ENV DBMI_APP_DOMAIN=p2m2.dbmi.hms.harvard.edu
 
 # Static files
-ENV PPM_STATIC_FILES=true
-ENV PPM_APP_STATIC_URL_PATH=/fhirquestionnaire/static
-ENV PPM_APP_STATIC_ROOT=/app/static
+ENV DBMI_STATIC_FILES=true
+ENV DBMI_APP_STATIC_URL_PATH=/fhirquestionnaire/static
+ENV DBMI_APP_STATIC_ROOT=/app/static
 
 # Set nginx and network parameters
-ENV PPM_GUNICORN_PORT=8000
-ENV PPM_PORT=443
-ENV PPM_NGINX_USER=www-data
-ENV PPM_NGINX_PID_PATH=/var/run/nginx.pid
-ENV PPM_LB=true
-ENV PPM_SSL=true
-ENV PPM_CREATE_SSL=true
-ENV PPM_SSL_PATH=/etc/nginx/ssl
+ENV DBMI_LB=true
+ENV DBMI_SSL=true
+ENV DBMI_CREATE_SSL=true
+ENV DBMI_SSL_PATH=/etc/nginx/ssl
 
-ENV PPM_HEALTHCHECK=true
-ENV PPM_HEALTHCHECK_PATH=/healthcheck
-
-ENTRYPOINT ["dumb-init", "/docker-entrypoint.sh"]
-
-CMD gunicorn fhirquestionnaire.wsgi:application -b 0.0.0.0:${PPM_GUNICORN_PORT} \
-    --user ${PPM_NGINX_USER} --group ${PPM_NGINX_USER} --chdir=${PPM_APP_ROOT}
+ENV DBMI_HEALTHCHECK=true
+ENV DBMI_HEALTHCHECK_PATH=/healthcheck
+ENV DBMI_APP_HEALTHCHECK_PATH=/healthcheck
