@@ -1,35 +1,66 @@
-FROM python:3.5-slim
+FROM python:3.6-alpine3.8 AS builder
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        nginx \
-        jq \
-        curl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Install dependencies
+RUN apk add --update \
+    build-base \
+    g++ \
+    openssl-dev \
+    libffi-dev
 
-# Install some pip packages
-RUN pip install awscli
+# Add requirements
+ADD requirements.txt /requirements.txt
 
-# Configure NGINX
-RUN rm -rf /etc/nginx/sites-available/default
-RUN mkdir /etc/nginx/ssl/
-RUN chmod 710 /etc/nginx/ssl/
-COPY site.conf /etc/nginx/sites-available/site.conf
-RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/site.conf
+# Install Python packages
+RUN pip install -r /requirements.txt
 
-# Setup entry scripts
-RUN mkdir /docker-entrypoint.d/
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod u+x /docker-entrypoint.sh
+FROM hmsdbmitc/dbmisvc:3.6-alpine
 
-# Set the environment
-ENV FHIR_APP_ID ppm-fhir-questionnaire-app
+RUN apk add --no-cache --update \
+    bash \
+    nginx \
+    curl \
+    openssl \
+    jq \
+  && rm -rf /var/cache/apk/*
 
-# Install application requirements
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+# Copy pip packages from builder
+COPY --from=builder /root/.cache /root/.cache
 
-COPY . /app
+# Add requirements
+ADD requirements.txt /requirements.txt
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Install Python packages
+RUN pip install -r /requirements.txt
+
+# Add additional init scripts
+COPY docker-entrypoint-init.d/* /docker-entrypoint-init.d/
+
+# Copy app source
+COPY /app /app
+
+# Set the build env
+ENV DBMI_ENV=prod
+
+# Set app parameters
+ENV DBMI_PARAMETER_STORE_PREFIX=ppm.questionnaire.${DBMI_ENV}
+ENV DBMI_PARAMETER_STORE_PRIORITY=true
+ENV DBMI_AWS_REGION=us-east-1
+
+ENV DBMI_APP_WSGI=fhirquestionnaire
+ENV DBMI_APP_ROOT=/app
+ENV DBMI_APP_DOMAIN=p2m2.dbmi.hms.harvard.edu
+
+# Static files
+ENV DBMI_STATIC_FILES=true
+ENV DBMI_APP_STATIC_URL_PATH=/fhirquestionnaire/static
+ENV DBMI_APP_STATIC_ROOT=/app/static
+
+# Set nginx and network parameters
+ENV DBMI_LB=true
+ENV DBMI_SSL=true
+ENV DBMI_CREATE_SSL=true
+ENV DBMI_SSL_PATH=/etc/nginx/ssl
+
+ENV DBMI_HEALTHCHECK=true
+ENV DBMI_HEALTHCHECK_PATH=/healthcheck
+ENV DBMI_APP_HEALTHCHECK_PATH=/healthcheck

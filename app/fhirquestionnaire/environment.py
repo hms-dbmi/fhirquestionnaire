@@ -26,7 +26,7 @@ def ENV_CODE(name, default=0):
         value = os.environ.get(name, default)
         return int(value)
     except ValueError:
-        logger.error('Non-numeric type found for: {}'.format(name))
+        logger.error('ENV: Non-numeric type found for: {}'.format(name))
         return default
 
 
@@ -58,7 +58,11 @@ def ENV_STR(name, default=None):  # noqa
     instead.
     """
 
-    return os.environ.get(name, default)
+    value = os.environ.get(name, default)
+    if value is None:
+        logger.error('ENV: Nothing found for: {}'.format(name))
+
+    return value
 
 
 def ENV_LIST(name, separator=',', default=None):  # noqa
@@ -71,7 +75,7 @@ def ENV_LIST(name, separator=',', default=None):  # noqa
         default = []
 
     if name not in os.environ:
-        logger.error('Nothing found for: {}'.format(name))
+        logger.error('ENV: Nothing found for: {}'.format(name))
         return default
     return os.environ[name].split(separator)
 
@@ -82,11 +86,11 @@ def ENV_DICT(name, default={}):
     the default if it does not exist.
     """
     if name not in os.environ:
-        logger.error('Nothing found for: {}'.format(name))
+        logger.error('ENV: Nothing found for: {}'.format(name))
         return default
     try:
         dict = json.loads(os.environ[name])
         return dict
-    except ValueError as e:
-        logger.error('Failed to parse value for: {}'.format(name))
+    except ValueError:
+        logger.error('ENV: Failed to parse value for: {}'.format(name))
         return default
