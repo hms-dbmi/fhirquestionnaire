@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'consent.apps.ConsentConfig',
     'contact',
     'bootstrap3',
-    'markdown_deux',
     'crispy_forms',
     'health_check',
     'raven.contrib.django.raven_compat',
