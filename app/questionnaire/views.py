@@ -3,9 +3,12 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
+from dbmi_client.auth import dbmi_user
+from dbmi_client.authn import get_jwt_email
+
 from questionnaire.forms import NEERQuestionnaireForm, ASDQuestionnaireForm
 from fhirquestionnaire.fhir import FHIR
-from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
+
 
 import logging
 logger = logging.getLogger(__name__)
@@ -24,7 +27,7 @@ class IndexView(View):
 
 class ProjectView(View):
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Get the project ID
@@ -55,11 +58,11 @@ class NEERView(View):
 
     questionnaire_id = 'ppm-neer-registration-questionnaire'
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Get the patient email and ensure they exist
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         try:
             # Check the current patient
@@ -115,11 +118,11 @@ class NEERView(View):
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
                                 support=False)
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         # create a form instance and populate it with data from the request:
         form = NEERQuestionnaireForm(self.questionnaire_id, request.POST)
@@ -181,11 +184,11 @@ class ASDView(View):
     # Set the questionnaire ID
     questionnaire_id = 'ppm-asd-questionnaire'
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Get the patient email and ensure they exist
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         try:
             # Check the patient
@@ -242,11 +245,11 @@ class ASDView(View):
                                 ),
                                 support=False)
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         # create a form instance and populate it with data from the request:
         form = ASDQuestionnaireForm(self.questionnaire_id, request.POST)
