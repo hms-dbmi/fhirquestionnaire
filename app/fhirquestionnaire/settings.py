@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import sys
-import raven
 import logging
 
 from django.contrib.messages import constants as message_constants
@@ -28,12 +26,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_str("SECRET_KEY")
+SECRET_KEY = get_str("SECRET_KEY", required=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_bool("DJANGO_DEBUG", False)
+DEBUG = get_bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = get_list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = get_list("ALLOWED_HOSTS", required=True)
 
 # Set the message level
 MESSAGE_LEVEL = message_constants.INFO if not DEBUG else message_constants.DEBUG
@@ -52,8 +50,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'crispy_forms',
     'health_check',
-    'dbmi_client',
     'raven.contrib.django.raven_compat',
+    'dbmi_client',
 ]
 
 MIDDLEWARE = [
@@ -120,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Configure sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_COOKIE_DOMAIN = get_str('COOKIE_DOMAIN')
+SESSION_COOKIE_DOMAIN = get_str('COOKIE_DOMAIN', required=True)
 SESSION_COOKIE_AGE = 86400
-SESSION_COOKIE_SECURE = not get_bool('DJANGO_DEBUG', False)
+SESSION_COOKIE_SECURE = not get_bool('DJANGO_DEBUG', default=False)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Internationalization
@@ -142,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = get_str("STATIC_URL", '/static/')
+STATIC_URL = get_str("STATIC_URL", default='/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
@@ -186,7 +184,7 @@ EMAIL_HOST_USER = get_str("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_str("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = get_str("EMAIL_PORT")
 TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
-CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS')
+CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
 
 # Check for sentry
