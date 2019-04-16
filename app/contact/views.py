@@ -9,7 +9,9 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
-from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
+from dbmi_client.auth import dbmi_user
+from dbmi_client.authn import get_jwt_email
+
 from contact.forms import ContactForm
 
 import logging
@@ -18,13 +20,13 @@ logger = logging.getLogger(__name__)
 
 class ContactView(View):
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
         logger.debug("Generating contact form")
 
         # Set initial values.
         initial = {
-            'email': validate_request(request).get('email')
+            'email': get_jwt_email(request=request, verify=False)
         }
 
         # Generate and render the form.
@@ -34,7 +36,7 @@ class ContactView(View):
         else:
             return render(request, 'contact/contact.html', {'contact_form': form})
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
         logger.debug("Processing contact form POST")
 
@@ -58,7 +60,7 @@ class ContactView(View):
             recipients = settings.CONTACT_FORM_RECIPIENTS.split(',')
 
             # Check for test accounts.
-            test_admin = ContactView.check_test_account(email=validate_request(request).get('email'))
+            test_admin = ContactView.check_test_account(email=get_jwt_email(request=request, verify=False))
             if test_admin is not None:
                 recipients = [test_admin]
 

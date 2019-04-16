@@ -3,11 +3,14 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
+from dbmi_client.auth import dbmi_user
+from dbmi_client.authn import get_jwt_email
+
 from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
 from consent.forms import NEERSignatureForm
-from pyauth0jwt.auth0authenticate import dbmi_jwt, validate_request
+
 
 import logging
 logger = logging.getLogger(__name__)
@@ -26,7 +29,7 @@ class IndexView(View):
 
 class ProjectView(View):
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Get the project ID
@@ -62,14 +65,14 @@ class NEERView(View):
     # Set the FHIR ID if the Questionnaire resource
     questionnaire_id = 'neer-signature'
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Clearing any leftover sessions
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         try:
             FHIR.check_patient(patient_email)
@@ -124,11 +127,11 @@ class NEERView(View):
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
                                 support=False)
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
 
         # Get the patient email
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         # Get the form
         form = NEERSignatureForm(request.POST)
@@ -186,14 +189,14 @@ class ASDView(View):
     individual_questionnaire_id = 'ppm-asd-consent-guardian-quiz'
     guardian_questionnaire_id = 'ppm-asd-consent-individual-quiz'
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Clearing any leftover sessions
         request.session.clear()
 
         # Get the patient email and ensure they exist
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         try:
             FHIR.check_patient(patient_email)
@@ -246,7 +249,7 @@ class ASDView(View):
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
                                 support=False)
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
 
         # Process the form
@@ -307,7 +310,7 @@ class ASDView(View):
 
 class ASDQuizView(View):
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
         logger.debug('ASD Quiz')
 
@@ -391,12 +394,12 @@ class ASDQuizView(View):
 
 class ASDSignatureView(View):
 
-    @method_decorator(dbmi_jwt)
+    @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
         logger.debug('Signature view')
 
         # Get the patient's email
-        patient_email = validate_request(request).get('email')
+        patient_email = get_jwt_email(request=request, verify=False)
 
         # Process the form
         try:
