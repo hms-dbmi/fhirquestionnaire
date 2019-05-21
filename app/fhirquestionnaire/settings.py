@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import sys
-import raven
+import logging
 
 from django.contrib.messages import constants as message_constants
 
-from fhirquestionnaire import environment
+from dbmi_client import logging as dbmi_logging
+from dbmi_client.environment import get_bool, get_str, get_int, get_list
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,12 +26,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environment.ENV_STR("SECRET_KEY")
+SECRET_KEY = get_str("SECRET_KEY", required=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = environment.ENV_BOOL("DJANGO_DEBUG", False)
+DEBUG = get_bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = environment.ENV_LIST("ALLOWED_HOSTS")
+ALLOWED_HOSTS = get_list("ALLOWED_HOSTS", required=True)
 
 # Set the message level
 MESSAGE_LEVEL = message_constants.INFO if not DEBUG else message_constants.DEBUG
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'health_check',
     'raven.contrib.django.raven_compat',
+    'dbmi_client',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'dbmi_client.middleware.DBMIJWTAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -117,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Configure sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_COOKIE_DOMAIN = environment.ENV_STR('COOKIE_DOMAIN')
+SESSION_COOKIE_DOMAIN = get_str('COOKIE_DOMAIN', required=True)
 SESSION_COOKIE_AGE = 86400
-SESSION_COOKIE_SECURE = not environment.ENV_BOOL('DJANGO_DEBUG', False)
+SESSION_COOKIE_SECURE = not get_bool('DJANGO_DEBUG', default=False)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Internationalization
@@ -139,91 +140,59 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = environment.ENV_STR("STATIC_URL", '/static/')
+STATIC_URL = get_str("STATIC_URL", default='/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
 
-# Crispy forms
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+# Use the DBMI Client Admin-only model backend
+AUTHENTICATION_BACKENDS = ['dbmi_client.authn.DBMIJWTAdminAuthenticationBackend', ]
 
-# Authentication
-AUTH0_CLIENT_ID_LIST = environment.ENV_LIST("AUTH0_CLIENT_ID_LIST", ",")
-AUTH0_DOMAIN = environment.ENV_STR("AUTH0_DOMAIN")
-AUTHENTICATION_LOGIN_URL = environment.ENV_STR("AUTHENTICATION_LOGIN_URL")
-COOKIE_DOMAIN = environment.ENV_STR("COOKIE_DOMAIN")
-SCIAUTH_BRANDING = {
-    'title': 'People-Powered Medicine',
-    'icon_url': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
+DBMI_CLIENT_CONFIG = {
+    'CLIENT': 'ppm',
+    'ENVIRONMENT': get_str('DBMI_ENV', required=True),
+    'ENABLE_LOGGING': True,
+    'LOG_LEVEL': get_int('DBMI_LOG_LEVEL', default=logging.WARNING),
+
+    # AuthZ
+    'AUTHZ_ADMIN_GROUP': 'ppm-admins',
+    'AUTHZ_ADMIN_PERMISSION': 'ADMIN',
+    'JWT_AUTHZ_NAMESPACE': get_str('DBMI_JWT_AUTHZ_NAMESPACE', required=True),
+    'JWT_COOKIE_DOMAIN': get_str('COOKIE_DOMAIN', required=True),
+
+    # Auth0
+    'AUTH0_TENANT': get_str('AUTH0_TENANT', required=True),
+    'AUTH0_CLIENT_ID': get_str('AUTH0_CLIENT_ID', required=True),
+    'AUTHN_TITLE': 'People-Powered Medicine',
+    'AUTHN_ICON_URL': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
 }
 
 # App configurations
-FHIR_APP_ID = environment.ENV_STR("FHIR_APP_ID")
-FHIR_URL = environment.ENV_STR("FHIR_URL")
-RETURN_URL = environment.ENV_STR("RETURN_URL")
+FHIR_APP_ID = get_str("FHIR_APP_ID", required=True)
+FHIR_URL = get_str("FHIR_URL", required=True)
+RETURN_URL = get_str("RETURN_URL", required=True)
+
+# Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Get email details and enable SSL for SSL backend
-EMAIL_BACKEND = environment.ENV_STR("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
+EMAIL_BACKEND = get_str("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
 EMAIL_USE_SSL = EMAIL_BACKEND == 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = environment.ENV_STR("EMAIL_HOST")
-EMAIL_HOST_USER = environment.ENV_STR("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = environment.ENV_STR("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = environment.ENV_STR("EMAIL_PORT")
-TEST_EMAIL_ACCOUNTS = environment.ENV_STR("TEST_EMAIL_ACCOUNTS", "")
-CONTACT_FORM_RECIPIENTS = environment.ENV_STR('CONTACT_FORM_RECIPIENTS')
+EMAIL_HOST = get_str("EMAIL_HOST", required=True)
+EMAIL_HOST_USER = get_str("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = get_str("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = get_str("EMAIL_PORT")
+TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
+CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
 
 # Check for sentry
-RAVEN_URL = environment.ENV_STR("RAVEN_URL")
-
+RAVEN_URL = get_str("RAVEN_URL", required=True)
 if RAVEN_URL:
     RAVEN_CONFIG = {
         'dsn': RAVEN_URL,
     }
 
-# Logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '[DJANGO] - [QUESTIONNAIRE] - [%(asctime)s][%(levelname)s]'
-                      '[%(name)s.%(funcName)s:%(lineno)d] - %(message)s',
-        },
-    },
-    'handlers': {
-        'sentry': {
-            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'console',
-            'stream': sys.stdout,
-        },
-    },
-    'root': {
-        'handlers': ['console', 'sentry'],
-        'level': 'DEBUG',
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-            'propagate': True,
-        },
-        'raven': {
-            'level': 'WARNING',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'WARNING',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-    },
-}
+# Output the standard logging configuration
+LOGGING = dbmi_logging.config('QUESTIONNAIRE', sentry=True)
