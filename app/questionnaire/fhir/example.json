@@ -1,0 +1,164 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-example-registration-questionnaire",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "status": "active",
+  "date": "2017-06-07",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-5",
+      "text": "Date of Birth",
+      "type": "date",
+      "required": true
+    },
+    {
+      "linkId": "question-6",
+      "text": "Are you currently pregnant?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-7",
+      "text": "Are you currently detained?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-8",
+      "text": "Gender",
+      "type": "text",
+      "required": true,
+      "option": [
+        {
+          "valueString": "Male"
+        },
+        {
+          "valueString": "Female"
+        },
+        {
+          "valueString": "Other"
+        }
+      ]
+    },
+    {
+      "linkId": "question-9",
+      "text": "Family history of cancer?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-10",
+      "text": "Which relatives?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-11",
+      "text": "Which cancers?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-12",
+      "text": "Cancer Diagnosis",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-13",
+      "text": "Institution (Hospital, clinic) where you were diagnosed",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-14",
+      "text": "Date of Cancer Diagnosis",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "display-1",
+      "text": "Describe your treatment:",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "question-15",
+          "text": "Clinical Trial (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-16",
+          "text": "Pre Clinical Trial (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-17",
+          "text": "Alternative Therapy (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-18",
+          "text": "Therapeutic Agent(s) used",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-19",
+          "text": "Dates of Treatment",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-20",
+          "text": "Are you still being treated?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "question-21",
+          "text": "If not, date of last imaging study",
+          "type": "date",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "question-22",
+      "text": "Why do you describe yourself as a “super” responder:",
+      "initialString": "Please provide a detailed answer, as this will help us determine your eligibility for the study",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-23",
+      "text": "To your knowledge, has your genome been analyzed?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-24",
+      "text": "Who is your Primary Care Provider?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-25",
+      "text": "Who is your Oncologist?",
+      "type": "text",
+      "required": true
+    }
+  ]
+}

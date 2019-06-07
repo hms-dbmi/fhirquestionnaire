@@ -1,36 +1,43 @@
-FROM python:3.6-alpine3.8 AS builder
+FROM python:3.6-slim AS builder
 
-# Install dependencies
-RUN apk add --update \
-    build-base \
-    g++ \
-    openssl-dev \
-    libffi-dev
+# Install python requirements
+COPY requirements.txt /requirements.txt
 
-# Add requirements
-ADD requirements.txt /requirements.txt
+# Install requirements
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        ca-certificates \
+        bzip2 \
+        libfontconfig \
+        libmariadbclient-dev \
+        g++ libssl-dev \
+    && pip install -r /requirements.txt
 
-# Install Python packages
-RUN pip install -r /requirements.txt
+# Install requirements for PDF generation
+RUN mkdir /tmp/phantomjs \
+    && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+           | tar -xj --strip-components=1 -C /tmp/phantomjs
 
-FROM hmsdbmitc/dbmisvc:3.6-alpine
+FROM hmsdbmitc/dbmisvc:3.6-slim
 
-RUN apk add --no-cache --update \
-    bash \
-    nginx \
-    curl \
-    openssl \
-    jq \
-  && rm -rf /var/cache/apk/*
+# Install python requirements
+COPY requirements.txt /requirements.txt
+
+# Install requirements
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libfontconfig \
+        libmariadbclient-dev
 
 # Copy pip packages from builder
 COPY --from=builder /root/.cache /root/.cache
 
-# Add requirements
-ADD requirements.txt /requirements.txt
-
 # Install Python packages
 RUN pip install -r /requirements.txt
+
+# Copy PhantomJS binary
+COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
 
 # Add additional init scripts
 COPY docker-entrypoint-init.d/* /docker-entrypoint-init.d/

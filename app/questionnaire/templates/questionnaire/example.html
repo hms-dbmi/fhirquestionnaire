@@ -20,6 +20,16 @@
     </div>
 
     <div id="fhirquestionnaire-content" class="js">
+
+        <div class="row">
+            <div class="col-xs-1"><h1 class="text-center">{% bootstrap_icon 'warning-sign' extra_classes='text-danger' %}</h1></div>
+            <div class="col-xs-10">
+                <h2 class="text-center text-danger">
+                    THIS IS AN EXAMPLE QUESTIONNAIRE AND SHOULD NOT BE USED
+                </h2>
+            </div>
+            <div class="col-xs-1"><h1 class="text-center">{% bootstrap_icon 'warning-sign' extra_classes='text-danger' %}</h1></div>
+        </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <form id="form" action="{% url 'questionnaire:questionnaire' study=study %}" method="post">

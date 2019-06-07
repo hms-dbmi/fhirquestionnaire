@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'health_check',
     'raven.contrib.django.raven_compat',
     'dbmi_client',
+    'pdf',
 ]
 
 MIDDLEWARE = [
@@ -186,6 +187,10 @@ EMAIL_PORT = get_str("EMAIL_PORT")
 TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
 CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
 DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
+
+PDF_GENERATOR = {
+    'DEFAULT_TEMP_DIR': '/tmp',
+}
 
 # Check for sentry
 RAVEN_URL = get_str("RAVEN_URL", required=True)

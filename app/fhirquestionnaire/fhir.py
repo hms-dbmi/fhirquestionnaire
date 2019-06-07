@@ -1,11 +1,13 @@
 import requests
 import datetime
 import uuid
+import hashlib
 import base64
 from urllib.parse import quote, urlencode
 
 from django.template.loader import render_to_string
 from django.conf import settings
+from ppmutils.ppm import PPM
 
 from fhirclient import client
 from fhirclient.models.bundle import Bundle, BundleEntry
@@ -25,6 +27,7 @@ from fhirclient.models.signature import Signature
 from fhirclient.models.composition import Composition, CompositionSection
 from fhirclient.models.bundle import Bundle, BundleEntry, BundleEntryRequest
 from fhirclient.models.questionnaire import Questionnaire, QuestionnaireItem
+from fhirclient.models.attachment import Attachment
 from fhirclient.models.questionnaireresponse import QuestionnaireResponse, QuestionnaireResponseItem, QuestionnaireResponseItemAnswer
 
 import logging
@@ -38,7 +41,75 @@ class FHIR:
         return client.FHIRClient(settings={'app_id': settings.FHIR_APP_ID, 'api_base': settings.FHIR_URL})
 
     @staticmethod
-    def submit_asd_individual(patient_email, forms):
+    def submit_consent(study, patient_email, form, pdf=None):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param study: The study for which the consent was completed
+        :type study: str
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The form filled out for the consent
+        :type form: Form
+        :param pdf: The generated PDF of the consent as raw data
+        :type pdf: bytearray
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
+
+        # Get the questionnaire
+        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email)
+
+        # Get the exception codes from the form
+        data = dict(form)
+        codes = data.get('exceptions', [])
+        name = data['name']
+        signature = data['signature']
+        date = data['date'].isoformat()
+
+        # Map exception codes to linkId
+        # TODO: Figure out how to generalize the handling of exceptions per consent
+        exception_codes = {
+            'question-1': '82078001',
+            'question-2': '165334004',
+            'question-3': '258435002',
+            'question-4': '284036006',
+            'question-5': '702475000',
+        }
+
+        # Build answers
+        answers = {linkId: code in codes for linkId, code in exception_codes.items()}
+
+        # Create needed resources
+        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
+        contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
+        exceptions = FHIR._consent_exceptions(codes)
+        consent = FHIR._consent(patient, date, exceptions, attachment=pdf)
+
+        # Get the signature HTML
+        text = '<div>{}</div>'.format(render_to_string('consent/{}/_consent.html'.format(study)))
+
+        # Generate composition
+        composition = FHIR._composition(patient, date, text, [consent, contract])
+
+        # Bundle it into a transaction
+        bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
+
+        # Save it
+        FHIR._post_bundle(bundle)
+
+    @staticmethod
+    def submit_asd_individual(patient_email, forms, pdf=None):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param forms: The forms filled out for the consent
+        :type forms: Form
+        :param pdf: The generated PDF of the consent as raw data
+        :type pdf: bytearray
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -91,7 +162,7 @@ class FHIR:
         questionnaire_response = FHIR._questionnaire_response(signature_questionnaire, patient, date, answers)
         contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
         exceptions = FHIR._consent_exceptions(codes)
-        consent = FHIR._consent(patient, date, exceptions)
+        consent = FHIR._consent(patient, date, exceptions, attachment=pdf)
 
         # Get the signature HTML
         text = '<div>{}</div>'.format(render_to_string('consent/asd/_individual_consent.html'))
@@ -106,7 +177,18 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_asd_guardian(patient_email, forms):
+    def submit_asd_guardian(patient_email, forms, pdf=None):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param forms: The forms filled out for the consent
+        :type forms: Form
+        :param pdf: The generated PDF of the consent as raw data
+        :type pdf: bytearray
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -198,7 +280,7 @@ class FHIR:
 
         # Create the guardian's consent
         exceptions = FHIR._consent_exceptions(guardian_codes)
-        consent = FHIR._consent(patient, date, exceptions, related_person)
+        consent = FHIR._consent(patient, date, exceptions, related_person, attachment=pdf)
 
         # Get the signature HTML
         text = '<div>{}</div>'.format(render_to_string('consent/asd/_guardian_consent.html'))
@@ -284,10 +366,20 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_neer_questionnaire(patient_email, form):
-
+    def submit_questionnaire(study, patient_email, form):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param study: The study for which the questionnaire was completed
+        :type study: str
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The form filled out for the questionnaire
+        :type form: Form
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
         # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources('ppm-neer-registration-questionnaire', patient_email)
+        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.questionnaire_for_study(study), patient_email)
 
         # Just use now
         date = datetime.datetime.utcnow().isoformat()
@@ -300,25 +392,6 @@ class FHIR:
 
         # Save it
         FHIR._post_bundle(bundle)
-
-    @staticmethod
-    def submit_asd_questionnaire(patient_email, form):
-
-        # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources('ppm-asd-questionnaire', patient_email)
-
-        # Just use now
-        date = datetime.datetime.utcnow().isoformat()
-
-        # Build the response
-        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, form)
-
-        # Bundle it into a transaction
-        bundle = FHIR._bundle([questionnaire_response])
-
-        # Save it
-        FHIR._post_bundle(bundle)
-
 
     @staticmethod
     def update_resource(json):
@@ -696,7 +769,7 @@ class FHIR:
         return person
 
     @staticmethod
-    def _consent(patient, date, exceptions=[], related_person=None):
+    def _consent(patient, date, exceptions=[], related_person=None, attachment=None):
 
         # Make it
         consent = Consent()
@@ -716,6 +789,24 @@ class FHIR:
 
             # Add them
             consent.consentingParty = [FHIR._reference_to(related_person)]
+
+        # Check for a attachment
+        # TODO: This does not work in HAPI-FHIR < 3.5.0 for some unknown reason
+        if attachment:
+
+            # Build the attachment
+            _attachment = Attachment()
+            _attachment.contentType = 'application/pdf'
+            _attachment.language = 'english'
+            _attachment.size = len(attachment)
+            _attachment.hash = hashlib.md5(attachment).hexdigest()
+            _attachment.title = 'People-Powered Medicine Consent'
+
+            # Add the document
+            _attachment.data = base64.b64encode(attachment).decode()
+
+            # Add the attachment
+            consent.sourceAttachment = _attachment
 
         # Period
         period = Period()
