@@ -1,11 +1,22 @@
+import requests
+import threading
+import hashlib
+
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
+from dbmi_client.settings import dbmi_settings
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
+from dbmi_client.authz import has_permission
 
+from pdf.renderers import render_pdf
+from ppmutils.ppm import PPM
+from ppmutils.p2md import P2MD
+from ppmutils.fhir import FHIR as PPMFHIR
 from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
@@ -148,6 +159,9 @@ class NEERView(View):
         # Process the form
         try:
             FHIR.submit_neer_consent(patient_email, form.cleaned_data)
+
+            # Submit consent PDF in the background
+            threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.NEER.value)).start()
 
             # Get the return URL
             context = {
@@ -426,6 +440,9 @@ class ASDSignatureView(View):
                 # Submit the data
                 FHIR.submit_asd_individual(patient_email, forms)
 
+                # Submit consent PDF in the background
+                threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.ASD.value)).start()
+
                 # Get the return URL
                 context = {
                     'return_url': settings.RETURN_URL,
@@ -462,6 +479,9 @@ class ASDSignatureView(View):
 
                     # Submit the data
                     FHIR.submit_asd_guardian(patient_email, forms)
+
+                    # Submit consent PDF in the background
+                    threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.ASD.value)).start()
 
                     # Get the return URL
                     context = {
@@ -541,6 +561,114 @@ class ASDSignatureView(View):
                                 message='The application has experienced an unknown error{}'
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
                                 support=False)
+
+
+class DownloadView(View):
+
+    @method_decorator(dbmi_user)
+    def get(self, request, *args, **kwargs):
+
+        # Get the study
+        study = kwargs['study']
+
+        try:
+            # Get the patient email and ensure they exist
+            patient_email = get_jwt_email(request=request, verify=False)
+
+            # Check FHIR
+            if not PPMFHIR.get_consent_document_reference(patient=patient_email, study=study, flatten_return=True):
+
+                # Save it
+                save_consent_pdf(request=request, study=study)
+
+            # Get their ID
+            ppm_id = PPMFHIR.query_patient_id(email=patient_email)
+
+            return HttpResponseRedirect(redirect_to=P2MD.get_consent_url(study=study, ppm_id=ppm_id))
+
+        except Exception as e:
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                 'request': request, 'project': study,
+            })
+
+        raise SystemError('Could not render consent document')
+
+    @method_decorator(dbmi_user)
+    def post(self, request, *args, **kwargs):
+
+        # Get the request data
+        study = kwargs['study']
+
+        # Check for admin
+        email = get_jwt_email(request=request, verify=False)
+        is_admin = has_permission(request, email, dbmi_settings.CLIENT, dbmi_settings.AUTHZ_ADMIN_PERMISSION)
+        if is_admin:
+
+            # Use it
+            patient = request.POST.get('ppm_id')
+
+            # Admin is making the call, we need a PPM ID specified
+            if not patient:
+                return HttpResponse('PPM ID is required', status=400)
+        else:
+            # Use calling identity
+            patient = email
+
+        try:
+            # Check FHIR
+            if not PPMFHIR.get_consent_document_reference(patient=patient, study=study, flatten_return=True):
+
+                # Save it
+                save_consent_pdf(request=request, study=study, ppm_id=patient if is_admin else None)
+
+                return HttpResponse(status=201)
+
+            else:
+                # Nothing to do
+                return HttpResponse(status=200)
+
+        except Exception as e:
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                 'request': request, 'project': study,
+            })
+
+        raise SystemError('Could not render consent document')
+
+
+def save_consent_pdf(request, study, ppm_id=None):
+
+    # Get the participant ID if needed
+    if not ppm_id:
+        ppm_id = PPMFHIR.query_patient_id(get_jwt_email(request=request, verify=False))
+
+    # Pull their record
+    bundle = PPMFHIR.query_participant(patient=ppm_id, flatten_return=True)
+
+    # Submit consent PDF
+    response = render_pdf('People-Powered Medicine Consent', request, 'consent/pdf/consent.html',
+                          context=bundle.get('composition'), options={})
+
+    hash = hashlib.md5(response.content).hexdigest()
+    size = len(response.content)
+
+    # Create the file through P2MD
+    uuid, upload_data = P2MD.create_consent_file(request, study, ppm_id, hash, size)
+
+    # Pull the needed bits to upload the PDF
+    location = upload_data['locationid']
+    post = upload_data['post']
+
+    # Set the files dictionary
+    files = {'file': response.content}
+
+    # Now that we have the file locally, send it to S3
+    response = requests.post(post['url'], data=post['fields'], files=files)
+    response.raise_for_status()
+
+    # Set request data
+    P2MD.uploaded_consent(request, study, ppm_id, uuid, location)
+
+    return True
 
 
 def render_error(request, title=None, message=None, error=None, support=False):
