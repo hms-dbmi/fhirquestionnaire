@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'health_check',
     'raven.contrib.django.raven_compat',
     'dbmi_client',
+    'api',
     'pdf',
 ]
 
@@ -167,6 +168,22 @@ DBMI_CLIENT_CONFIG = {
     'AUTH0_CLIENT_ID': get_str('AUTH0_CLIENT_ID', required=True),
     'AUTHN_TITLE': 'People-Powered Medicine',
     'AUTHN_ICON_URL': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
+
+    # Misc
+    'DRF_OBJECT_OWNER_KEY': 'email',
+}
+
+# Api settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'fhirquestionnaire.ppmauth.PPMAdminOrOwnerPermission',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dbmi_client.authn.DBMIUser',
+    ),
 }
 
 # App configurations
@@ -197,4 +214,4 @@ if RAVEN_URL:
     }
 
 # Output the standard logging configuration
-LOGGING = dbmi_logging.config('QUESTIONNAIRE', sentry=True)
+LOGGING = dbmi_logging.config('QUESTIONNAIRE', sentry=True, root_level=logging.DEBUG)

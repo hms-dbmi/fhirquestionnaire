@@ -564,6 +564,11 @@ class ASDSignatureView(View):
 
 
 class DownloadView(View):
+    """
+    This is a temporary viewset to retroactively populate participants' datasets
+    with renders of their signed consents and then redirecting them to P2MD where
+    the actual download will take place.
+    """
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
@@ -593,50 +598,19 @@ class DownloadView(View):
 
         raise SystemError('Could not render consent document')
 
-    @method_decorator(dbmi_user)
-    def post(self, request, *args, **kwargs):
-
-        # Get the request data
-        study = kwargs['study']
-        ppm_id = request.POST.get('ppm_id', None)
-
-        # Check for admin
-        email = get_jwt_email(request=request, verify=False)
-        if ppm_id and has_permission(request, email, dbmi_settings.CLIENT, dbmi_settings.AUTHZ_ADMIN_PERMISSION):
-
-            # Use it
-            patient = ppm_id
-
-            # Admin is making the call, we need a PPM ID specified
-            if not patient:
-                return HttpResponse('PPM ID is required', status=400)
-        else:
-            # Use calling identity
-            patient = email
-
-        try:
-            # Check FHIR
-            if not PPMFHIR.get_consent_document_reference(patient=patient, study=study, flatten_return=True):
-
-                # Save it
-                save_consent_pdf(request=request, study=study, ppm_id=ppm_id)
-
-                return HttpResponse(status=201)
-
-            else:
-                # Nothing to do
-                return HttpResponse(status=200)
-
-        except Exception as e:
-            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
-                 'request': request, 'project': study,
-            })
-
-        raise SystemError('Could not render consent document')
-
 
 def save_consent_pdf(request, study, ppm_id=None):
-
+    """
+    Accepts the context of a participant's request and renders their signed and accepted consent
+    as a PDF and then sends the PDF details to P2MD to create a file location, and finally uploads
+    the contents of the file to the datalake for storage.
+    :param request: The current request
+    :type request: HttpRequest
+    :param study: The study for which the consent was signed
+    :type study: str
+    :param ppm_id: The participant ID for which the consent render is being generated
+    :type ppm_id: str
+    """
     # Get the participant ID if needed
     if not ppm_id:
         ppm_id = PPMFHIR.query_patient_id(get_jwt_email(request=request, verify=False))
