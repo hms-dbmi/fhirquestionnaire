@@ -598,14 +598,14 @@ class DownloadView(View):
 
         # Get the request data
         study = kwargs['study']
+        ppm_id = request.POST.get('ppm_id', None)
 
         # Check for admin
         email = get_jwt_email(request=request, verify=False)
-        is_admin = has_permission(request, email, dbmi_settings.CLIENT, dbmi_settings.AUTHZ_ADMIN_PERMISSION)
-        if is_admin:
+        if ppm_id and has_permission(request, email, dbmi_settings.CLIENT, dbmi_settings.AUTHZ_ADMIN_PERMISSION):
 
             # Use it
-            patient = request.POST.get('ppm_id')
+            patient = ppm_id
 
             # Admin is making the call, we need a PPM ID specified
             if not patient:
@@ -619,7 +619,7 @@ class DownloadView(View):
             if not PPMFHIR.get_consent_document_reference(patient=patient, study=study, flatten_return=True):
 
                 # Save it
-                save_consent_pdf(request=request, study=study, ppm_id=patient if is_admin else None)
+                save_consent_pdf(request=request, study=study, ppm_id=ppm_id)
 
                 return HttpResponse(status=201)
 
