@@ -1,0 +1,32 @@
+{% for question in questions %}
+<div class="form-group pbi_avoid">
+
+    {% if question.type == 'display' %}
+    <div class="col-xs-12">
+        <p>{{ question.text }}</p>
+    </div>
+    {% elif question.type == 'boolean' %}
+    <div class="checkbox col-xs-12">
+        <label><input type="checkbox"{% if question.answer %} checked {% endif %}/>{{ question.text }}</label>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p>(Typing your name below acts as your signature and indicates your permission to take part in this research.)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <label for="signature-of-participant">Signature of participant (Please type your name)</label>
+            <input type="text" id="signature-of-participant" name="signature-of-participant" class="form-control" required="" value="{{ assent_signature }}">
+        </div>
+        <div class="col-xs-4">
+            <label for="date">Date</label>
+            <input type="text" id="date" name="date" class="form-control" required="" value="{{ assent_date }}">
+        </div>
+    </div>
+
+</div>

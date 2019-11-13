@@ -1,0 +1,40 @@
+<div class="form-group pbi_avoid">
+{% for question in questions %}
+    {% if question.type == 'display' %}
+        <div class="row">
+            <div class="col-xs-12">
+                <p>{{ question.text }}</p>
+            </div>
+        </div>
+    {% elif question.type == 'boolean' %}
+        <div class="row">
+            <div class="col-xs-12">
+                <label><input type="checkbox"{% if question.answer %} checked {% endif %} />{{ question.text }}</label>
+            </div>
+        </div>
+    {% elif question.type == 'question' %}
+        <div class="row">
+            <div class="col-xs-12">
+                <label class="radioo"><input type="radio"{% if question.answer %} checked {% endif %} />{{ question.yes }}</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="radioo"><input type="radio"{% if not question.answer %} checked {% endif %} />{{ question.no }}</label>
+                    </div>
+                {% if participant_acknowledgement_reason %}
+                    <div class="col-xs-6">
+                        <label for="reason">The reason for this is (e.g., too young, not cognitively able to comprehend study procedures and risks, etc.):</label>
+                        <input type="text" id="reason" name="reason" class="form-control" required="" value="{{ participant_acknowledgement_reason }}">
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+    <div class="row">
+        <div class="col-xs-12">
+            <label for="signature-of-guardian">Parent or caregiver signature (Typing your name acts as your signature)</label>
+            <input type="text" id="signature-of-guardian" name="signature-of-guardian" class="form-control" required="" value="{{ explained_signature }}">
+        </div>
+    </div>
+</div>
