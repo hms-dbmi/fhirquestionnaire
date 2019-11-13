@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'health_check',
     'raven.contrib.django.raven_compat',
     'dbmi_client',
+    'pdf',
 ]
 
 MIDDLEWARE = [
