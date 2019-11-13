@@ -3,6 +3,7 @@ django-bootstrap3==10.0.1
 django-crispy-forms==1.7.2
 django-dbmi-client==0.3.9
 django-health-check==3.6.1
+djangorestframework==3.9.4
 fhirclient==3.2.0
 ppm-utils==0.6.25
 raven==6.9.0
