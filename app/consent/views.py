@@ -1,19 +1,14 @@
-import requests
 import threading
-import hashlib
 
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
-from dbmi_client.settings import dbmi_settings
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
-from dbmi_client.authz import has_permission
 
-from pdf.renderers import render_pdf
 from ppmutils.ppm import PPM
 from ppmutils.p2md import P2MD
 from ppmutils.fhir import FHIR as PPMFHIR
@@ -21,6 +16,7 @@ from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
 from consent.forms import NEERSignatureForm
+from api.views import ConsentView
 
 
 import logging
@@ -161,7 +157,8 @@ class NEERView(View):
             FHIR.submit_neer_consent(patient_email, form.cleaned_data)
 
             # Submit consent PDF in the background
-            threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.NEER.value)).start()
+            threading.Thread(target=ConsentView.create_consent_document_reference,
+                             args=(request, PPM.Study.NEER.value)).start()
 
             # Get the return URL
             context = {
@@ -441,7 +438,8 @@ class ASDSignatureView(View):
                 FHIR.submit_asd_individual(patient_email, forms)
 
                 # Submit consent PDF in the background
-                threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.ASD.value)).start()
+                threading.Thread(target=ConsentView.create_consent_document_reference,
+                                 args=(request, PPM.Study.ASD.value)).start()
 
                 # Get the return URL
                 context = {
@@ -481,7 +479,8 @@ class ASDSignatureView(View):
                     FHIR.submit_asd_guardian(patient_email, forms)
 
                     # Submit consent PDF in the background
-                    threading.Thread(target=save_consent_pdf, args=(request, PPM.Study.ASD.value)).start()
+                    threading.Thread(target=ConsentView.create_consent_document_reference,
+                                     args=(request, PPM.Study.ASD.value)).start()
 
                     # Get the return URL
                     context = {
@@ -584,7 +583,7 @@ class DownloadView(View):
             if not PPMFHIR.get_consent_document_reference(patient=patient_email, study=study, flatten_return=True):
 
                 # Save it
-                save_consent_pdf(request=request, study=study)
+                ConsentView.create_consent_document_reference(request=request, study=study)
 
             # Get their ID
             ppm_id = PPMFHIR.query_patient_id(email=patient_email)
@@ -597,52 +596,6 @@ class DownloadView(View):
             })
 
         raise SystemError('Could not render consent document')
-
-
-def save_consent_pdf(request, study, ppm_id=None):
-    """
-    Accepts the context of a participant's request and renders their signed and accepted consent
-    as a PDF and then sends the PDF details to P2MD to create a file location, and finally uploads
-    the contents of the file to the datalake for storage.
-    :param request: The current request
-    :type request: HttpRequest
-    :param study: The study for which the consent was signed
-    :type study: str
-    :param ppm_id: The participant ID for which the consent render is being generated
-    :type ppm_id: str
-    """
-    # Get the participant ID if needed
-    if not ppm_id:
-        ppm_id = PPMFHIR.query_patient_id(get_jwt_email(request=request, verify=False))
-
-    # Pull their record
-    bundle = PPMFHIR.query_participant(patient=ppm_id, flatten_return=True)
-
-    # Submit consent PDF
-    response = render_pdf('People-Powered Medicine Consent', request, 'consent/pdf/consent.html',
-                          context=bundle.get('composition'), options={})
-
-    hash = hashlib.md5(response.content).hexdigest()
-    size = len(response.content)
-
-    # Create the file through P2MD
-    uuid, upload_data = P2MD.create_consent_file(request, study, ppm_id, hash, size)
-
-    # Pull the needed bits to upload the PDF
-    location = upload_data['locationid']
-    post = upload_data['post']
-
-    # Set the files dictionary
-    files = {'file': response.content}
-
-    # Now that we have the file locally, send it to S3
-    response = requests.post(post['url'], data=post['fields'], files=files)
-    response.raise_for_status()
-
-    # Set request data
-    P2MD.uploaded_consent(request, study, ppm_id, uuid, location)
-
-    return True
 
 
 def render_error(request, title=None, message=None, error=None, support=False):

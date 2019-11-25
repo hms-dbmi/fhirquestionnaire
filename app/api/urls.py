@@ -11,4 +11,5 @@ app_name = ApiConfig.name
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     re_path(r'^consent/(?P<study>[\w\d-]+)/(?P<ppm_id>[\d]+)/?$', views.ConsentView.as_view(), name='consent'),
+    re_path(r'^consent/(?P<study>[\w\d-]+)/?$', views.ConsentsView.as_view(), name='consents'),
 ]
