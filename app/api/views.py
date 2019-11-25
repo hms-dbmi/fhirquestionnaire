@@ -76,7 +76,6 @@ class ConsentView(APIView):
 
             # Get their current consent Document if any
             document_reference = FHIR.get_consent_document_reference(patient=ppm_id, study=study, flatten_return=True)
-            logger.debug(f'{study} - Patient/{ppm_id} found render: DocumentReference/{document_reference["id"]}')
 
             # Check FHIR
             if not document_reference or overwrite:
