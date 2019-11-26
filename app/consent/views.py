@@ -1,3 +1,6 @@
+import threading
+
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from django.utils.decorators import method_decorator
@@ -6,10 +9,14 @@ from django.views.generic import View
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
 
+from ppmutils.ppm import PPM
+from ppmutils.p2md import P2MD
+from ppmutils.fhir import FHIR as PPMFHIR
 from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
 from consent.forms import NEERSignatureForm
+from api.views import ConsentView
 
 
 import logging
@@ -148,6 +155,10 @@ class NEERView(View):
         # Process the form
         try:
             FHIR.submit_neer_consent(patient_email, form.cleaned_data)
+
+            # Submit consent PDF in the background
+            threading.Thread(target=ConsentView.create_consent_document_reference,
+                             args=(request, PPM.Study.NEER.value)).start()
 
             # Get the return URL
             context = {
@@ -426,6 +437,10 @@ class ASDSignatureView(View):
                 # Submit the data
                 FHIR.submit_asd_individual(patient_email, forms)
 
+                # Submit consent PDF in the background
+                threading.Thread(target=ConsentView.create_consent_document_reference,
+                                 args=(request, PPM.Study.ASD.value)).start()
+
                 # Get the return URL
                 context = {
                     'return_url': settings.RETURN_URL,
@@ -462,6 +477,10 @@ class ASDSignatureView(View):
 
                     # Submit the data
                     FHIR.submit_asd_guardian(patient_email, forms)
+
+                    # Submit consent PDF in the background
+                    threading.Thread(target=ConsentView.create_consent_document_reference,
+                                     args=(request, PPM.Study.ASD.value)).start()
 
                     # Get the return URL
                     context = {
@@ -541,6 +560,42 @@ class ASDSignatureView(View):
                                 message='The application has experienced an unknown error{}'
                                 .format(': {}'.format(e) if settings.DEBUG else '.'),
                                 support=False)
+
+
+class DownloadView(View):
+    """
+    This is a temporary viewset to retroactively populate participants' datasets
+    with renders of their signed consents and then redirecting them to P2MD where
+    the actual download will take place.
+    """
+
+    @method_decorator(dbmi_user)
+    def get(self, request, *args, **kwargs):
+
+        # Get the study
+        study = kwargs['study']
+
+        try:
+            # Get the patient email and ensure they exist
+            patient_email = get_jwt_email(request=request, verify=False)
+
+            # Check FHIR
+            if not PPMFHIR.get_consent_document_reference(patient=patient_email, study=study, flatten_return=True):
+
+                # Save it
+                ConsentView.create_consent_document_reference(request=request, study=study)
+
+            # Get their ID
+            ppm_id = PPMFHIR.query_patient_id(email=patient_email)
+
+            return HttpResponseRedirect(redirect_to=P2MD.get_consent_url(study=study, ppm_id=ppm_id))
+
+        except Exception as e:
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                 'request': request, 'project': study,
+            })
+
+        raise SystemError('Could not render consent document')
 
 
 def render_error(request, title=None, message=None, error=None, support=False):

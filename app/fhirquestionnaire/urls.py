@@ -19,5 +19,6 @@ urlpatterns = [
     url(r'^fhirquestionnaire/questionnaire/', include("questionnaire.urls", namespace="questionnaire")),
     url(r'^fhirquestionnaire/contact/', include("contact.urls", namespace="contact")),
     url(r'^fhirquestionnaire/consent/', include("consent.urls", namespace="consent")),
+    url(r'^fhirquestionnaire/api/', include("api.urls", namespace="api")),
     url(r'^healthcheck/?', include('health_check.urls')),
 ]
