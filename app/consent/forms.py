@@ -5,6 +5,7 @@ import json
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import mark_safe
+from ppmutils.ppm import PPM
 
 from consent.apps import ConsentConfig
 
@@ -91,7 +92,7 @@ def _quiz_fields(questionnaire_id):
 
 class NEERSignatureForm(forms.Form):
 
-    exceptions = _exception_choices('neer-signature')
+    exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER))
 
     name = forms.CharField(label='Name of participant',
                            required=True,
