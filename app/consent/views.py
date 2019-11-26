@@ -70,7 +70,7 @@ class ProjectView(View):
 class NEERView(View):
 
     # Set the FHIR ID if the Questionnaire resource
-    questionnaire_id = 'neer-signature'
+    questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):

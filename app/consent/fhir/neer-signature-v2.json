@@ -1,6 +1,6 @@
 {
   "resourceType": "Questionnaire",
-  "id": "neer-signature",
+  "id": "neer-signature-v2",
   "meta": {
     "security": [
       {
@@ -10,7 +10,7 @@
     ]
   },
   "status": "active",
-  "date": "2017-06-16",
+  "date": "2019-11-26",
   "subjectType": [
     "patient"
   ],
@@ -31,53 +31,42 @@
       "type": "boolean",
       "required": true
     },
+
     {
       "linkId": "display-3",
-      "text": "Please indicate if you DO NOT wish to provide a stool sample for this study.  Stool samples will be used to examine the \"microbiome\", or bacteria, present in your body.",
+      "text": "Please indicate if you DO NOT give us permission to access samples from your tumor that may be stored (for instance, from previous biopsies).",
       "type": "display"
     },
     {
       "linkId": "question-2",
-      "text": "I DO NOT WISH TO PROVIDE A STOOL SAMPLE FOR THIS STUDY.",
+      "text": "I DO NOT GIVE PERMISSION FOR MY EXISTING TUMOR SAMPLES TO BE USED FOR THIS STUDY.",
       "type": "boolean",
       "required": true
     },
     {
       "linkId": "display-4",
-      "text": "Please indicate if you DO NOT give us permission to access samples from your tumor that may be stored (for instance, from previous biopsies).",
-      "type": "display"
-    },
-    {
-      "linkId": "question-3",
-      "text": "I DO NOT GIVE PERMISSION FOR MY EXISTING TUMOR SAMPLES TO BE USED FOR THIS STUDY.",
-      "type": "boolean",
-      "required": true
-    },
-
-    {
-      "linkId": "display-5",
       "text": "Please indicate if you DO NOT wish to wear a Fitbit™ for this study.",
       "type": "display"
     },
     {
-      "linkId": "question-4",
+      "linkId": "question-3",
       "text": "I DO NOT WISH TO WEAR A FITBIT™ FOR THIS STUDY.",
       "type": "boolean",
       "required": true
     },
     {
-      "linkId": "display-6",
+      "linkId": "display-5",
       "text": "Please indicate if you DO NOT wish to be contacted with additional questionnaires for this study.",
       "type": "display"
     },
     {
-      "linkId": "question-5",
+      "linkId": "question-4",
       "text": "I DO NOT WISH TO BE CONTACTED WITH ADDITIONAL QUESTIONNAIRES FOR THIS STUDY.",
       "type": "boolean",
       "required": true
     },
     {
-      "linkId": "display-7",
+      "linkId": "display-6",
       "text": "I agree to participate in the study and to be contacted in the future for additional information.",
       "type": "display"
     }
