@@ -26,6 +26,7 @@ from fhirclient.models.composition import Composition, CompositionSection
 from fhirclient.models.bundle import Bundle, BundleEntry, BundleEntryRequest
 from fhirclient.models.questionnaire import Questionnaire, QuestionnaireItem
 from fhirclient.models.questionnaireresponse import QuestionnaireResponse, QuestionnaireResponseItem, QuestionnaireResponseItemAnswer
+from ppmutils.ppm import PPM
 
 import logging
 logger = logging.getLogger(__name__)
@@ -244,7 +245,8 @@ class FHIR:
     def submit_neer_consent(patient_email, form):
 
         # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources('neer-signature', patient_email)
+        questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER)
+        questionnaire, patient = FHIR.get_resources(questionnaire_id, patient_email)
 
         # Get the exception codes from the form
         data = dict(form)
@@ -256,10 +258,9 @@ class FHIR:
         # Map exception codes to linkId
         exception_codes = {
             'question-1': '82078001',
-            'question-2': '165334004',
-            'question-3': '258435002',
-            'question-4': '284036006',
-            'question-5': '702475000',
+            'question-2': '258435002',
+            'question-3': '284036006',
+            'question-4': '702475000',
         }
 
         # Build answers
