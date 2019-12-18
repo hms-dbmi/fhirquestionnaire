@@ -7,7 +7,6 @@ app_name = "questionnaire"
 # Add views.
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^p/(?P<project_id>.+)/$', views.ProjectView.as_view(), name='project'),
-    url(r'^q/asd/$', views.ASDView.as_view(), name='asd'),
-    url(r'^q/neer/$', views.NEERView.as_view(), name='neer'),
+    url(r'^p/(?P<study>[a-z\-_]+)/$', views.StudyView.as_view(), name='study'),
+    url(r'^q/(?P<study>[a-z\-_]+)/$', views.QuestionnaireView.as_view(), name='questionnaire'),
 ]

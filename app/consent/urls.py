@@ -6,11 +6,13 @@ app_name = "consent"
 
 # Add views.
 urlpatterns = [
-    url(r'^p/(?P<project_id>.+)/$', views.ProjectView.as_view(), name='project'),
-    url(r'^d/(?P<study>.+)/$', views.DownloadView.as_view(), name='download'),
-    url(r'^c/neer/$', views.NEERView.as_view(), name='neer'),
-    url(r'^c/asd/$', views.ASDView.as_view(), name='asd'),
-    url(r'^c/asd/quiz/$', views.ASDQuizView.as_view(), name='asd-quiz'),
-    url(r'^c/asd/signature/$', views.ASDSignatureView.as_view(), name='asd-signature'),
+    url(r'^p/(?P<study>[a-z\-_]+)/$', views.StudyView.as_view(), name='study'),
+    url(r'^d/(?P<study>[a-z\-_]+)/$', views.DownloadView.as_view(), name='download'),
+
+    # Autism has its own views due to its 'involved' consent format
+    url(r'^c/autism/$', views.AutismView.as_view(), name='autism'),
+    url(r'^c/autism/quiz/$', views.AutismQuizView.as_view(), name='autism-quiz'),
+    url(r'^c/autism/signature/$', views.AutismSignatureView.as_view(), name='autism-signature'),
+    url(r'^c/(?P<study>[a-z\-_]+)/$', views.ConsentView.as_view(), name='consent'),
     url(r'^$', views.IndexView.as_view(), name='index'),
 ]

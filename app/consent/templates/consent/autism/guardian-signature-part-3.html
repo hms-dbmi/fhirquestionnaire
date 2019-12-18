@@ -7,8 +7,8 @@
 <div id="fhirquestionnaire-content">
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-        <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd-signature' %}"
-                  ic-post-to="{% url 'consent:asd-signature' %}" ic-target="#fhirquestionnaire-content"
+        <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:autism-signature' %}"
+                  ic-post-to="{% url 'consent:autism-signature' %}" ic-target="#fhirquestionnaire-content"
                   ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
                   ic-scroll-to-target="true" ic-scroll-offset="-100">
 
@@ -16,7 +16,7 @@
 
             {% csrf_token %}
 
-            {% include 'consent/asd/_ward_assent.html' %}
+            {% include 'consent/autism/_ward_assent.html' %}
       <p>
         If you DO NOT want to give us a saliva sample for this study, please check here.
       </p>

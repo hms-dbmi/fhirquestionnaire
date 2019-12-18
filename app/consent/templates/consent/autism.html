@@ -21,8 +21,8 @@
     <div id="fhirquestionnaire-content" class="js">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:asd' %}"
-                      ic-post-to="{% url 'consent:asd' %}"
+                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:autism' %}"
+                      ic-post-to="{% url 'consent:autism' %}"
                       ic-target="#fhirquestionnaire-content" ic-replace-target="false" ic-indicator="#submit"
                       ic-select-from-response="#fhirquestionnaire-content">
                     {% csrf_token %}
