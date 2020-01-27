@@ -18,8 +18,6 @@ logger = logging.getLogger(__name__)
 
 def get_return_url(request):
     """ This method checks the common locations for the URL, decodes it and returns it"""
-    logger.debug(f'Meta: {request.META}')
-    logger.debug(f'GET: {request.GET}')
     # Get return URL
     if request.session.get('return_url'):
         return request.session['return_url']
