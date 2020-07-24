@@ -7,7 +7,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG --build-arg PIP_ARGS=${PIP_ARGS:=-U} .
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG --build-arg PIP_ARGS="${PIP_ARGS:=-U}" .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
