@@ -6,7 +6,7 @@ from django.views.generic import View
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
 
-from questionnaire.forms import NEERQuestionnaireForm, ASDQuestionnaireForm
+from questionnaire.forms import NEERQuestionnaireForm, ASDQuestionnaireForm, RANTQuestionnaireForm
 from fhirquestionnaire.fhir import FHIR
 
 
@@ -42,6 +42,10 @@ class ProjectView(View):
         if project_id == 'neer':
 
             return redirect(reverse('questionnaire:neer'))
+
+        elif project_id == 'rant':
+
+            return redirect(reverse('questionnaire:rant'))
 
         elif project_id == 'asd':
 
@@ -171,6 +175,131 @@ class NEERView(View):
         except Exception as e:
             logger.error("Error while submitting questionnaire: {}".format(e), exc_info=True, extra={
                 'project': 'neer',
+            })
+            return render_error(request,
+                                title='Application Error',
+                                message='The application has experienced an unknown error{}'
+                                .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                support=False)
+
+
+class RANTView(View):
+
+    questionnaire_id = 'ppm-rant-registration-questionnaire'
+
+    @method_decorator(dbmi_user)
+    def get(self, request, *args, **kwargs):
+
+        # Get the patient email and ensure they exist
+        patient_email = get_jwt_email(request=request, verify=False)
+
+        try:
+            # Check the current patient
+            FHIR.check_patient(patient_email)
+
+            # Check response
+            FHIR.check_response(self.questionnaire_id, patient_email)
+
+            # Create the form
+            form = RANTQuestionnaireForm(self.questionnaire_id)
+
+            # Prepare the context
+            context = {
+                'questionnaire_id': self.questionnaire_id,
+                'form': form,
+                'return_url': settings.RETURN_URL,
+            }
+
+            # Get the passed parameters
+            return render(request, template_name='questionnaire/rant.html', context=context)
+
+        except FHIR.PatientDoesNotExist:
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            return render_error(request,
+                                title='Patient Does Not Exist',
+                                message='A FHIR resource does not yet exist for the current user. '
+                                        'Please sign into the People-Powered dashboard to '
+                                        'create your user.',
+                                support=False)
+
+        except FHIR.QuestionnaireDoesNotExist:
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            return render_error(request,
+                                title='Questionnaire Does Not Exist',
+                                message='The requested questionnaire does not exist!',
+                                support=False)
+
+        except FHIR.QuestionnaireResponseAlreadyExists:
+            logger.warning('Questionnaire already finished')
+            return render_error(request,
+                                title='Questionnaire Already Completed',
+                                message='You have already filled out and submitted this '
+                                        'questionnaire.',
+                                support=False)
+
+        except Exception as e:
+            logger.error("Error while rendering questionnaire: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'rant',
+            })
+            return render_error(request,
+                                title='Application Error',
+                                message='The application has experienced an unknown error {}'
+                                .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                support=False)
+
+    @method_decorator(dbmi_user)
+    def post(self, request, *args, **kwargs):
+
+        # Get the patient email
+        patient_email = get_jwt_email(request=request, verify=False)
+
+        # create a form instance and populate it with data from the request:
+        form = RANTQuestionnaireForm(self.questionnaire_id, request.POST)
+
+        # check whether it's valid:
+        if not form.is_valid():
+            # Get the return URL
+
+            context = {
+                'form': form,
+                'questionnaire_id': self.questionnaire_id,
+                'return_url': settings.RETURN_URL,
+            }
+
+            # Get the passed parameters
+            return render(request, template_name='questionnaire/rant.html', context=context)
+
+        # Process the form
+        try:
+            FHIR.submit_rant_questionnaire(patient_email, form.cleaned_data)
+
+            # Get the return URL
+            context = {
+                'questionnaire_id': self.questionnaire_id,
+                'return_url': settings.RETURN_URL,
+            }
+
+            # Get the passed parameters
+            return render(request, template_name='questionnaire/success.html', context=context)
+
+        except FHIR.QuestionnaireDoesNotExist:
+            logger.warning('Questionnaire does not exist: {}'.format(self.questionnaire_id))
+            return render_error(request,
+                                title='Questionnaire Does Not Exist',
+                                message='The requested questionnaire does not exist!',
+                                support=False)
+
+        except FHIR.PatientDoesNotExist:
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            return render_error(request,
+                                title='Patient Does Not Exist',
+                                message='A FHIR resource does not yet exist for the current user. '
+                                        'Please sign into the People-Powered dashboard to '
+                                        'create your user.',
+                                support=False)
+        except Exception as e:
+            logger.error("Error while submitting questionnaire: {}".format(e), exc_info=True, extra={
+                'project': 'rant',
             })
             return render_error(request,
                                 title='Application Error',

@@ -303,6 +303,67 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
+    def submit_rant_consent(patient_email, form):
+
+        # Get the questionnaire
+        questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.RANT)
+        questionnaire, patient = FHIR.get_resources(questionnaire_id, patient_email)
+
+        # Get the exception codes from the form
+        data = dict(form)
+        codes = data.get('exceptions', [])
+        name = data['name']
+        signature = data['signature']
+        date = data['date'].isoformat()
+
+        # Map exception codes to linkId
+        exception_codes = {
+            'question-1': '82078001',
+            'question-2': '258435002',
+            'question-3': '284036006',
+            'question-4': '702475000',
+        }
+
+        # Build answers
+        answers = {linkId: code in codes for linkId, code in exception_codes.items()}
+
+        # Create needed resources
+        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
+        contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
+        exceptions = FHIR._consent_exceptions(codes)
+        consent = FHIR._consent(patient, date, exceptions)
+
+        # Get the signature HTML
+        text = '<div>{}</div>'.format(render_to_string('consent/rant/_consent.html'))
+
+        # Generate composition
+        composition = FHIR._composition(patient, date, text, [consent, contract])
+
+        # Bundle it into a transaction
+        bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
+
+        # Save it
+        FHIR._post_bundle(bundle)
+
+    @staticmethod
+    def submit_rant_questionnaire(patient_email, form):
+
+        # Get the questionnaire
+        questionnaire, patient = FHIR.get_resources('ppm-rant-registration-questionnaire', patient_email)
+
+        # Just use now
+        date = datetime.datetime.utcnow().isoformat()
+
+        # Build the response
+        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, form)
+
+        # Bundle it into a transaction
+        bundle = FHIR._bundle([questionnaire_response])
+
+        # Save it
+        FHIR._post_bundle(bundle)
+
+    @staticmethod
     def submit_asd_questionnaire(patient_email, form):
 
         # Get the questionnaire

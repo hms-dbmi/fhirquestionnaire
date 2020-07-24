@@ -15,7 +15,7 @@ from ppmutils.fhir import FHIR as PPMFHIR
 from fhirquestionnaire.fhir import FHIR
 from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
     ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
-from consent.forms import NEERSignatureForm
+from consent.forms import NEERSignatureForm, RANTSignatureForm
 from api.views import ConsentView
 
 
@@ -54,6 +54,10 @@ class ProjectView(View):
         if project_id == 'neer':
 
             return redirect(reverse('consent:neer'))
+
+        elif project_id == 'rant':
+
+            return redirect(reverse('consent:rant'))
 
         elif project_id == 'asd':
 
@@ -186,6 +190,133 @@ class NEERView(View):
         except Exception as e:
             logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
                 'request': request, 'project': 'neer', 'questionnaire': self.questionnaire_id,
+            })
+            return render_error(request,
+                                title='Application Error',
+                                message='The application has experienced an unknown error {}'
+                                .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                support=False)
+
+
+class RANTView(View):
+
+    # Set the FHIR ID if the Questionnaire resource
+    questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.RANT)
+
+    @method_decorator(dbmi_user)
+    def get(self, request, *args, **kwargs):
+
+        # Clearing any leftover sessions
+        request.session.clear()
+
+        # Get the patient email and ensure they exist
+        patient_email = get_jwt_email(request=request, verify=False)
+
+        try:
+            FHIR.check_patient(patient_email)
+
+            # Check response
+            FHIR.check_response(self.questionnaire_id, patient_email)
+
+            # Create the form
+            form = RANTSignatureForm()
+
+            context = {
+                'form': form,
+                'return_url': settings.RETURN_URL
+            }
+
+            # Build the template response
+            response = render(request, template_name='consent/rant.html', context=context)
+
+            return response
+
+        except FHIR.PatientDoesNotExist:
+            logger.warning('Patient does not exist')
+            return render_error(request,
+                                title='Patient Does Not Exist',
+                                message='A FHIR resource does not yet exist for the current user. '
+                                        'Please sign into the People-Powered dashboard to '
+                                        'create your user.',
+                                support=False)
+
+        except FHIR.QuestionnaireDoesNotExist:
+            logger.warning('Consent does not exist: RANT')
+            return render_error(request,
+                                title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
+                                message='The requested consent does not exist!',
+                                support=False)
+
+        except FHIR.QuestionnaireResponseAlreadyExists:
+            logger.warning('Consent already finished')
+            return render_error(request,
+                                title='Consent Already Completed',
+                                message='You have already filled out and submitted this '
+                                        'consent.',
+                                support=False)
+
+        except Exception as e:
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'rant', 'questionnaire': self.questionnaire_id,
+            })
+            return render_error(request,
+                                title='Application Error',
+                                message='The application has experienced an unknown error{}'
+                                .format(': {}'.format(e) if settings.DEBUG else '.'),
+                                support=False)
+
+    @method_decorator(dbmi_user)
+    def post(self, request, *args, **kwargs):
+
+        # Get the patient email
+        patient_email = get_jwt_email(request=request, verify=False)
+
+        # Get the form
+        form = RANTSignatureForm(request.POST)
+        if not form.is_valid():
+
+            # Return the form
+            context = {
+                'form': form,
+                'return_url': settings.RETURN_URL
+            }
+
+            return render(request, template_name='consent/rant.html', context=context)
+
+        # Process the form
+        try:
+            FHIR.submit_rant_consent(patient_email, form.cleaned_data)
+
+            # Submit consent PDF in the background
+            threading.Thread(target=ConsentView.create_consent_document_reference,
+                             args=(request, PPM.Study.RANT.value)).start()
+
+            # Get the return URL
+            context = {
+                'return_url': settings.RETURN_URL,
+            }
+
+            # Get the passed parameters
+            return render(request, template_name='consent/success.html', context=context)
+
+        except FHIR.QuestionnaireDoesNotExist:
+            logger.warning('Consent does not exist: RANT')
+            return render_error(request,
+                                title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
+                                message='The requested consent does not exist!',
+                                support=False)
+
+        except FHIR.PatientDoesNotExist:
+            logger.warning('Patient does not exist: {}'.format(patient_email[:3]+'****'+patient_email[-4:]))
+            return render_error(request,
+                                title='Patient Does Not Exist',
+                                message='A FHIR resource does not yet exist for the current user. '
+                                        'Please sign into the People-Powered dashboard to '
+                                        'create your user.',
+                                support=False)
+        except Exception as e:
+            logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
+                'request': request, 'project': 'rant', 'questionnaire': self.questionnaire_id,
             })
             return render_error(request,
                                 title='Application Error',
@@ -537,7 +668,7 @@ class ASDSignatureView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.warning('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: ASD')
             return render_error(request,
                                 title='Consent Does Not Exist',
                                 message='The requested consent does not exist!',

@@ -1,0 +1,365 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-rant-registration-questionnaire",
+  "status": "active",
+  "date": "2020-07-23",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-1",
+      "text": "First Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-2",
+      "text": "Last Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-3",
+      "text": "Date of Birth",
+      "type": "date",
+      "required": true
+    },
+    {
+      "linkId": "question-4",
+      "text": "Gender",
+      "type": "question",
+      "required": true,
+      "option": [
+        {
+          "valueString": "Male"
+        },
+        {
+          "valueString": "Female"
+        },
+        {
+          "valueString": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "linkId": "question-5",
+      "text": "Home Address",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-6",
+      "text": "Phone Number",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-7",
+      "text": "Email",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-8",
+      "text": "Do you have rheumatoid arthritis diagnosed by a rheumatologist?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-9",
+      "text": "What month and year were you diagnosed with RA by a rheumatologist?",
+      "type": "date",
+      "required": true
+    },
+    {
+      "linkId": "question-10",
+      "text": "Who was your diagnosing rheumatologist?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-11",
+      "text": "What is the address of your diagnosing rheumatologist?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-12",
+      "text": "What TNFi medications have you tried and failed in the past?",
+      "type": "question",
+      "repeats": true,
+      "required": true,
+      "option": [
+        {
+          "valueString": "tocilizumab (Actemra)"
+        },
+        {
+          "valueString": "certolizumab (Cimzia)"
+        },
+        {
+          "valueString": "etanercept (Enbrel)"
+        },
+        {
+          "valueString": "adalimumab (Humira)"
+        },
+        {
+          "valueString": "anakinra (Orencia)"
+        },
+        {
+          "valueString": "infliximab (Remicade)"
+        },
+        {
+          "valueString": "rituximab (Rituxan)"
+        },
+        {
+          "valueString": "golimumab (Simponi)"
+        }
+      ]
+    },
+    {
+      "linkId": "question-13",
+      "text": "Reason for discontinuing drug",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-14",
+      "text": "Please provide a range of dates for this drug therapy",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-15",
+      "text": "What additional TNFi medications have you tried and failed in the past?",
+      "type": "question",
+      "required": true,
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "tocilizumab (Actemra)"
+        },
+        {
+          "valueString": "certolizumab (Cimzia)"
+        },
+        {
+          "valueString": "etanercept (Enbrel)"
+        },
+        {
+          "valueString": "adalimumab (Humira)"
+        },
+        {
+          "valueString": "anakinra (Orencia)"
+        },
+        {
+          "valueString": "infliximab (Remicade)"
+        },
+        {
+          "valueString": "rituximab (Rituxan)"
+        },
+        {
+          "valueString": "golimumab (Simponi)"
+        }
+      ]
+    },
+    {
+      "linkId": "question-16",
+      "text": "Reason for discontinuing drug",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-17",
+      "text": "Please provide a range of dates for this drug therapy",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-18",
+      "text": "What additional TNFi medications have you tried and failed in the past?",
+      "type": "question",
+      "required": true,
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "tocilizumab (Actemra)"
+        },
+        {
+          "valueString": "certolizumab (Cimzia)"
+        },
+        {
+          "valueString": "etanercept (Enbrel)"
+        },
+        {
+          "valueString": "adalimumab (Humira)"
+        },
+        {
+          "valueString": "anakinra (Orencia)"
+        },
+        {
+          "valueString": "infliximab (Remicade)"
+        },
+        {
+          "valueString": "rituximab (Rituxan)"
+        },
+        {
+          "valueString": "golimumab (Simponi)"
+        }
+      ]
+    },
+    {
+      "linkId": "question-19",
+      "text": "Reason for discontinuing drug",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-20",
+      "text": "Please provide a range of dates for this drug therapy",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-21",
+      "text": "Are you still being treated with a biologic therapy?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-22",
+      "text": "What TNFi are you currently using?",
+      "type": "question",
+      "repeats": true,
+      "required": true,
+      "option": [
+        {
+          "valueString": "tocilizumab (Actemra)"
+        },
+        {
+          "valueString": "certolizumab (Cimzia)"
+        },
+        {
+          "valueString": "etanercept (Enbrel)"
+        },
+        {
+          "valueString": "adalimumab (Humira)"
+        },
+        {
+          "valueString": "anakinra (Orencia)"
+        },
+        {
+          "valueString": "infliximab (Remicade)"
+        },
+        {
+          "valueString": "rituximab (Rituxan)"
+        },
+        {
+          "valueString": "golimumab (Simponi)"
+        }
+      ]
+    },
+    {
+      "linkId": "question-23",
+      "text": "Why do you consider yourself a non-responder?",
+      "initialString": "Please provide a detailed answer, as this will help us determine your eligibility for the study",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-24",
+      "text": "Have you been diagnosed with any other rheumatic diseases? Please list the diseases and dates of diagnoses",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-25",
+      "text": "Have you been diagnosed with any other autoimmune diseases? Please list the diseases and the dates of diagnoses",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-26",
+      "text": "Have any family members been diagnosed with a rheumatic disease?",
+      "type": "question",
+      "repeats": true,
+      "required": false,
+      "option": [
+        {
+          "valueString": "Mother"
+        },
+        {
+          "valueString": "Father"
+        },
+        {
+          "valueString": "Brother"
+        },
+        {
+          "valueString": "Sister"
+        },
+        {
+          "valueString": "Maternal grandmother"
+        },
+        {
+          "valueString": "Maternal grandfather"
+        },
+        {
+          "valueString": "Paternal grandmother"
+        },
+        {
+          "valueString": "Paternal grandfather"
+        },
+        {
+          "valueString": "Cousin"
+        }
+      ]
+    },
+    {
+      "linkId": "question-27",
+      "text": "Please list the rheumatic disease(s)",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-28",
+      "text": "Have any family members been diagnosed with a rheumatic disease?",
+      "type": "question",
+      "repeats": true,
+      "required": false,
+      "option": [
+        {
+          "valueString": "Mother"
+        },
+        {
+          "valueString": "Father"
+        },
+        {
+          "valueString": "Brother"
+        },
+        {
+          "valueString": "Sister"
+        },
+        {
+          "valueString": "Maternal grandmother"
+        },
+        {
+          "valueString": "Maternal grandfather"
+        },
+        {
+          "valueString": "Paternal grandmother"
+        },
+        {
+          "valueString": "Paternal grandfather"
+        },
+        {
+          "valueString": "Cousin"
+        }
+      ]
+    },
+    {
+      "linkId": "question-29",
+      "text": "Please list the autoimmune disease(s)",
+      "type": "text",
+      "required": true
+    }
+  ]
+}
