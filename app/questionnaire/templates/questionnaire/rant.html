@@ -1,0 +1,35 @@
+{% extends "questionnaire/_base.html" %}
+
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="no-js col-md-8 col-md-offset-2">
+        <h1>
+            <span class="glyphicon glyphicon-warning-sign" style="color: red;"></span>
+            Incompatible Browser
+        </h1>
+        <p class="lead">
+            This application requires a browser with Javascript enabled. Please retry with another browser.
+        </p>
+        <br /><br />
+        <p>
+            <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Return to the People-Powered Medicine dashboard</a>
+        </p>
+    </div>
+
+    <div id="fhirquestionnaire-content" class="js">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form id="form" action="{% url 'questionnaire:rant' %}" method="post">
+
+                    {% csrf_token %}
+                    {% crispy form %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -109,6 +109,25 @@ class NEERSignatureForm(forms.Form):
                            )
 
 
+class RANTSignatureForm(forms.Form):
+
+    exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.RANT))
+
+    name = forms.CharField(label='Name of participant',
+                           required=True,
+                           widget=forms.TextInput(attrs={'class': 'form-control'})
+                           )
+    signature = forms.CharField(label='Signature of participant (Please type your name)',
+                                required=True,
+                                widget=forms.TextInput(attrs={'class': 'form-control'})
+                                )
+    date = forms.DateField(label='Date',
+                           required=True,
+                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           initial=datetime.date.today
+                           )
+
+
 class ASDTypeForm(forms.Form):
 
     TYPE_CHOICES = (

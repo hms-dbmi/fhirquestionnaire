@@ -98,7 +98,11 @@ class FHIRQuestionnaireForm(forms.Form):
             elif item.type == 'date':
 
                 # Just do a text field for now.
-                fields[item.linkId] = forms.CharField(label=item.text, required=item.required)
+                fields[item.linkId] = forms.DateField(
+                    widget=forms.TextInput(attrs={'type': 'date'}),
+                    label=item.text,
+                    required=item.required
+                )
 
             elif item.type == 'boolean':
 
@@ -261,6 +265,76 @@ class NEERQuestionnaireForm(FHIRQuestionnaireForm):
 
                 # Add those group items
                 fieldset.append(NEERQuestionnaireForm._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                fieldset.append(HTML('<p>{}</p>'.format(item.text)))
+
+            else:
+
+                # Add the linkId
+                fieldset.append(item.linkId)
+
+        return fieldset
+
+
+class RANTQuestionnaireForm(FHIRQuestionnaireForm):
+
+    def __init__(self, questionnaire_id, *args, **kwargs):
+        super(RANTQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
+
+        # Create the crispy helper
+        self.helper = FormHelper(self)
+        self.helper.form_method = 'POST'
+
+        # Set the layout
+        self.helper.layout = RANTQuestionnaireForm._get_form_layout(self.questionnaire.item)
+
+        # Add a submit button
+        self.helper.layout.append(ButtonHolder(Submit('submit', 'Submit', css_class='btn btn-primary')))
+
+    @staticmethod
+    def _get_form_layout(items):
+
+        # Collect them
+        layout = Layout()
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add the fieldset
+                layout.append(RANTQuestionnaireForm._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                layout.append(HTML('<p>{}</p>'.format(item.text)))
+
+            else:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+        return Layout(layout)
+
+    @staticmethod
+    def _get_form_fieldset(items, text):
+
+        # Collect them
+        fieldset = Fieldset(text)
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add those group items
+                fieldset.append(RANTQuestionnaireForm._get_form_fieldset(item.item, item.text))
 
             elif item.type == 'display':
 

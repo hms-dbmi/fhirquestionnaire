@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^p/(?P<project_id>.+)/$', views.ProjectView.as_view(), name='project'),
     url(r'^q/asd/$', views.ASDView.as_view(), name='asd'),
     url(r'^q/neer/$', views.NEERView.as_view(), name='neer'),
+    url(r'^q/rant/$', views.RANTView.as_view(), name='rant'),
 ]

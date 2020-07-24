@@ -4,6 +4,7 @@ FROM python:3.6-slim-stretch AS builder
 COPY requirements.txt /requirements.txt
 
 # Install requirements
+ARG PIP_ARGS
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
@@ -12,7 +13,7 @@ RUN apt-get update \
         libfontconfig \
         libmariadbclient-dev \
         g++ libssl-dev \
-    && pip install -r /requirements.txt
+    && pip install ${PIP_ARGS} -r /requirements.txt
 
 # Install requirements for PDF generation
 RUN mkdir /tmp/phantomjs \
@@ -34,7 +35,8 @@ RUN apt-get update \
 COPY --from=builder /root/.cache /root/.cache
 
 # Install Python packages
-RUN pip install -r /requirements.txt
+ARG PIP_ARGS
+RUN pip install ${PIP_ARGS} -r /requirements.txt
 
 # Copy PhantomJS binary
 COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
