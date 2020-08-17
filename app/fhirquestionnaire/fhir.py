@@ -682,7 +682,7 @@ class FHIR:
             answer.valueDateTime = FHIRDate(value.isoformat())
 
         else:
-            logger.warning('Unhandled answer type: {}'.format(value))
+            logger.warning('Unhandled answer type: {} - {}'.format(type(value), value))
 
             # Cast it as string
             answer.valueString = str(value)

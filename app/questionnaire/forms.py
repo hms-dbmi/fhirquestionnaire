@@ -448,6 +448,8 @@ class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
 
 class ASDQuestionnaireForm(FHIRQuestionnaireForm):
 
+    study = PPM.Study.ASD
+
     def __init__(self, questionnaire_id, *args, **kwargs):
         super(ASDQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
 

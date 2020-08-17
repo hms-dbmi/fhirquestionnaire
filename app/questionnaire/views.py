@@ -8,7 +8,6 @@ from ppmutils.ppm import PPM
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
 
-from questionnaire.forms import NEERQuestionnaireForm, ASDQuestionnaireForm, RANTQuestionnaireForm
 from questionnaire import forms
 from fhirquestionnaire.fhir import FHIR
 
@@ -20,16 +19,21 @@ logger = logging.getLogger(__name__)
 def get_return_url(request):
     """ This method checks the common locations for the URL, decodes it and returns it"""
     # Get return URL
-    if request.session.get('return_url'):
-        return request.session['return_url']
-    elif request.GET.get('return_url'):
-        request.session['return_url'] = base64.b64decode(request.GET.get('return_url').encode()).decode()
-        return request.session['return_url']
+    if request.GET.get('return_url'):
+        return_url = base64.b64decode(request.GET.get('return_url').encode()).decode()
+        logger.debug('Querystring Return URL: {}'.format(return_url))
+    elif request.session.get('return_url'):
+        return_url = request.session['return_url']
+        logger.debug('Session Return URL: {}'.format(return_url))
     elif request.META.get('HTTP_REFERER'):
-        request.session['return_url'] = request.META.get('HTTP_REFERER')
-        return request.session['return_url']
+        return_url = request.META.get('HTTP_REFERER')
+        logger.debug('Referrer Return URL: {}'.format(return_url))
     else:
         raise ValueError('Request must include the \'return_url\' query parameter')
+
+    # Set it on session and return it
+    request.session['return_url'] = return_url
+    return return_url
 
 
 class IndexView(View):
@@ -62,10 +66,13 @@ class StudyView(View):
         # Set return URL in session
         get_return_url(request)
 
+        # Pass along querystring if present
+        query_string = "?" + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ""
+
         # Redirect them
         if PPM.Study.from_value(study):
 
-            return redirect(reverse('questionnaire:questionnaire', kwargs={'study': study}))
+            return redirect(reverse('questionnaire:questionnaire', kwargs={'study': study}) + query_string)
 
         else:
             return render_error(request,
@@ -87,6 +94,10 @@ class QuestionnaireView(View):
         # Get study from the URL
         self.study = kwargs['study']
         self.questionnaire_id = PPM.Questionnaire.questionnaire_for_study(self.study)
+
+        # Convert "autism" to "asd"
+        if PPM.Study.get(self.study) is PPM.Study.ASD:
+            self.study = 'asd'
 
         # Select form from study
         self.Form = forms.get_form_for_study(self.study)

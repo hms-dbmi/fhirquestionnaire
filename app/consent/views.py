@@ -60,14 +60,17 @@ class StudyView(View):
         # Get return URL
         get_return_url(request)
 
+        # Pass along querystring if present
+        query_string = "?" + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ""
+
         # Redirect them
         if PPM.Study.get(study) is PPM.Study.ASD:
 
-            return redirect(reverse('consent:autism'))
+            return redirect(reverse('consent:asd') + query_string)
 
         elif PPM.Study.from_value(study):
 
-            return redirect(reverse('consent:consent', kwargs={'study': study}))
+            return redirect(reverse('consent:consent', kwargs={'study': study}) + query_string)
 
         else:
             logger.warning('Invalid study ID: {}'.format(study))
@@ -338,7 +341,9 @@ class ASDView(View):
                 }
 
                 # Get the passed parameters
-                return render(request, template_name='consent/asd/ppm-asd-consent-individual-quiz.html', context=context)
+                return render(
+                    request, template_name='consent/asd/ppm-asd-consent-individual-quiz.html', context=context
+                )
             else:
 
                 # Build the quiz form
@@ -351,7 +356,9 @@ class ASDView(View):
                 }
 
                 # Get the passed parameters
-                return render(request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html', context=context)
+                return render(
+                    request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html', context=context
+                )
 
         except Exception as e:
             logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
@@ -496,16 +503,18 @@ class ASDSignatureView(View):
                         'return_url': self.return_url
                     }
 
-                    return render(request, template_name='consent/asd/individual-signature-part-1.html', context=context)
+                    return render(
+                        request, template_name='consent/asd/individual-signature-part-1.html', context=context
+                    )
 
                 # Build the data
-                forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
+                user_forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
 
                 # Submit the data
-                FHIR.submit_asd_individual(patient_email, forms)
+                FHIR.submit_asd_individual(patient_email, user_forms)
 
                 # Submit consent PDF in the background
-                threading.Thread(target=ConsentView.create_consent_document_reference,
+                threading.Thread(target=APIConsentView.create_consent_document_reference,
                                  args=(request, PPM.Study.ASD.value)).start()
 
                 # Get the return URL
@@ -538,12 +547,14 @@ class ASDSignatureView(View):
                                       context=context)
 
                     # Build the data
-                    forms = dict({'ward': form.cleaned_data,
-                                 'guardian': request.session['guardian'],
-                                 'quiz': request.session['quiz']})
+                    user_forms = dict({
+                        'ward': form.cleaned_data,
+                        'guardian': request.session['guardian'],
+                        'quiz': request.session['quiz']
+                    })
 
                     # Submit the data
-                    FHIR.submit_asd_guardian(patient_email, forms)
+                    FHIR.submit_asd_guardian(patient_email, user_forms)
 
                     # Submit consent PDF in the background
                     threading.Thread(target=APIConsentView.create_consent_document_reference,
@@ -571,7 +582,9 @@ class ASDSignatureView(View):
                             'return_url': self.return_url
                         }
 
-                        return render(request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context)
+                        return render(
+                            request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context
+                        )
 
                     # Fix the date
                     date = form.cleaned_data['date'].isoformat()
