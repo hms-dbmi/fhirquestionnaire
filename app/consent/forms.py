@@ -61,6 +61,7 @@ def _exception_choices(questionnaire_id):
             choices=tuple(choices),
         )
 
+
 def _quiz_fields(questionnaire_id):
     '''
     Takes the id of a Questionnaire resource and returns the form fields
@@ -90,8 +91,26 @@ def _quiz_fields(questionnaire_id):
         return fields
 
 
+def get_form_for_study(study):
+    """
+    Returns the class of form to be used for the study. The study must be a valid PPM study and a Form
+    class must exist for it, or else an error is raised.
+    :param study: The PPM study
+    :type study: PPM.Study
+    :return: A subclass of forms.Form
+    :rtype: forms.Form.__class__
+    """
+    form_class = next(iter([cls for cls in forms.Form.__subclasses__() if hasattr(cls, 'study')
+                            and getattr(cls, 'study') == PPM.Study.enum(study)]), None)
+    if not form_class:
+        raise ValueError(f'"{study}" is either an invalid PPM study, or no form subclass yet exists for it')
+
+    return form_class
+
+
 class NEERSignatureForm(forms.Form):
 
+    study = PPM.Study.NEER
     exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER))
 
     name = forms.CharField(label='Name of participant',
@@ -111,7 +130,28 @@ class NEERSignatureForm(forms.Form):
 
 class RANTSignatureForm(forms.Form):
 
+    study = PPM.Study.RANT
     exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.RANT))
+
+    name = forms.CharField(label='Name of participant',
+                           required=True,
+                           widget=forms.TextInput(attrs={'class': 'form-control'})
+                           )
+    signature = forms.CharField(label='Signature of participant (Please type your name)',
+                                required=True,
+                                widget=forms.TextInput(attrs={'class': 'form-control'})
+                                )
+    date = forms.DateField(label='Date',
+                           required=True,
+                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           initial=datetime.date.today
+                           )
+
+
+class EXAMPLESignatureForm(forms.Form):
+
+    study = PPM.Study.EXAMPLE
+    exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.EXAMPLE))
 
     name = forms.CharField(label='Name of participant',
                            required=True,

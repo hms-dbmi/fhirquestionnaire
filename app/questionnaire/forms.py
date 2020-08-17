@@ -7,11 +7,29 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from fhirclient import client
 from fhirclient.server import FHIRNotFoundException
 from fhirclient.models.questionnaire import Questionnaire
+from ppmutils.ppm import PPM
 
 from fhirquestionnaire.fhir import FHIR
 
 import logging
 logger = logging.getLogger(__name__)
+
+
+def get_form_for_study(study):
+    """
+    Returns the class of form to be used for the study. The study must be a valid PPM study and a Form
+    class must exist for it, or else an error is raised.
+    :param study: The PPM study
+    :type study: PPM.Study
+    :return: A subclass of FHIRQuestionnaireForm
+    :rtype: FHIRQuestionnaireForm.__class__
+    """
+    form_class = next(iter([cls for cls in FHIRQuestionnaireForm.__subclasses__() if hasattr(cls, 'study')
+                            and getattr(cls, 'study') == PPM.Study.enum(study)]), None)
+    if not form_class:
+        raise ValueError(f'"{study}" is either an invalid PPM study, or no form subclass yet exists for it')
+
+    return form_class
 
 
 class FHIRQuestionnaireForm(forms.Form):
@@ -211,6 +229,9 @@ class FHIRQuestionnaireForm(forms.Form):
 
 class NEERQuestionnaireForm(FHIRQuestionnaireForm):
 
+    # Link the form to the study
+    study = PPM.Study.NEER
+
     def __init__(self, questionnaire_id, *args, **kwargs):
         super(NEERQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
 
@@ -281,6 +302,9 @@ class NEERQuestionnaireForm(FHIRQuestionnaireForm):
 
 class RANTQuestionnaireForm(FHIRQuestionnaireForm):
 
+    # Link the form to the study
+    study = PPM.Study.RANT
+
     def __init__(self, questionnaire_id, *args, **kwargs):
         super(RANTQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
 
@@ -349,7 +373,82 @@ class RANTQuestionnaireForm(FHIRQuestionnaireForm):
         return fieldset
 
 
+class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
+
+    # Link the form to the study
+    study = PPM.Study.EXAMPLE
+
+    def __init__(self, questionnaire_id, *args, **kwargs):
+        super(EXAMPLEQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
+
+        # Create the crispy helper
+        self.helper = FormHelper(self)
+        self.helper.form_method = 'POST'
+
+        # Set the layout
+        self.helper.layout = EXAMPLEQuestionnaireForm._get_form_layout(self.questionnaire.item)
+
+        # Add a submit button
+        self.helper.layout.append(ButtonHolder(Submit('submit', 'Submit', css_class='btn btn-primary')))
+
+    @staticmethod
+    def _get_form_layout(items):
+
+        # Collect them
+        layout = Layout()
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add the fieldset
+                layout.append(EXAMPLEQuestionnaireForm._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                layout.append(HTML('<p>{}</p>'.format(item.text)))
+
+            else:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+        return Layout(layout)
+
+    @staticmethod
+    def _get_form_fieldset(items, text):
+
+        # Collect them
+        fieldset = Fieldset(text)
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add those group items
+                fieldset.append(EXAMPLEQuestionnaireForm._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                fieldset.append(HTML('<p>{}</p>'.format(item.text)))
+
+            else:
+
+                # Add the linkId
+                fieldset.append(item.linkId)
+
+        return fieldset
+
+
 class ASDQuestionnaireForm(FHIRQuestionnaireForm):
+
+    study = PPM.Study.ASD
 
     def __init__(self, questionnaire_id, *args, **kwargs):
         super(ASDQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)

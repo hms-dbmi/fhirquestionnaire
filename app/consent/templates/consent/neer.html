@@ -29,8 +29,8 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:neer' %}"
-                      ic-post-to="{% url 'consent:neer' %}" ic-target="#fhirquestionnaire-content"
+                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:consent' study=study %}"
+                      ic-post-to="{% url 'consent:consent' study=study %}" ic-target="#fhirquestionnaire-content"
                       ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
                       ic-scroll-to-target="true" ic-scroll-offset="-100">
 
