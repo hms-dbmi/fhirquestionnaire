@@ -27,32 +27,51 @@ $(function() {
         $('[data-enabled-when="' + enabledWhen + '"]').each(function() {
 
             // Get the element
-            var input = $(this);
+            var container = $(this);
 
             // Move the element
             if(checked) {
 
-                // Place the element next to the input
-                $(checkbox).parent().parent().append($(this));
+                // Check for repositioning
+                if(!$(container).data('detached')) {
+
+                    // Place the element next to the input
+                    $(checkbox).parent().parent().append($(this));
+                }
 
                 // Show it
-                $(input).show();
+                $(container).show();
 
-                // Mark it as required
-                $(input).attr('required', 'required');
+                // Mark all inputs
+                $(container).find('input[data-required="true"]').addBack().each(function(index, element) {
+                    $(element).attr('required', 'required');
+                });
+
             } else {
 
                 // Show it
-                $(input).hide();
+                $(container).hide();
 
-                // Clear value
-                $(input).removeAttr('value');
-                $(input).val('');
+                // Find all inputs
+                $(container).find('input').addBack().each(function(index, element) {
 
-                // Set it as non-required
-                $(input).removeAttr('required');
+                    // Mark child inputs as required
+                    $(element).removeAttr('required');
+
+                    // Check if date input
+                    if($(element).hasClass('datepickerinput')) {
+                        // Clear the date field
+                        var data = JSON.parse($(element).attr('dp_config'));
+                        var datepickerelement = $(element).datetimepicker(data.options);
+                        var datepickerdata = $(datepickerelement).data("DateTimePicker");
+                        datepickerdata.clear();
+                    } else {
+                        // Clear value
+                        $(element).removeAttr('value');
+                        $(element).val('');
+                    }
+                });
             }
-
         });
     });
 });

@@ -7,6 +7,7 @@ from django.views.generic import View
 from ppmutils.ppm import PPM
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
+from dbmi_client.settings import dbmi_settings
 
 from questionnaire import forms
 from fhirquestionnaire.fhir import FHIR
@@ -88,12 +89,16 @@ class QuestionnaireView(View):
     Form = None
     return_url = None
 
+    def demo(self, request):
+        return request.session.get('demo', False)
+
     @method_decorator(dbmi_user)
     def dispatch(self, request, *args, **kwargs):
 
         # Get study from the URL
         self.study = kwargs['study']
         self.questionnaire_id = PPM.Questionnaire.questionnaire_for_study(self.study)
+        logger.debug(f'PPM/{self.study}: Questionnaire: {self.questionnaire_id}')
 
         # Convert "autism" to "asd"
         if PPM.Study.get(self.study) is PPM.Study.ASD:
@@ -104,22 +109,34 @@ class QuestionnaireView(View):
 
         # Get return URL
         self.return_url = get_return_url(request)
+        logger.debug(f'PPM/{self.study}: Using return URL: {self.return_url}')
 
         # Proceed with super's implementation.
+        logger.debug(f'PPM/{self.study}: dispatch questionnaire')
         return super(QuestionnaireView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
+        logger.debug(f'PPM/{self.study}: GET questionnaire')
+
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod':
+            logger.warning(f'PPM/{self.study}: Demo mode: {request.GET.get("demo")}')
+            request.session['demo'] = request.GET.get('demo')
 
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
-            # Check the current patient
-            FHIR.check_patient(patient_email)
+            if not self.demo(request):
 
-            # Check response
-            FHIR.check_response(self.questionnaire_id, patient_email)
+                # Check the current patient
+                FHIR.check_patient(patient_email)
+
+                # Check response
+                FHIR.check_response(self.questionnaire_id, patient_email)
+            else:
+                logger.warning(f'PPM/{self.study}: Demo mode')
 
             # Create the form
             form = self.Form(self.questionnaire_id)
@@ -171,6 +188,7 @@ class QuestionnaireView(View):
 
     @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
+        logger.debug(f'PPM/{self.study}: POST questionnaire')
 
         # Get the patient email
         patient_email = get_jwt_email(request=request, verify=False)
@@ -180,8 +198,9 @@ class QuestionnaireView(View):
 
         # check whether it's valid:
         if not form.is_valid():
-            # Get the return URL
+            logger.debug(f'PPM/{self.study}: Form was invalid: {form.errors.as_json()}')
 
+            # Return with errors
             context = {
                 'study': self.study,
                 'form': form,
@@ -192,11 +211,17 @@ class QuestionnaireView(View):
             # Get the passed parameters
             return render(request, template_name='questionnaire/{}.html'.format(self.study), context=context)
 
+        else:
+            logger.debug(f'PPM/{self.study}: Form was valid')
+
         # Process the form
         try:
-            FHIR.submit_questionnaire(self.study, patient_email, form.cleaned_data)
+
+            # Submit the form
+            FHIR.submit_questionnaire(self.study, patient_email, form.cleaned_data, dry=self.demo(request))
 
             # Get the return URL
+            logger.debug(f'PPM/{self.study}: Success, returning user to: {self.return_url}')
             context = {
                 'questionnaire_id': self.questionnaire_id,
                 'return_url': self.return_url,

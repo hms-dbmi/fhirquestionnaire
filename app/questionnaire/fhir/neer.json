@@ -131,7 +131,7 @@
           "linkId": "question-21",
           "text": "If not, date of last imaging study",
           "type": "date",
-          "required": true
+          "required": false
         }
       ]
     },
