@@ -36,12 +36,16 @@ logger = logging.getLogger(__name__)
 
 class FHIR:
 
+    # Coding systems for questionnaires
+    input_type_system = 'https://peoplepoweredmedicine.org/questionnaire/input/type'
+    input_range_system = 'https://peoplepoweredmedicine.org/questionnaire/input/range'
+
     @staticmethod
     def client():
         return client.FHIRClient(settings={'app_id': settings.FHIR_APP_ID, 'api_base': settings.FHIR_URL})
 
     @staticmethod
-    def submit_consent(study, patient_email, form, pdf=None):
+    def submit_consent(study, patient_email, form, pdf=None, dry=False):
         """
         Accepts the filled out form for the given study and submits the data to FHIR for retaining
         :param study: The study for which the consent was completed
@@ -52,6 +56,8 @@ class FHIR:
         :type form: Form
         :param pdf: The generated PDF of the consent as raw data
         :type pdf: bytearray
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
         :return: Whether the operation succeeded or not
         :rtype: bool
         """
@@ -89,10 +95,13 @@ class FHIR:
         bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
 
         # Save it
-        FHIR._post_bundle(bundle)
+        if dry:
+            logger.warning('PPM/{}: Dry mode, not persisting responses'.format(study))
+        else:
+            FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_questionnaire(study, patient_email, form):
+    def submit_questionnaire(study, patient_email, form, dry=False):
         """
         Accepts the filled out form for the given study and submits the data to FHIR for retaining
         :param study: The study for which the questionnaire was completed
@@ -101,6 +110,8 @@ class FHIR:
         :type patient_email: str
         :param form: The form filled out for the questionnaire
         :type form: Form
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
         :return: Whether the operation succeeded or not
         :rtype: bool
         """
@@ -117,7 +128,10 @@ class FHIR:
         bundle = FHIR._bundle([questionnaire_response])
 
         # Save it
-        FHIR._post_bundle(bundle)
+        if dry:
+            logger.warning('PPM/{}: Dry mode, not persisting responses'.format(study))
+        else:
+            FHIR._post_bundle(bundle)
 
     @staticmethod
     def submit_asd_individual(patient_email, forms):
@@ -577,19 +591,22 @@ class FHIR:
         response.author = FHIR._reference_to(author if author else patient)
 
         # Collect response items flattened
-        response.item = FHIR._questionnaire_response_items(questionnaire.item, answers)
+        response.item = FHIR._questionnaire_response_items(questionnaire, answers)
 
         # Set it on the questionnaire
         return response
 
     @staticmethod
-    def _questionnaire_response_items(questions, form):
+    def _questionnaire_response_items(questionnaire_item, form):
 
         # Collect items
         items = []
 
         # Iterate through questions
-        for question in questions:
+        for question in questionnaire_item.item:
+
+            # Determine if this is a required item or a dependently required item
+            dependent = question.enableWhen or getattr(questionnaire_item, 'enableWhen', False)
 
             # Disregard invalid question types
             if not question.linkId or not question.type or question.type == 'display':
@@ -599,7 +616,7 @@ class FHIR:
             elif question.type == 'group':
 
                 # We don't respect heirarchy for groupings
-                group_items = FHIR._questionnaire_response_items(question.item, form)
+                group_items = FHIR._questionnaire_response_items(question, form)
                 if group_items:
                     items.extend(group_items)
                 continue
@@ -609,22 +626,27 @@ class FHIR:
 
             # Add the item
             if value is None or not str(value):
-                logger.debug('No answer for {}'.format(question.linkId))
+                if question.required and not dependent:
+                    logger.warning('PPM/{}: No answer for {}'.format(form.get('questionnaire_id'), question.linkId))
                 continue
 
             # Check for an empty list
             elif type(value) is list and len(value) == 0:
-                logger.debug('Empty answer set for {}, skipping'.format(question.linkId))
+                if question.required and not dependent:
+                    logger.warning('PPM/{}: Empty answer set for {}'.format(form.get('questionnaire_id'), question.linkId))
                 continue
 
             # Create the item
-            item = FHIR._questionnaire_response_item(question.linkId, value)
+            response_item = FHIR._questionnaire_response_item(question.linkId, value)
+
+            # Add the item
+            items.append(response_item)
 
             # Check for subitems
             if question.item:
 
                 # Get the items
-                question_items = FHIR._questionnaire_response_items(question.item, form)
+                question_items = FHIR._questionnaire_response_items(question, form)
                 if question_items:
                     # TODO: Uncomment the following line after QuestionnaireResponse parsing is updated to
                     # TODO: look for subanswers in subitems as opposed to one flat list
@@ -632,9 +654,6 @@ class FHIR:
 
                     # Save all answers flat for now
                     items.extend(question_items)
-
-            # Add the item
-            items.append(item)
 
         return items
 
@@ -680,6 +699,9 @@ class FHIR:
 
         elif type(value) is datetime.datetime:
             answer.valueDateTime = FHIRDate(value.isoformat())
+
+        elif type(value) is datetime.date:
+            answer.valueDate = FHIRDate(value.isoformat())
 
         else:
             logger.warning('Unhandled answer type: {} - {}'.format(type(value), value))

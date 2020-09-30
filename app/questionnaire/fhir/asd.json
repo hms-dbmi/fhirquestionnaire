@@ -113,6 +113,7 @@
       "item": [
         {
           "linkId": "question-3-1",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -124,6 +125,7 @@
         },
         {
           "linkId": "question-3-2",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -135,6 +137,7 @@
         },
         {
           "linkId": "question-3-3",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -146,6 +149,7 @@
         },
         {
           "linkId": "question-3-4",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -156,6 +160,7 @@
         },
         {
           "linkId": "question-3-5",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -167,6 +172,7 @@
         },
         {
           "linkId": "question-3-6",
+          "text": "Please list family members:",
           "type": "question",
           "enableWhen": [
             {
@@ -203,7 +209,7 @@
       "item": [
         {
           "linkId": "question-4-1",
-          "text": "Which:",
+          "text": "Please list medications:",
           "type": "question",
           "enableWhen": [
             {
@@ -215,7 +221,7 @@
         },
         {
           "linkId": "question-4-2",
-          "text": "Which:",
+          "text": "Please list medications:",
           "type": "question",
           "enableWhen": [
             {
@@ -227,7 +233,7 @@
         },
         {
           "linkId": "question-4-3",
-          "text": "Which:",
+          "text": "Please list medications:",
           "type": "question",
           "enableWhen": [
             {
@@ -239,7 +245,7 @@
         },
         {
           "linkId": "question-4-4",
-          "text": "Which:",
+          "text": "Please list medications:",
           "type": "question",
           "enableWhen": [
             {
@@ -251,7 +257,7 @@
         },
         {
           "linkId": "question-4-5",
-          "text": "Which:",
+          "text": "Please list medications:",
           "type": "question",
           "enableWhen": [
             {

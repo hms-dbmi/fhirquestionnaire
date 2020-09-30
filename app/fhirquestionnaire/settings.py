@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'dbmi_client',
     'api',
     'pdf',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
