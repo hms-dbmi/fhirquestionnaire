@@ -120,7 +120,7 @@ class QuestionnaireView(View):
         logger.debug(f'PPM/{self.study}: GET questionnaire')
 
         # Check for demo mode
-        if dbmi_settings.ENVIRONMENT != 'prod':
+        if dbmi_settings.ENVIRONMENT != 'prod' and hasattr(request.GET, 'demo'):
             logger.warning(f'PPM/{self.study}: Demo mode: {request.GET.get("demo")}')
             request.session['demo'] = request.GET.get('demo')
 
