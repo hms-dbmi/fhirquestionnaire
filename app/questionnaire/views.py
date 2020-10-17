@@ -1,4 +1,6 @@
 import base64
+from distutils.util import strtobool
+
 from django.shortcuts import render, reverse, redirect
 from django.conf import settings
 from django.utils.decorators import method_decorator
@@ -20,17 +22,22 @@ logger = logging.getLogger(__name__)
 def get_return_url(request):
     """ This method checks the common locations for the URL, decodes it and returns it"""
     # Get return URL
+    return_url = None
     if request.GET.get('return_url'):
         return_url = base64.b64decode(request.GET.get('return_url').encode()).decode()
         logger.debug('Querystring Return URL: {}'.format(return_url))
     elif request.session.get('return_url'):
         return_url = request.session['return_url']
         logger.debug('Session Return URL: {}'.format(return_url))
-    elif request.META.get('HTTP_REFERER'):
+
+    # Only check referrer on initial requests to prevent referrer getting
+    # set to this URL upon form submission
+    elif request.method == 'GET' and request.META.get('HTTP_REFERER'):
         return_url = request.META.get('HTTP_REFERER')
         logger.debug('Referrer Return URL: {}'.format(return_url))
-    else:
-        raise ValueError('Request must include the \'return_url\' query parameter')
+
+    if not return_url:
+        logger.warning('Request could not determine a \'return_url\'')
 
     # Set it on session and return it
     request.session['return_url'] = return_url
@@ -90,7 +97,11 @@ class QuestionnaireView(View):
     return_url = None
 
     def demo(self, request):
-        return request.session.get('demo', False)
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
 
     @method_decorator(dbmi_user)
     def dispatch(self, request, *args, **kwargs):
@@ -111,23 +122,25 @@ class QuestionnaireView(View):
         self.return_url = get_return_url(request)
         logger.debug(f'PPM/{self.study}: Using return URL: {self.return_url}')
 
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
+            request.session['demo'] = request.GET.get('demo')
+
+        if 'demo' in request.session:
+            logger.warning(f'PPM/{self.study}: Demo mode: {self.demo(request)}')
+
         # Proceed with super's implementation.
-        logger.debug(f'PPM/{self.study}: dispatch questionnaire')
         return super(QuestionnaireView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
         logger.debug(f'PPM/{self.study}: GET questionnaire')
 
-        # Check for demo mode
-        if dbmi_settings.ENVIRONMENT != 'prod' and hasattr(request.GET, 'demo'):
-            logger.warning(f'PPM/{self.study}: Demo mode: {request.GET.get("demo")}')
-            request.session['demo'] = request.GET.get('demo')
-
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
+            # If demo mode, disable checks for participant and past submissions
             if not self.demo(request):
 
                 # Check the current patient
@@ -135,8 +148,6 @@ class QuestionnaireView(View):
 
                 # Check response
                 FHIR.check_response(self.questionnaire_id, patient_email)
-            else:
-                logger.warning(f'PPM/{self.study}: Demo mode')
 
             # Create the form
             form = self.Form(self.questionnaire_id)
@@ -225,6 +236,7 @@ class QuestionnaireView(View):
             context = {
                 'questionnaire_id': self.questionnaire_id,
                 'return_url': self.return_url,
+                'demo': self.demo(request)
             }
 
             # Get the passed parameters

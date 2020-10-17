@@ -5,7 +5,7 @@ cryptography==3.0
 Django==2.2.16
 django-bootstrap3==14.1.0
 django-crispy-forms==1.9.2
-django-dbmi-client==0.3.14
+django-dbmi-client==0.3.16
 django-health-check==3.12.1
 djangorestframework==3.11.1
 fhirclient==3.2.0

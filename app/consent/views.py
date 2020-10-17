@@ -1,4 +1,5 @@
 import threading
+from distutils.util import strtobool
 
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
@@ -6,6 +7,7 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
+from dbmi_client.settings import dbmi_settings
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
 
@@ -88,6 +90,13 @@ class ConsentView(View):
     Form = None
     return_url = None
 
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
+
     @method_decorator(dbmi_user)
     def dispatch(self, request, *args, **kwargs):
 
@@ -101,24 +110,31 @@ class ConsentView(View):
         # Get return URL
         self.return_url = get_return_url(request)
 
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
+            request.session['demo'] = request.GET.get('demo')
+
+        if 'demo' in request.session:
+            logger.warning(f'PPM/{self.study}: Demo mode: {self.demo(request)}')
+
         # Proceed with super's implementation.
         return super(ConsentView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
-        # Clearing any leftover sessions
-        request.session.clear()
-        request.session['return_url'] = self.return_url
-
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
-            FHIR.check_patient(patient_email)
+            # If in demo mode, do not check participant and prior submissions
+            if not self.demo(request):
 
-            # Check response
-            FHIR.check_response(self.questionnaire_id, patient_email)
+                # Ensure the current user has a record
+                FHIR.check_patient(patient_email)
+
+                # Check response
+                FHIR.check_response(self.questionnaire_id, patient_email)
 
             # Create the form
             form = self.Form()
@@ -190,16 +206,19 @@ class ConsentView(View):
         # Process the form
         try:
             # Submit the consent
-            FHIR.submit_consent(self.study, patient_email, form.cleaned_data)
+            FHIR.submit_consent(self.study, patient_email, form.cleaned_data, dry=self.demo(request))
 
-            # Submit consent PDF in the background
-            threading.Thread(target=APIConsentView.create_consent_document_reference,
-                             args=(request, self.study)).start()
+            if not self.demo(request):
+
+                # Submit consent PDF in the background
+                threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                args=(request, self.study)).start()
 
             # Get the return URL
             context = {
                 'study': self.study,
                 'return_url': request.session['return_url'],
+                'demo': self.demo(request)
             }
 
             # Get the passed parameters
@@ -244,6 +263,13 @@ class ASDView(View):
         # Get return URL
         self.return_url = get_return_url(request)
 
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
+            request.session['demo'] = request.GET.get('demo')
+
+        if 'demo' in request.session:
+            logger.warning(f'PPM/{self.study}: Demo mode: {self.demo(request)}')
+
         # Proceed with super's implementation.
         return super(ASDView, self).dispatch(request, *args, **kwargs)
 
@@ -251,18 +277,22 @@ class ASDView(View):
     def get(self, request, *args, **kwargs):
 
         # Clearing any leftover sessions
-        request.session.clear()
+        [request.session.pop(key) for key in ['quiz', 'individual', 'guardian']]
         request.session['return_url'] = self.return_url
 
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
-            FHIR.check_patient(patient_email)
 
-            # Check response
-            FHIR.check_response(self.individual_questionnaire_id, patient_email)
-            FHIR.check_response(self.guardian_questionnaire_id, patient_email)
+            # If in demo mode, do not check participant and prior submissions
+            if not self.demo(request):
+
+                FHIR.check_patient(patient_email)
+
+                # Check response
+                FHIR.check_response(self.individual_questionnaire_id, patient_email)
+                FHIR.check_response(self.guardian_questionnaire_id, patient_email)
 
             # Create the form
             form = ASDTypeForm()
@@ -511,15 +541,19 @@ class ASDSignatureView(View):
                 user_forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
 
                 # Submit the data
-                FHIR.submit_asd_individual(patient_email, user_forms)
+                FHIR.submit_asd_individual(patient_email, user_forms, dry=self.demo(request))
 
-                # Submit consent PDF in the background
-                threading.Thread(target=APIConsentView.create_consent_document_reference,
-                                 args=(request, PPM.Study.ASD.value)).start()
+                # If in demo mode, do not create PDF
+                if not self.demo(request):
+
+                    # Submit consent PDF in the background
+                    threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                    args=(request, PPM.Study.ASD.value)).start()
 
                 # Get the return URL
                 context = {
                     'return_url': self.return_url,
+                    'demo': self.demo(request)
                 }
 
                 # Get the passed parameters
@@ -554,15 +588,19 @@ class ASDSignatureView(View):
                     })
 
                     # Submit the data
-                    FHIR.submit_asd_guardian(patient_email, user_forms)
+                    FHIR.submit_asd_guardian(patient_email, user_forms, dry=self.demo(request))
 
-                    # Submit consent PDF in the background
-                    threading.Thread(target=APIConsentView.create_consent_document_reference,
-                                     args=(request, PPM.Study.ASD.value)).start()
+                    # If in demo mode, do not create PDF
+                    if not self.demo(request):
+
+                        # Submit consent PDF in the background
+                        threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                        args=(request, PPM.Study.ASD.value)).start()
 
                     # Get the return URL
                     context = {
                         'return_url': self.return_url,
+                        'demo': self.demo(request)
                     }
 
                     # Get the passed parameters

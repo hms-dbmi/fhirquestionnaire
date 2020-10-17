@@ -161,7 +161,6 @@ DBMI_CLIENT_CONFIG = {
     # AuthZ
     'AUTHZ_ADMIN_GROUP': 'ppm-admins',
     'AUTHZ_ADMIN_PERMISSION': 'ADMIN',
-    'JWT_AUTHZ_NAMESPACE': get_str('DBMI_JWT_AUTHZ_NAMESPACE', required=False),
     'JWT_COOKIE_DOMAIN': get_str('COOKIE_DOMAIN', required=True),
 
     # Auth0
