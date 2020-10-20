@@ -61,9 +61,8 @@ class FHIR:
         :return: Whether the operation succeeded or not
         :rtype: bool
         """
-
         # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email)
+        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email, dry)
 
         # Get the exception codes from the form
         data = dict(form)
@@ -116,7 +115,7 @@ class FHIR:
         :rtype: bool
         """
         # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.questionnaire_for_study(study), patient_email)
+        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.questionnaire_for_study(study), patient_email, dry)
 
         # Just use now
         date = datetime.datetime.utcnow().isoformat()
@@ -134,7 +133,18 @@ class FHIR:
             FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_asd_individual(patient_email, forms):
+    def submit_asd_individual(patient_email, forms, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The forms filled out for the questionnaire
+        :type form: [Form]
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -160,10 +170,14 @@ class FHIR:
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
         except (IndexError, KeyError):
-            logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': FHIR._obfuscate_email(patient_email),
-            })
-            raise FHIR.PatientDoesNotExist
+            # Check if this is testing/dry
+            if not dry:
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                })
+                raise FHIR.PatientDoesNotExist
+            else:
+                patient = FHIR.get_demo_patient(patient_email)
 
         # Get the exception codes from the form
         individual_form = forms['individual']
@@ -202,7 +216,18 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_asd_guardian(patient_email, forms):
+    def submit_asd_guardian(patient_email, forms, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The forms filled out for the questionnaire
+        :type form: [Form]
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -234,10 +259,14 @@ class FHIR:
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
         except (IndexError, KeyError, StopIteration):
-            logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': FHIR._obfuscate_email(patient_email),
-            })
-            raise FHIR.PatientDoesNotExist
+            # Check if this is testing/dry
+            if not dry:
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                })
+                raise FHIR.PatientDoesNotExist
+            else:
+                patient = FHIR.get_demo_patient(patient_email)
 
         # Process the guardian's resources first
 
@@ -337,13 +366,33 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
+    def get_demo_patient(email):
+        """
+        Returns an instance of a FHIR Patient using dummy info for testing
+
+        :param email: The email of the testing user
+        :type email: str
+        :return: Test Patient resource object
+        :rtype: Patient
+        """
+        return Patient(jsondict={
+            'id': 'TEST',
+            'identifier': [
+                {
+                    'system': PPMFHIR.patient_email_identifier_system,
+                    'value': email
+                }
+            ]
+        })
+
+    @staticmethod
     def update_resource(json):
-        '''
+        """
         Builds a FHIR resource from the passed JSON and updates the current server. Can be any valid
         FHIR resource that already exists in the server.
         :param json: JSON FHIR Resource
         :return: True if updated successfully, False otherwise
-        '''
+        """
 
         try:
             # Prepare the client
@@ -399,7 +448,7 @@ class FHIR:
         return bundle
 
     @staticmethod
-    def get_resources(questionnaire_id, patient_email):
+    def get_resources(questionnaire_id, patient_email, dry=False):
 
         # Build the transaction
         transaction = {
@@ -444,16 +493,20 @@ class FHIR:
         questionnaire = bundle.entry[0].resource.entry[0].resource
 
         # Check for the patient
-        if not bundle.entry[1].resource.entry or bundle.entry[1].resource.entry[0].resource.resource_type != 'Patient':
-            logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': FHIR._obfuscate_email(patient_email),
-                'questionnaires': questionnaire_id,
-                'bundle': bundle.as_json(),
-            })
-            raise FHIR.PatientDoesNotExist()
+        if not dry:
+            if not bundle.entry[1].resource.entry or bundle.entry[1].resource.entry[0].resource.resource_type != 'Patient':
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                    'questionnaires': questionnaire_id,
+                    'bundle': bundle.as_json(),
+                })
+                raise FHIR.PatientDoesNotExist()
 
-        # Get it
-        patient = bundle.entry[1].resource.entry[0].resource
+            # Get it
+            patient = bundle.entry[1].resource.entry[0].resource
+        else:
+            # In dry mode, use a fake patient
+            patient = FHIR.get_demo_patient(patient_email)
 
         return questionnaire, patient
 
