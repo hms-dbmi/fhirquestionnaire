@@ -2,9 +2,11 @@ import datetime
 import os
 import json
 
+from django.utils import timezone
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import mark_safe
+from bootstrap_datepicker_plus import DatePickerInput, MonthPickerInput
 from ppmutils.ppm import PPM
 
 from consent.apps import ConsentConfig
@@ -108,6 +110,26 @@ def get_form_for_study(study):
     return form_class
 
 
+def _date_picker_widget():
+    """
+    Return a date picker widget for form input
+
+    :return: The date picker widget
+    :rtype: DatePickerWidget
+    """
+
+    return DatePickerInput(
+        format='%m/%d/%Y',
+        options={
+            'maxDate': timezone.now().replace(hour=23, minute=59).strftime("%Y-%m-%dT%H:%M:%S"),
+            'useCurrent': True,
+        },
+        attrs={
+            'required': 'required',
+            'class': 'form-control',
+        }
+    )
+
 class NEERSignatureForm(forms.Form):
 
     study = PPM.Study.NEER
@@ -123,7 +145,8 @@ class NEERSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )
 
@@ -143,7 +166,8 @@ class RANTSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )
 
@@ -163,7 +187,8 @@ class EXAMPLESignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )
 
@@ -221,7 +246,8 @@ class ASDIndividualSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )
 
@@ -273,7 +299,8 @@ class ASDGuardianSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )
 
@@ -288,6 +315,7 @@ class ASDWardSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+                           input_formats=["%m/%d/%Y"],
+                           widget=_date_picker_widget(),
                            initial=datetime.date.today
                            )

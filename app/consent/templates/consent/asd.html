@@ -27,6 +27,9 @@
                       ic-select-from-response="#fhirquestionnaire-content">
                     {% csrf_token %}
 
+                    {# Include imports for date picker inputs #}
+                    {{ form.media }}
+
                     {% bootstrap_form_errors form error_types='non_field_errors' %}
 
                     {% bootstrap_field form.individual form_group_class='form-group col-md-12' show_label=False %}
