@@ -1,8 +1,24 @@
 # Ignore django static files
 /static
 /app/static
+/app/pdf/temp/*
+
+# Ignore patches
+*.patch
 
 # Created by https://www.gitignore.io/api/osx,linux,django,python,windows,pycharm,pycharm+iml,pycharm+all
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
 
 ### Django ###
 *.log
