@@ -12,6 +12,9 @@
               ic-replace-target="false" ic-indicator="#submit" ic-scroll-to-target="true" ic-scroll-offset="-100"
               ic-select-from-response="#fhirquestionnaire-content">
 
+            {# Include imports for date picker inputs #}
+            {{ form.media }}
+
             {% bootstrap_form_errors form error_types='non_field_errors' %}
 
             {% csrf_token %}
