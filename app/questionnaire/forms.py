@@ -470,6 +470,57 @@ class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
     # Link the form to the study
     study = PPM.Study.EXAMPLE
 
+    def _get_form_layout(self, items):
+
+        # Collect them
+        layout = Layout()
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add the fieldset
+                layout.append(self._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                layout.append(HTML('<p>{}</p>'.format(item.text)))
+
+
+            elif item.type == 'question' and item.item:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+                # Check for groups
+                for subitem in item.item:
+
+                    # If group...
+                    if subitem.type == 'group':
+
+                        # Set attributes
+                        attrs = {
+                            'data_parent': item.linkId,
+                            'data_detached': "true",
+                            'data_required': "true" if item.required else "false",
+                            'id': 'id_{}_{}'.format(item.linkId, subitem.linkId)
+                        }
+                        for enable_when in subitem.enableWhen:
+                            attrs['data_enabled-when'] = '{}={}'.format(enable_when.question, enable_when.answerString)
+
+                        # Add the fieldset
+                        layout.append(self._get_form_fieldset(subitem.item, "", **attrs))
+
+            else:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+        return layout
+
 
 class ASDQuestionnaireForm(FHIRQuestionnaireForm):
 
@@ -579,4 +630,3 @@ class ASDQuestionnaireForm(FHIRQuestionnaireForm):
             ),
             ButtonHolder(Submit('submit', 'Submit', css_class='btn btn-primary'))
         )
-
