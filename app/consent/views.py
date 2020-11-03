@@ -257,6 +257,13 @@ class ASDView(View):
     guardian_questionnaire_id = 'ppm-asd-consent-individual-quiz'
     return_url = None
 
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
+
     @method_decorator(dbmi_user)
     def dispatch(self, request, *args, **kwargs):
 
@@ -277,7 +284,7 @@ class ASDView(View):
     def get(self, request, *args, **kwargs):
 
         # Clearing any leftover sessions
-        [request.session.pop(key) for key in ['quiz', 'individual', 'guardian']]
+        [request.session.pop(key, None) for key in ['quiz', 'individual', 'guardian']]
         request.session['return_url'] = self.return_url
 
         # Get the patient email and ensure they exist
@@ -499,6 +506,13 @@ class ASDQuizView(View):
 class ASDSignatureView(View):
 
     return_url = None
+
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
 
     @method_decorator(dbmi_user)
     def dispatch(self, request, *args, **kwargs):

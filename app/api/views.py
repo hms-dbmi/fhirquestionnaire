@@ -292,7 +292,7 @@ class ConsentsView(APIView):
 
         # Check study
         try:
-            ppm_study = PPM.Study.enum(study)
+            study = PPM.Study.get(study).value
         except ValueError as e:
             logger.exception('Invalid study identifier: {}'.format(e), exc_info=True, extra={
                 'request': request, 'study': study,
