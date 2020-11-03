@@ -1,6 +1,15 @@
 {% extends "consent/_base.html" %}
 
 {% load bootstrap3 %}
+{% load static %}
+
+{% block javascript %}
+  {{ block.super }}
+
+    {# Load form media, including datepicker media for dynamic forms #}
+    {{ form.media }}
+
+{% endblock %}
 
 {% block content %}
 
@@ -26,9 +35,6 @@
                       ic-target="#fhirquestionnaire-content" ic-replace-target="false" ic-indicator="#submit"
                       ic-select-from-response="#fhirquestionnaire-content">
                     {% csrf_token %}
-
-                    {# Include imports for date picker inputs #}
-                    {{ form.media }}
 
                     {% bootstrap_form_errors form error_types='non_field_errors' %}
 

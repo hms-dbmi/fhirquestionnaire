@@ -209,6 +209,13 @@ class ASDTypeForm(forms.Form):
         choices=TYPE_CHOICES,
     )
 
+    _unused_ = forms.DateField(
+        required=False,
+        input_formats=["%m/%d/%Y"],
+        widget=_date_picker_widget(),
+        initial=datetime.date.today,
+    )
+
 
 class ASDGuardianQuiz(forms.Form):
 
