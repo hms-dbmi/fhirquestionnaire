@@ -100,11 +100,13 @@ class FHIR:
             FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_questionnaire(study, patient_email, form, dry=False):
+    def submit_questionnaire(study, questionnaire_id, patient_email, form, dry=False):
         """
         Accepts the filled out form for the given study and submits the data to FHIR for retaining
         :param study: The study for which the questionnaire was completed
         :type study: str
+        :param questionnaire_id: The ID of the questionnaire being submitted
+        :type questionnaire_id: str
         :param patient_email: The current user's email
         :type patient_email: str
         :param form: The form filled out for the questionnaire
@@ -115,7 +117,7 @@ class FHIR:
         :rtype: bool
         """
         # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.questionnaire_for_study(study), patient_email, dry)
+        questionnaire, patient = FHIR.get_resources(questionnaire_id, patient_email, dry)
 
         # Just use now
         date = datetime.datetime.utcnow().isoformat()

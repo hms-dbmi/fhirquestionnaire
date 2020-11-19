@@ -108,7 +108,7 @@ class QuestionnaireView(View):
 
         # Get study from the URL
         self.study = kwargs['study']
-        self.questionnaire_id = PPM.Questionnaire.questionnaire_for_study(self.study)
+        self.questionnaire_id = kwargs.get('questionnaire_id', PPM.Questionnaire.questionnaire_for_study(self.study))
         logger.debug(f'PPM/{self.study}: Questionnaire: {self.questionnaire_id}')
 
         # Convert "autism" to "asd"
@@ -116,7 +116,7 @@ class QuestionnaireView(View):
             self.study = 'asd'
 
         # Select form from study
-        self.Form = forms.get_form_for_study(self.study)
+        self.Form = forms.get_form_for_study(self.study, self.questionnaire_id)
 
         # Get return URL
         self.return_url = get_return_url(request)
@@ -229,7 +229,13 @@ class QuestionnaireView(View):
         try:
 
             # Submit the form
-            FHIR.submit_questionnaire(self.study, patient_email, form.cleaned_data, dry=self.demo(request))
+            FHIR.submit_questionnaire(
+                self.study,
+                self.questionnaire_id,
+                patient_email,
+                form.cleaned_data,
+                dry=self.demo(request)
+            )
 
             # Get the return URL
             logger.debug(f'PPM/{self.study}: Success, returning user to: {self.return_url}')

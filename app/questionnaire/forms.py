@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def get_form_for_study(study):
+def get_form_for_study(study, questionnaire_id=None):
     """
     Returns the class of form to be used for the study. The study must be a valid PPM study and a Form
     class must exist for it, or else an error is raised.
@@ -30,10 +30,18 @@ def get_form_for_study(study):
     :return: A subclass of FHIRQuestionnaireForm
     :rtype: FHIRQuestionnaireForm.__class__
     """
+    if questionnaire_id:
+        q = PPM.Questionnaire.get(questionnaire_id)
+    else:
+        q = None
+
+    # Match study attribute and optionally the questionnaire attribute
     form_class = next(iter([cls for cls in FHIRQuestionnaireForm.__subclasses__() if hasattr(cls, 'study')
-                            and getattr(cls, 'study') == PPM.Study.enum(study)]), None)
+                            and getattr(cls, 'study') == PPM.Study.enum(study)
+                            and getattr(cls, 'questionnaire', None) is q]), None)
+
     if not form_class:
-        raise ValueError(f'"{study}" is either an invalid PPM study, or no form subclass yet exists for it')
+        raise ValueError(f'"{study}/{q}" is either an invalid PPM study, or no form subclass yet exists for it')
 
     return form_class
 
@@ -406,12 +414,14 @@ class NEERQuestionnaireForm(FHIRQuestionnaireForm):
 
     # Link the form to the study
     study = PPM.Study.NEER
+    questionnaire = PPM.Questionnaire.NEERQuestionnaire
 
 
 class RANTQuestionnaireForm(FHIRQuestionnaireForm):
 
     # Link the form to the study
     study = PPM.Study.RANT
+    questionnaire = PPM.Questionnaire.RANTQuestionnaire
 
     def _get_form_layout(self, items):
 
@@ -465,10 +475,68 @@ class RANTQuestionnaireForm(FHIRQuestionnaireForm):
         return layout
 
 
+class RANTPointsOfCareQuestionnaireForm(FHIRQuestionnaireForm):
+
+    # Link the form to the study
+    study = PPM.Study.RANT
+    questionnaire = PPM.Questionnaire.RANTPointsOfCareQuestionnaire
+
+    def _get_form_layout(self, items):
+
+        # Collect them
+        layout = Layout()
+
+        # Get all the not groups
+        for item in items:
+
+            # Check type
+            if item.type == 'group':
+
+                # Add the fieldset
+                layout.append(self._get_form_fieldset(item.item, item.text))
+
+            elif item.type == 'display':
+
+                # Add the text
+                layout.append(HTML('<p>{}</p>'.format(item.text)))
+
+
+            elif item.type == 'question' and item.item:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+                # Check for groups
+                for subitem in item.item:
+
+                    # If group...
+                    if subitem.type == 'group':
+
+                        # Set attributes
+                        attrs = {
+                            'data_parent': item.linkId,
+                            'data_detached': "true",
+                            'data_required': "true" if item.required else "false",
+                            'id': 'id_{}_{}'.format(item.linkId, subitem.linkId)
+                        }
+                        for enable_when in subitem.enableWhen:
+                            attrs['data_enabled-when'] = '{}={}'.format(enable_when.question, enable_when.answerString)
+
+                        # Add the fieldset
+                        layout.append(self._get_form_fieldset(subitem.item, "", **attrs))
+
+            else:
+
+                # Add the linkId
+                layout.append(item.linkId)
+
+        return layout
+
 class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
 
     # Link the form to the study
     study = PPM.Study.EXAMPLE
+    questionnaire = PPM.Questionnaire.EXAMPLEQuestionnaire
 
     def _get_form_layout(self, items):
 
@@ -525,6 +593,7 @@ class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
 class ASDQuestionnaireForm(FHIRQuestionnaireForm):
 
     study = PPM.Study.ASD
+    questionnaire = PPM.Questionnaire.ASDQuestionnaire
 
     def __init__(self, questionnaire_id, *args, **kwargs):
         super(ASDQuestionnaireForm, self).__init__(questionnaire_id, *args, **kwargs)
