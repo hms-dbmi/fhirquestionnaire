@@ -15,6 +15,33 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class SignatureDatePickerInput(DatePickerInput):
+    """
+    This subclass merely enforces a maximum date equal to the current
+    date and ensures this is calculated at render time instead of
+    initialization time.
+    """
+
+    _default_options = {
+        'showClose': True,
+        'showClear': True,
+        'showTodayButton': True,
+        'useCurrent': True,
+    }
+
+    def get_context(self, name, value, attrs):
+        """Return widget context dictionary."""
+
+        # Ensure maxDate has current date
+        self.config['options']['maxDate'] = datetime.datetime.today()\
+            .replace(hour=23, minute=59)\
+                .strftime("%Y-%m-%dT%H:%M:%S")
+
+        return super(SignatureDatePickerInput, self).get_context(
+            name, value, attrs
+        )
+
+
 def _exception_choices(questionnaire_id):
     '''
     Takes the FHIR Questionnaire resource and returns a tuple of choices to be used
@@ -110,26 +137,6 @@ def get_form_for_study(study):
     return form_class
 
 
-def _date_picker_widget():
-    """
-    Return a date picker widget for form input
-
-    :return: The date picker widget
-    :rtype: DatePickerWidget
-    """
-
-    return DatePickerInput(
-        format='%m/%d/%Y',
-        options={
-            'maxDate': timezone.now().replace(hour=23, minute=59).strftime("%Y-%m-%dT%H:%M:%S"),
-            'useCurrent': True,
-        },
-        attrs={
-            'required': 'required',
-            'class': 'form-control',
-        }
-    )
-
 class NEERSignatureForm(forms.Form):
 
     study = PPM.Study.NEER
@@ -146,8 +153,8 @@ class NEERSignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput(attrs={'required': 'required'})
                            )
 
 
@@ -167,8 +174,8 @@ class RANTSignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -188,8 +195,8 @@ class EXAMPLESignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -212,8 +219,8 @@ class ASDTypeForm(forms.Form):
     _unused_ = forms.DateField(
         required=False,
         input_formats=["%m/%d/%Y"],
-        widget=_date_picker_widget(),
         initial=datetime.date.today,
+        widget=SignatureDatePickerInput()
     )
 
 
@@ -254,8 +261,8 @@ class ASDIndividualSignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -307,8 +314,8 @@ class ASDGuardianSignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -323,6 +330,6 @@ class ASDWardSignatureForm(forms.Form):
     date = forms.DateField(label='Date',
                            required=True,
                            input_formats=["%m/%d/%Y"],
-                           widget=_date_picker_widget(),
-                           initial=datetime.date.today
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
