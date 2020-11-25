@@ -22,7 +22,10 @@
     <div id="fhirquestionnaire-content" class="js">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form id="form" action="{% url 'questionnaire:questionnaire' study=study %}" method="post">
+                <form id="form" action="{% url 'questionnaire:questionnaire' study=study %}" method="post"
+                      ic-post-to="{% url 'questionnaire:questionnaire' study=study %}" ic-target="#fhirquestionnaire-content"
+                      ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
+                      ic-scroll-to-target="true" ic-scroll-offset="-100">
 
                     {% csrf_token %}
                     {% crispy form %}
