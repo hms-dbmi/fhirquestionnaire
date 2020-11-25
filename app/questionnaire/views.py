@@ -5,6 +5,7 @@ from django.shortcuts import render, reverse, redirect
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
+from furl import furl
 
 from ppmutils.ppm import PPM
 from dbmi_client.auth import dbmi_user
@@ -19,28 +20,73 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def get_return_url(request):
-    """ This method checks the common locations for the URL, decodes it and returns it"""
+def get_return_url(request, study=None):
+    """
+    This method checks the common locations for the URL, decodes it and returns it
+
+    :param request: The current HttpRequest object
+    :type request: HttpRequest
+    :param study: The current study for context
+    :type study: str
+    :returns: The return URL to use when completed
+    :rtype: str
+    """
     # Get return URL
     return_url = None
     if request.GET.get('return_url'):
         return_url = base64.b64decode(request.GET.get('return_url').encode()).decode()
         logger.debug('Querystring Return URL: {}'.format(return_url))
-    elif request.session.get('return_url'):
+
+    if not return_url and request.session.get('return_url'):
         return_url = request.session['return_url']
         logger.debug('Session Return URL: {}'.format(return_url))
 
     # Only check referrer on initial requests to prevent referrer getting
     # set to this URL upon form submission
-    elif request.method == 'GET' and request.META.get('HTTP_REFERER'):
+    if not return_url and request.method == 'GET' and request.META.get('HTTP_REFERER'):
         return_url = request.META.get('HTTP_REFERER')
         logger.debug('Referrer Return URL: {}'.format(return_url))
 
-    if not return_url:
+    # Check if referrer has a return URL
+    if not return_url and request.META.get('HTTP_REFERER'):
+
+        # Check for param on referrer
+        for key, value in furl(request.META.get('HTTP_REFERER')).query.params.items():
+            if key == 'return_url':
+                return_url = base64.b64decode(value.encode()).decode()
+                logger.debug('Referrer Query Return URL: {}'.format(return_url))
+
+    # Check if Intercooler request has a URL with return URL param
+    if not return_url and request.POST.get('ic-current-url'):
+
+        for key, value in furl(request.POST.get('ic-current-url')).query.params.items():
+            if key == 'return_url':
+                return_url = base64.b64decode(value.encode()).decode()
+                logger.debug('ic-current-url Return URL: {}'.format(return_url))
+
+    if not return_url and hasattr(settings, 'RETURN_URL'):
         logger.warning('Request could not determine a \'return_url\'')
 
-    # Set it on session and return it
-    request.session['return_url'] = return_url
+        # Use the default
+        _return_url = furl(settings.RETURN_URL)
+
+        # If study passed, use that
+        if study:
+            _return_url.path = ['dashboard', PPM.Study.get(study).value, '']
+
+        return_url = _return_url.url
+        logger.warning('Default Return URL: {}'.format(return_url))
+
+    if not return_url:
+        logger.error('Could not determine return_url parameter', extra={
+            'request': request,
+        })
+
+    else:
+        # Set it on session and return it
+        request.session['return_url'] = return_url
+        request.session.modified = True
+
     return return_url
 
 
@@ -72,7 +118,7 @@ class StudyView(View):
                                 support=False)
 
         # Set return URL in session
-        get_return_url(request)
+        get_return_url(request, study)
 
         # Pass along querystring if present
         query_string = "?" + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ""
@@ -119,7 +165,7 @@ class QuestionnaireView(View):
         self.Form = forms.get_form_for_study(self.study)
 
         # Get return URL
-        self.return_url = get_return_url(request)
+        self.return_url = get_return_url(request, self.study)
         logger.debug(f'PPM/{self.study}: Using return URL: {self.return_url}')
 
         # Check for demo mode

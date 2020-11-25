@@ -60,7 +60,7 @@ class StudyView(View):
         request.session.set_test_cookie()
 
         # Get return URL
-        get_return_url(request)
+        get_return_url(request, study)
 
         # Pass along querystring if present
         query_string = "?" + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ""
@@ -108,7 +108,7 @@ class ConsentView(View):
         self.Form = forms.get_form_for_study(self.study)
 
         # Get return URL
-        self.return_url = get_return_url(request)
+        self.return_url = get_return_url(request, self.study)
 
         # Check for demo mode
         if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
@@ -198,7 +198,7 @@ class ConsentView(View):
             context = {
                 'study': self.study,
                 'form': form,
-                'return_url': request.session['return_url']
+                'return_url': self.return_url
             }
 
             return render(request, template_name='consent/{}.html'.format(self.study), context=context)
@@ -217,7 +217,7 @@ class ConsentView(View):
             # Get the return URL
             context = {
                 'study': self.study,
-                'return_url': request.session['return_url'],
+                'return_url': self.return_url,
                 'demo': self.demo(request)
             }
 
@@ -268,7 +268,7 @@ class ASDView(View):
     def dispatch(self, request, *args, **kwargs):
 
         # Get return URL
-        self.return_url = get_return_url(request)
+        self.return_url = get_return_url(request, PPM.Study.ASD)
 
         # Check for demo mode
         if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
@@ -285,7 +285,6 @@ class ASDView(View):
 
         # Clearing any leftover sessions
         [request.session.pop(key, None) for key in ['quiz', 'individual', 'guardian']]
-        request.session['return_url'] = self.return_url
 
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
@@ -389,7 +388,7 @@ class ASDView(View):
                 # Get the return URL
                 context = {
                     'form': form,
-                    'return_url': request.session['return_url'],
+                    'return_url': self.return_url,
                 }
 
                 # Get the passed parameters
@@ -416,7 +415,7 @@ class ASDQuizView(View):
     def dispatch(self, request, *args, **kwargs):
 
         # Get return URL
-        self.return_url = get_return_url(request)
+        self.return_url = get_return_url(request, PPM.Study.ASD)
 
         # Proceed with super's implementation.
         return super(ASDQuizView, self).dispatch(request, *args, **kwargs)
@@ -518,7 +517,7 @@ class ASDSignatureView(View):
     def dispatch(self, request, *args, **kwargs):
 
         # Get return URL
-        self.return_url = get_return_url(request)
+        self.return_url = get_return_url(request, PPM.Study.ASD)
 
         # Proceed with super's implementation.
         return super(ASDSignatureView, self).dispatch(request, *args, **kwargs)
@@ -588,7 +587,7 @@ class ASDSignatureView(View):
                         # Return the form
                         context = {
                             'form': form,
-                            'return_url': request.session['return_url']
+                            'return_url': self.return_url
                         }
 
                         return render(request, template_name='consent/asd/guardian-signature-part-3.html',

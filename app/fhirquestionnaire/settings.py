@@ -125,6 +125,7 @@ SESSION_COOKIE_DOMAIN = get_str('COOKIE_DOMAIN', required=True)
 SESSION_COOKIE_AGE = 86400
 SESSION_COOKIE_SECURE = not get_bool('DJANGO_DEBUG', default=False)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
