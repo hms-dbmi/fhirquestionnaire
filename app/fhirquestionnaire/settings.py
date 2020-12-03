@@ -193,6 +193,10 @@ FHIR_URL = get_str("FHIR_URL", required=True)
 RETURN_URL = get_str("RETURN_URL", required=True)
 PPM_P2MD_URL = get_str("PPM_P2MD_URL", required=True)
 
+RECAPTCHA_CLIENT_ID = get_str("RECAPTCHA_CLIENT_ID", required=True)
+RECAPTCHA_KEY = get_str("RECAPTCHA_KEY", required=True)
+RECAPTCHA_DISABLED = get_str("RECAPTCHA_DISABLED", default=False)
+
 # Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 

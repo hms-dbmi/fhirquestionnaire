@@ -5,6 +5,7 @@ https://github.com/b32147/django-bootstrap-datepicker-plus/releases/download/3.0
 django-crispy-forms
 django-dbmi-client
 django-health-check
+django-ipware
 djangorestframework
 fhirclient
 ppm-utils

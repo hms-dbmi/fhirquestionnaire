@@ -1,5 +1,6 @@
 import re
 
+import requests
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, reverse
@@ -8,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from ipware import get_client_ip
 
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
@@ -31,14 +33,31 @@ class ContactView(View):
 
         # Generate and render the form.
         form = ContactForm(initial=initial)
+
+        # Set the context
+        context = {
+            'recaptcha_disabled': hasattr(settings, 'RECAPTCHA_DISABLED') and settings.RECAPTCHA_DISABLED,
+            'recaptcha_client_id': settings.RECAPTCHA_CLIENT_ID,
+            'contact_form': form,
+        }
+
         if request.is_ajax():
-            return render(request, 'contact/modal.html', {'contact_form': form})
+            return render(request, 'contact/modal.html', context)
         else:
-            return render(request, 'contact/contact.html', {'contact_form': form})
+            return render(request, 'contact/contact.html', context)
 
     @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
         logger.debug("Processing contact form POST")
+
+        # Confirm the Recaptcha check
+        if not ContactView.recaptcha_check(request):
+            logger.warning('Recaptcha verification failed')
+            if request.is_ajax():
+                return HttpResponse('RECAPTCHA_FAILURE', status=400)
+            else:
+                messages.error(request, 'Recaptcha verification has failed. Please reload the page and try again.')
+                return ContactView.render_error(request)
 
         # Process the form.
         form = ContactForm(request.POST)
@@ -99,9 +118,9 @@ class ContactView(View):
 
             # Check how the request was made.
             if request.is_ajax():
-                return HttpResponse('INVALID', status=500)
+                return HttpResponse('Form is invalid, please try again', status=400)
             else:
-                messages.error(request, 'An unexpected error occurred, please try again')
+                messages.error(request, 'Form is invalid, please try again')
                 return HttpResponseRedirect(reverse('contact:contact'))
 
     @staticmethod
@@ -161,3 +180,50 @@ class ContactView(View):
             logger.error('Test account search failure: {}'.format(e), exc_info=True)
 
         return None
+
+    @staticmethod
+    def recaptcha_check(request):
+        """
+        Send a query over to google's servers with the result of the Captcha to see whether it's valid.
+        :param request:
+        :return:
+        """
+
+        # Check if Recaptcha is disabled for testing/debug
+        if settings.RECAPTCHA_DISABLED:
+            logger.debug('Recaptcha is disabled, skipping confirmation')
+            return True
+        else:
+            logger.debug('Recaptcha is enabled, proceeding with confirmation')
+
+        # Build the request
+        captcha_rs = request.POST.get('g-recaptcha-response')
+        url = "https://www.google.com/recaptcha/api/siteverify"
+        params = {
+            'secret': settings.RECAPTCHA_KEY,
+            'response': captcha_rs,
+            'remoteip': get_client_ip(request)
+        }
+
+        logger.debug("Sending Captcha results to google")
+
+        try:
+            verify_rs = requests.get(url, params=params, verify=True)
+            verify_rs = verify_rs.json()
+
+            logger.debug('Recaptcha response: {}'.format(verify_rs))
+
+            # Check for the state of the check
+            success = verify_rs.get("success", False)
+
+            # Check for a message
+            if verify_rs.get('error-codes', None):
+                logger.error('Recaptcha error', extra={'recaptcha_error': verify_rs.get('error-codes', '---')})
+
+            return success
+
+        except requests.HTTPError as e:
+            logger.error('Recaptcha check error: {}'.format(e), exc_info=True,
+                        extra={'params': params})
+
+            return False

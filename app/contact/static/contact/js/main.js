@@ -18,6 +18,20 @@ $(function() {
     });
 
     $('#contact-form-modal').on('submit', '#contact-form', function() {
+        console.log("submit: contact-form");
+
+        // Ensure reCAPTCHA is completed
+        if (typeof grecaptcha !== 'undefined') {
+
+            // Only submit form if RECAPTCHA is filled out
+            if(grecaptcha.getResponse().length === 0) {
+                console.log("Contact-form-recaptcha: " + grecaptcha.getResponse());
+                return false;
+            }
+        } else {
+            console.log("Contact-form-recaptcha: DISABLED");
+        }
+
         console.log("Sending contact form");
         $.ajax({
             url : $('#contact-form-modal').data( 'contact-url' ),
@@ -42,3 +56,9 @@ $(function() {
     });
 
 });
+
+function recaptchaCallback() {
+
+    // Enable the submit button
+    $('#contact-form-submit').prop("disabled", false);
+}
