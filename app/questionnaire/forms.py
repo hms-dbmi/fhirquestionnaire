@@ -395,12 +395,58 @@ class FHIRQuestionnaireForm(forms.Form):
                 # Add the text
                 fieldset.append(HTML('<p>{}</p>'.format(item.text)))
 
+            elif item.type in ['question', 'boolean'] and item.item:
+
+                # Add the linkId
+                fieldset.append(item.linkId)
+
+                # Check for groups
+                for subitem in item.item:
+
+                    # If group...
+                    if subitem.type == 'group':
+
+                        # Set attributes
+                        attrs = self._get_form_layout_group_attributes(item, subitem)
+
+                        # Add the fieldset
+                        fieldset.append(self._get_form_fieldset(subitem.item, "", **attrs))
+
             else:
 
                 # Add the linkId
                 fieldset.append(item.linkId)
 
         return fieldset
+
+    def _get_form_layout_group_attributes(self, parent, item):
+        """
+        This method sets up the properties for a group that is conditionally
+        shown or hidden based on other inputs.
+
+        :param parent: The parent item, if any
+        :type parent: Item
+        :param item: The current Questionnaire Item
+        :type item: Item
+        :return: The attributes for the inputs
+        :rtype: dict
+        """
+        # Set attributes
+        attrs = {
+            'data_parent': parent.linkId,
+            'data_detached': "true",
+            'data_required': "true" if parent.required else "false",
+            'id': 'id_{}_{}'.format(parent.linkId, item.linkId)
+        }
+        for enable_when in item.enableWhen:
+
+            # Check conditional type
+            if hasattr(enable_when, "answerString") and enable_when.answerString is not None:
+                attrs['data_enabled-when'] = '{}={}'.format(enable_when.question, enable_when.answerString)
+            elif hasattr(enable_when, "answerBoolean") and enable_when.answerBoolean is not None:
+                attrs['data_enabled-when'] = '{}={}'.format(enable_when.question, int(enable_when.answerBoolean == True))
+
+        return attrs
 
 class NEERQuestionnaireForm(FHIRQuestionnaireForm):
 
@@ -433,7 +479,7 @@ class RANTQuestionnaireForm(FHIRQuestionnaireForm):
                 layout.append(HTML('<p>{}</p>'.format(item.text)))
 
 
-            elif item.type == 'question' and item.item:
+            elif item.type in ['question', 'boolean'] and item.item:
 
                 # Add the linkId
                 layout.append(item.linkId)
@@ -445,14 +491,7 @@ class RANTQuestionnaireForm(FHIRQuestionnaireForm):
                     if subitem.type == 'group':
 
                         # Set attributes
-                        attrs = {
-                            'data_parent': item.linkId,
-                            'data_detached': "true",
-                            'data_required': "true" if item.required else "false",
-                            'id': 'id_{}_{}'.format(item.linkId, subitem.linkId)
-                        }
-                        for enable_when in subitem.enableWhen:
-                            attrs['data_enabled-when'] = '{}={}'.format(enable_when.question, enable_when.answerString)
+                        attrs = self._get_form_layout_group_attributes(item, subitem)
 
                         # Add the fieldset
                         layout.append(self._get_form_fieldset(subitem.item, "", **attrs))
@@ -463,7 +502,6 @@ class RANTQuestionnaireForm(FHIRQuestionnaireForm):
                 layout.append(item.linkId)
 
         return layout
-
 
 class EXAMPLEQuestionnaireForm(FHIRQuestionnaireForm):
 
