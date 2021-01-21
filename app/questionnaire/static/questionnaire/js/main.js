@@ -22,7 +22,7 @@ $(function() {
         $(container).show();
 
         // Mark all inputs
-        $(container).find('input[data-required="true"]').addBack().each(function(index, element) {
+        $(container).find('input[data-required="true"], textarea[data-required="true"]').addBack().each(function(index, element) {
             $(element).attr('required', 'required');
         });
     }
@@ -33,7 +33,7 @@ $(function() {
         $(container).hide();
 
         // Find all inputs
-        $(container).find('input').addBack().each(function(index, element) {
+        $(container).find('input, textarea').addBack().each(function(index, element) {
 
             // Mark child inputs as required
             $(element).removeAttr('required');
