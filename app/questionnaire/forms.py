@@ -170,7 +170,7 @@ class FHIRQuestionnaireForm(forms.Form):
                     label=item.text,
                     choices=choices,
                     widget=forms.RadioSelect(attrs=attrs),
-                    required=item.required
+                    required=required
                 )
 
             elif item.type == 'string' or item.type == 'text' or (item.type == 'question' and not item.option):
@@ -180,7 +180,7 @@ class FHIRQuestionnaireForm(forms.Form):
                     # Make this a textbox-style input with minimum width
                     fields[item.linkId] = forms.CharField(
                         label=item.text,
-                        required=item.required,
+                        required=required,
                         widget=forms.Textarea(attrs={**{
                             'placeholder': item.initialString,
                             'pattern': ".{6,}",
@@ -276,7 +276,7 @@ class FHIRQuestionnaireForm(forms.Form):
                     coerce=lambda x: bool(int(x)),
                     choices=((1, 'Yes'), (0, 'No')),
                     widget=forms.RadioSelect(attrs=attrs),
-                    required=item.required
+                    required=required
                 )
 
             elif item.type == 'choice':
@@ -297,7 +297,7 @@ class FHIRQuestionnaireForm(forms.Form):
                     label=item.text,
                     choices=choices,
                     widget=forms.CheckboxSelectMultiple(attrs=attrs),
-                    required=item.required
+                    required=required
                 )
 
             elif item.type == 'question' and item.option:
@@ -320,7 +320,7 @@ class FHIRQuestionnaireForm(forms.Form):
                         label=item.text,
                         choices=choices,
                         widget=forms.CheckboxSelectMultiple(attrs=attrs),
-                        required=item.required
+                        required=required
                     )
 
                 else:
@@ -329,7 +329,7 @@ class FHIRQuestionnaireForm(forms.Form):
                         label=item.text,
                         choices=choices,
                         widget=forms.RadioSelect(attrs=attrs),
-                        required=item.required
+                        required=required
                     )
 
             elif item.type == 'display' or item.type == 'group':
