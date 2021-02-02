@@ -1,6 +1,8 @@
 from datetime import datetime
+from django.template.exceptions import TemplateDoesNotExist
 import requests
 import hashlib
+from django.template import loader
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -180,8 +182,16 @@ class ConsentView(APIView):
         # Get study title
         study_title = PPM.Study.title(study)
 
+        # Check for study-specific PDF
+        try:
+            template_name = f"consent/pdf/{PPM.Study.get(study).value}.html"
+            loader.get_template(template_name)
+        except TemplateDoesNotExist:
+            template_name = 'consent/pdf/consent.html'
+
         # Submit consent PDF
-        response = render_pdf(f'People-Powered Medicine {study_title} Consent', request, 'consent/pdf/consent.html',
+        logger.debug(f"PPM/{study}: Rendering consent with template: {template_name}")
+        response = render_pdf(f'People-Powered Medicine {study_title} Consent', request, template_name,
                               context=bundle.get('composition'), options={})
 
         # Hash the content

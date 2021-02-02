@@ -1,22 +1,16 @@
-{% for question in questions %}
 <div class="form-group pbi_avoid">
+{% for question in questions %}
     {% if question.type == 'display' %}
     <div class="col-xs-12">
-        <p>{{ question.text }}</p>
+        <p><b>{{ question.text }}</b></p>
     </div>
     {% elif question.type == 'boolean' %}
     <div class="checkbox col-xs-12">
         <label><input type="checkbox"{% if question.answer %} checked {% endif %}/>{{ question.text }}</label>
     </div>
     {% endif %}
-</div>
+    <br />
 {% endfor %}
-<div class="form-group pbi_avoid">
-    <div class="row">
-        <div class="col-xs-12">
-            <p>(Typing your name below acts as your signature and indicates your permission to take part in this research.)</p>
-        </div>
-    </div>
     <div class="row">
         <div class="col-xs-12">
             <label for="name-of-participant">Name of participant</label>

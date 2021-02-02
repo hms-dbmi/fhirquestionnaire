@@ -1,0 +1,853 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_8AZlgjfKeNiaydn",
+    "SurveyName": "PPM RANT - Points of Care Questionnaire - DEV",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_6gTkor673S0UxHD",
+    "SurveyBrandID": "hms",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_bKQe2QTTGipDNcN",
+    "SurveyStatus": "Active",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2020-11-21 07:55:59",
+    "CreatorID": "UR_6gTkor673S0UxHD",
+    "LastModified": "2021-02-02 08:57:13",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "2020-11-21 07:56:19",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "1": {
+          "Type": "Trash",
+          "Description": "Trash \/ Unused Questions",
+          "ID": "BL_5zkiwVkTejIv79z",
+          "BlockElements": []
+        },
+        "2": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "Default Question Block",
+          "ID": "BL_41HaZH0vtSMtvWR",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "EmbeddedData",
+            "FlowID": "FL_2",
+            "EmbeddedData": [
+              {
+                "Description": "ppm_id",
+                "Type": "Recipient",
+                "Field": "ppm_id",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ResponseID",
+                "Type": "Recipient",
+                "Field": "ResponseID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "SurveyID",
+                "Type": "Recipient",
+                "Field": "SurveyID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "Q_URL",
+                "Type": "Recipient",
+                "Field": "Q_URL",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ppm_study",
+                "Type": "Recipient",
+                "Field": "ppm_study",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              }
+            ]
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_41HaZH0vtSMtvWR",
+            "FlowID": "FL_3",
+            "Autofill": []
+          },
+          {
+            "Type": "EndSurvey",
+            "FlowID": "FL_4",
+            "EndingType": "Advanced",
+            "Options": {
+              "Advanced": "true",
+              "SurveyTermination": "Redirect",
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+            }
+          }
+        ],
+        "Properties": {
+          "Count": 9,
+          "RemovedFieldsets": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "true",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": null,
+        "SurveyTermination": "Redirect",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": " \u2190 ",
+        "NextButton": " \u2192 ",
+        "SkinLibrary": "hms",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": null,
+          "templateId": "*base",
+          "overrides": {
+            "logo": {
+              "url": "https:\/\/hms.az1.qualtrics.com\/CP\/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
+            },
+            "questionsContainer": {
+              "on": true
+            },
+            "progressBar": {
+              "position": "bottom"
+            }
+          }
+        },
+        "NewScoring": 1,
+        "EOSMessage": "",
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "SurveyTitle": "Online Survey Software | Qualtrics Survey Solutions",
+        "SurveyMetaDescription": "Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "Password": "ppmisgreat",
+        "RefererCheck": "No",
+        "RefererURL": "http:\/\/",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": "",
+        "SurveyLinkCompletedMessageLibrary": "",
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": "",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDataCloseAfter": "LastActivity",
+        "ActiveResponseSet": null,
+        "InactiveMessageLibrary": "",
+        "InactiveMessage": "",
+        "AvailableLanguages": {
+          "EN": []
+        },
+        "ProtectSelectionIds": true,
+        "CustomStyles": {
+          "customCSS": ""
+        },
+        "SurveyName": "PPM RANT - Points of Care Questionnaire - DEV",
+        "PartialDeletion": null
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "38",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_bKQe2QTTGipDNcN",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Name of the rheumatologist that diagnosed you with rheumatoid arthritis?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Name of the rheumatologist that diagnosed you with\nrheumatoid arthritis?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Name of the rheumatologist that diagnosed you with rheumatoid arthritis?\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "MinChar",
+            "MinChars": "5"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID1",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "Office address of diagnosing rheumatologist:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Office address of diagnosing rheumatologist:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID2",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Office address of diagnosing rheumatologist:\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "MinChar",
+            "MinChars": "5",
+            "ValidDateType": "DateWithFormat",
+            "ValidPhoneType": "ValidUSPhone",
+            "ValidZipType": "ValidUSZip"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID2",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Office phone of diagnosing rheumatologist?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Office phone of diagnosing rheumatologist?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID3",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Office phone of diagnosing rheumatologist?\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None",
+            "ValidDateType": "DateWithFormat",
+            "ValidPhoneType": "ValidUSPhone",
+            "ValidZipType": "ValidUSZip"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID3",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Is the diagnosing rheumatologist your current rheumatologist?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Is the diagnosing rheumatologist your current rheumatologist?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID4",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Is the diagnosing rheumatologist your current rheumatologist?\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          },
+          "3": {
+            "Display": "Currently not seeing a rheumatologist"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID4",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "Name of your current rheumatologist?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "\n\t\t\n\t\n\t\n\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<P>Name of your current rheumatologist?<br>\n<\/P>\n\t\t\t\t\n\t\t\t\n\t\t",
+        "DefaultChoices": false,
+        "DataExportTag": "QID4_1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Name of your current rheumatologist?",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID5",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Is the diagnosing rheumatologist your current rheumatologist?&nbsp;<\/span> <span class=\"LeftOpDesc\">No<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID4",
+              "QuestionIDFromLocator": "QID4",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "Office address of your current rheumatologist?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Office address of your current rheumatologist?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID4_2",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Office address of your current rheumatologist?\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID6",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Is the diagnosing rheumatologist your current rheumatologist?&nbsp;<\/span> <span class=\"LeftOpDesc\">No<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID4",
+              "QuestionIDFromLocator": "QID4",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "Office phone of current rheumatologist?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Office phone of current rheumatologist?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID4_3",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Office phone of current rheumatologist?\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None",
+            "ValidDateType": "DateWithFormat",
+            "ValidPhoneType": "ValidUSPhone",
+            "ValidZipType": "ValidUSZip"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID7",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Is the diagnosing rheumatologist your current rheumatologist?&nbsp;<\/span> <span class=\"LeftOpDesc\">No<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID4",
+              "QuestionIDFromLocator": "QID4",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Please list the other center(s) or office(s) where you have received rheumatology care:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please list the other center(s) or office(s) where\nyou have received rheumatology care:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID5",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please list the other center(s) or office(s) where you have received rheumatology care:\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 15,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID8",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Have you received medical care from any other healthcare centers or hospitals not mentioned above...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Have you received medical care from any other healthcare centers or hospitals not mentioned above since turning 18?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID6",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Have you received medical care from any other healthcare centers or hospitals not mentioned above...",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID9",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": " Please list the additional medical centers where you have received care (separate entries by \";\"):",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "&nbsp;Please list the additional medical centers where you have received care (separate entries by \";\"):",
+        "DefaultChoices": false,
+        "DataExportTag": "QID6_1",
+        "QuestionType": "TE",
+        "Selector": "ESTB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": " Please list the additional medical centers where you have received care (separate entries by \";\"):",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 25,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID10",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID9\/SelectableChoice\/1",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you received medical care from any other healthcare centers or hospitals not mentioned above...<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID9\/SelectableChoice\/1",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID9",
+              "QuestionIDFromLocator": "QID9",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "OCAC",
+      "PrimaryAttribute": "OCAC_eP3Kouy9rEhIgQJ",
+      "SecondaryAttribute": "OC_3V3vmc3ow6P7SbX",
+      "TertiaryAttribute": "WebService",
+      "Payload": {
+        "outcomeId": "OC_3V3vmc3ow6P7SbX",
+        "contextId": "SV_6LLd4cTSizcudI9",
+        "taskRegistryId": "WebService",
+        "version": "2",
+        "triggerAction": "WebService",
+        "requestType": "POST",
+        "contentType": "JSON",
+        "authId": -1,
+        "authName": "None",
+        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "dependencies": [],
+        "keyValues": {
+          "ppm_id": "${e:\/\/Field\/ppm_id}",
+          "response_id": "${e:\/\/Field\/ResponseID}",
+          "ppm_study": "${e:\/\/Field\/ppm_study}",
+          "survey_id": "${e:\/\/Field\/SurveyID}"
+        },
+        "headers": {
+          "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
+        },
+        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "authUser": {
+          "userId": "UR_6gTkor673S0UxHD",
+          "brandId": "hms"
+        },
+        "taskNumber": 1,
+        "ownerObject": {
+          "orgId": "hms",
+          "userId": "UR_6gTkor673S0UxHD"
+        },
+        "elementConfigured": true,
+        "actionId": "OCAC_eP3Kouy9rEhIgQJ",
+        "surveyId": "SV_6LLd4cTSizcudI9",
+        "createdAt": 1604928311724,
+        "updatedAt": 1604928395832,
+        "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
+        "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
+        "credentials": [],
+        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png"
+      }
+    },
+    {
+      "SurveyID": "SV_8AZlgjfKeNiaydn",
+      "Element": "TR",
+      "PrimaryAttribute": "OC_3V3vmc3ow6P7SbX",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "OnSurveyResponse",
+      "Payload": {
+        "Name": "POST to PPM Data Service",
+        "EventType": "OnSurveyResponse",
+        "Type": "OnSurveyComplete",
+        "LogicV2": {
+          "type": "always",
+          "children": []
+        },
+        "EventData": {
+          "fields": []
+        },
+        "eventContext": {
+          "operations": [
+            "CREATE",
+            "UPDATE"
+          ]
+        },
+        "branches": [],
+        "Loops": [],
+        "elementConfigured": true,
+        "disabled": false,
+        "TriggerAction": "Outcome",
+        "logicCompleted": true,
+        "unconfigured": false
+      }
+    }
+  ]
+}
