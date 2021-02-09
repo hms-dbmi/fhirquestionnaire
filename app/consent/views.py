@@ -134,7 +134,7 @@ class ConsentView(View):
                 FHIR.check_patient(patient_email)
 
                 # Check response
-                FHIR.check_response(self.questionnaire_id, patient_email)
+                FHIR.check_consent(self.study, patient_email)
 
             # Create the form
             form = self.Form()
@@ -166,7 +166,7 @@ class ConsentView(View):
                                 message='The requested consent does not exist!',
                                 support=False)
 
-        except FHIR.QuestionnaireResponseAlreadyExists:
+        except FHIR.ConsentAlreadyExists:
             logger.warning('Consent already finished')
             return render_error(request,
                                 title='Consent Already Completed',
@@ -297,8 +297,7 @@ class ASDView(View):
                 FHIR.check_patient(patient_email)
 
                 # Check response
-                FHIR.check_response(self.individual_questionnaire_id, patient_email)
-                FHIR.check_response(self.guardian_questionnaire_id, patient_email)
+                FHIR.check_consent(PPM.Study.ASD.value, patient_email)
 
             # Create the form
             form = ASDTypeForm()
@@ -326,7 +325,7 @@ class ASDView(View):
                                 message='The requested consent does not exist!',
                                 support=False)
 
-        except FHIR.QuestionnaireResponseAlreadyExists:
+        except FHIR.ConsentAlreadyExists:
             logger.warning('Consent already finished')
             return render_error(request,
                                 title='Consent Already Completed',

@@ -61,8 +61,6 @@ class FHIR:
         :return: Whether the operation succeeded or not
         :rtype: bool
         """
-        # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email, dry)
 
         # Get the exception codes from the form
         data = dict(form)
@@ -71,18 +69,39 @@ class FHIR:
         signature = data['signature']
         date = data['date'].isoformat()
 
-        # Map exception codes to linkId
-        # TODO: Figure out how to generalize the handling of exceptions per consent
-        exception_codes = PPM.Questionnaire.exceptions(PPM.Questionnaire.consent_questionnaire_for_study(study))
+        # Build a list of resources to create
+        resources = []
 
-        # Build answers
-        answers = {linkId: code in codes for linkId, code in exception_codes.items()}
+        # Check if consent has questionnaire
+        if PPM.Questionnaire.consent_questionnaire_for_study(study):
 
-        # Create needed resources
-        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
-        contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
-        exceptions = FHIR._consent_exceptions(codes)
-        consent = FHIR._consent(patient, date, exceptions)
+            # Get the questionnaire
+            questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email, dry)
+
+            # Map exception codes to linkId
+            # TODO: Figure out how to generalize the handling of exceptions per consent
+            exception_codes = PPM.Questionnaire.exceptions(PPM.Questionnaire.consent_questionnaire_for_study(study))
+
+            # Build answers
+            answers = {linkId: code in codes for linkId, code in exception_codes.items()}
+
+            # Create needed resources
+            questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
+            contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
+            exceptions = FHIR._consent_exceptions(codes)
+            consent = FHIR._consent(patient, date, exceptions)
+
+            resources.extend([questionnaire_response, consent, contract])
+        else:
+
+            # Get patient
+            patient = FHIR.get_patient(patient_email)
+
+            # Create needed resources
+            contract = FHIR._contract(patient, date, name, signature)
+            consent = FHIR._consent(patient, date)
+
+            resources.extend([consent, contract])
 
         # Get the signature HTML
         text = '<div>{}</div>'.format(render_to_string('consent/{}/_consent.html'.format(study)))
@@ -90,8 +109,11 @@ class FHIR:
         # Generate composition
         composition = FHIR._composition(patient, date, text, [consent, contract])
 
+        # Add it to the resources
+        resources.append(composition)
+
         # Bundle it into a transaction
-        bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
+        bundle = FHIR._bundle(resources)
 
         # Save it
         if dry:
@@ -386,6 +408,34 @@ class FHIR:
         })
 
     @staticmethod
+    def post_resource(json):
+        """
+        Builds a FHIR resource from the passed JSON and posts it to the
+        current server. Can be any valid FHIR resource that already
+        exists in the server.
+        :param json: JSON FHIR Resource
+        :return: True if updated successfully, False otherwise
+        """
+        # Track response for debugging
+        content = None
+        try:
+            # Post it
+            response = requests.post(settings.FHIR_URL,
+                                     headers={'content-type': 'application/json'},
+                                     json=json)
+            content = response.content
+            response.raise_for_status()
+
+        except Exception as e:
+            logger.error(
+                "Could not post resource: {}".format(e),
+                exc_info=True, extra={
+                    'response': content,
+                }
+            )
+            return False
+
+    @staticmethod
     def update_resource(json):
         """
         Builds a FHIR resource from the passed JSON and updates the current server. Can be any valid
@@ -537,12 +587,12 @@ class FHIR:
         # Build the objects
         bundle = Bundle(response.json())
 
-        # Check for the questionnaire
+        # Check for the Patient
         if not bundle.entry[0].resource.entry or bundle.entry[0].resource.entry[0].resource.resource_type != 'Patient':
             logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': patient_email,
+                'patient': FHIR._obfuscate_email(patient_email),
             })
-            raise FHIR.QuestionnaireDoesNotExist()
+            raise FHIR.PatientDoesNotExist()
 
         # Instantiate it
         patient = bundle.entry[0].resource.entry[0].resource
@@ -564,6 +614,27 @@ class FHIR:
         if not resources:
             logger.warning('Patient not found: {}'.format(FHIR._obfuscate_email(patient_email)))
             raise FHIR.PatientDoesNotExist
+
+    @staticmethod
+    def check_consent(study, patient_email):
+        """
+        Checks FHIR for resources pertaining to a signed consent for this
+        specific patient and study.
+
+        :param patient_email: The email of the participant to check
+        :type patient_email: str
+        :param study: The study for which the consent would be signed
+        :type study: str
+        :raises FHIR.ConsentAlreadyExists: If exists already
+        """
+
+        # Search for the consent composition resource specific to this study
+        resources = PPMFHIR.get_consent_composition(patient_email, study)
+        if resources:
+            logger.debug(f"PPM/{study}/{FHIR._obfuscate_email(patient_email)}: Consent composition already exists")
+            raise FHIR.ConsentAlreadyExists
+
+        return False
 
     @staticmethod
     def check_response(questionnaire_id, patient_email):
@@ -629,6 +700,9 @@ class FHIR:
         pass
 
     class QuestionnaireResponseAlreadyExists(Exception):
+        pass
+
+    class ConsentAlreadyExists(Exception):
         pass
 
     @staticmethod
@@ -847,7 +921,7 @@ class FHIR:
         return consent
 
     @staticmethod
-    def _contract(patient, date, patient_name, patient_signature, questionnaire_response):
+    def _contract(patient, date, patient_name, patient_signature, questionnaire_response=None):
 
         # Build it
         contract = Contract()
@@ -872,7 +946,10 @@ class FHIR:
         # Add references
         signer.signature = [signature]
         contract.signer = [signer]
-        contract.bindingReference = FHIR._reference_to(questionnaire_response)
+
+        # Add questionnaire if passed
+        if questionnaire_response:
+            contract.bindingReference = FHIR._reference_to(questionnaire_response)
 
         return contract
 

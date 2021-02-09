@@ -161,7 +161,6 @@ class NEERSignatureForm(forms.Form):
 class RANTSignatureForm(forms.Form):
 
     study = PPM.Study.RANT
-    exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.RANT))
 
     name = forms.CharField(label='Name of participant',
                            required=True,

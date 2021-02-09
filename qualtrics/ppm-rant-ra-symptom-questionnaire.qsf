@@ -1,0 +1,4399 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_6JNPt6jF8ihzkyN",
+    "SurveyName": "PPM RANT - RA Symptom Questionnaire - DEV",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_6gTkor673S0UxHD",
+    "SurveyBrandID": "hms",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_b9gbcXfTGlsTedL",
+    "SurveyStatus": "Active",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2020-11-20 14:37:43",
+    "CreatorID": "UR_6gTkor673S0UxHD",
+    "LastModified": "2021-02-01 14:49:59",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "2020-11-20 14:55:30",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "1": {
+          "Type": "Trash",
+          "Description": "Trash \/ Unused Questions",
+          "ID": "BL_5zkiwVkTejIv79z",
+          "BlockElements": []
+        },
+        "2": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID1",
+          "ID": "BL_41HaZH0vtSMtvWR",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "3": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID2",
+          "ID": "BL_3Xn06rop2k902AB",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "4": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID3",
+          "ID": "BL_5oGBS7K3RDwF8Gy",
+          "Options": {
+            "BlockLocking": false,
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          },
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            }
+          ]
+        },
+        "5": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID4",
+          "ID": "BL_5z2tNrAMcsAfbLM",
+          "Options": {
+            "BlockLocking": false,
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          },
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            }
+          ]
+        },
+        "6": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID5",
+          "ID": "BL_5mqPOVOvcRtnA1L",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "7": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID5_1",
+          "ID": "BL_8caZxtesCpw9cb3",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID5_1"
+            }
+          ]
+        },
+        "8": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID5_2",
+          "ID": "BL_0SxpO9HhEHO2b2t",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID5_2"
+            }
+          ]
+        },
+        "9": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID6",
+          "ID": "BL_a4amO0JxajBE60J",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "10": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID7",
+          "ID": "BL_8HCR8ROkkfCcg2p",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "11": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID8",
+          "ID": "BL_enyiPVi0MbTbXud",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "12": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID8_1",
+          "ID": "BL_01vJ6CGJdVE28wm",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID8_1"
+            }
+          ]
+        },
+        "13": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID9",
+          "ID": "BL_0eyliQhx3XVjjQV",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "14": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID10",
+          "ID": "BL_7VUR8m5n0UiPebb",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "15": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID11",
+          "ID": "BL_eS8h9tB9izI6TZz",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID11"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "16": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID11_1",
+          "ID": "BL_3VFocYMxrqTrUzk",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID11_1"
+            }
+          ]
+        },
+        "17": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID12",
+          "ID": "BL_3O915vTWsYuUdBH",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID12"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "18": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID13",
+          "ID": "BL_bEDVKsAZKqYBm9n",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID13"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "EmbeddedData",
+            "FlowID": "FL_2",
+            "EmbeddedData": [
+              {
+                "Description": "ppm_id",
+                "Type": "Recipient",
+                "Field": "ppm_id",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ResponseID",
+                "Type": "Recipient",
+                "Field": "ResponseID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "SurveyID",
+                "Type": "Recipient",
+                "Field": "SurveyID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "Q_URL",
+                "Type": "Recipient",
+                "Field": "Q_URL",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ppm_study",
+                "Type": "Recipient",
+                "Field": "ppm_study",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              }
+            ]
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_41HaZH0vtSMtvWR",
+            "FlowID": "FL_3",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_3Xn06rop2k902AB",
+            "FlowID": "FL_4",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_5oGBS7K3RDwF8Gy",
+            "FlowID": "FL_5",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_5z2tNrAMcsAfbLM",
+            "FlowID": "FL_6",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_5mqPOVOvcRtnA1L",
+            "FlowID": "FL_7",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_8caZxtesCpw9cb3",
+            "FlowID": "FL_8",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_0SxpO9HhEHO2b2t",
+            "FlowID": "FL_9",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_a4amO0JxajBE60J",
+            "FlowID": "FL_10",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_8HCR8ROkkfCcg2p",
+            "FlowID": "FL_11",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_enyiPVi0MbTbXud",
+            "FlowID": "FL_12",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_01vJ6CGJdVE28wm",
+            "FlowID": "FL_13",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_0eyliQhx3XVjjQV",
+            "FlowID": "FL_14",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_7VUR8m5n0UiPebb",
+            "FlowID": "FL_15",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_eS8h9tB9izI6TZz",
+            "FlowID": "FL_16",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_3VFocYMxrqTrUzk",
+            "FlowID": "FL_17",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_3O915vTWsYuUdBH",
+            "FlowID": "FL_18",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_bEDVKsAZKqYBm9n",
+            "FlowID": "FL_19",
+            "Autofill": []
+          },
+          {
+            "Type": "EndSurvey",
+            "FlowID": "FL_20",
+            "EndingType": "Advanced",
+            "Options": {
+              "Advanced": "true",
+              "SurveyTermination": "Redirect",
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+            }
+          }
+        ],
+        "Properties": {
+          "Count": 20,
+          "RemovedFieldsets": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "true",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": null,
+        "SurveyTermination": "Redirect",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "Text",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": " \u2190 ",
+        "NextButton": " \u2192 ",
+        "SkinLibrary": "hms",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": null,
+          "templateId": "*base",
+          "overrides": {
+            "logo": {
+              "url": "https:\/\/hms.az1.qualtrics.com\/CP\/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
+            },
+            "questionsContainer": {
+              "on": true
+            },
+            "progressBar": {
+              "position": "bottom"
+            }
+          }
+        },
+        "NewScoring": 1,
+        "EOSMessage": "",
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "SurveyTitle": "Online Survey Software | Qualtrics Survey Solutions",
+        "SurveyMetaDescription": "Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "Password": "ppmisgreat",
+        "RefererCheck": "No",
+        "RefererURL": "http:\/\/",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": "",
+        "SurveyLinkCompletedMessageLibrary": "",
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": "",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDataCloseAfter": "LastActivity",
+        "ActiveResponseSet": null,
+        "InactiveMessageLibrary": "",
+        "InactiveMessage": "",
+        "AvailableLanguages": {
+          "EN": []
+        },
+        "ProtectSelectionIds": true,
+        "CustomStyles": {
+          "customCSS": ""
+        },
+        "PartialDeletion": null,
+        "SurveyName": "PPM RANT - RA Symptom Questionnaire - DEV"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": false,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "53",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_b9gbcXfTGlsTedL",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Considering all the ways RA has affected you, how do you feel your RA is today?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Considering all the ways RA has affected you, how do you feel your RA is today?",
+        "DefaultChoices": false,
+        "DataExportTag": "QID1",
+        "QuestionType": "Slider",
+        "Selector": "HSLIDER",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "CSSliderMin": 0,
+          "CSSliderMax": 10,
+          "GridLines": 10,
+          "NumDecimals": 1,
+          "ShowValue": true,
+          "CustomStart": false,
+          "NotApplicable": false,
+          "MobileFirst": true,
+          "SnapToGrid": false
+        },
+        "QuestionDescription": "Considering all the ways RA has affected you, how do you feel your RA is today?",
+        "Choices": {
+          "11": {
+            "Display": "&nbsp;"
+          }
+        },
+        "ChoiceOrder": [
+          "11"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 12,
+        "NextAnswerId": 3,
+        "Labels": {
+          "1": {
+            "Display": "(Very Well)"
+          },
+          "2": {
+            "Display": "(Very Poor)"
+          }
+        },
+        "QuestionID": "QID1",
+        "QuestionText_Unsafe": "Considering all the ways RA has affected you, how do you feel your RA is today?",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "On average, how stiff are your joints in the morning?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>On average, how stiff are your joints in the morning?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "Slider",
+        "Selector": "HSLIDER",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "CSSliderMin": 0,
+          "CSSliderMax": 10,
+          "GridLines": 10,
+          "NumDecimals": 1,
+          "ShowValue": true,
+          "CustomStart": false,
+          "NotApplicable": false,
+          "MobileFirst": true,
+          "SnapToGrid": false
+        },
+        "QuestionDescription": "On average, how stiff are your joints in the morning?\u00a0",
+        "Choices": {
+          "11": {
+            "Display": "&nbsp;"
+          }
+        },
+        "ChoiceOrder": [
+          "11"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 12,
+        "NextAnswerId": 3,
+        "Labels": {
+          "1": {
+            "Display": "(Very Well)"
+          },
+          "2": {
+            "Display": "(Very Poor)"
+          }
+        },
+        "QuestionText_Unsafe": "<p>On average, how stiff are your joints in the morning?&nbsp;<\/p>",
+        "DataExportTag": "QID2",
+        "QuestionID": "QID2",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Which joints on your <strong>left side<\/strong> are currently tender and\/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "HotSpot",
+        "Selector": "OnOff",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
+        "Choices": {
+          "93": {
+            "Display": "left-elbow-tender"
+          },
+          "94": {
+            "Display": "left-elbow-swollen"
+          },
+          "95": {
+            "Display": "left-shoulder-tender"
+          },
+          "96": {
+            "Display": "left-shoulder-swollen"
+          },
+          "97": {
+            "Display": "left-knee-tender"
+          },
+          "98": {
+            "Display": "left-knee-swollen"
+          },
+          "99": {
+            "Display": "left-pinky-PIP-tender"
+          },
+          "100": {
+            "Display": "left-pinky-PIP-swollen"
+          },
+          "101": {
+            "Display": "left-pinky-MCP-tender"
+          },
+          "102": {
+            "Display": "left-pinky-MCP-swollen"
+          },
+          "103": {
+            "Display": "left-ring-PIP-tender"
+          },
+          "104": {
+            "Display": "left-ring-PIP-swollen"
+          },
+          "105": {
+            "Display": "left-ring-MCP-tender"
+          },
+          "106": {
+            "Display": "left-ring-MCP-swollen"
+          },
+          "107": {
+            "Display": "left-middle-PIP-tender"
+          },
+          "108": {
+            "Display": "left-middle-PIP-swollen"
+          },
+          "110": {
+            "Display": "left-middle-MCP-tender"
+          },
+          "111": {
+            "Display": "left-middle-MCP-swollen"
+          },
+          "112": {
+            "Display": "left-index-PIP-tender"
+          },
+          "113": {
+            "Display": "left-index-PIP-swollen"
+          },
+          "114": {
+            "Display": "left-index-MCP-tender"
+          },
+          "115": {
+            "Display": "left-index-MCP-swollen"
+          },
+          "116": {
+            "Display": "left-thumb-PIP-tender"
+          },
+          "117": {
+            "Display": "left-thumb-PIP-swollen"
+          },
+          "118": {
+            "Display": "left-thumb-MCP-tender"
+          },
+          "119": {
+            "Display": "left-thumb-MCP-swollen"
+          }
+        },
+        "ChoiceOrder": [
+          "93",
+          "94",
+          "95",
+          "96",
+          "97",
+          "98",
+          "99",
+          "100",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "107",
+          "108",
+          "110",
+          "111",
+          "112",
+          "113",
+          "114",
+          "115",
+          "116",
+          "117",
+          "118",
+          "119"
+        ],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 121,
+        "NextAnswerId": 3,
+        "Height": 1248,
+        "Width": 1000,
+        "GraphicID": "IM_eQmFVkPwQ8Z5qRw",
+        "Regions": [
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 247,
+                  "Y": 434
+                },
+                {
+                  "X": 275,
+                  "Y": 483
+                },
+                {
+                  "X": 303,
+                  "Y": 434
+                }
+              ]
+            ],
+            "Description": "left-elbow-tender",
+            "ChoiceID": "93",
+            "X": 247,
+            "Y": 434,
+            "Width": 56,
+            "Height": 49
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 310,
+                  "Y": 435
+                },
+                {
+                  "X": 357,
+                  "Y": 435
+                },
+                {
+                  "X": 357,
+                  "Y": 482
+                },
+                {
+                  "X": 310,
+                  "Y": 482
+                }
+              ]
+            ],
+            "Description": "left-elbow-swollen",
+            "ChoiceID": "94",
+            "X": 310,
+            "Y": 435,
+            "Width": 47,
+            "Height": 47
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 189,
+                  "Y": 246
+                },
+                {
+                  "X": 217,
+                  "Y": 295
+                },
+                {
+                  "X": 245,
+                  "Y": 246
+                }
+              ]
+            ],
+            "Description": "left-shoulder-tender",
+            "ChoiceID": "95",
+            "X": 189,
+            "Y": 246,
+            "Width": 56,
+            "Height": 49
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 253,
+                  "Y": 247
+                },
+                {
+                  "X": 300,
+                  "Y": 247
+                },
+                {
+                  "X": 300,
+                  "Y": 294
+                },
+                {
+                  "X": 253,
+                  "Y": 294
+                }
+              ]
+            ],
+            "Description": "left-shoulder-swollen",
+            "ChoiceID": "96",
+            "X": 253,
+            "Y": 247,
+            "Width": 47,
+            "Height": 47
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 137,
+                  "Y": 911
+                },
+                {
+                  "X": 165,
+                  "Y": 960
+                },
+                {
+                  "X": 193,
+                  "Y": 911
+                }
+              ]
+            ],
+            "Description": "left-knee-tender",
+            "ChoiceID": "97",
+            "X": 137,
+            "Y": 911,
+            "Width": 56,
+            "Height": 49
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 201,
+                  "Y": 911
+                },
+                {
+                  "X": 248,
+                  "Y": 911
+                },
+                {
+                  "X": 248,
+                  "Y": 958
+                },
+                {
+                  "X": 201,
+                  "Y": 958
+                }
+              ]
+            ],
+            "Description": "left-knee-swollen",
+            "ChoiceID": "98",
+            "X": 201,
+            "Y": 911,
+            "Width": 47,
+            "Height": 47
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 416,
+                  "Y": 587
+                },
+                {
+                  "X": 442,
+                  "Y": 633
+                },
+                {
+                  "X": 468,
+                  "Y": 587
+                }
+              ]
+            ],
+            "Description": "left-pinky-PIP-tender",
+            "ChoiceID": "99",
+            "X": 416,
+            "Y": 587,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 472,
+                  "Y": 588
+                },
+                {
+                  "X": 516,
+                  "Y": 588
+                },
+                {
+                  "X": 516,
+                  "Y": 631
+                },
+                {
+                  "X": 472,
+                  "Y": 631
+                }
+              ]
+            ],
+            "Description": "left-pinky-PIP-swollen",
+            "ChoiceID": "100",
+            "X": 472,
+            "Y": 588,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 461,
+                  "Y": 662
+                },
+                {
+                  "X": 487,
+                  "Y": 708
+                },
+                {
+                  "X": 513,
+                  "Y": 662
+                }
+              ]
+            ],
+            "Description": "left-pinky-MCP-tender",
+            "ChoiceID": "101",
+            "X": 461,
+            "Y": 662,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 517,
+                  "Y": 662
+                },
+                {
+                  "X": 561,
+                  "Y": 662
+                },
+                {
+                  "X": 561,
+                  "Y": 705
+                },
+                {
+                  "X": 517,
+                  "Y": 705
+                }
+              ]
+            ],
+            "Description": "left-pinky-MCP-swollen",
+            "ChoiceID": "102",
+            "X": 517,
+            "Y": 662,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 529,
+                  "Y": 523
+                },
+                {
+                  "X": 555,
+                  "Y": 569
+                },
+                {
+                  "X": 581,
+                  "Y": 523
+                }
+              ]
+            ],
+            "Description": "left-ring-PIP-tender",
+            "ChoiceID": "103",
+            "X": 529,
+            "Y": 523,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 585,
+                  "Y": 524
+                },
+                {
+                  "X": 629,
+                  "Y": 524
+                },
+                {
+                  "X": 629,
+                  "Y": 567
+                },
+                {
+                  "X": 585,
+                  "Y": 567
+                }
+              ]
+            ],
+            "Description": "left-ring-PIP-swollen",
+            "ChoiceID": "104",
+            "X": 585,
+            "Y": 524,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 539,
+                  "Y": 608
+                },
+                {
+                  "X": 565,
+                  "Y": 654
+                },
+                {
+                  "X": 591,
+                  "Y": 608
+                }
+              ]
+            ],
+            "Description": "left-ring-MCP-tender",
+            "ChoiceID": "105",
+            "X": 539,
+            "Y": 608,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 594,
+                  "Y": 609
+                },
+                {
+                  "X": 638,
+                  "Y": 609
+                },
+                {
+                  "X": 638,
+                  "Y": 652
+                },
+                {
+                  "X": 594,
+                  "Y": 652
+                }
+              ]
+            ],
+            "Description": "left-ring-MCP-swollen",
+            "ChoiceID": "106",
+            "X": 594,
+            "Y": 609,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 635,
+                  "Y": 499
+                },
+                {
+                  "X": 661,
+                  "Y": 545
+                },
+                {
+                  "X": 687,
+                  "Y": 499
+                }
+              ]
+            ],
+            "Description": "left-middle-PIP-tender",
+            "ChoiceID": "107",
+            "X": 635,
+            "Y": 499,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 691,
+                  "Y": 500
+                },
+                {
+                  "X": 735,
+                  "Y": 500
+                },
+                {
+                  "X": 735,
+                  "Y": 543
+                },
+                {
+                  "X": 691,
+                  "Y": 543
+                }
+              ]
+            ],
+            "Description": "left-middle-PIP-swollen",
+            "ChoiceID": "108",
+            "X": 691,
+            "Y": 500,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 631,
+                  "Y": 577
+                },
+                {
+                  "X": 657,
+                  "Y": 623
+                },
+                {
+                  "X": 683,
+                  "Y": 577
+                }
+              ]
+            ],
+            "Description": "left-middle-MCP-tender",
+            "ChoiceID": "110",
+            "X": 631,
+            "Y": 577,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 687,
+                  "Y": 578
+                },
+                {
+                  "X": 731,
+                  "Y": 578
+                },
+                {
+                  "X": 731,
+                  "Y": 621
+                },
+                {
+                  "X": 687,
+                  "Y": 621
+                }
+              ]
+            ],
+            "Description": "left-middle-MCP-swollen",
+            "ChoiceID": "111",
+            "X": 687,
+            "Y": 578,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 746,
+                  "Y": 539
+                },
+                {
+                  "X": 772,
+                  "Y": 585
+                },
+                {
+                  "X": 798,
+                  "Y": 539
+                }
+              ]
+            ],
+            "Description": "left-index-PIP-tender",
+            "ChoiceID": "112",
+            "X": 746,
+            "Y": 539,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 801,
+                  "Y": 540
+                },
+                {
+                  "X": 845,
+                  "Y": 540
+                },
+                {
+                  "X": 845,
+                  "Y": 583
+                },
+                {
+                  "X": 801,
+                  "Y": 583
+                }
+              ]
+            ],
+            "Description": "left-index-PIP-swollen",
+            "ChoiceID": "113",
+            "X": 801,
+            "Y": 540,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 736,
+                  "Y": 618
+                },
+                {
+                  "X": 762,
+                  "Y": 664
+                },
+                {
+                  "X": 788,
+                  "Y": 618
+                }
+              ]
+            ],
+            "Description": "left-index-MCP-tender",
+            "ChoiceID": "114",
+            "X": 736,
+            "Y": 618,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 792,
+                  "Y": 619
+                },
+                {
+                  "X": 836,
+                  "Y": 619
+                },
+                {
+                  "X": 836,
+                  "Y": 662
+                },
+                {
+                  "X": 792,
+                  "Y": 662
+                }
+              ]
+            ],
+            "Description": "left-index-MCP-swollen",
+            "ChoiceID": "115",
+            "X": 792,
+            "Y": 619,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 831,
+                  "Y": 736
+                },
+                {
+                  "X": 857,
+                  "Y": 782
+                },
+                {
+                  "X": 883,
+                  "Y": 736
+                }
+              ]
+            ],
+            "Description": "left-thumb-PIP-tender",
+            "ChoiceID": "116",
+            "X": 831,
+            "Y": 736,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 887,
+                  "Y": 735
+                },
+                {
+                  "X": 931,
+                  "Y": 735
+                },
+                {
+                  "X": 931,
+                  "Y": 778
+                },
+                {
+                  "X": 887,
+                  "Y": 778
+                }
+              ]
+            ],
+            "Description": "left-thumb-PIP-swollen",
+            "ChoiceID": "117",
+            "X": 887,
+            "Y": 735,
+            "Width": 44,
+            "Height": 43
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 789,
+                  "Y": 815
+                },
+                {
+                  "X": 815,
+                  "Y": 861
+                },
+                {
+                  "X": 841,
+                  "Y": 815
+                }
+              ]
+            ],
+            "Description": "left-thumb-MCP-tender",
+            "ChoiceID": "118",
+            "X": 789,
+            "Y": 815,
+            "Width": 52,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 844,
+                  "Y": 816
+                },
+                {
+                  "X": 888,
+                  "Y": 816
+                },
+                {
+                  "X": 888,
+                  "Y": 859
+                },
+                {
+                  "X": 844,
+                  "Y": 859
+                }
+              ]
+            ],
+            "Description": "left-thumb-MCP-swollen",
+            "ChoiceID": "119",
+            "X": 844,
+            "Y": 816,
+            "Width": 44,
+            "Height": 43
+          }
+        ],
+        "Visibility": "HiddenUntilHover",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Which joints on your <strong>left side<\/strong> are currently tender and\/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "Answers": {
+          "1": {
+            "Display": "Off"
+          },
+          "2": {
+            "Display": "On"
+          }
+        },
+        "DataExportTag": "Q52",
+        "QuestionID": "QID3"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Which joints on your <strong>right side<\/strong> are currently tender and\/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "HotSpot",
+        "Selector": "OnOff",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
+        "Choices": {
+          "65": {
+            "Display": "right-shoulder-swollen"
+          },
+          "94": {
+            "Display": "right-shoulder-tender"
+          },
+          "95": {
+            "Display": "right-elbow-swollen"
+          },
+          "96": {
+            "Display": "right-elbow-tender"
+          },
+          "97": {
+            "Display": "right-knee-tender"
+          },
+          "98": {
+            "Display": "right-knee-swollen"
+          },
+          "99": {
+            "Display": "right-pinky-PIP-swollen"
+          },
+          "100": {
+            "Display": "right-pinky-PIP-tender"
+          },
+          "101": {
+            "Display": "right-pinky-MCP-swollen"
+          },
+          "102": {
+            "Display": "right-pinky-MCP-tender"
+          },
+          "103": {
+            "Display": "right-ring-MCP-swollen"
+          },
+          "104": {
+            "Display": "right-ring-MCP-tender"
+          },
+          "105": {
+            "Display": "right-ring-PIP-swollen"
+          },
+          "106": {
+            "Display": "right-ring-PIP-tender"
+          },
+          "107": {
+            "Display": "right-middle-PIP-swollen"
+          },
+          "108": {
+            "Display": "right-middle-PIP-tender"
+          },
+          "109": {
+            "Display": "right-middle-MCP-swollen"
+          },
+          "110": {
+            "Display": "right-middle-MCP-tender"
+          },
+          "111": {
+            "Display": "right-index-MCP-swollen"
+          },
+          "112": {
+            "Display": "right-index-PIP-swollen"
+          },
+          "113": {
+            "Display": "right-index-PIP-tender"
+          },
+          "114": {
+            "Display": "right-index-MCP-tender"
+          },
+          "115": {
+            "Display": "right-thumb-MCP-swollen"
+          },
+          "116": {
+            "Display": "right-thumb-MCP-tender"
+          },
+          "117": {
+            "Display": "right-thumb-PIP-swollen"
+          },
+          "118": {
+            "Display": "right-thumb-PIP-tender"
+          }
+        },
+        "ChoiceOrder": [
+          "65",
+          "94",
+          "95",
+          "96",
+          "97",
+          "98",
+          "99",
+          "100",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "107",
+          "108",
+          "109",
+          "110",
+          "111",
+          "112",
+          "113",
+          "114",
+          "115",
+          "116",
+          "117",
+          "118"
+        ],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 119,
+        "NextAnswerId": 3,
+        "Height": 1248,
+        "Width": 1000,
+        "GraphicID": "IM_3sY3SPIQMD8wRr8",
+        "Regions": [
+          {
+            "ChoiceID": "65",
+            "Description": "right-shoulder-swollen",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 753,
+                  "Y": 245
+                },
+                {
+                  "X": 801,
+                  "Y": 245
+                },
+                {
+                  "X": 801,
+                  "Y": 294
+                },
+                {
+                  "X": 753,
+                  "Y": 294
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 48,
+            "X": 753,
+            "Y": 245
+          },
+          {
+            "ChoiceID": "94",
+            "Description": "right-shoulder-tender",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 688,
+                  "Y": 246
+                },
+                {
+                  "X": 717,
+                  "Y": 294
+                },
+                {
+                  "X": 745,
+                  "Y": 245
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 57,
+            "X": 688,
+            "Y": 245
+          },
+          {
+            "ChoiceID": "95",
+            "Description": "right-elbow-swollen",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 694,
+                  "Y": 434
+                },
+                {
+                  "X": 742,
+                  "Y": 434
+                },
+                {
+                  "X": 742,
+                  "Y": 483
+                },
+                {
+                  "X": 694,
+                  "Y": 483
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 48,
+            "X": 694,
+            "Y": 434
+          },
+          {
+            "ChoiceID": "96",
+            "Description": "right-elbow-tender",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 632,
+                  "Y": 435
+                },
+                {
+                  "X": 661,
+                  "Y": 483
+                },
+                {
+                  "X": 689,
+                  "Y": 434
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 57,
+            "X": 632,
+            "Y": 434
+          },
+          {
+            "ChoiceID": "97",
+            "Description": "right-knee-tender",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 745,
+                  "Y": 910
+                },
+                {
+                  "X": 774,
+                  "Y": 958
+                },
+                {
+                  "X": 802,
+                  "Y": 909
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 57,
+            "X": 745,
+            "Y": 909
+          },
+          {
+            "ChoiceID": "98",
+            "Description": "right-knee-swollen",
+            "Height": 49,
+            "Shapes": [
+              [
+                {
+                  "X": 809,
+                  "Y": 911
+                },
+                {
+                  "X": 857,
+                  "Y": 911
+                },
+                {
+                  "X": 857,
+                  "Y": 960
+                },
+                {
+                  "X": 809,
+                  "Y": 960
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 48,
+            "X": 809,
+            "Y": 911
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 532,
+                  "Y": 589
+                },
+                {
+                  "X": 576,
+                  "Y": 589
+                },
+                {
+                  "X": 576,
+                  "Y": 631
+                },
+                {
+                  "X": 532,
+                  "Y": 631
+                }
+              ]
+            ],
+            "Description": "right-pinky-PIP-swollen",
+            "ChoiceID": "99",
+            "X": 532,
+            "Y": 589,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 476,
+                  "Y": 587
+                },
+                {
+                  "X": 502,
+                  "Y": 633
+                },
+                {
+                  "X": 529,
+                  "Y": 587
+                }
+              ]
+            ],
+            "Description": "right-pinky-PIP-tender",
+            "ChoiceID": "100",
+            "X": 476,
+            "Y": 587,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 493,
+                  "Y": 663
+                },
+                {
+                  "X": 537,
+                  "Y": 663
+                },
+                {
+                  "X": 537,
+                  "Y": 705
+                },
+                {
+                  "X": 493,
+                  "Y": 705
+                }
+              ]
+            ],
+            "Description": "right-pinky-MCP-swollen",
+            "ChoiceID": "101",
+            "X": 493,
+            "Y": 663,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 438,
+                  "Y": 661
+                },
+                {
+                  "X": 464,
+                  "Y": 707
+                },
+                {
+                  "X": 491,
+                  "Y": 661
+                }
+              ]
+            ],
+            "Description": "right-pinky-MCP-tender",
+            "ChoiceID": "102",
+            "X": 438,
+            "Y": 661,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 406,
+                  "Y": 609
+                },
+                {
+                  "X": 450,
+                  "Y": 609
+                },
+                {
+                  "X": 450,
+                  "Y": 651
+                },
+                {
+                  "X": 406,
+                  "Y": 651
+                }
+              ]
+            ],
+            "Description": "right-ring-MCP-swollen",
+            "ChoiceID": "103",
+            "X": 406,
+            "Y": 609,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 350,
+                  "Y": 608
+                },
+                {
+                  "X": 376,
+                  "Y": 654
+                },
+                {
+                  "X": 403,
+                  "Y": 608
+                }
+              ]
+            ],
+            "Description": "right-ring-MCP-tender",
+            "ChoiceID": "104",
+            "X": 350,
+            "Y": 608,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 410,
+                  "Y": 524
+                },
+                {
+                  "X": 454,
+                  "Y": 524
+                },
+                {
+                  "X": 454,
+                  "Y": 566
+                },
+                {
+                  "X": 410,
+                  "Y": 566
+                }
+              ]
+            ],
+            "Description": "right-ring-PIP-swollen",
+            "ChoiceID": "105",
+            "X": 410,
+            "Y": 524,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 354,
+                  "Y": 523
+                },
+                {
+                  "X": 380,
+                  "Y": 569
+                },
+                {
+                  "X": 407,
+                  "Y": 523
+                }
+              ]
+            ],
+            "Description": "right-ring-PIP-tender",
+            "ChoiceID": "106",
+            "X": 354,
+            "Y": 523,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 303,
+                  "Y": 500
+                },
+                {
+                  "X": 347,
+                  "Y": 500
+                },
+                {
+                  "X": 347,
+                  "Y": 542
+                },
+                {
+                  "X": 303,
+                  "Y": 542
+                }
+              ]
+            ],
+            "Description": "right-middle-PIP-swollen",
+            "ChoiceID": "107",
+            "X": 303,
+            "Y": 500,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 247,
+                  "Y": 499
+                },
+                {
+                  "X": 273,
+                  "Y": 545
+                },
+                {
+                  "X": 300,
+                  "Y": 499
+                }
+              ]
+            ],
+            "Description": "right-middle-PIP-tender",
+            "ChoiceID": "108",
+            "X": 247,
+            "Y": 499,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 301,
+                  "Y": 579
+                },
+                {
+                  "X": 345,
+                  "Y": 579
+                },
+                {
+                  "X": 345,
+                  "Y": 621
+                },
+                {
+                  "X": 301,
+                  "Y": 621
+                }
+              ]
+            ],
+            "Description": "right-middle-MCP-swollen",
+            "ChoiceID": "109",
+            "X": 301,
+            "Y": 579,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 245,
+                  "Y": 577
+                },
+                {
+                  "X": 271,
+                  "Y": 623
+                },
+                {
+                  "X": 298,
+                  "Y": 577
+                }
+              ]
+            ],
+            "Description": "right-middle-MCP-tender",
+            "ChoiceID": "110",
+            "X": 245,
+            "Y": 577,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 211,
+                  "Y": 619
+                },
+                {
+                  "X": 255,
+                  "Y": 619
+                },
+                {
+                  "X": 255,
+                  "Y": 661
+                },
+                {
+                  "X": 211,
+                  "Y": 661
+                }
+              ]
+            ],
+            "Description": "right-index-MCP-swollen",
+            "ChoiceID": "111",
+            "X": 211,
+            "Y": 619,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 181,
+                  "Y": 541
+                },
+                {
+                  "X": 225,
+                  "Y": 541
+                },
+                {
+                  "X": 225,
+                  "Y": 583
+                },
+                {
+                  "X": 181,
+                  "Y": 583
+                }
+              ]
+            ],
+            "Description": "right-index-PIP-swollen",
+            "ChoiceID": "112",
+            "X": 181,
+            "Y": 541,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 125,
+                  "Y": 539
+                },
+                {
+                  "X": 151,
+                  "Y": 585
+                },
+                {
+                  "X": 178,
+                  "Y": 539
+                }
+              ]
+            ],
+            "Description": "right-index-PIP-tender",
+            "ChoiceID": "113",
+            "X": 125,
+            "Y": 539,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 155,
+                  "Y": 618
+                },
+                {
+                  "X": 181,
+                  "Y": 664
+                },
+                {
+                  "X": 208,
+                  "Y": 618
+                }
+              ]
+            ],
+            "Description": "right-index-MCP-tender",
+            "ChoiceID": "114",
+            "X": 155,
+            "Y": 618,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 147,
+                  "Y": 817
+                },
+                {
+                  "X": 191,
+                  "Y": 817
+                },
+                {
+                  "X": 191,
+                  "Y": 859
+                },
+                {
+                  "X": 147,
+                  "Y": 859
+                }
+              ]
+            ],
+            "Description": "right-thumb-MCP-swollen",
+            "ChoiceID": "115",
+            "X": 147,
+            "Y": 817,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 91,
+                  "Y": 815
+                },
+                {
+                  "X": 117,
+                  "Y": 861
+                },
+                {
+                  "X": 144,
+                  "Y": 815
+                }
+              ]
+            ],
+            "Description": "right-thumb-MCP-tender",
+            "ChoiceID": "116",
+            "X": 91,
+            "Y": 815,
+            "Width": 53,
+            "Height": 46
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 110,
+                  "Y": 736
+                },
+                {
+                  "X": 154,
+                  "Y": 736
+                },
+                {
+                  "X": 154,
+                  "Y": 778
+                },
+                {
+                  "X": 110,
+                  "Y": 778
+                }
+              ]
+            ],
+            "Description": "right-thumb-PIP-swollen",
+            "ChoiceID": "117",
+            "X": 110,
+            "Y": 736,
+            "Width": 44,
+            "Height": 42
+          },
+          {
+            "Type": "Polygon",
+            "Shapes": [
+              [
+                {
+                  "X": 54,
+                  "Y": 735
+                },
+                {
+                  "X": 80,
+                  "Y": 781
+                },
+                {
+                  "X": 107,
+                  "Y": 735
+                }
+              ]
+            ],
+            "Description": "right-thumb-PIP-tender",
+            "ChoiceID": "118",
+            "X": 54,
+            "Y": 735,
+            "Width": 53,
+            "Height": 46
+          }
+        ],
+        "Visibility": "HiddenUntilHover",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Which joints on your <strong>right side<\/strong> are currently tender and\/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "Answers": {
+          "1": {
+            "Display": "Off"
+          },
+          "2": {
+            "Display": "On"
+          }
+        },
+        "DataExportTag": "Q53",
+        "QuestionID": "QID4"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "Have you had any joints replaced?\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Have you had any joints replaced?&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID5",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "Autoscale": {
+            "YScale": {
+              "Name": "yesNo",
+              "Type": "likert",
+              "Reverse": false
+            }
+          }
+        },
+        "QuestionDescription": "Have you had any joints replaced?\u00a0",
+        "Choices": {
+          "23": {
+            "Display": "Yes"
+          },
+          "24": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "23",
+          "24"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 25,
+        "NextAnswerId": 1,
+        "QuestionID": "QID5",
+        "QuestionText_Unsafe": "<p>Have you had any joints replaced?&nbsp;<\/p>",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "RecodeValues": {
+          "23": "1",
+          "24": "2"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5_1",
+      "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Which joints on your left side have you had replaced?\n(Please reference the illustration for joints of the\nhands and wrists)&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q19",
+        "QuestionType": "HotSpot",
+        "Selector": "OnOff",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
+        "Choices": {
+          "19": {
+            "Display": "Shoulder"
+          },
+          "35": {
+            "Display": "Elbow"
+          },
+          "36": {
+            "Display": "Knee"
+          },
+          "38": {
+            "Display": "MCP thumb"
+          },
+          "39": {
+            "Display": "PIP thumb"
+          },
+          "40": {
+            "Display": "MCP pinky"
+          },
+          "41": {
+            "Display": "PIP pinky"
+          },
+          "42": {
+            "Display": "MCP ring"
+          },
+          "43": {
+            "Display": "PIP ring"
+          },
+          "44": {
+            "Display": "MCP middle"
+          },
+          "45": {
+            "Display": "PIP middle"
+          },
+          "46": {
+            "Display": "PIP index"
+          },
+          "47": {
+            "Display": "MCP index"
+          }
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID5\/SelectableChoice\/23",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID5\/SelectableChoice\/23",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID5",
+              "QuestionIDFromLocator": "QID5",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        },
+        "ChoiceOrder": [
+          "19",
+          "35",
+          "36",
+          "38",
+          "39",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "45",
+          "46",
+          "47"
+        ],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 48,
+        "NextAnswerId": 3,
+        "Height": 1248,
+        "Width": 1000,
+        "GraphicID": "IM_0NfVtpTxSpsXDr7",
+        "Regions": [
+          {
+            "ChoiceID": "19",
+            "Description": "Shoulder",
+            "Height": 49.43945720250525255323736928403377532958984375,
+            "Shapes": [
+              [
+                {
+                  "X": 222.461031833150400416343472898006439208984375,
+                  "Y": 245.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 273.4577387486278894357383251190185546875,
+                  "Y": 245.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 273.4577387486278894357383251190185546875,
+                  "Y": 295.12734864300631443256861530244350433349609375
+                },
+                {
+                  "X": 222.461031833150400416343472898006439208984375,
+                  "Y": 295.12734864300631443256861530244350433349609375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 50.996706915477489019394852221012115478515625,
+            "X": 222.461031833150400416343472898006439208984375,
+            "Y": 245.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "35",
+            "Description": "Elbow",
+            "Height": 49.43945720250525255323736928403377532958984375,
+            "Shapes": [
+              [
+                {
+                  "X": 274.461031833150400416343472898006439208984375,
+                  "Y": 432.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 325.4577387486278894357383251190185546875,
+                  "Y": 432.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 325.4577387486278894357383251190185546875,
+                  "Y": 482.12734864300631443256861530244350433349609375
+                },
+                {
+                  "X": 274.461031833150400416343472898006439208984375,
+                  "Y": 482.12734864300631443256861530244350433349609375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 50.996706915477489019394852221012115478515625,
+            "X": 274.461031833150400416343472898006439208984375,
+            "Y": 432.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "36",
+            "Description": "Knee",
+            "Height": 49.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 164.461031833150400416343472898006439208984375,
+                  "Y": 909.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 215.4577387486278894357383251190185546875,
+                  "Y": 909.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 215.4577387486278894357383251190185546875,
+                  "Y": 959.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 164.461031833150400416343472898006439208984375,
+                  "Y": 959.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 50.996706915477489019394852221012115478515625,
+            "X": 164.461031833150400416343472898006439208984375,
+            "Y": 909.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "38",
+            "Description": "MCP thumb",
+            "Height": 36.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 821.461031833150400416343472898006439208984375,
+                  "Y": 817.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 857.4577387486278894357383251190185546875,
+                  "Y": 817.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 857.4577387486278894357383251190185546875,
+                  "Y": 854.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 821.461031833150400416343472898006439208984375,
+                  "Y": 854.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 35.996706915477489019394852221012115478515625,
+            "X": 821.461031833150400416343472898006439208984375,
+            "Y": 817.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "39",
+            "Description": "PIP thumb",
+            "Height": 37.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 871.461031833150400416343472898006439208984375,
+                  "Y": 732.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 909.4577387486278894357383251190185546875,
+                  "Y": 732.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 909.4577387486278894357383251190185546875,
+                  "Y": 770.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 871.461031833150400416343472898006439208984375,
+                  "Y": 770.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 37.996706915477489019394852221012115478515625,
+            "X": 871.461031833150400416343472898006439208984375,
+            "Y": 732.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "40",
+            "Description": "MCP pinky",
+            "Height": 36.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 498.461031833150400416343472898006439208984375,
+                  "Y": 661.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 537.4577387486278894357383251190185546875,
+                  "Y": 661.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 537.4577387486278894357383251190185546875,
+                  "Y": 698.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 498.461031833150400416343472898006439208984375,
+                  "Y": 698.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 38.996706915477489019394852221012115478515625,
+            "X": 498.461031833150400416343472898006439208984375,
+            "Y": 661.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "41",
+            "Description": "PIP pinky",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 448.461031833150400416343472898006439208984375,
+                  "Y": 583.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 489.4577387486278894357383251190185546875,
+                  "Y": 583.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 489.4577387486278894357383251190185546875,
+                  "Y": 622.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 448.461031833150400416343472898006439208984375,
+                  "Y": 622.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 40.996706915477489019394852221012115478515625,
+            "X": 448.461031833150400416343472898006439208984375,
+            "Y": 583.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "42",
+            "Description": "MCP ring",
+            "Height": 37.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 578.461031833150400416343472898006439208984375,
+                  "Y": 609.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 617.4577387486278894357383251190185546875,
+                  "Y": 609.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 617.4577387486278894357383251190185546875,
+                  "Y": 647.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 578.461031833150400416343472898006439208984375,
+                  "Y": 647.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 38.996706915477489019394852221012115478515625,
+            "X": 578.461031833150400416343472898006439208984375,
+            "Y": 609.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "43",
+            "Description": "PIP ring",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 563.461031833150400416343472898006439208984375,
+                  "Y": 519.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 603.4577387486278894357383251190185546875,
+                  "Y": 519.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 603.4577387486278894357383251190185546875,
+                  "Y": 558.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 563.461031833150400416343472898006439208984375,
+                  "Y": 558.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 563.461031833150400416343472898006439208984375,
+            "Y": 519.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "44",
+            "Description": "MCP middle",
+            "Height": 39.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 668.461031833150400416343472898006439208984375,
+                  "Y": 573.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 706.4577387486278894357383251190185546875,
+                  "Y": 573.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 706.4577387486278894357383251190185546875,
+                  "Y": 613.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 668.461031833150400416343472898006439208984375,
+                  "Y": 613.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 37.996706915477489019394852221012115478515625,
+            "X": 668.461031833150400416343472898006439208984375,
+            "Y": 573.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "45",
+            "Description": "PIP middle",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 667.461031833150400416343472898006439208984375,
+                  "Y": 492.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 708.4577387486278894357383251190185546875,
+                  "Y": 492.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 708.4577387486278894357383251190185546875,
+                  "Y": 531.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 667.461031833150400416343472898006439208984375,
+                  "Y": 531.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 40.996706915477489019394852221012115478515625,
+            "X": 667.461031833150400416343472898006439208984375,
+            "Y": 492.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "46",
+            "Description": "PIP index",
+            "Height": 39.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 787.461031833150400416343472898006439208984375,
+                  "Y": 529.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 827.4577387486278894357383251190185546875,
+                  "Y": 529.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 827.4577387486278894357383251190185546875,
+                  "Y": 569.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 787.461031833150400416343472898006439208984375,
+                  "Y": 569.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 787.461031833150400416343472898006439208984375,
+            "Y": 529.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "47",
+            "Description": "MCP index",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 762.461031833150400416343472898006439208984375,
+                  "Y": 606.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 800.4577387486278894357383251190185546875,
+                  "Y": 606.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 800.4577387486278894357383251190185546875,
+                  "Y": 645.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 762.461031833150400416343472898006439208984375,
+                  "Y": 645.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 37.996706915477489019394852221012115478515625,
+            "X": 762.461031833150400416343472898006439208984375,
+            "Y": 606.68789144050106187933124601840972900390625
+          }
+        ],
+        "Visibility": "AlwaysVisible",
+        "QuestionID": "QID5_1",
+        "Answers": {
+          "1": {
+            "Display": "Off"
+          },
+          "2": {
+            "Display": "On"
+          }
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5_2",
+      "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Which joints on your right side have you had replaced? (Please reference the illustration for joints of the hands and wrists)&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q21",
+        "QuestionType": "HotSpot",
+        "Selector": "OnOff",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
+        "Choices": {
+          "19": {
+            "Display": "Shoulder"
+          },
+          "35": {
+            "Display": "Elbow"
+          },
+          "36": {
+            "Display": "Knee"
+          },
+          "38": {
+            "Display": "MCP thumb"
+          },
+          "39": {
+            "Display": "PIP thumb"
+          },
+          "40": {
+            "Display": "MCP pinky"
+          },
+          "41": {
+            "Display": "PIP pinky"
+          },
+          "42": {
+            "Display": "MCP ring"
+          },
+          "43": {
+            "Display": "PIP ring"
+          },
+          "44": {
+            "Display": "MCP middle"
+          },
+          "45": {
+            "Display": "PIP middle"
+          },
+          "46": {
+            "Display": "PIP index"
+          },
+          "47": {
+            "Display": "MCP index"
+          }
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID5\/SelectableChoice\/23",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID5\/SelectableChoice\/23",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID5",
+              "QuestionIDFromLocator": "QID5",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        },
+        "ChoiceOrder": [
+          "19",
+          "35",
+          "36",
+          "38",
+          "39",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "45",
+          "46",
+          "47"
+        ],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 48,
+        "NextAnswerId": 3,
+        "Height": 1248,
+        "Width": 1000,
+        "GraphicID": "IM_elzkG7uuJg2oxs9",
+        "Regions": [
+          {
+            "ChoiceID": "19",
+            "Description": "Shoulder",
+            "Height": 49.43945720250525255323736928403377532958984375,
+            "Shapes": [
+              [
+                {
+                  "X": 715.461031833150400416343472898006439208984375,
+                  "Y": 244.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 765.4577387486278894357383251190185546875,
+                  "Y": 244.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 765.4577387486278894357383251190185546875,
+                  "Y": 294.12734864300631443256861530244350433349609375
+                },
+                {
+                  "X": 715.461031833150400416343472898006439208984375,
+                  "Y": 294.12734864300631443256861530244350433349609375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 49.996706915477489019394852221012115478515625,
+            "X": 715.461031833150400416343472898006439208984375,
+            "Y": 244.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "35",
+            "Description": "Elbow",
+            "Height": 49.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 664.461031833150400416343472898006439208984375,
+                  "Y": 432.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 713.4577387486278894357383251190185546875,
+                  "Y": 432.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 713.4577387486278894357383251190185546875,
+                  "Y": 482.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 664.461031833150400416343472898006439208984375,
+                  "Y": 482.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 48.996706915477489019394852221012115478515625,
+            "X": 664.461031833150400416343472898006439208984375,
+            "Y": 432.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "36",
+            "Description": "Knee",
+            "Height": 48.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 780.461031833150400416343472898006439208984375,
+                  "Y": 910.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 830.4577387486278894357383251190185546875,
+                  "Y": 910.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 830.4577387486278894357383251190185546875,
+                  "Y": 959.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 780.461031833150400416343472898006439208984375,
+                  "Y": 959.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 49.996706915477489019394852221012115478515625,
+            "X": 780.461031833150400416343472898006439208984375,
+            "Y": 910.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "38",
+            "Description": "MCP thumb",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 126.461031833150400416343472898006439208984375,
+                  "Y": 816.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 166.4577387486278894357383251190185546875,
+                  "Y": 816.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 166.4577387486278894357383251190185546875,
+                  "Y": 855.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 126.461031833150400416343472898006439208984375,
+                  "Y": 855.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 126.461031833150400416343472898006439208984375,
+            "Y": 816.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "39",
+            "Description": "PIP thumb",
+            "Height": 35.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 76.461031833150400416343472898006439208984375,
+                  "Y": 734.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 116.4577387486278894357383251190185546875,
+                  "Y": 734.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 116.4577387486278894357383251190185546875,
+                  "Y": 770.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 76.461031833150400416343472898006439208984375,
+                  "Y": 770.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 76.461031833150400416343472898006439208984375,
+            "Y": 734.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "40",
+            "Description": "MCP pinky",
+            "Height": 37.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 451.461031833150400416343472898006439208984375,
+                  "Y": 661.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 488.4577387486278894357383251190185546875,
+                  "Y": 661.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 488.4577387486278894357383251190185546875,
+                  "Y": 699.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 451.461031833150400416343472898006439208984375,
+                  "Y": 699.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 36.996706915477489019394852221012115478515625,
+            "X": 451.461031833150400416343472898006439208984375,
+            "Y": 661.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "41",
+            "Description": "PIP pinky",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 498.461031833150400416343472898006439208984375,
+                  "Y": 584.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 537.4577387486278894357383251190185546875,
+                  "Y": 584.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 537.4577387486278894357383251190185546875,
+                  "Y": 623.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 498.461031833150400416343472898006439208984375,
+                  "Y": 623.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 38.996706915477489019394852221012115478515625,
+            "X": 498.461031833150400416343472898006439208984375,
+            "Y": 584.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "42",
+            "Description": "MCP ring",
+            "Height": 37.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 370.461031833150400416343472898006439208984375,
+                  "Y": 609.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 407.45773874862783259231946431100368499755859375,
+                  "Y": 609.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 407.45773874862783259231946431100368499755859375,
+                  "Y": 647.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 370.461031833150400416343472898006439208984375,
+                  "Y": 647.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 36.99670691547743217597599141299724578857421875,
+            "X": 370.461031833150400416343472898006439208984375,
+            "Y": 609.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "43",
+            "Description": "PIP ring",
+            "Height": 37.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 383.461031833150400416343472898006439208984375,
+                  "Y": 520.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 422.45773874862783259231946431100368499755859375,
+                  "Y": 520.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 422.45773874862783259231946431100368499755859375,
+                  "Y": 558.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 383.461031833150400416343472898006439208984375,
+                  "Y": 558.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 38.99670691547743217597599141299724578857421875,
+            "X": 383.461031833150400416343472898006439208984375,
+            "Y": 520.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "44",
+            "Description": "MCP middle",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 279.461031833150400416343472898006439208984375,
+                  "Y": 574.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 319.4577387486278894357383251190185546875,
+                  "Y": 574.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 319.4577387486278894357383251190185546875,
+                  "Y": 613.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 279.461031833150400416343472898006439208984375,
+                  "Y": 613.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 279.461031833150400416343472898006439208984375,
+            "Y": 574.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "45",
+            "Description": "PIP middle",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 279.461031833150400416343472898006439208984375,
+                  "Y": 492.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 319.4577387486278894357383251190185546875,
+                  "Y": 492.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 319.4577387486278894357383251190185546875,
+                  "Y": 531.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 279.461031833150400416343472898006439208984375,
+                  "Y": 531.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 39.996706915477489019394852221012115478515625,
+            "X": 279.461031833150400416343472898006439208984375,
+            "Y": 492.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "46",
+            "Description": "PIP index",
+            "Height": 38.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 160.461031833150400416343472898006439208984375,
+                  "Y": 529.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 199.4577387486278894357383251190185546875,
+                  "Y": 529.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 199.4577387486278894357383251190185546875,
+                  "Y": 568.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 160.461031833150400416343472898006439208984375,
+                  "Y": 568.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 38.996706915477489019394852221012115478515625,
+            "X": 160.461031833150400416343472898006439208984375,
+            "Y": 529.68789144050106187933124601840972900390625
+          },
+          {
+            "ChoiceID": "47",
+            "Description": "MCP index",
+            "Height": 36.43945720250530939665623009204864501953125,
+            "Shapes": [
+              [
+                {
+                  "X": 186.461031833150400416343472898006439208984375,
+                  "Y": 607.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 223.4577387486278894357383251190185546875,
+                  "Y": 607.68789144050106187933124601840972900390625
+                },
+                {
+                  "X": 223.4577387486278894357383251190185546875,
+                  "Y": 644.1273486430063712759874761104583740234375
+                },
+                {
+                  "X": 186.461031833150400416343472898006439208984375,
+                  "Y": 644.1273486430063712759874761104583740234375
+                }
+              ]
+            ],
+            "Type": "Polygon",
+            "Width": 36.996706915477489019394852221012115478515625,
+            "X": 186.461031833150400416343472898006439208984375,
+            "Y": 607.68789144050106187933124601840972900390625
+          }
+        ],
+        "Visibility": "AlwaysVisible",
+        "QuestionID": "QID5_2",
+        "Answers": {
+          "1": {
+            "Display": "Off"
+          },
+          "2": {
+            "Display": "On"
+          }
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID6",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Dress yourself including tying shoelaces and doing buttons?"
+          },
+          "2": {
+            "Display": "Shampoo your hair?"
+          },
+          "3": {
+            "Display": "Stand up from your chair?"
+          },
+          "4": {
+            "Display": "Get in and out of bed?"
+          },
+          "5": {
+            "Display": "Cut your meat?"
+          },
+          "6": {
+            "Display": "Lift a full cup or glass to your mouth?"
+          },
+          "7": {
+            "Display": "Open a new carton of milk?"
+          },
+          "8": {
+            "Display": "Open jars that have been previously opened?"
+          },
+          "9": {
+            "Display": "Turn faucets on and off?"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 10,
+        "NextAnswerId": 5,
+        "Answers": {
+          "1": {
+            "Display": "Without ANY difficulty"
+          },
+          "2": {
+            "Display": "With SOME difficulty"
+          },
+          "3": {
+            "Display": "With MUCH difficulty"
+          },
+          "4": {
+            "Display": "UNABLE to do"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID6",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Walk outdoors on flat ground?"
+          },
+          "2": {
+            "Display": "Walk two miles or three kilometers, if you wish?"
+          },
+          "3": {
+            "Display": "Participate in recreational activities and sports as you would like, if you wish?"
+          },
+          "4": {
+            "Display": "Climb up 5 steps?"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 10,
+        "NextAnswerId": 5,
+        "Answers": {
+          "1": {
+            "Display": "Without ANY difficulty"
+          },
+          "2": {
+            "Display": "With SOME difficulty"
+          },
+          "3": {
+            "Display": "With MUCH difficulty"
+          },
+          "4": {
+            "Display": "UNABLE to do"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DataExportTag": "QID7",
+        "QuestionID": "QID7",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID8",
+        "QuestionType": "MC",
+        "Selector": "MAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please check any aids or devices that you use for any of the above activities:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Cane"
+          },
+          "2": {
+            "Display": "Crutches"
+          },
+          "3": {
+            "Display": "Walker"
+          },
+          "4": {
+            "Display": "Wheelchair"
+          },
+          "5": {
+            "Display": "Devices used for dressing"
+          },
+          "6": {
+            "Display": "Built up or special utensils"
+          },
+          "7": {
+            "Display": "Jar opener"
+          },
+          "8": {
+            "Display": "Special or built up chair"
+          },
+          "9": {
+            "Display": "Other"
+          },
+          "10": {
+            "Display": "None of the above",
+            "ExclusiveAnswer": true
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "AnalyzeChoices": {
+          "10": "No"
+        },
+        "Language": [],
+        "NextChoiceId": 11,
+        "NextAnswerId": 1,
+        "QuestionID": "QID8",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;<\/p>",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8_1",
+      "SecondaryAttribute": "Please specify any other aids or devices:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID8_1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please specify any other aids or devices:\u00a0",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID8_1",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID8\/SelectableChoice\/9",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please check any aids or devices that you use for any of the above activities:&nbsp;<\/span> <span class=\"LeftOpDesc\">Other<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID8\/SelectableChoice\/9",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID8",
+              "QuestionIDFromLocator": "QID8",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID9",
+        "QuestionType": "MC",
+        "Selector": "MAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please check any categories for which you usually need help from another person:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Dressing or grooming"
+          },
+          "2": {
+            "Display": "Rising from a seated or horizontal position"
+          },
+          "3": {
+            "Display": "Eating"
+          },
+          "4": {
+            "Display": "Walking"
+          },
+          "5": {
+            "Display": "Gripping and opening things"
+          },
+          "6": {
+            "Display": "None of the above",
+            "ExclusiveAnswer": true
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "AnalyzeChoices": {
+          "6": "No"
+        },
+        "Language": [],
+        "NextChoiceId": 7,
+        "NextAnswerId": 1,
+        "QuestionID": "QID9",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Wash and dry your body?"
+          },
+          "2": {
+            "Display": "Take a tub bath?"
+          },
+          "3": {
+            "Display": "Get on and off the toilet?"
+          },
+          "4": {
+            "Display": "Reach down and get a 5-pound object (e.g. a bag of sugar) from just above your head?"
+          },
+          "10": {
+            "Display": "Bend down and pick up clothing from the floor?"
+          },
+          "11": {
+            "Display": "Open car doors?"
+          },
+          "12": {
+            "Display": "Get in and out of a car?"
+          },
+          "13": {
+            "Display": "Run errands and shop?"
+          },
+          "14": {
+            "Display": "Do chores such as vacuuming or yardwork?"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 15,
+        "NextAnswerId": 5,
+        "Answers": {
+          "1": {
+            "Display": "Without ANY difficulty"
+          },
+          "2": {
+            "Display": "With SOME difficulty"
+          },
+          "3": {
+            "Display": "With MUCH difficulty"
+          },
+          "4": {
+            "Display": "UNABLE to do"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DataExportTag": "QID10",
+        "QuestionID": "QID10",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID11",
+        "QuestionType": "MC",
+        "Selector": "MAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Raised toilet seat"
+          },
+          "2": {
+            "Display": "Bathtub seat"
+          },
+          "3": {
+            "Display": "Bathtub bar"
+          },
+          "4": {
+            "Display": "Long-handled appliances for reach"
+          },
+          "5": {
+            "Display": "Long-handles appliances in the bathroom"
+          },
+          "6": {
+            "Display": "Other"
+          },
+          "7": {
+            "Display": "None of the above",
+            "ExclusiveAnswer": true
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "AnalyzeChoices": {
+          "7": "No"
+        },
+        "Language": [],
+        "NextChoiceId": 8,
+        "NextAnswerId": 1,
+        "QuestionID": "QID11",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/p>",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11_1",
+      "SecondaryAttribute": "Please specify any other aids or devices:",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please specify any other aids or devices:",
+        "DefaultChoices": false,
+        "DataExportTag": "Q20",
+        "QuestionID": "QID11_1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please specify any other aids or devices:",
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID11\/SelectableChoice\/6",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/span> <span class=\"LeftOpDesc\">Other<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID11\/SelectableChoice\/6",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID11",
+              "QuestionIDFromLocator": "QID11",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        },
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>\n\t\t\n\t\n\t\n\t\t<\/p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "MC",
+        "Selector": "MAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please check any categories for which you usually need help from another person:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Hygiene"
+          },
+          "2": {
+            "Display": "Reach"
+          },
+          "3": {
+            "Display": "Errands and chores"
+          },
+          "4": {
+            "Display": "None of the above",
+            "ExclusiveAnswer": true
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "AnalyzeChoices": {
+          "7": "No",
+          "4": "No"
+        },
+        "Language": [],
+        "NextChoiceId": 8,
+        "NextAnswerId": 1,
+        "QuestionText_Unsafe": "<p>\n\t\t\n\t\n\t\n\t\t<\/p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "DataExportTag": "QID12",
+        "QuestionID": "QID12",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID13",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "Choices": {
+          "1": {
+            "Display": "Get a good night's sleep?"
+          },
+          "2": {
+            "Display": "Deal with feelings of anxiety or being nervous?"
+          },
+          "3": {
+            "Display": "Deal with feelings of depression or feeling blue?"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 15,
+        "NextAnswerId": 5,
+        "Answers": {
+          "1": {
+            "Display": "Without ANY difficulty"
+          },
+          "2": {
+            "Display": "With SOME difficulty"
+          },
+          "3": {
+            "Display": "With MUCH difficulty"
+          },
+          "4": {
+            "Display": "UNABLE to do"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DataExportTag": "QID13",
+        "QuestionID": "QID13",
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "OCAC",
+      "PrimaryAttribute": "OCAC_9tUwfRtzqiYgRcV",
+      "SecondaryAttribute": "OC_3yfQJmljbI6EbZz",
+      "TertiaryAttribute": "WebService",
+      "Payload": {
+        "outcomeId": "OC_3yfQJmljbI6EbZz",
+        "contextId": "SV_6LLd4cTSizcudI9",
+        "taskRegistryId": "WebService",
+        "version": "2",
+        "triggerAction": "WebService",
+        "requestType": "POST",
+        "contentType": "JSON",
+        "authId": -1,
+        "authName": "None",
+        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "dependencies": [],
+        "keyValues": {
+          "ppm_id": "${e:\/\/Field\/ppm_id}",
+          "response_id": "${e:\/\/Field\/ResponseID}",
+          "ppm_study": "${e:\/\/Field\/ppm_study}",
+          "survey_id": "${e:\/\/Field\/SurveyID}"
+        },
+        "headers": {
+          "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
+        },
+        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "authUser": {
+          "userId": "UR_6gTkor673S0UxHD",
+          "brandId": "hms"
+        },
+        "taskNumber": 1,
+        "ownerObject": {
+          "orgId": "hms",
+          "userId": "UR_6gTkor673S0UxHD"
+        },
+        "elementConfigured": true,
+        "actionId": "OCAC_9tUwfRtzqiYgRcV",
+        "surveyId": "SV_6LLd4cTSizcudI9",
+        "createdAt": 1604928311724,
+        "updatedAt": 1604928395832,
+        "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
+        "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
+        "credentials": [],
+        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png"
+      }
+    },
+    {
+      "SurveyID": "SV_6JNPt6jF8ihzkyN",
+      "Element": "TR",
+      "PrimaryAttribute": "OC_3yfQJmljbI6EbZz",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "OnSurveyResponse",
+      "Payload": {
+        "Name": "POST to PPM Data Service",
+        "EventType": "OnSurveyResponse",
+        "Type": "OnSurveyComplete",
+        "LogicV2": {
+          "type": "always",
+          "children": []
+        },
+        "EventData": {
+          "fields": []
+        },
+        "eventContext": {
+          "operations": [
+            "CREATE",
+            "UPDATE"
+          ]
+        },
+        "branches": [],
+        "Loops": [],
+        "elementConfigured": true,
+        "disabled": false,
+        "TriggerAction": "Outcome",
+        "logicCompleted": true,
+        "unconfigured": false
+      }
+    }
+  ]
+}
