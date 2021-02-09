@@ -177,7 +177,7 @@ DBMI_CLIENT_CONFIG = {
 # Api settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'fhirquestionnaire.ppmauth.PPMAdminOrOwnerPermission',
+        'dbmi_client.authz.DBMIAdminPermission',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
