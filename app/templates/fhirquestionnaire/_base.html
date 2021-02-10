@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>People-Powered Medicine</title>
 
     {% load staticfiles %}
@@ -11,9 +12,9 @@
 
     <meta name="intercoolerjs:use-actual-http-method" content="true"/>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script type='text/javascript' src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.0.min.js"></script>
+    <script type='text/javascript' src="https://intercoolerjs.org/release/intercooler-1.2.3.min.js"></script>
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -23,6 +24,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fhirquestionnaire/css/animate.css' %}" />
 
     {% block includes %}{% endblock %}
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'fhirquestionnaire/favicon/apple-icon-57x57.png' %}/">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'fhirquestionnaire/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'fhirquestionnaire/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'fhirquestionnaire/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'fhirquestionnaire/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'fhirquestionnaire/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'fhirquestionnaire/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'fhirquestionnaire/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'fhirquestionnaire/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'fhirquestionnaire/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'fhirquestionnaire/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'fhirquestionnaire/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'fhirquestionnaire/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'fhirquestionnaire/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'fhirquestionnaire/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
 
 </head>
 <body>
