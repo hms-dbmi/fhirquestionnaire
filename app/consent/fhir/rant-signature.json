@@ -1,0 +1,16 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "rant-signature",
+  "status": "active",
+  "date": "2020-07-23",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "display-1",
+      "text": "Typing your name below means that you agree to participate in this research study.",
+      "type": "display"
+    }
+  ]
+}

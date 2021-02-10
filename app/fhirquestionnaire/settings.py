@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'dbmi_client',
     'api',
     'pdf',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,7 @@ SESSION_COOKIE_DOMAIN = get_str('COOKIE_DOMAIN', required=True)
 SESSION_COOKIE_AGE = 86400
 SESSION_COOKIE_SECURE = not get_bool('DJANGO_DEBUG', default=False)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -160,7 +162,6 @@ DBMI_CLIENT_CONFIG = {
     # AuthZ
     'AUTHZ_ADMIN_GROUP': 'ppm-admins',
     'AUTHZ_ADMIN_PERMISSION': 'ADMIN',
-    'JWT_AUTHZ_NAMESPACE': get_str('DBMI_JWT_AUTHZ_NAMESPACE', required=False),
     'JWT_COOKIE_DOMAIN': get_str('COOKIE_DOMAIN', required=True),
 
     # Auth0
@@ -176,7 +177,7 @@ DBMI_CLIENT_CONFIG = {
 # Api settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'fhirquestionnaire.ppmauth.PPMAdminOrOwnerPermission',
+        'dbmi_client.authz.DBMIAdminPermission',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

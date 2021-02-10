@@ -1,4 +1,5 @@
 import threading
+from distutils.util import strtobool
 
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
@@ -6,6 +7,7 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
+from dbmi_client.settings import dbmi_settings
 from dbmi_client.auth import dbmi_user
 from dbmi_client.authn import get_jwt_email
 
@@ -13,11 +15,15 @@ from ppmutils.ppm import PPM
 from ppmutils.p2md import P2MD
 from ppmutils.fhir import FHIR as PPMFHIR
 from fhirquestionnaire.fhir import FHIR
-from consent.forms import ASDTypeForm, ASDGuardianQuiz, ASDIndividualQuiz, \
-    ASDIndividualSignatureForm, ASDGuardianSignatureForm, ASDWardSignatureForm
-from consent.forms import NEERSignatureForm
-from api.views import ConsentView
-
+from consent.forms import ASDTypeForm
+from consent.forms import ASDGuardianQuiz
+from consent.forms import ASDIndividualQuiz
+from consent.forms import ASDIndividualSignatureForm
+from consent.forms import ASDGuardianSignatureForm
+from consent.forms import ASDWardSignatureForm
+from consent import forms
+from questionnaire.views import get_return_url
+from api.views import ConsentView as APIConsentView
 
 import logging
 logger = logging.getLogger(__name__)
@@ -28,75 +34,119 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         logger.warning('Index view')
 
+        # Get return URL
+        get_return_url(request)
+
         return render_error(request,
                             title='Consent Not Specified',
                             message='A consent must be specified.',
                             support=False)
 
 
-class ProjectView(View):
+class StudyView(View):
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Get the project ID
-        project_id = kwargs.get('project_id')
-        if not project_id:
+        study = kwargs.get('study')
+        if not study:
             return render_error(request,
-                                title='Project Not Specified',
-                                message='A project must be specified in order to load the needed consent.',
+                                title='Study Not Specified',
+                                message='A study must be specified in order to load the needed consent.',
                                 support=False)
 
         # Set a test cookie
         request.session.set_test_cookie()
 
+        # Get return URL
+        get_return_url(request, study)
+
+        # Pass along querystring if present
+        query_string = "?" + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ""
+
         # Redirect them
-        if project_id == 'neer':
+        if PPM.Study.get(study) is PPM.Study.ASD:
 
-            return redirect(reverse('consent:neer'))
+            return redirect(reverse('consent:asd') + query_string)
 
-        elif project_id == 'asd':
+        elif PPM.Study.from_value(study):
 
-            return redirect(reverse('consent:asd'))
+            return redirect(reverse('consent:consent', kwargs={'study': study}) + query_string)
 
         else:
-            logger.warning('Invalid project ID: {}'.format(project_id))
+            logger.warning('Invalid study ID: {}'.format(study))
             return render_error(request,
-                                title='Invalid Project Specified',
-                                message='A valid project must be specified in order to load the needed consent.',
+                                title='Invalid Study Specified',
+                                message='A valid study must be specified in order to load the needed consent.',
                                 support=False)
 
 
-class NEERView(View):
+class ConsentView(View):
 
     # Set the FHIR ID if the Questionnaire resource
-    questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER)
+    study = None
+    questionnaire_id = None
+    Form = None
+    return_url = None
+
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
+
+    @method_decorator(dbmi_user)
+    def dispatch(self, request, *args, **kwargs):
+
+        # Get study from the URL
+        self.study = kwargs['study']
+        self.questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(self.study)
+
+        # Select form from study
+        self.Form = forms.get_form_for_study(self.study)
+
+        # Get return URL
+        self.return_url = get_return_url(request, self.study)
+
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
+            request.session['demo'] = request.GET.get('demo')
+
+        if 'demo' in request.session:
+            logger.warning(f'PPM/{self.study}: Demo mode: {self.demo(request)}')
+
+        # Proceed with super's implementation.
+        return super(ConsentView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
-
-        # Clearing any leftover sessions
-        request.session.clear()
 
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
-            FHIR.check_patient(patient_email)
+            # If in demo mode, do not check participant and prior submissions
+            if not self.demo(request):
 
-            # Check response
-            FHIR.check_response(self.questionnaire_id, patient_email)
+                # Ensure the current user has a record
+                FHIR.check_patient(patient_email)
+
+                # Check response
+                FHIR.check_consent(self.study, patient_email)
 
             # Create the form
-            form = NEERSignatureForm()
+            form = self.Form()
 
             context = {
+                'study': self.study,
                 'form': form,
-                'return_url': settings.RETURN_URL
+                'return_url': self.return_url
             }
 
             # Build the template response
-            response = render(request, template_name='consent/neer.html', context=context)
+            response = render(request, template_name='consent/{}.html'.format(self.study), context=context)
 
             return response
 
@@ -110,13 +160,13 @@ class NEERView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.warning('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: {}'.format(PPM.Study.title(self.study)))
             return render_error(request,
                                 title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
                                 message='The requested consent does not exist!',
                                 support=False)
 
-        except FHIR.QuestionnaireResponseAlreadyExists:
+        except FHIR.ConsentAlreadyExists:
             logger.warning('Consent already finished')
             return render_error(request,
                                 title='Consent Already Completed',
@@ -126,7 +176,7 @@ class NEERView(View):
 
         except Exception as e:
             logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
-                'request': request, 'project': 'neer', 'questionnaire': self.questionnaire_id,
+                'request': request, 'project': self.study, 'questionnaire': self.questionnaire_id, 'form': self.Form
             })
             return render_error(request,
                                 title='Application Error',
@@ -141,35 +191,41 @@ class NEERView(View):
         patient_email = get_jwt_email(request=request, verify=False)
 
         # Get the form
-        form = NEERSignatureForm(request.POST)
+        form = self.Form(request.POST)
         if not form.is_valid():
 
             # Return the form
             context = {
+                'study': self.study,
                 'form': form,
-                'return_url': settings.RETURN_URL
+                'return_url': self.return_url
             }
 
-            return render(request, template_name='consent/neer.html', context=context)
+            return render(request, template_name='consent/{}.html'.format(self.study), context=context)
 
         # Process the form
         try:
-            FHIR.submit_neer_consent(patient_email, form.cleaned_data)
+            # Submit the consent
+            FHIR.submit_consent(self.study, patient_email, form.cleaned_data, dry=self.demo(request))
 
-            # Submit consent PDF in the background
-            threading.Thread(target=ConsentView.create_consent_document_reference,
-                             args=(request, PPM.Study.NEER.value)).start()
+            if not self.demo(request):
+
+                # Submit consent PDF in the background
+                threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                args=(request, self.study)).start()
 
             # Get the return URL
             context = {
-                'return_url': settings.RETURN_URL,
+                'study': self.study,
+                'return_url': self.return_url,
+                'demo': self.demo(request)
             }
 
             # Get the passed parameters
             return render(request, template_name='consent/success.html', context=context)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.warning('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: {}'.format(PPM.Study.title(self.study)))
             return render_error(request,
                                 title='Consent Does Not Exist: {}'.format(self.questionnaire_id),
                                 message='The requested consent does not exist!',
@@ -185,7 +241,7 @@ class NEERView(View):
                                 support=False)
         except Exception as e:
             logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
-                'request': request, 'project': 'neer', 'questionnaire': self.questionnaire_id,
+                'request': request, 'project': self.study, 'questionnaire': self.questionnaire_id, 'form': self.Form
             })
             return render_error(request,
                                 title='Application Error',
@@ -199,29 +255,56 @@ class ASDView(View):
     # Set the FHIR ID if the Questionnaire resource
     individual_questionnaire_id = 'ppm-asd-consent-guardian-quiz'
     guardian_questionnaire_id = 'ppm-asd-consent-individual-quiz'
+    return_url = None
+
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
+
+    @method_decorator(dbmi_user)
+    def dispatch(self, request, *args, **kwargs):
+
+        # Get return URL
+        self.return_url = get_return_url(request, PPM.Study.ASD)
+
+        # Check for demo mode
+        if dbmi_settings.ENVIRONMENT != 'prod' and 'demo' in request.GET:
+            request.session['demo'] = request.GET.get('demo')
+
+        if 'demo' in request.session:
+            logger.warning(f'PPM/{self.study}: Demo mode: {self.demo(request)}')
+
+        # Proceed with super's implementation.
+        return super(ASDView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def get(self, request, *args, **kwargs):
 
         # Clearing any leftover sessions
-        request.session.clear()
+        [request.session.pop(key, None) for key in ['quiz', 'individual', 'guardian']]
 
         # Get the patient email and ensure they exist
         patient_email = get_jwt_email(request=request, verify=False)
 
         try:
-            FHIR.check_patient(patient_email)
 
-            # Check response
-            FHIR.check_response(self.individual_questionnaire_id, patient_email)
-            FHIR.check_response(self.guardian_questionnaire_id, patient_email)
+            # If in demo mode, do not check participant and prior submissions
+            if not self.demo(request):
+
+                FHIR.check_patient(patient_email)
+
+                # Check response
+                FHIR.check_consent(PPM.Study.ASD.value, patient_email)
 
             # Create the form
             form = ASDTypeForm()
 
             context = {
                 'form': form,
-                'return_url': settings.RETURN_URL
+                'return_url': self.return_url
             }
 
             return render(request, template_name='consent/asd.html', context=context)
@@ -242,7 +325,7 @@ class ASDView(View):
                                 message='The requested consent does not exist!',
                                 support=False)
 
-        except FHIR.QuestionnaireResponseAlreadyExists:
+        except FHIR.ConsentAlreadyExists:
             logger.warning('Consent already finished')
             return render_error(request,
                                 title='Consent Already Completed',
@@ -272,10 +355,10 @@ class ASDView(View):
                 # Return the form
                 context = {
                     'form': form,
-                    'return_url': settings.RETURN_URL
+                    'return_url': self.return_url
                 }
 
-                return render(request, template_name='consent/neer.html', context=context)
+                return render(request, template_name='consent/asd.html', context=context)
 
             # Save it in their session
             request.session['individual'] = form.cleaned_data['individual']
@@ -289,11 +372,13 @@ class ASDView(View):
                 # Get the return URL
                 context = {
                     'form': form,
-                    'return_url': settings.RETURN_URL,
+                    'return_url': self.return_url,
                 }
 
                 # Get the passed parameters
-                return render(request, template_name='consent/asd/ppm-asd-consent-individual-quiz.html', context=context)
+                return render(
+                    request, template_name='consent/asd/ppm-asd-consent-individual-quiz.html', context=context
+                )
             else:
 
                 # Build the quiz form
@@ -302,11 +387,13 @@ class ASDView(View):
                 # Get the return URL
                 context = {
                     'form': form,
-                    'return_url': settings.RETURN_URL,
+                    'return_url': self.return_url,
                 }
 
                 # Get the passed parameters
-                return render(request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html', context=context)
+                return render(
+                    request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html', context=context
+                )
 
         except Exception as e:
             logger.error("Error while submitting consent: {}".format(e), exc_info=True, extra={
@@ -320,6 +407,17 @@ class ASDView(View):
 
 
 class ASDQuizView(View):
+
+    return_url = None
+
+    @method_decorator(dbmi_user)
+    def dispatch(self, request, *args, **kwargs):
+
+        # Get return URL
+        self.return_url = get_return_url(request, PPM.Study.ASD)
+
+        # Proceed with super's implementation.
+        return super(ASDQuizView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
@@ -339,7 +437,7 @@ class ASDQuizView(View):
                     # Return the form
                     context = {
                         'form': form,
-                        'return_url': settings.RETURN_URL
+                        'return_url': self.return_url
                     }
 
                     return render(request, template_name='consent/asd/ppm-asd-consent-individual-quiz.html',
@@ -354,7 +452,7 @@ class ASDQuizView(View):
                 # Get the return URL
                 context = {
                     'form': form,
-                    'return_url': settings.RETURN_URL,
+                    'return_url': self.return_url,
                 }
 
                 # Get the passed parameters
@@ -371,7 +469,7 @@ class ASDQuizView(View):
                     # Return the form
                     context = {
                         'form': form,
-                        'return_url': settings.RETURN_URL
+                        'return_url': self.return_url
                     }
 
                     return render(request, template_name='consent/asd/ppm-asd-consent-guardian-quiz.html',
@@ -386,7 +484,7 @@ class ASDQuizView(View):
                 # Get the return URL
                 context = {
                     'form': form,
-                    'return_url': settings.RETURN_URL,
+                    'return_url': self.return_url,
                 }
 
                 # Get the passed parameters
@@ -404,6 +502,24 @@ class ASDQuizView(View):
 
 
 class ASDSignatureView(View):
+
+    return_url = None
+
+    def demo(self, request):
+        try:
+            # Query params are always string, force to boolean
+            return bool(strtobool(request.session.get('demo', 'false')))
+        except ValueError as e:
+            return False
+
+    @method_decorator(dbmi_user)
+    def dispatch(self, request, *args, **kwargs):
+
+        # Get return URL
+        self.return_url = get_return_url(request, PPM.Study.ASD)
+
+        # Proceed with super's implementation.
+        return super(ASDSignatureView, self).dispatch(request, *args, **kwargs)
 
     @method_decorator(dbmi_user)
     def post(self, request, *args, **kwargs):
@@ -426,24 +542,30 @@ class ASDSignatureView(View):
                     # Return the form
                     context = {
                         'form': form,
-                        'return_url': settings.RETURN_URL
+                        'return_url': self.return_url
                     }
 
-                    return render(request, template_name='consent/asd/individual-signature-part-1.html', context=context)
+                    return render(
+                        request, template_name='consent/asd/individual-signature-part-1.html', context=context
+                    )
 
                 # Build the data
-                forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
+                user_forms = dict({'individual': form.cleaned_data, 'quiz': request.session['quiz']})
 
                 # Submit the data
-                FHIR.submit_asd_individual(patient_email, forms)
+                FHIR.submit_asd_individual(patient_email, user_forms, dry=self.demo(request))
 
-                # Submit consent PDF in the background
-                threading.Thread(target=ConsentView.create_consent_document_reference,
-                                 args=(request, PPM.Study.ASD.value)).start()
+                # If in demo mode, do not create PDF
+                if not self.demo(request):
+
+                    # Submit consent PDF in the background
+                    threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                    args=(request, PPM.Study.ASD.value)).start()
 
                 # Get the return URL
                 context = {
-                    'return_url': settings.RETURN_URL,
+                    'return_url': self.return_url,
+                    'demo': self.demo(request)
                 }
 
                 # Get the passed parameters
@@ -464,27 +586,33 @@ class ASDSignatureView(View):
                         # Return the form
                         context = {
                             'form': form,
-                            'return_url': settings.RETURN_URL
+                            'return_url': self.return_url
                         }
 
                         return render(request, template_name='consent/asd/guardian-signature-part-3.html',
                                       context=context)
 
                     # Build the data
-                    forms = dict({'ward': form.cleaned_data,
-                                 'guardian': request.session['guardian'],
-                                 'quiz': request.session['quiz']})
+                    user_forms = dict({
+                        'ward': form.cleaned_data,
+                        'guardian': request.session['guardian'],
+                        'quiz': request.session['quiz']
+                    })
 
                     # Submit the data
-                    FHIR.submit_asd_guardian(patient_email, forms)
+                    FHIR.submit_asd_guardian(patient_email, user_forms, dry=self.demo(request))
 
-                    # Submit consent PDF in the background
-                    threading.Thread(target=ConsentView.create_consent_document_reference,
-                                     args=(request, PPM.Study.ASD.value)).start()
+                    # If in demo mode, do not create PDF
+                    if not self.demo(request):
+
+                        # Submit consent PDF in the background
+                        threading.Thread(target=APIConsentView.create_consent_document_reference,
+                                        args=(request, PPM.Study.ASD.value)).start()
 
                     # Get the return URL
                     context = {
-                        'return_url': settings.RETURN_URL,
+                        'return_url': self.return_url,
+                        'demo': self.demo(request)
                     }
 
                     # Get the passed parameters
@@ -501,10 +629,12 @@ class ASDSignatureView(View):
                         # Return the form
                         context = {
                             'form': form,
-                            'return_url': settings.RETURN_URL
+                            'return_url': self.return_url
                         }
 
-                        return render(request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context)
+                        return render(
+                            request, template_name='consent/asd/guardian-signature-part-1-2.html', context=context
+                        )
 
                     # Fix the date
                     date = form.cleaned_data['date'].isoformat()
@@ -513,15 +643,13 @@ class ASDSignatureView(View):
                     # Retain their responses
                     request.session['guardian'] = form.cleaned_data
 
-                    logger.debug('Guardian: {}'.format(request.session['guardian']))
-
                     # Make the ward signature form
                     form = ASDWardSignatureForm()
 
                     # Get the return URL
                     context = {
                         'form': form,
-                        'return_url': settings.RETURN_URL,
+                        'return_url': self.return_url,
                     }
 
                     # Get the passed parameters
@@ -537,7 +665,7 @@ class ASDSignatureView(View):
                                 support=False)
 
         except FHIR.QuestionnaireDoesNotExist:
-            logger.warning('Consent does not exist: NEER')
+            logger.warning('Consent does not exist: ASD')
             return render_error(request,
                                 title='Consent Does Not Exist',
                                 message='The requested consent does not exist!',
@@ -583,7 +711,7 @@ class DownloadView(View):
             if not PPMFHIR.get_consent_document_reference(patient=patient_email, study=study, flatten_return=True):
 
                 # Save it
-                ConsentView.create_consent_document_reference(request=request, study=study)
+                APIConsentView.create_consent_document_reference(request=request, study=study)
 
             # Get their ID
             ppm_id = PPMFHIR.query_patient_id(email=patient_email)
@@ -613,7 +741,7 @@ def render_error(request, title=None, message=None, error=None, support=False):
     context = {'error_title': title,
                'error_message': message,
                'error_description': error,
-               'return_url': settings.RETURN_URL,
+               'return_url': request.session['return_url'],
                'support': support}
 
     return render(request, template_name='fhirquestionnaire/error.html', context=context)

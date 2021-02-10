@@ -22,7 +22,7 @@
     <div id="fhirquestionnaire-content" class="js">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form id="form" action="{% url 'questionnaire:neer' %}" method="post">
+                <form id="form" action="{% url 'questionnaire:questionnaire' study=study %}" method="post">
 
                     {% csrf_token %}
                     {% crispy form %}

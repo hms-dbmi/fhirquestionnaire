@@ -1,0 +1,64 @@
+{% extends "consent/_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="no-js col-md-8 col-md-offset-2">
+        <h1>
+            <span class="glyphicon glyphicon-warning-sign" style="color: red;"></span>
+            Incompatible Browser
+        </h1>
+        <p class="lead">
+            This application requires a browser with Javascript enabled. Please retry with another browser.
+        </p>
+        <br /><br />
+        <p>
+            <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Return to the People-Powered Medicine dashboard</a>
+        </p>
+    </div>
+
+    <div id="fhirquestionnaire-content" class="js">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div>
+                    {% include 'consent/rant/_consent.html' %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form id="form" class="form-horizontal" method="POST" action="{% url 'consent:consent' study=study %}"
+                      ic-post-to="{% url 'consent:consent' study=study %}" ic-target="#fhirquestionnaire-content"
+                      ic-replace-target="false" ic-indicator="#submit" ic-select-from-response="#fhirquestionnaire-content"
+                      ic-scroll-to-target="true" ic-scroll-offset="-100">
+
+                    {# Include imports for date picker inputs #}
+                    {{ form.media }}
+
+                    {% bootstrap_form_errors form error_types='non_field_errors' %}
+
+                    {% csrf_token %}
+
+                    <h2 style="text-align: center;">SIGNATURE</h2>
+                    <p><b>Typing your name below means that you agree to participate in this research study.</b></p>
+
+                    {% bootstrap_field form.name form_group_class='form-group col-md-8' placeholder='' %}
+
+                    <div class="form-group">
+                        {% bootstrap_field form.signature form_group_class='col-md-8' placeholder='' %}
+                        {% bootstrap_field form.date form_group_class='col-md-4' %}
+                    </div>
+
+                    <div class="col-xs-12">
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    {% endbuttons %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

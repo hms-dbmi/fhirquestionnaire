@@ -2,15 +2,44 @@ import datetime
 import os
 import json
 
+from django.utils import timezone
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import mark_safe
+from bootstrap_datepicker_plus import DatePickerInput, MonthPickerInput
 from ppmutils.ppm import PPM
 
 from consent.apps import ConsentConfig
 
 import logging
 logger = logging.getLogger(__name__)
+
+
+class SignatureDatePickerInput(DatePickerInput):
+    """
+    This subclass merely enforces a maximum date equal to the current
+    date and ensures this is calculated at render time instead of
+    initialization time.
+    """
+
+    _default_options = {
+        'showClose': True,
+        'showClear': True,
+        'showTodayButton': True,
+        'useCurrent': True,
+    }
+
+    def get_context(self, name, value, attrs):
+        """Return widget context dictionary."""
+
+        # Ensure maxDate has current date
+        self.config['options']['maxDate'] = datetime.datetime.today()\
+            .replace(hour=23, minute=59)\
+                .strftime("%Y-%m-%dT%H:%M:%S")
+
+        return super(SignatureDatePickerInput, self).get_context(
+            name, value, attrs
+        )
 
 
 def _exception_choices(questionnaire_id):
@@ -61,6 +90,7 @@ def _exception_choices(questionnaire_id):
             choices=tuple(choices),
         )
 
+
 def _quiz_fields(questionnaire_id):
     '''
     Takes the id of a Questionnaire resource and returns the form fields
@@ -90,8 +120,26 @@ def _quiz_fields(questionnaire_id):
         return fields
 
 
+def get_form_for_study(study):
+    """
+    Returns the class of form to be used for the study. The study must be a valid PPM study and a Form
+    class must exist for it, or else an error is raised.
+    :param study: The PPM study
+    :type study: PPM.Study
+    :return: A subclass of forms.Form
+    :rtype: forms.Form.__class__
+    """
+    form_class = next(iter([cls for cls in forms.Form.__subclasses__() if hasattr(cls, 'study')
+                            and getattr(cls, 'study') == PPM.Study.enum(study)]), None)
+    if not form_class:
+        raise ValueError(f'"{study}" is either an invalid PPM study, or no form subclass yet exists for it')
+
+    return form_class
+
+
 class NEERSignatureForm(forms.Form):
 
+    study = PPM.Study.NEER
     exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER))
 
     name = forms.CharField(label='Name of participant',
@@ -104,8 +152,50 @@ class NEERSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                           initial=datetime.date.today
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput(attrs={'required': 'required'})
+                           )
+
+
+class RANTSignatureForm(forms.Form):
+
+    study = PPM.Study.RANT
+
+    name = forms.CharField(label='Name of participant',
+                           required=True,
+                           widget=forms.TextInput(attrs={'class': 'form-control'})
+                           )
+    signature = forms.CharField(label='Signature of participant (Please type your name)',
+                                required=True,
+                                widget=forms.TextInput(attrs={'class': 'form-control'})
+                                )
+    date = forms.DateField(label='Date',
+                           required=True,
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
+                           )
+
+
+class EXAMPLESignatureForm(forms.Form):
+
+    study = PPM.Study.EXAMPLE
+    exceptions = _exception_choices(PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.EXAMPLE))
+
+    name = forms.CharField(label='Name of participant',
+                           required=True,
+                           widget=forms.TextInput(attrs={'class': 'form-control'})
+                           )
+    signature = forms.CharField(label='Signature of participant (Please type your name)',
+                                required=True,
+                                widget=forms.TextInput(attrs={'class': 'form-control'})
+                                )
+    date = forms.DateField(label='Date',
+                           required=True,
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -123,6 +213,13 @@ class ASDTypeForm(forms.Form):
         coerce=lambda x: bool(int(x)),
         widget=forms.RadioSelect,
         choices=TYPE_CHOICES,
+    )
+
+    _unused_ = forms.DateField(
+        required=False,
+        input_formats=["%m/%d/%Y"],
+        initial=datetime.date.today,
+        widget=SignatureDatePickerInput()
     )
 
 
@@ -162,8 +259,9 @@ class ASDIndividualSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                           initial=datetime.date.today
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -214,8 +312,9 @@ class ASDGuardianSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                           initial=datetime.date.today
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )
 
 
@@ -229,6 +328,7 @@ class ASDWardSignatureForm(forms.Form):
                                 )
     date = forms.DateField(label='Date',
                            required=True,
-                           widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                           initial=datetime.date.today
+                           input_formats=["%m/%d/%Y"],
+                           initial=datetime.date.today,
+                           widget=SignatureDatePickerInput()
                            )

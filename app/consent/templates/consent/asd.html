@@ -1,6 +1,15 @@
 {% extends "consent/_base.html" %}
 
 {% load bootstrap3 %}
+{% load static %}
+
+{% block javascript %}
+  {{ block.super }}
+
+    {# Load form media, including datepicker media for dynamic forms #}
+    {{ form.media }}
+
+{% endblock %}
 
 {% block content %}
 

@@ -15,10 +15,23 @@
                 <br />
             </div>
         </div>
+        {% if demo %}
+        <div class="row">
+            <div class="col-sm-2 text-right icon-col">
+                <h1><span class="glyphicon glyphicon-floppy-remove" style="color: red;"></span></h1>
+            </div>
+            <div class="col-sm-8 bs-callout bs-callout-danger">
+                <h1>Demo Mode</h1>
+                <p class="lead">You've successfully submitted your consent as a demo, nothing will be saved or persisted. Please contact support if you've reached this page unexpectedly.</p>
+                <br />
+            </div>
+        </div>
+        {% endif %}
+        {% if return_url %}
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="no-js"><p> <a href={{ return_url }}><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Click to return to the People-Powered Medicine Dashboard</a>.</p></div>
-                <div class="js"><p><a href={{ return_url }}><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;You are being redirected to the People-Powered Medicine Dashboard</a>.</p></div>
+                <div class="no-js"><p> <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Click to return to the People-Powered Medicine Dashboard</a>.</p></div>
+                <div class="js"><p><a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;You are being redirected to the People-Powered Medicine Dashboard</a>.</p></div>
             </div>
         </div>
         <script type="application/javascript">
@@ -26,6 +39,7 @@
                 window.location.href = '{{ return_url }}';
             }, 2000);
         </script>
+        {% endif %}
     </div>
 
 {% endblock %}

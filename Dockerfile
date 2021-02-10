@@ -1,7 +1,7 @@
 FROM python:3.6-slim-stretch AS builder
 
 # Install python requirements
-COPY requirements.txt /requirements.txt
+COPY requirements /requirements
 
 # Install requirements
 RUN apt-get update \
@@ -12,17 +12,17 @@ RUN apt-get update \
         libfontconfig \
         libmariadbclient-dev \
         g++ libssl-dev \
-    && pip install -r /requirements.txt
+    && pip install -r /requirements/requirements.txt
 
 # Install requirements for PDF generation
 RUN mkdir /tmp/phantomjs \
     && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
            | tar -xj --strip-components=1 -C /tmp/phantomjs
 
-FROM hmsdbmitc/dbmisvc:3.6-slim
+FROM hmsdbmitc/dbmisvc:slim-python3.6-0.1.0
 
 # Install python requirements
-COPY requirements.txt /requirements.txt
+COPY requirements /requirements
 
 # Install requirements
 RUN apt-get update \
@@ -34,7 +34,7 @@ RUN apt-get update \
 COPY --from=builder /root/.cache /root/.cache
 
 # Install Python packages
-RUN pip install -r /requirements.txt
+RUN pip install -r /requirements/requirements.txt
 
 # Copy PhantomJS binary
 COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs

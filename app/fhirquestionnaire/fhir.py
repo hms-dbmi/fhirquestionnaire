@@ -1,6 +1,7 @@
 import requests
 import datetime
 import uuid
+import hashlib
 import base64
 from urllib.parse import quote, urlencode
 
@@ -27,6 +28,7 @@ from fhirclient.models.bundle import Bundle, BundleEntry, BundleEntryRequest
 from fhirclient.models.questionnaire import Questionnaire, QuestionnaireItem
 from fhirclient.models.questionnaireresponse import QuestionnaireResponse, QuestionnaireResponseItem, QuestionnaireResponseItemAnswer
 from ppmutils.ppm import PPM
+from ppmutils.fhir import FHIR as PPMFHIR
 
 import logging
 logger = logging.getLogger(__name__)
@@ -34,12 +36,137 @@ logger = logging.getLogger(__name__)
 
 class FHIR:
 
+    # Coding systems for questionnaires
+    input_type_system = 'https://peoplepoweredmedicine.org/questionnaire/input/type'
+    input_range_system = 'https://peoplepoweredmedicine.org/questionnaire/input/range'
+
     @staticmethod
     def client():
         return client.FHIRClient(settings={'app_id': settings.FHIR_APP_ID, 'api_base': settings.FHIR_URL})
 
     @staticmethod
-    def submit_asd_individual(patient_email, forms):
+    def submit_consent(study, patient_email, form, pdf=None, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param study: The study for which the consent was completed
+        :type study: str
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The form filled out for the consent
+        :type form: Form
+        :param pdf: The generated PDF of the consent as raw data
+        :type pdf: bytearray
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
+
+        # Get the exception codes from the form
+        data = dict(form)
+        codes = data.get('exceptions', [])
+        name = data['name']
+        signature = data['signature']
+        date = data['date'].isoformat()
+
+        # Build a list of resources to create
+        resources = []
+
+        # Check if consent has questionnaire
+        if PPM.Questionnaire.consent_questionnaire_for_study(study):
+
+            # Get the questionnaire
+            questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.consent_questionnaire_for_study(study), patient_email, dry)
+
+            # Map exception codes to linkId
+            # TODO: Figure out how to generalize the handling of exceptions per consent
+            exception_codes = PPM.Questionnaire.exceptions(PPM.Questionnaire.consent_questionnaire_for_study(study))
+
+            # Build answers
+            answers = {linkId: code in codes for linkId, code in exception_codes.items()}
+
+            # Create needed resources
+            questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
+            contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
+            exceptions = FHIR._consent_exceptions(codes)
+            consent = FHIR._consent(patient, date, exceptions)
+
+            resources.extend([questionnaire_response, consent, contract])
+        else:
+
+            # Get patient
+            patient = FHIR.get_patient(patient_email)
+
+            # Create needed resources
+            contract = FHIR._contract(patient, date, name, signature)
+            consent = FHIR._consent(patient, date)
+
+            resources.extend([consent, contract])
+
+        # Get the signature HTML
+        text = '<div>{}</div>'.format(render_to_string('consent/{}/_consent.html'.format(study)))
+
+        # Generate composition
+        composition = FHIR._composition(patient, date, text, [consent, contract])
+
+        # Add it to the resources
+        resources.append(composition)
+
+        # Bundle it into a transaction
+        bundle = FHIR._bundle(resources)
+
+        # Save it
+        if dry:
+            logger.warning('PPM/{}: Dry mode, not persisting responses'.format(study))
+        else:
+            FHIR._post_bundle(bundle)
+
+    @staticmethod
+    def submit_questionnaire(study, patient_email, form, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param study: The study for which the questionnaire was completed
+        :type study: str
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The form filled out for the questionnaire
+        :type form: Form
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
+        # Get the questionnaire
+        questionnaire, patient = FHIR.get_resources(PPM.Questionnaire.questionnaire_for_study(study), patient_email, dry)
+
+        # Just use now
+        date = datetime.datetime.utcnow().isoformat()
+
+        # Build the response
+        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, form)
+
+        # Bundle it into a transaction
+        bundle = FHIR._bundle([questionnaire_response])
+
+        # Save it
+        if dry:
+            logger.warning('PPM/{}: Dry mode, not persisting responses'.format(study))
+        else:
+            FHIR._post_bundle(bundle)
+
+    @staticmethod
+    def submit_asd_individual(patient_email, forms, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The forms filled out for the questionnaire
+        :type form: [Form]
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -65,10 +192,14 @@ class FHIR:
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
         except (IndexError, KeyError):
-            logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': FHIR._obfuscate_email(patient_email),
-            })
-            raise FHIR.PatientDoesNotExist
+            # Check if this is testing/dry
+            if not dry:
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                })
+                raise FHIR.PatientDoesNotExist
+            else:
+                patient = FHIR.get_demo_patient(patient_email)
 
         # Get the exception codes from the form
         individual_form = forms['individual']
@@ -107,7 +238,18 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_asd_guardian(patient_email, forms):
+    def submit_asd_guardian(patient_email, forms, dry=False):
+        """
+        Accepts the filled out form for the given study and submits the data to FHIR for retaining
+        :param patient_email: The current user's email
+        :type patient_email: str
+        :param form: The forms filled out for the questionnaire
+        :type form: [Form]
+        :param dry: If True, do not persist questionnaire response to store
+        :type dry: bool
+        :return: Whether the operation succeeded or not
+        :rtype: bool
+        """
 
         # Get the questionnaires and patient
         bundle = FHIR._query_resources([
@@ -139,10 +281,14 @@ class FHIR:
         try:
             patient = next(entry.resource for entry in bundle.entry[1].resource.entry)
         except (IndexError, KeyError, StopIteration):
-            logger.error("Patient could not be fetched", exc_info=True, extra={
-                'patient': FHIR._obfuscate_email(patient_email),
-            })
-            raise FHIR.PatientDoesNotExist
+            # Check if this is testing/dry
+            if not dry:
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                })
+                raise FHIR.PatientDoesNotExist
+            else:
+                patient = FHIR.get_demo_patient(patient_email)
 
         # Process the guardian's resources first
 
@@ -242,93 +388,61 @@ class FHIR:
         FHIR._post_bundle(bundle)
 
     @staticmethod
-    def submit_neer_consent(patient_email, form):
+    def get_demo_patient(email):
+        """
+        Returns an instance of a FHIR Patient using dummy info for testing
 
-        # Get the questionnaire
-        questionnaire_id = PPM.Questionnaire.consent_questionnaire_for_study(PPM.Study.NEER)
-        questionnaire, patient = FHIR.get_resources(questionnaire_id, patient_email)
-
-        # Get the exception codes from the form
-        data = dict(form)
-        codes = data.get('exceptions', [])
-        name = data['name']
-        signature = data['signature']
-        date = data['date'].isoformat()
-
-        # Map exception codes to linkId
-        exception_codes = {
-            'question-1': '82078001',
-            'question-2': '258435002',
-            'question-3': '284036006',
-            'question-4': '702475000',
-        }
-
-        # Build answers
-        answers = {linkId: code in codes for linkId, code in exception_codes.items()}
-
-        # Create needed resources
-        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, answers)
-        contract = FHIR._contract(patient, date, name, signature, questionnaire_response)
-        exceptions = FHIR._consent_exceptions(codes)
-        consent = FHIR._consent(patient, date, exceptions)
-
-        # Get the signature HTML
-        text = '<div>{}</div>'.format(render_to_string('consent/neer/_consent.html'))
-
-        # Generate composition
-        composition = FHIR._composition(patient, date, text, [consent, contract])
-
-        # Bundle it into a transaction
-        bundle = FHIR._bundle([questionnaire_response, consent, contract, composition])
-
-        # Save it
-        FHIR._post_bundle(bundle)
+        :param email: The email of the testing user
+        :type email: str
+        :return: Test Patient resource object
+        :rtype: Patient
+        """
+        return Patient(jsondict={
+            'id': 'TEST',
+            'identifier': [
+                {
+                    'system': PPMFHIR.patient_email_identifier_system,
+                    'value': email
+                }
+            ]
+        })
 
     @staticmethod
-    def submit_neer_questionnaire(patient_email, form):
+    def post_resource(json):
+        """
+        Builds a FHIR resource from the passed JSON and posts it to the
+        current server. Can be any valid FHIR resource that already
+        exists in the server.
+        :param json: JSON FHIR Resource
+        :return: True if updated successfully, False otherwise
+        """
+        # Track response for debugging
+        content = None
+        try:
+            # Post it
+            response = requests.post(settings.FHIR_URL,
+                                     headers={'content-type': 'application/json'},
+                                     json=json)
+            content = response.content
+            response.raise_for_status()
 
-        # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources('ppm-neer-registration-questionnaire', patient_email)
-
-        # Just use now
-        date = datetime.datetime.utcnow().isoformat()
-
-        # Build the response
-        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, form)
-
-        # Bundle it into a transaction
-        bundle = FHIR._bundle([questionnaire_response])
-
-        # Save it
-        FHIR._post_bundle(bundle)
-
-    @staticmethod
-    def submit_asd_questionnaire(patient_email, form):
-
-        # Get the questionnaire
-        questionnaire, patient = FHIR.get_resources('ppm-asd-questionnaire', patient_email)
-
-        # Just use now
-        date = datetime.datetime.utcnow().isoformat()
-
-        # Build the response
-        questionnaire_response = FHIR._questionnaire_response(questionnaire, patient, date, form)
-
-        # Bundle it into a transaction
-        bundle = FHIR._bundle([questionnaire_response])
-
-        # Save it
-        FHIR._post_bundle(bundle)
-
+        except Exception as e:
+            logger.error(
+                "Could not post resource: {}".format(e),
+                exc_info=True, extra={
+                    'response': content,
+                }
+            )
+            return False
 
     @staticmethod
     def update_resource(json):
-        '''
+        """
         Builds a FHIR resource from the passed JSON and updates the current server. Can be any valid
         FHIR resource that already exists in the server.
         :param json: JSON FHIR Resource
         :return: True if updated successfully, False otherwise
-        '''
+        """
 
         try:
             # Prepare the client
@@ -384,7 +498,7 @@ class FHIR:
         return bundle
 
     @staticmethod
-    def get_resources(questionnaire_id, patient_email):
+    def get_resources(questionnaire_id, patient_email, dry=False):
 
         # Build the transaction
         transaction = {
@@ -429,18 +543,61 @@ class FHIR:
         questionnaire = bundle.entry[0].resource.entry[0].resource
 
         # Check for the patient
-        if not bundle.entry[1].resource.entry or bundle.entry[1].resource.entry[0].resource.resource_type != 'Patient':
+        if not dry:
+            if not bundle.entry[1].resource.entry or bundle.entry[1].resource.entry[0].resource.resource_type != 'Patient':
+                logger.error("Patient could not be fetched", exc_info=True, extra={
+                    'patient': FHIR._obfuscate_email(patient_email),
+                    'questionnaires': questionnaire_id,
+                    'bundle': bundle.as_json(),
+                })
+                raise FHIR.PatientDoesNotExist()
+
+            # Get it
+            patient = bundle.entry[1].resource.entry[0].resource
+        else:
+            # In dry mode, use a fake patient
+            patient = FHIR.get_demo_patient(patient_email)
+
+        return questionnaire, patient
+
+    @staticmethod
+    def get_patient(patient_email):
+
+        # Build the transaction
+        transaction = {
+            'resourceType': 'Bundle',
+            'type': 'transaction',
+            'entry': []
+        }
+
+        # Add the request for the patient
+        transaction['entry'].append({
+            'request': {
+                'url': 'Patient?identifier=http://schema.org/email|{}'.format(quote(patient_email)),
+                'method': 'GET'
+            }
+        })
+
+        # Query for a response
+
+        # Execute the search
+        response = requests.post(settings.FHIR_URL, headers={'content-type': 'application/json'}, json=transaction)
+        response.raise_for_status()
+
+        # Build the objects
+        bundle = Bundle(response.json())
+
+        # Check for the Patient
+        if not bundle.entry[0].resource.entry or bundle.entry[0].resource.entry[0].resource.resource_type != 'Patient':
             logger.error("Patient could not be fetched", exc_info=True, extra={
                 'patient': FHIR._obfuscate_email(patient_email),
-                'questionnaires': questionnaire_id,
-                'bundle': bundle.as_json(),
             })
             raise FHIR.PatientDoesNotExist()
 
-        # Get it
-        patient = bundle.entry[1].resource.entry[0].resource
+        # Instantiate it
+        patient = bundle.entry[0].resource.entry[0].resource
 
-        return questionnaire, patient
+        return patient
 
     @staticmethod
     def check_patient(patient_email):
@@ -457,6 +614,27 @@ class FHIR:
         if not resources:
             logger.warning('Patient not found: {}'.format(FHIR._obfuscate_email(patient_email)))
             raise FHIR.PatientDoesNotExist
+
+    @staticmethod
+    def check_consent(study, patient_email):
+        """
+        Checks FHIR for resources pertaining to a signed consent for this
+        specific patient and study.
+
+        :param patient_email: The email of the participant to check
+        :type patient_email: str
+        :param study: The study for which the consent would be signed
+        :type study: str
+        :raises FHIR.ConsentAlreadyExists: If exists already
+        """
+
+        # Search for the consent composition resource specific to this study
+        resources = PPMFHIR.get_consent_composition(patient_email, study)
+        if resources:
+            logger.debug(f"PPM/{study}/{FHIR._obfuscate_email(patient_email)}: Consent composition already exists")
+            raise FHIR.ConsentAlreadyExists
+
+        return False
 
     @staticmethod
     def check_response(questionnaire_id, patient_email):
@@ -524,6 +702,9 @@ class FHIR:
     class QuestionnaireResponseAlreadyExists(Exception):
         pass
 
+    class ConsentAlreadyExists(Exception):
+        pass
+
     @staticmethod
     def _questionnaire_response(questionnaire, patient, date=datetime.datetime.utcnow().isoformat(), answers={}, author=None):
 
@@ -537,19 +718,22 @@ class FHIR:
         response.author = FHIR._reference_to(author if author else patient)
 
         # Collect response items flattened
-        response.item = FHIR._questionnaire_response_items(questionnaire.item, answers)
+        response.item = FHIR._questionnaire_response_items(questionnaire, answers)
 
         # Set it on the questionnaire
         return response
 
     @staticmethod
-    def _questionnaire_response_items(questions, form):
+    def _questionnaire_response_items(questionnaire_item, form):
 
         # Collect items
         items = []
 
         # Iterate through questions
-        for question in questions:
+        for question in questionnaire_item.item:
+
+            # Determine if this is a required item or a dependently required item
+            dependent = question.enableWhen or getattr(questionnaire_item, 'enableWhen', False)
 
             # Disregard invalid question types
             if not question.linkId or not question.type or question.type == 'display':
@@ -559,7 +743,7 @@ class FHIR:
             elif question.type == 'group':
 
                 # We don't respect heirarchy for groupings
-                group_items = FHIR._questionnaire_response_items(question.item, form)
+                group_items = FHIR._questionnaire_response_items(question, form)
                 if group_items:
                     items.extend(group_items)
                 continue
@@ -569,22 +753,27 @@ class FHIR:
 
             # Add the item
             if value is None or not str(value):
-                logger.debug('No answer for {}'.format(question.linkId))
+                if question.required and not dependent:
+                    logger.warning('PPM/{}: No answer for {}'.format(form.get('questionnaire_id'), question.linkId))
                 continue
 
             # Check for an empty list
             elif type(value) is list and len(value) == 0:
-                logger.debug('Empty answer set for {}, skipping'.format(question.linkId))
+                if question.required and not dependent:
+                    logger.warning('PPM/{}: Empty answer set for {}'.format(form.get('questionnaire_id'), question.linkId))
                 continue
 
             # Create the item
-            item = FHIR._questionnaire_response_item(question.linkId, value)
+            response_item = FHIR._questionnaire_response_item(question.linkId, value)
+
+            # Add the item
+            items.append(response_item)
 
             # Check for subitems
             if question.item:
 
                 # Get the items
-                question_items = FHIR._questionnaire_response_items(question.item, form)
+                question_items = FHIR._questionnaire_response_items(question, form)
                 if question_items:
                     # TODO: Uncomment the following line after QuestionnaireResponse parsing is updated to
                     # TODO: look for subanswers in subitems as opposed to one flat list
@@ -592,9 +781,6 @@ class FHIR:
 
                     # Save all answers flat for now
                     items.extend(question_items)
-
-            # Add the item
-            items.append(item)
 
         return items
 
@@ -641,8 +827,11 @@ class FHIR:
         elif type(value) is datetime.datetime:
             answer.valueDateTime = FHIRDate(value.isoformat())
 
+        elif type(value) is datetime.date:
+            answer.valueDate = FHIRDate(value.isoformat())
+
         else:
-            logger.warning('Unhandled answer type: {}'.format(value))
+            logger.warning('Unhandled answer type: {} - {}'.format(type(value), value))
 
             # Cast it as string
             answer.valueString = str(value)
@@ -732,7 +921,7 @@ class FHIR:
         return consent
 
     @staticmethod
-    def _contract(patient, date, patient_name, patient_signature, questionnaire_response):
+    def _contract(patient, date, patient_name, patient_signature, questionnaire_response=None):
 
         # Build it
         contract = Contract()
@@ -757,7 +946,10 @@ class FHIR:
         # Add references
         signer.signature = [signature]
         contract.signer = [signer]
-        contract.bindingReference = FHIR._reference_to(questionnaire_response)
+
+        # Add questionnaire if passed
+        if questionnaire_response:
+            contract.bindingReference = FHIR._reference_to(questionnaire_response)
 
         return contract
 

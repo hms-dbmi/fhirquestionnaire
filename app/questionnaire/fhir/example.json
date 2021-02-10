@@ -1,0 +1,530 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ppm-example-registration-questionnaire",
+  "meta": {
+    "security": [
+      {
+        "system": "http://smarthealthit.org/security/users",
+        "code": "public"
+      }
+    ]
+  },
+  "status": "active",
+  "date": "2017-06-07",
+  "subjectType": [
+    "patient"
+  ],
+  "item": [
+    {
+      "linkId": "question-1",
+      "text": "Date of Birth",
+      "type": "date",
+      "required": true
+    },
+    {
+      "linkId": "question-2",
+      "text": "Are you currently pregnant?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-3",
+      "text": "Are you currently detained?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-4",
+      "text": "Gender",
+      "type": "text",
+      "required": true,
+      "option": [
+        {
+          "valueString": "Male"
+        },
+        {
+          "valueString": "Female"
+        },
+        {
+          "valueString": "Other"
+        }
+      ]
+    },
+    {
+      "linkId": "question-5",
+      "text": "Family history of cancer?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-6",
+      "text": "Which relatives?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-7",
+      "text": "Which cancers?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-8",
+      "text": "Cancer Diagnosis",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-9",
+      "text": "Institution (Hospital, clinic) where you were diagnosed",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-10",
+      "text": "Date of Cancer Diagnosis",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "display-1",
+      "text": "Describe your treatment:",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "question-11",
+          "text": "Clinical Trial (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-12",
+          "text": "Pre Clinical Trial (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-13",
+          "text": "Alternative Therapy (where)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-14",
+          "text": "Therapeutic Agent(s) used",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-15",
+          "text": "Dates of Treatment",
+          "type": "text",
+          "required": true
+        },
+        {
+          "linkId": "question-16",
+          "text": "Are you still being treated?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "question-17",
+          "text": "If not, date of last imaging study",
+          "type": "date",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "question-18",
+      "text": "Why do you describe yourself as a “super” responder:",
+      "initialString": "Please provide a detailed answer, as this will help us determine your eligibility for the study",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-19",
+      "text": "To your knowledge, has your genome been analyzed?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-20",
+      "text": "Who is your Primary Care Provider?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-21",
+      "text": "Who is your Oncologist?",
+      "type": "text",
+      "required": true
+    },
+    {
+      "linkId": "question-22",
+      "text": "Have any family members been diagnosed with a rheumatic disease?",
+      "type": "question",
+      "repeats": true,
+      "required": false,
+      "option": [
+        {
+          "valueString": "Mother"
+        },
+        {
+          "valueString": "Father"
+        },
+        {
+          "valueString": "Brother"
+        },
+        {
+          "valueString": "Sister"
+        },
+        {
+          "valueString": "Maternal grandmother"
+        },
+        {
+          "valueString": "Maternal grandfather"
+        },
+        {
+          "valueString": "Paternal grandmother"
+        },
+        {
+          "valueString": "Paternal grandfather"
+        }
+      ],
+      "item": [
+        {
+          "linkId": "question-22-1",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Mother"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-1-1",
+              "text": "Please list the rheumatic condition(s) for mother:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-2",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Father"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-2-1",
+              "text": "Please list the rheumatic condition(s) for father:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-3",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Brother"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-3-1",
+              "text": "Please list the rheumatic condition(s) for brother:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-4",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Sister"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-4-1",
+              "text": "Please list the rheumatic condition(s) for sister:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-5",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Maternal grandmother"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-5-1",
+              "text": "Please list the rheumatic condition(s) for maternal grandmother:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-6",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Maternal grandfather"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-6-1",
+              "text": "Please list the rheumatic condition(s) for maternal grandfather:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-7",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Paternal grandmother"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-7-1",
+              "text": "Please list the rheumatic condition(s) for paternal grandmother:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "linkId": "question-22-8",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-22",
+              "answerString": "Paternal grandfather"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-22-8-1",
+              "text": "Please list the rheumatic condition(s) for paternal grandfather:",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "question-23",
+      "text": "Have you ever smoked cigarettes?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "question-24",
+      "text": "Which biologic therapies have you used in the past? (Check all that apply)",
+      "type": "question",
+      "repeats": true,
+      "option": [
+        {
+          "valueString": "tocilizumab (Actemra)"
+        },
+        {
+          "valueString": "certolizumab (Cimzia)"
+        },
+        {
+          "valueString": "etanercept (Enbrel)"
+        }
+      ],
+      "item": [
+        {
+          "linkId": "question-24-1",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-24",
+              "answerString": "tocilizumab (Actemra)"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-24-1-1",
+              "text": "Why did you stop tocilizumab (Actemra)?",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "linkId": "question-24-1-2",
+              "text": "Please provide a start date for tocilizumab (Actemra) (MM/YYYY)",
+              "required": true,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "start-of|question-24-1",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            },
+            {
+              "linkId": "question-24-1-3",
+              "text": "Please provide an end date for tocilizumab (Actemra) (MM/YYYY)",
+              "required": false,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "end-of|question-24-1",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "question-24-2",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-24",
+              "answerString": "certolizumab (Cimzia)"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-24-2-1",
+              "text": "Why did you stop certolizumab (Cimzia)?",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "linkId": "question-24-2-2",
+              "text": "Please provide a start date for certolizumab (Cimzia) (MM/YYYY)",
+              "required": true,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "start-of|question-24-2",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            },
+            {
+              "linkId": "question-24-2-3",
+              "text": "Please provide an end date for certolizumab (Cimzia) (MM/YYYY)",
+              "required": false,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "end-of|question-24-2",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "question-24-3",
+          "type": "group",
+          "enableWhen": [
+            {
+              "question": "question-24",
+              "answerString": "etanercept (Enbrel)"
+            }
+          ],
+          "item": [
+            {
+              "linkId": "question-24-3-1",
+              "text": "Why did you stop etanercept (Enbrel)?",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "linkId": "question-24-3-2",
+              "text": "Please provide a start date for etanercept (Enbrel) (MM/YYYY)",
+              "required": true,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "start-of|question-24-3",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            },
+            {
+              "linkId": "question-24-3-3",
+              "text": "Please provide an end date for etanercept (Enbrel) (MM/YYYY)",
+              "required": false,
+              "type": "date",
+              "code": [
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/range",
+                  "code": "end-of|question-24-3",
+                  "display": "Date range"
+                },
+                {
+                  "system": "https://peoplepoweredmedicine.org/questionnaire/input/type",
+                  "code": "month-year",
+                  "display": "Month year"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

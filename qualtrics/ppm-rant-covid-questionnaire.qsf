@@ -1,0 +1,1927 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_dj2cttdfR3KyQcd",
+    "SurveyName": "PPM RANT - COVID Questionnaire - DEV",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_6gTkor673S0UxHD",
+    "SurveyBrandID": "hms",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_3wNQViiaXy1x5KR",
+    "SurveyStatus": "Active",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2021-01-05 09:44:07",
+    "CreatorID": "UR_6gTkor673S0UxHD",
+    "LastModified": "2021-02-02 04:37:41",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "2021-01-05 12:42:26",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "1": {
+          "Type": "Trash",
+          "Description": "Trash \/ Unused Questions",
+          "ID": "BL_5zkiwVkTejIv79z",
+          "BlockElements": []
+        },
+        "2": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "Default Question Block",
+          "ID": "BL_41HaZH0vtSMtvWR",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            }
+          ]
+        },
+        "3": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "Block 1",
+          "ID": "BL_1RJdd5yrHhBh8wJ",
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "Looping": "Question",
+            "LoopingOptions": {
+              "Locator": "q:\/\/QID5\/LoopAndMerge\/MergeOnNumericResponse?v=20",
+              "QID": "QID5",
+              "ChoiceGroupLocator": "q:\/\/QID5\/LoopAndMerge\/MergeOnNumericResponse",
+              "Static": {
+                "1": {
+                  "2": "first"
+                },
+                "2": {
+                  "2": "second"
+                },
+                "3": {
+                  "2": "third"
+                },
+                "4": {
+                  "2": "fourth"
+                },
+                "5": {
+                  "2": "fifth"
+                },
+                "6": {
+                  "2": "sixth"
+                },
+                "7": {
+                  "2": "seventh"
+                },
+                "8": {
+                  "2": "eighth"
+                },
+                "9": {
+                  "2": "ninth"
+                },
+                "10": {
+                  "2": "tenth"
+                },
+                "11": {
+                  "2": "eleventh"
+                },
+                "12": {
+                  "2": "twelfth"
+                },
+                "13": {
+                  "2": "thirteenth"
+                },
+                "14": {
+                  "2": "fourteenth"
+                },
+                "15": {
+                  "2": "fifteenth"
+                },
+                "16": {
+                  "2": "sixteenth"
+                },
+                "17": {
+                  "2": "seventeenth"
+                },
+                "18": {
+                  "2": "eighteenth"
+                },
+                "19": {
+                  "2": "nineteenth"
+                },
+                "20": {
+                  "2": "twentieth"
+                },
+                "21": {
+                  "2": ""
+                },
+                "22": {
+                  "2": ""
+                },
+                "23": {
+                  "2": ""
+                },
+                "24": {
+                  "2": ""
+                },
+                "25": {
+                  "2": ""
+                },
+                "26": {
+                  "2": ""
+                },
+                "27": {
+                  "2": ""
+                },
+                "28": {
+                  "2": ""
+                },
+                "29": {
+                  "2": ""
+                },
+                "30": {
+                  "2": ""
+                },
+                "31": {
+                  "2": ""
+                },
+                "32": {
+                  "2": ""
+                },
+                "33": {
+                  "2": ""
+                },
+                "34": {
+                  "2": ""
+                },
+                "35": {
+                  "2": ""
+                },
+                "36": {
+                  "2": ""
+                },
+                "37": {
+                  "2": ""
+                },
+                "38": {
+                  "2": ""
+                },
+                "39": {
+                  "2": ""
+                },
+                "40": {
+                  "2": ""
+                },
+                "41": {
+                  "2": ""
+                },
+                "42": {
+                  "2": ""
+                },
+                "43": {
+                  "2": ""
+                },
+                "44": {
+                  "2": ""
+                },
+                "45": {
+                  "2": ""
+                },
+                "46": {
+                  "2": ""
+                },
+                "47": {
+                  "2": ""
+                },
+                "48": {
+                  "2": ""
+                },
+                "49": {
+                  "2": ""
+                },
+                "50": {
+                  "2": ""
+                },
+                "51": {
+                  "2": ""
+                },
+                "52": {
+                  "2": ""
+                },
+                "53": {
+                  "2": ""
+                },
+                "54": {
+                  "2": ""
+                },
+                "55": {
+                  "2": ""
+                },
+                "56": {
+                  "2": ""
+                },
+                "57": {
+                  "2": ""
+                },
+                "58": {
+                  "2": ""
+                },
+                "59": {
+                  "2": ""
+                },
+                "60": {
+                  "2": ""
+                },
+                "61": {
+                  "2": ""
+                },
+                "62": {
+                  "2": ""
+                },
+                "63": {
+                  "2": ""
+                },
+                "64": {
+                  "2": ""
+                },
+                "65": {
+                  "2": ""
+                },
+                "66": {
+                  "2": ""
+                },
+                "67": {
+                  "2": ""
+                },
+                "68": {
+                  "2": ""
+                },
+                "69": {
+                  "2": ""
+                },
+                "70": {
+                  "2": ""
+                },
+                "71": {
+                  "2": ""
+                },
+                "72": {
+                  "2": ""
+                },
+                "73": {
+                  "2": ""
+                },
+                "74": {
+                  "2": ""
+                },
+                "75": {
+                  "2": ""
+                },
+                "76": {
+                  "2": ""
+                },
+                "77": {
+                  "2": ""
+                },
+                "78": {
+                  "2": ""
+                },
+                "79": {
+                  "2": ""
+                },
+                "80": {
+                  "2": ""
+                },
+                "81": {
+                  "2": ""
+                },
+                "82": {
+                  "2": ""
+                },
+                "83": {
+                  "2": ""
+                },
+                "84": {
+                  "2": ""
+                },
+                "85": {
+                  "2": ""
+                },
+                "86": {
+                  "2": ""
+                },
+                "87": {
+                  "2": ""
+                },
+                "88": {
+                  "2": ""
+                },
+                "89": {
+                  "2": ""
+                },
+                "90": {
+                  "2": ""
+                },
+                "91": {
+                  "2": ""
+                },
+                "92": {
+                  "2": ""
+                },
+                "93": {
+                  "2": ""
+                },
+                "94": {
+                  "2": ""
+                },
+                "95": {
+                  "2": ""
+                },
+                "96": {
+                  "2": ""
+                },
+                "97": {
+                  "2": ""
+                },
+                "98": {
+                  "2": ""
+                },
+                "99": {
+                  "2": ""
+                },
+                "100": {
+                  "2": ""
+                }
+              },
+              "Randomization": "None"
+            }
+          },
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID11"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID12"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "EmbeddedData",
+            "FlowID": "FL_2",
+            "EmbeddedData": [
+              {
+                "Description": "ppm_id",
+                "Type": "Recipient",
+                "Field": "ppm_id",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ResponseID",
+                "Type": "Recipient",
+                "Field": "ResponseID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "SurveyID",
+                "Type": "Recipient",
+                "Field": "SurveyID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "Q_URL",
+                "Type": "Recipient",
+                "Field": "Q_URL",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ppm_study",
+                "Type": "Recipient",
+                "Field": "ppm_study",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              }
+            ]
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_41HaZH0vtSMtvWR",
+            "FlowID": "FL_3",
+            "Autofill": []
+          },
+          {
+            "ID": "BL_1RJdd5yrHhBh8wJ",
+            "Type": "Standard",
+            "FlowID": "FL_4"
+          },
+          {
+            "Type": "EndSurvey",
+            "FlowID": "FL_5",
+            "EndingType": "Advanced",
+            "Options": {
+              "Advanced": "true",
+              "SurveyTermination": "Redirect",
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+            }
+          }
+        ],
+        "Properties": {
+          "Count": 11,
+          "RemovedFieldsets": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_3wNQViiaXy1x5KR",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "true",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": null,
+        "SurveyTermination": "Redirect",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": " \u2190 ",
+        "NextButton": " \u2192 ",
+        "SkinLibrary": "hms",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": null,
+          "templateId": "*base",
+          "overrides": {
+            "logo": {
+              "url": "https:\/\/hms.az1.qualtrics.com\/CP\/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
+            },
+            "questionsContainer": {
+              "on": true
+            },
+            "progressBar": {
+              "position": "bottom"
+            }
+          }
+        },
+        "NewScoring": 1,
+        "EOSMessage": "",
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "SurveyTitle": "Online Survey Software | Qualtrics Survey Solutions",
+        "SurveyMetaDescription": "Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "Password": "ppmisgreat",
+        "RefererCheck": "No",
+        "RefererURL": "http:\/\/",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": "",
+        "SurveyLinkCompletedMessageLibrary": "",
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": "",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDataCloseAfter": "LastActivity",
+        "ActiveResponseSet": null,
+        "InactiveMessageLibrary": "",
+        "InactiveMessage": "",
+        "AvailableLanguages": {
+          "EN": []
+        },
+        "ProtectSelectionIds": true,
+        "CustomStyles": {
+          "customCSS": ""
+        },
+        "PartialDeletion": null,
+        "SpellChecked": "1",
+        "": null
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "52",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "What is your height?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>What is your height?<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "QID1",
+        "QuestionID": "QID1",
+        "QuestionType": "DD",
+        "Selector": "DL",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "VariableCount": 2
+        },
+        "QuestionDescription": "What is your height?",
+        "Choices": {
+          "4": {
+            "Display": "Feet",
+            "TextEntry": "true",
+            "InputHeight": 29,
+            "InputWidth": 60
+          },
+          "5": {
+            "Display": "Inches"
+          }
+        },
+        "ChoiceOrder": [
+          "4",
+          "5"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 13,
+        "NextAnswerId": 1,
+        "Answers": {
+          "1": {
+            "Display": "1 ft"
+          },
+          "2": {
+            "Display": "1 ft ~ 0 in"
+          },
+          "3": {
+            "Display": "2 ft"
+          },
+          "4": {
+            "Display": "2 ft ~ 0 in"
+          },
+          "5": {
+            "Display": "3 ft"
+          },
+          "6": {
+            "Display": "3 ft ~ 0 in"
+          },
+          "7": {
+            "Display": "4 ft"
+          },
+          "8": {
+            "Display": "4 ft ~ 0 in"
+          },
+          "9": {
+            "Display": "5 ft"
+          },
+          "10": {
+            "Display": "5 ft ~ 0 in"
+          },
+          "11": {
+            "Display": "6 ft"
+          },
+          "12": {
+            "Display": "6 ft ~ 0 in"
+          },
+          "13": {
+            "Display": "7 ft"
+          },
+          "14": {
+            "Display": "7 ft ~ 0 in"
+          },
+          "15": {
+            "Display": "8 ft"
+          },
+          "16": {
+            "Display": "8 ft ~ 0 in"
+          },
+          "17": {
+            "Display": "9 ft"
+          },
+          "18": {
+            "Display": "9 ft ~ 0 in"
+          },
+          "19": {
+            "Display": "1 ft ~ 1 in"
+          },
+          "20": {
+            "Display": "2 ft ~ 1 in"
+          },
+          "21": {
+            "Display": "3 ft ~ 1 in"
+          },
+          "22": {
+            "Display": "4 ft ~ 1 in"
+          },
+          "23": {
+            "Display": "5 ft ~ 1 in"
+          },
+          "24": {
+            "Display": "6 ft ~ 1 in"
+          },
+          "25": {
+            "Display": "7 ft ~ 1 in"
+          },
+          "26": {
+            "Display": "8 ft ~ 1 in"
+          },
+          "27": {
+            "Display": "9 ft ~ 1 in"
+          },
+          "28": {
+            "Display": "1 ft ~ 2 in"
+          },
+          "29": {
+            "Display": "2 ft ~ 2 in"
+          },
+          "30": {
+            "Display": "3 ft ~ 2 in"
+          },
+          "31": {
+            "Display": "4 ft ~ 2 in"
+          },
+          "32": {
+            "Display": "5 ft ~ 2 in"
+          },
+          "33": {
+            "Display": "6 ft ~ 2 in"
+          },
+          "34": {
+            "Display": "7 ft ~ 2 in"
+          },
+          "35": {
+            "Display": "8 ft ~ 2 in"
+          },
+          "36": {
+            "Display": "9 ft ~ 2 in"
+          },
+          "37": {
+            "Display": "1 ft ~ 3 in"
+          },
+          "38": {
+            "Display": "2 ft ~ 3 in"
+          },
+          "39": {
+            "Display": "3 ft ~ 3 in"
+          },
+          "40": {
+            "Display": "4 ft ~ 3 in"
+          },
+          "41": {
+            "Display": "5 ft ~ 3 in"
+          },
+          "42": {
+            "Display": "6 ft ~ 3 in"
+          },
+          "43": {
+            "Display": "7 ft ~ 3 in"
+          },
+          "44": {
+            "Display": "8 ft ~ 3 in"
+          },
+          "45": {
+            "Display": "9 ft ~ 3 in"
+          },
+          "46": {
+            "Display": "1 ft ~ 4 in"
+          },
+          "47": {
+            "Display": "2 ft ~ 4 in"
+          },
+          "48": {
+            "Display": "3 ft ~ 4 in"
+          },
+          "49": {
+            "Display": "4 ft ~ 4 in"
+          },
+          "50": {
+            "Display": "5 ft ~ 4 in"
+          },
+          "51": {
+            "Display": "6 ft ~ 4 in"
+          },
+          "52": {
+            "Display": "7 ft ~ 4 in"
+          },
+          "53": {
+            "Display": "8 ft ~ 4 in"
+          },
+          "54": {
+            "Display": "9 ft ~ 4 in"
+          },
+          "55": {
+            "Display": "1 ft ~ 5 in"
+          },
+          "56": {
+            "Display": "2 ft ~ 5 in"
+          },
+          "57": {
+            "Display": "3 ft ~ 5 in"
+          },
+          "58": {
+            "Display": "4 ft ~ 5 in"
+          },
+          "59": {
+            "Display": "5 ft ~ 5 in"
+          },
+          "60": {
+            "Display": "6 ft ~ 5 in"
+          },
+          "61": {
+            "Display": "7 ft ~ 5 in"
+          },
+          "62": {
+            "Display": "8 ft ~ 5 in"
+          },
+          "63": {
+            "Display": "9 ft ~ 5 in"
+          },
+          "64": {
+            "Display": "1 ft ~ 6 in"
+          },
+          "65": {
+            "Display": "2 ft ~ 6 in"
+          },
+          "66": {
+            "Display": "3 ft ~ 6 in"
+          },
+          "67": {
+            "Display": "4 ft ~ 6 in"
+          },
+          "68": {
+            "Display": "5 ft ~ 6 in"
+          },
+          "69": {
+            "Display": "6 ft ~ 6 in"
+          },
+          "70": {
+            "Display": "7 ft ~ 6 in"
+          },
+          "71": {
+            "Display": "8 ft ~ 6 in"
+          },
+          "72": {
+            "Display": "9 ft ~ 6 in"
+          },
+          "73": {
+            "Display": "1 ft ~ 7 in"
+          },
+          "74": {
+            "Display": "2 ft ~ 7 in"
+          },
+          "75": {
+            "Display": "3 ft ~ 7 in"
+          },
+          "76": {
+            "Display": "4 ft ~ 7 in"
+          },
+          "77": {
+            "Display": "5 ft ~ 7 in"
+          },
+          "78": {
+            "Display": "6 ft ~ 7 in"
+          },
+          "79": {
+            "Display": "7 ft ~ 7 in"
+          },
+          "80": {
+            "Display": "8 ft ~ 7 in"
+          },
+          "81": {
+            "Display": "9 ft ~ 7 in"
+          },
+          "82": {
+            "Display": "1 ft ~ 8 in"
+          },
+          "83": {
+            "Display": "2 ft ~ 8 in"
+          },
+          "84": {
+            "Display": "3 ft ~ 8 in"
+          },
+          "85": {
+            "Display": "4 ft ~ 8 in"
+          },
+          "86": {
+            "Display": "5 ft ~ 8 in"
+          },
+          "87": {
+            "Display": "6 ft ~ 8 in"
+          },
+          "88": {
+            "Display": "7 ft ~ 8 in"
+          },
+          "89": {
+            "Display": "8 ft ~ 8 in"
+          },
+          "90": {
+            "Display": "9 ft ~ 8 in"
+          },
+          "91": {
+            "Display": "1 ft ~ 9 in"
+          },
+          "92": {
+            "Display": "2 ft ~ 9 in"
+          },
+          "93": {
+            "Display": "3 ft ~ 9 in"
+          },
+          "94": {
+            "Display": "4 ft ~ 9 in"
+          },
+          "95": {
+            "Display": "5 ft ~ 9 in"
+          },
+          "96": {
+            "Display": "6 ft ~ 9 in"
+          },
+          "97": {
+            "Display": "7 ft ~ 9 in"
+          },
+          "98": {
+            "Display": "8 ft ~ 9 in"
+          },
+          "99": {
+            "Display": "9 ft ~ 9 in"
+          },
+          "100": {
+            "Display": "1 ft ~ 10 in"
+          },
+          "101": {
+            "Display": "2 ft ~ 10 in"
+          },
+          "102": {
+            "Display": "3 ft ~ 10 in"
+          },
+          "103": {
+            "Display": "4 ft ~ 10 in"
+          },
+          "104": {
+            "Display": "5 ft ~ 10 in"
+          },
+          "105": {
+            "Display": "6 ft ~ 10 in"
+          },
+          "106": {
+            "Display": "7 ft ~ 10 in"
+          },
+          "107": {
+            "Display": "8 ft ~ 10 in"
+          },
+          "108": {
+            "Display": "9 ft ~ 10 in"
+          },
+          "109": {
+            "Display": "1 ft ~ 11 in"
+          },
+          "110": {
+            "Display": "2 ft ~ 11 in"
+          },
+          "111": {
+            "Display": "3 ft ~ 11 in"
+          },
+          "112": {
+            "Display": "4 ft ~ 11 in"
+          },
+          "113": {
+            "Display": "5 ft ~ 11 in"
+          },
+          "114": {
+            "Display": "6 ft ~ 11 in"
+          },
+          "115": {
+            "Display": "7 ft ~ 11 in"
+          },
+          "116": {
+            "Display": "8 ft ~ 11 in"
+          },
+          "117": {
+            "Display": "9 ft ~ 11 in"
+          }
+        },
+        "AnswerMap": {
+          "1": {
+            "2": null,
+            "19": null,
+            "28": null,
+            "37": null,
+            "46": null,
+            "55": null,
+            "64": null,
+            "73": null,
+            "82": null,
+            "91": null,
+            "100": null,
+            "109": null
+          },
+          "3": {
+            "4": null,
+            "20": null,
+            "29": null,
+            "38": null,
+            "47": null,
+            "56": null,
+            "65": null,
+            "74": null,
+            "83": null,
+            "92": null,
+            "101": null,
+            "110": null
+          },
+          "5": {
+            "6": null,
+            "21": null,
+            "30": null,
+            "39": null,
+            "48": null,
+            "57": null,
+            "66": null,
+            "75": null,
+            "84": null,
+            "93": null,
+            "102": null,
+            "111": null
+          },
+          "7": {
+            "8": null,
+            "22": null,
+            "31": null,
+            "40": null,
+            "49": null,
+            "58": null,
+            "67": null,
+            "76": null,
+            "85": null,
+            "94": null,
+            "103": null,
+            "112": null
+          },
+          "9": {
+            "10": null,
+            "23": null,
+            "32": null,
+            "41": null,
+            "50": null,
+            "59": null,
+            "68": null,
+            "77": null,
+            "86": null,
+            "95": null,
+            "104": null,
+            "113": null
+          },
+          "11": {
+            "12": null,
+            "24": null,
+            "33": null,
+            "42": null,
+            "51": null,
+            "60": null,
+            "69": null,
+            "78": null,
+            "87": null,
+            "96": null,
+            "105": null,
+            "114": null
+          },
+          "13": {
+            "14": null,
+            "25": null,
+            "34": null,
+            "43": null,
+            "52": null,
+            "61": null,
+            "70": null,
+            "79": null,
+            "88": null,
+            "97": null,
+            "106": null,
+            "115": null
+          },
+          "15": {
+            "16": null,
+            "26": null,
+            "35": null,
+            "44": null,
+            "53": null,
+            "62": null,
+            "71": null,
+            "80": null,
+            "89": null,
+            "98": null,
+            "107": null,
+            "116": null
+          },
+          "17": {
+            "18": null,
+            "27": null,
+            "36": null,
+            "45": null,
+            "54": null,
+            "63": null,
+            "72": null,
+            "81": null,
+            "90": null,
+            "99": null,
+            "108": null,
+            "117": null
+          }
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "What is your weight (lbs)?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "What is your weight (lbs)?",
+        "DefaultChoices": false,
+        "DataExportTag": "QID2",
+        "QuestionID": "QID2",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "What is your weight (lbs)?",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "CustomValidation",
+            "CustomValidation": {
+              "Logic": {
+                "0": {
+                  "0": {
+                    "ChoiceLocator": "q:\/\/QID2\/ChoiceTextEntryValue",
+                    "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">What is your weight (lbs)?<\/span> <span class=\"LeftOpDesc\">Text Response<\/span> <span class=\"OpDesc\">Is Greater Than<\/span> <span class=\"RightOpDesc\"> 0 <\/span>",
+                    "LeftOperand": "q:\/\/QID2\/ChoiceTextEntryValue",
+                    "LogicType": "Question",
+                    "Operator": "GreaterThan",
+                    "QuestionID": "QID2",
+                    "QuestionIDFromLocator": "QID2",
+                    "QuestionIsInLoop": "no",
+                    "RightOperand": "0",
+                    "Type": "Expression"
+                  },
+                  "Type": "If"
+                },
+                "Type": "BooleanExpression"
+              },
+              "Message": {
+                "description": "Require valid number",
+                "libraryID": null,
+                "messageID": null,
+                "subMessageID": "VE_VALIDNUMBER"
+              }
+            }
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 8,
+        "NextAnswerId": 2,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Are you concerned that you've had COVID since March 1st, 2020?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Are you concerned that you've had COVID since March 1st, 2020?<\/p>",
+        "DataExportTag": "QID3",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "Autoscale": {
+            "YScale": {
+              "Name": "yesNo",
+              "Type": "likert",
+              "Reverse": false
+            }
+          }
+        },
+        "QuestionDescription": "Are you concerned that you've had COVID since March 1st, 2020?",
+        "Choices": {
+          "23": {
+            "Display": "Yes"
+          },
+          "24": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "23",
+          "24"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 25,
+        "NextAnswerId": 1,
+        "QuestionID": "QID3",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DefaultChoices": false,
+        "GradingData": []
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Have you felt ill since March 1st, 2020 through now?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Have you felt ill since March 1st, 2020 through now?",
+        "DataExportTag": "QID4",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "Autoscale": {
+            "YScale": {
+              "Name": "yesNo",
+              "Type": "likert",
+              "Reverse": false
+            }
+          }
+        },
+        "QuestionDescription": "Have you felt ill since March 1st, 2020 through now?",
+        "Choices": {
+          "23": {
+            "Display": "Yes"
+          },
+          "24": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "23",
+          "24"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 25,
+        "NextAnswerId": 1,
+        "QuestionID": "QID4",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "How many times have you felt unwell\/ill since March 1st, 2020?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "How many times have you felt unwell\/ill since March 1st, 2020?",
+        "DefaultChoices": false,
+        "DataExportTag": "QID4_1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "How many times have you felt unwell\/ill since March 1st, 2020?",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "ContentType",
+            "ContentType": "ValidNumber",
+            "ValidDateType": "DateWithFormat",
+            "ValidPhoneType": "ValidUSPhone",
+            "ValidZipType": "ValidUSZip",
+            "ValidNumber": {
+              "Min": "0",
+              "Max": "100",
+              "NumDecimals": "0"
+            }
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 25,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID5",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/23",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you felt ill since March 1st, 2020 through now?<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/23",
+              "LogicType": "Question",
+              "Operator": "Selected",
+              "QuestionID": "QID4",
+              "QuestionIDFromLocator": "QID4",
+              "QuestionIsInLoop": "no",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "For the ${lm:\/\/Field\/2} time you were sick&nbsp;since March 1st, 2020, when was the onset of symptoms? (MM\/YYYY)",
+        "DefaultChoices": false,
+        "DataExportTag": "Q5",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "CustomValidation",
+            "ValidDateType": "DateWithFormat",
+            "ValidPhoneType": "ValidUSPhone",
+            "ValidZipType": "ValidUSZip",
+            "CustomValidation": {
+              "Logic": {
+                "0": {
+                  "0": {
+                    "ChoiceLocator": "q:\/\/QID6\/ChoiceTextEntryValue",
+                    "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...<\/span> <span class=\"LeftOpDesc\">Text Response<\/span> <span class=\"OpDesc\">Matches Regex<\/span> <span class=\"RightOpDesc\"> ^(?!0?1\\\/2020)(?!0?2\\\/2020)(1[0-2]|0[1-9]|\\d)\\\/((20)?2[0,1,2])$ <\/span>",
+                    "LeftOperand": "q:\/\/QID6\/ChoiceTextEntryValue",
+                    "LogicType": "Question",
+                    "LoopAndMergeLoops": "current",
+                    "LoopTarget": "none",
+                    "Operator": "MatchesRegex",
+                    "QuestionID": "QID6",
+                    "QuestionIDFromLocator": "QID6",
+                    "QuestionIsInLoop": "yes",
+                    "RightOperand": "^(?!0?1\\\/2020)(?!0?2\\\/2020)(1[0-2]|0[1-9]|\\d)\\\/((20)?2[0,1,2])$",
+                    "Type": "Expression"
+                  },
+                  "Type": "If"
+                },
+                "Type": "BooleanExpression"
+              },
+              "Message": {
+                "description": "Require valid date 03\/2020 and later",
+                "libraryID": "UR_6gTkor673S0UxHD",
+                "messageID": "MS_4YGwtMGdLTUVMFL",
+                "subMessageID": "VE_CUSTOM_VALIDATION_0"
+              }
+            }
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID6",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of the following symptoms did you have?",
+        "DefaultChoices": false,
+        "DataExportTag": "Q6",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...",
+        "Choices": {
+          "1": {
+            "Display": "Fever"
+          },
+          "2": {
+            "Display": "Chills or shivers"
+          },
+          "3": {
+            "Display": "Persistent cough"
+          },
+          "4": {
+            "Display": "Nausea or vomiting"
+          },
+          "5": {
+            "Display": "Dizziness or light-headedness"
+          },
+          "6": {
+            "Display": "Sore or painful throat"
+          },
+          "7": {
+            "Display": "Loss of smell\/taste"
+          },
+          "8": {
+            "Display": "Hoarse voice"
+          },
+          "9": {
+            "Display": "Unusual chest pain"
+          },
+          "10": {
+            "Display": "Unusual abdominal pain"
+          },
+          "11": {
+            "Display": "Diarrhea"
+          },
+          "12": {
+            "Display": "Unusual strong muscle aches"
+          },
+          "13": {
+            "Display": "Raised, red, itchy, welts on the skin or sudden swelling of the face or lips"
+          },
+          "14": {
+            "Display": "Red\/purple sores or blisters on your feet"
+          },
+          "15": {
+            "Display": "Confusion, disorientation or drowsiness"
+          },
+          "16": {
+            "Display": "Unusual eye-soreness or discomfort"
+          },
+          "17": {
+            "Display": "Headache"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 18,
+        "NextAnswerId": 17,
+        "Answers": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          },
+          "3": {
+            "Display": "Unsure"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID7",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "How often were you experiencing headaches?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "How often were you experiencing headaches?",
+        "DataExportTag": "Q6_1",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "How often were you experiencing headaches?",
+        "Choices": {
+          "1": {
+            "Display": "All of the day"
+          },
+          "2": {
+            "Display": "Some of the day"
+          },
+          "3": {
+            "Display": "Most of the day"
+          }
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "ChoiceLocator": "q:\/\/QID7\/SelectableChoice\/17\/1",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...<\/span> <span class=\"LeftOpDesc\">Headache - Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "LeftOperand": "q:\/\/QID7\/SelectableChoice\/17\/1",
+              "LogicType": "Question",
+              "LoopAndMergeLoops": "current",
+              "LoopTarget": "none",
+              "Operator": "Selected",
+              "QuestionID": "QID7",
+              "QuestionIDFromLocator": "QID7",
+              "QuestionIsInLoop": "yes",
+              "Type": "Expression"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID8",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Unusual shortness of breath or trouble breathing",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Unusual shortness of breath or trouble breathing",
+        "DataExportTag": "Q7",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Unusual shortness of breath or trouble breathing",
+        "Choices": {
+          "1": {
+            "Display": "No"
+          },
+          "2": {
+            "Display": "Mild symptoms - slight shortness of breath during ordinary activity"
+          },
+          "3": {
+            "Display": "Significant symptoms - breathing was comfortable only at rest"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID9",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Unusual fatigue",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Unusual fatigue",
+        "DataExportTag": "Q8",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Unusual fatigue",
+        "Choices": {
+          "1": {
+            "Display": "No"
+          },
+          "2": {
+            "Display": "Mild fatigue"
+          },
+          "3": {
+            "Display": "Severe fatigue"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID10",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Did you skip meals?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Did you skip meals?",
+        "DataExportTag": "Q9",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "Autoscale": {
+            "YScale": {
+              "Name": "yesNo",
+              "Type": "likert",
+              "Reverse": false
+            }
+          }
+        },
+        "QuestionDescription": "Did you skip meals?",
+        "Choices": {
+          "4": {
+            "Display": "Yes"
+          },
+          "5": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "4",
+          "5"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 6,
+        "NextAnswerId": 1,
+        "QuestionID": "QID11",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "Are there other important symptoms you want to share with us?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Are there other important symptoms you want to share with us?",
+        "DefaultChoices": false,
+        "DataExportTag": "Q10",
+        "QuestionType": "TE",
+        "Selector": "ESTB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Are there other important symptoms you want to share with us?",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID12",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "OCAC",
+      "PrimaryAttribute": "OCAC_dhvYhU24MxvShr7",
+      "SecondaryAttribute": "OC_1TBtybFjhW2XQm9",
+      "TertiaryAttribute": "WebService",
+      "Payload": {
+        "outcomeId": "OC_1TBtybFjhW2XQm9",
+        "contextId": "SV_6LLd4cTSizcudI9",
+        "taskRegistryId": "WebService",
+        "version": "2",
+        "triggerAction": "WebService",
+        "requestType": "POST",
+        "contentType": "JSON",
+        "authId": -1,
+        "authName": "None",
+        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "dependencies": [],
+        "keyValues": {
+          "ppm_id": "${e:\/\/Field\/ppm_id}",
+          "response_id": "${e:\/\/Field\/ResponseID}",
+          "ppm_study": "${e:\/\/Field\/ppm_study}",
+          "survey_id": "${e:\/\/Field\/SurveyID}"
+        },
+        "headers": {
+          "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
+        },
+        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/${e:\/\/Field\/ppm_id}${rm:\/\/Field\/ResponseID}${e:\/\/Field\/ppm_id}",
+        "authUser": {
+          "userId": "UR_6gTkor673S0UxHD",
+          "brandId": "hms"
+        },
+        "taskNumber": 1,
+        "ownerObject": {
+          "orgId": "hms",
+          "userId": "UR_6gTkor673S0UxHD"
+        },
+        "elementConfigured": true,
+        "actionId": "OCAC_dhvYhU24MxvShr7",
+        "surveyId": "SV_6LLd4cTSizcudI9",
+        "createdAt": 1604928311724,
+        "updatedAt": 1604928395832,
+        "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
+        "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
+        "credentials": [],
+        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png"
+      }
+    },
+    {
+      "SurveyID": "SV_dj2cttdfR3KyQcd",
+      "Element": "TR",
+      "PrimaryAttribute": "OC_1TBtybFjhW2XQm9",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "OnSurveyResponse",
+      "Payload": {
+        "Name": "POST to PPM Data Service",
+        "EventType": "OnSurveyResponse",
+        "Type": "OnSurveyComplete",
+        "LogicV2": {
+          "type": "always",
+          "children": []
+        },
+        "EventData": {
+          "fields": []
+        },
+        "eventContext": {
+          "operations": [
+            "CREATE",
+            "UPDATE"
+          ]
+        },
+        "branches": [],
+        "Loops": [],
+        "elementConfigured": true,
+        "disabled": false,
+        "TriggerAction": "Outcome",
+        "logicCompleted": true,
+        "unconfigured": false
+      }
+    }
+  ]
+}
