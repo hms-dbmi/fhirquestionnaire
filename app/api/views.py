@@ -608,7 +608,7 @@ class QualtricsView(APIView):
         """
         Accepts a Questionnaire object and builds the transaction to be used
         to perform the needed operation in FHIR. Operations can be POST, PUT,
-        and DELETE. An error will be raised if an incaomptible combineation
+        and DELETE. An error will be raised if an incomptible combination
         if resource ID and operation is passed (e.g. ID and POST, or no ID
         and PUT)
 
@@ -709,7 +709,7 @@ class QualtricsView(APIView):
                         "value": version,
                     },
                     {
-                        "system": "https://peoplepoweredmedicine.org/fhir/qualtrics/survey/questionnaire", #FHIR.qualtrics_survey_questionnaire_identifier_system,
+                        "system": FHIR.qualtrics_survey_questionnaire_identifier_system,
                         "value": questionnaire_id,
                     },
                 ],
@@ -729,14 +729,16 @@ class QualtricsView(APIView):
             }
 
             # If survey start date, add it
-            if survey["SurveyEntry"].get("SurveyStartDate") and survey["SurveyEntry"]["SurveyStartDate"] != "0000-00-00 00:00:00":
+            if survey["SurveyEntry"].get("SurveyStartDate") and \
+            survey["SurveyEntry"]["SurveyStartDate"] != "0000-00-00 00:00:00":
 
                 data["effectivePeriod"] = {
                     "start": parse(survey["SurveyEntry"]["SurveyStartDate"]).isoformat()
                 }
 
             # If expiration, add it
-            if survey["SurveyEntry"].get("SurveyExpirationDate") and survey["SurveyEntry"]["SurveyStartDate"] != "0000-00-00 00:00:00":
+            if survey["SurveyEntry"].get("SurveyExpirationDate") and \
+                survey["SurveyEntry"]["SurveyStartDate"] != "0000-00-00 00:00:00":
 
                 data["effectivePeriod"]["end"] = parse(survey["SurveyEntry"]["SurveyExpirationDate"]).isoformat()
 
@@ -767,10 +769,39 @@ class QualtricsView(APIView):
         :rtype: generator
         """
         # Flow sets order of blocks, blocks set order of questions
-        flows = [f["ID"] for f in next(e["Payload"]["Flow"] for e in survey["SurveyElements"] if e.get("Element") == "FL") if f["Type"] == "Standard"]
-        blocks = {f: next(b for b in next(e["Payload"] for e in survey["SurveyElements"] if e.get("Element") == "BL").values() if b["Type"] == "Standard" and b["ID"] == f) for f in flows}
+        flows = [
+            f["ID"] for f in
+            next(e["Payload"]["Flow"] for e in
+                 survey["SurveyElements"]
+                 if e.get("Element") == "FL")
+            if f["Type"] in ["Block", "Standard"]
+            ]
+        # Check which type of block spec (list or dict)
+        _blocks = next(
+            e["Payload"] for e in survey["SurveyElements"]
+            if e.get("Element") == "BL"
+        )
+        if type(_blocks) is list:
+            blocks = {
+                f: next(b for b in _blocks
+                    if b["Type"] in ["Default", "Standard"]
+                    and b["ID"] == f)
+                for f in flows
+                }
+        elif type(_blocks) is dict:
+            blocks = {
+                f: next(b for b in _blocks.values()
+                    if b["Type"] in ["Default", "Standard"]
+                    and b["ID"] == f)
+                for f in flows
+                }
+        else:
+            logger.error(f"PPM/Qualtrics: Invalid Qualtrics block spec")
+
         questions = {
-            f: [e["QuestionID"] for e in blocks[f]["BlockElements"] if e["Type"] == "Question"] for f in flows
+            f: [e["QuestionID"] for e
+                in blocks[f]["BlockElements"]
+                if e["Type"] == "Question"] for f in flows
         }
 
         # Walk through elements
@@ -789,7 +820,11 @@ class QualtricsView(APIView):
                 for question_id in questions[block_id]:
 
                     # Look up the question
-                    question = next(e["Payload"] for e in survey["SurveyElements"] if e["PrimaryAttribute"] == question_id)
+                    question = next(
+                        e["Payload"] for e in
+                        survey["SurveyElements"]
+                        if e["PrimaryAttribute"] == question_id
+                        )
 
                     # Create it
                     item = cls.questionnaire_item(

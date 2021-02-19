@@ -1,0 +1,1192 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_559z0FV4apn4oo5",
+    "SurveyName": "PPM NEER - CAM Questionnaire - DEV",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_6gTkor673S0UxHD",
+    "SurveyBrandID": "hms",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_8oF0lrtRHp8i1bD",
+    "SurveyStatus": "Active",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2020-02-07 04:33:37",
+    "CreatorID": "UR_6gTkor673S0UxHD",
+    "LastModified": "2021-02-19 08:41:06",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "2020-02-07 09:00:31",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": [
+        {
+          "Type": "Default",
+          "Description": "Default Question Block",
+          "ID": "BL_ex47dcGvPFziU17",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID12"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID11"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID13"
+            }
+          ]
+        },
+        {
+          "Type": "Trash",
+          "Description": "Trash \/ Unused Questions",
+          "ID": "BL_0ByZT1J6PtZitkV"
+        }
+      ]
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "EmbeddedData",
+            "FlowID": "FL_3",
+            "EmbeddedData": [
+              {
+                "Description": "ppm_id",
+                "Type": "Recipient",
+                "Field": "ppm_id",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ResponseID",
+                "Type": "Recipient",
+                "Field": "ResponseID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "SurveyID",
+                "Type": "Recipient",
+                "Field": "SurveyID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "Q_URL",
+                "Type": "Recipient",
+                "Field": "Q_URL",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ppm_study",
+                "Type": "Recipient",
+                "Field": "ppm_study",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              }
+            ]
+          },
+          {
+            "Type": "Block",
+            "ID": "BL_ex47dcGvPFziU17",
+            "FlowID": "FL_2"
+          },
+          {
+            "Type": "EndSurvey",
+            "FlowID": "FL_5",
+            "EndingType": "Default",
+            "Options": {
+              "Advanced": "",
+              "SurveyTermination": "DisplayMessage",
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+            }
+          }
+        ],
+        "Properties": {
+          "Count": 5,
+          "RemovedFieldsets": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "false",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": null,
+        "SurveyTermination": "Redirect",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": " \u2190 ",
+        "NextButton": " \u2192 ",
+        "SurveyTitle": "Online Survey Software | Qualtrics Survey Solutions",
+        "SkinLibrary": "hms",
+        "SkinType": "MQ",
+        "Skin": "hms3",
+        "NewScoring": 1,
+        "ProtectSelectionIds": true,
+        "EOSMessage": "MS_0qwvpMUN2Z6F3i5",
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "SurveyMetaDescription": "Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "Password": "",
+        "RefererCheck": "No",
+        "RefererURL": "http:\/\/",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": "",
+        "SurveyLinkCompletedMessageLibrary": "",
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": "UR_6gTkor673S0UxHD",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/dashboard\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDataCloseAfter": "LastActivity",
+        "ActiveResponseSet": null,
+        "InactiveMessageLibrary": "",
+        "InactiveMessage": "",
+        "AvailableLanguages": {
+          "EN": []
+        },
+        "SurveyName": "PPM NEER - CAM Questionnaire - DEV"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "13",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Are you currently following any specific CAM practices to reduce your chances of cancer recurrence?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Are you currently following any specific CAM practices to reduce your chances of cancer recurrence?",
+        "DataExportTag": "Q15",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Are you currently following any specific CAM practices to reduce your chances of cancer recurrence?",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID11"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_8oF0lrtRHp8i1bD",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Did you change your use of CAM as a supplement or alternative to traditional cancer therapy?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Did you change your use of CAM as a supplement or alternative to traditional cancer therapy?",
+        "DataExportTag": "Q13",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Did you change your use of CAM as a supplement or alternative to traditional cancer therapy?",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID10"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Do you believe that use of CAM had a significant impact on your cancer treatment outcome, or serv...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Do you believe that use of CAM had a significant impact on your cancer treatment outcome, or served as a significant part of your treatment?",
+        "DataExportTag": "Q9",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Do you believe that use of CAM had a significant impact on your cancer treatment outcome, or serv...",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 3,
+        "NextAnswerId": 1,
+        "QuestionID": "QID8"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "First, we need to identify who is completing this survey.\u00a0 Please enter your name.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "First, we need to identify who is completing this survey.&nbsp;<div><br><\/div><div>Please enter your name.<\/div>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q1",
+        "QuestionID": "QID1",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "First, we need to identify who is completing this survey.\u00a0 Please enter your name.",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practice...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practices at three timepoints: prior to diagnosis, during treatment, and currently.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q3",
+        "QuestionID": "QID3",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "MultipleAnswer",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practice...",
+        "Choices": {
+          "1": {
+            "Display": "Acupuncture"
+          },
+          "2": {
+            "Display": "Art therapy"
+          },
+          "3": {
+            "Display": "Biofeedback"
+          },
+          "4": {
+            "Display": "Chiropractic"
+          },
+          "5": {
+            "Display": "Dance therapy"
+          },
+          "6": {
+            "Display": "Energy healing"
+          },
+          "7": {
+            "Display": "Hypnosis"
+          },
+          "8": {
+            "Display": "Massage"
+          },
+          "9": {
+            "Display": "Meditation"
+          },
+          "10": {
+            "Display": "Mental imagery"
+          },
+          "11": {
+            "Display": "Music therapy"
+          },
+          "12": {
+            "Display": "Relaxation techniques"
+          },
+          "13": {
+            "Display": "Self-help groups"
+          },
+          "14": {
+            "Display": "Spiritual healing"
+          },
+          "15": {
+            "Display": "Tai chi"
+          },
+          "16": {
+            "Display": "Yoga"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 17,
+        "NextAnswerId": 4,
+        "Answers": {
+          "1": {
+            "Display": "Prior to Diagnosis"
+          },
+          "2": {
+            "Display": "During Treatment"
+          },
+          "3": {
+            "Display": "Currently"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "ChoiceDataExportTags": false
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, during treatment, and currently.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q4",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "MultipleAnswer",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...",
+        "Choices": {
+          "1": {
+            "Display": "Ayurvedic medicine"
+          },
+          "2": {
+            "Display": "Cannabis"
+          },
+          "3": {
+            "Display": "Essential oils"
+          },
+          "4": {
+            "Display": "Folk\/home remedies"
+          },
+          "5": {
+            "Display": "Herbal medicine"
+          },
+          "6": {
+            "Display": "Homeopathy"
+          },
+          "7": {
+            "Display": "Megavitamin therapy"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 8,
+        "NextAnswerId": 4,
+        "Answers": {
+          "1": {
+            "Display": "Prior to Diagnosis"
+          },
+          "2": {
+            "Display": "During Treatment"
+          },
+          "3": {
+            "Display": "Currently"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID4"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID13",
+      "SecondaryAttribute": "Please use this space to share any other information you find important about CAM in relation to...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please use this space to share any other information you find important about CAM in relation to your cancer experience.&nbsp;",
+        "DefaultChoices": false,
+        "DataExportTag": "Q14",
+        "QuestionType": "TE",
+        "Selector": "ESTB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "InputWidth": 586,
+          "InputHeight": 143
+        },
+        "QuestionDescription": "Please use this space to share any other information you find important about CAM in relation to...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID13"
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "This questionnaire is designed to find out about your use of Complementary and Alternative Medici...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "This questionnaire is designed to find out about your use of Complementary and Alternative Medicine (CAM) as a part of your cancer treatment. We will be gathering information on CAM utilization prior to diagnosis, during treatment, and currently.<div><div><br><\/div><div><div>For the purposes of this survey, we are defining your<span style=\"font-weight: bolder;\">&nbsp;cancer experience&nbsp;<\/span>as the point of diagnosis throughout the conclusion of active treatment. If you have had multiple cancer experiences, please base these responses on the diagnosis and response that qualified you for this study.&nbsp;&nbsp;<span style=\"font-weight: bolder;\">For any further questions, contact Maggie Vella at margaret_vella@hms.harvard.edu.<\/span><\/div><div><br><\/div><div>You will be able to click through and return to the pages of this survey. Unfortunately, you will not be able to return to your responses and edit at a later session. We estimate this survey will take about&nbsp;<span style=\"font-weight: 700;\">ten minutes to complete.&nbsp;<\/span><\/div><div><br><\/div><div>Please note, supplement use has been captured in our previous diet survey and is not included here.<\/div><div><br><\/div><div>Please try to answer every question. Your answers will be treated as strictly confidential and will be used only for medical research.<\/div><\/div><div><br><\/div><\/div>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q2",
+        "QuestionID": "QID2",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "This questionnaire is designed to find out about your use of Complementary and Alternative Medici...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "You indicated use of cannabis. Please elaborate (dosage if known, form and delivery method, THC\/C...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "You indicated use of cannabis. Please elaborate (dosage if known, form and delivery method, THC\/CBD\/both, frequency of use, duration of treatment)",
+        "DefaultChoices": false,
+        "DataExportTag": "Q6",
+        "QuestionID": "QID6",
+        "QuestionType": "TE",
+        "Selector": "ML",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "InputWidth": 680,
+          "InputHeight": 29
+        },
+        "QuestionDescription": "You indicated use of cannabis. Please elaborate (dosage if known, form and delivery method, THC\/C...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2\/1",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2\/1",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Cannabis - Prior to Diagnosis<\/span> <span class=\"OpDesc\">Is Selected<\/span> "
+            },
+            "1": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2\/2",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2\/2",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Cannabis - During Treatment<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "2": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/2\/3",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/2\/3",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Cannabis - Currently<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "You indicated use of energy healing. Please elaborate (frequency, type, method, duration of treat...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "You indicated use of energy healing. Please elaborate (frequency, type, method, duration of treatment)",
+        "DefaultChoices": false,
+        "DataExportTag": "Q5",
+        "QuestionType": "TE",
+        "Selector": "ML",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "You indicated use of energy healing. Please elaborate (frequency, type, method, duration of treat...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID5",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "LogicType": "Question",
+              "QuestionID": "QID3",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID3\/SelectableChoice\/6\/1",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID3",
+              "LeftOperand": "q:\/\/QID3\/SelectableChoice\/6\/1",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practice...<\/span> <span class=\"LeftOpDesc\">Energy healing - Prior to Diagnosis<\/span> <span class=\"OpDesc\">Is Selected<\/span> "
+            },
+            "1": {
+              "LogicType": "Question",
+              "QuestionID": "QID3",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID3\/SelectableChoice\/6\/2",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID3",
+              "LeftOperand": "q:\/\/QID3\/SelectableChoice\/6\/2",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practice...<\/span> <span class=\"LeftOpDesc\">Energy healing - During Treatment<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "2": {
+              "LogicType": "Question",
+              "QuestionID": "QID3",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID3\/SelectableChoice\/6\/3",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID3",
+              "LeftOperand": "q:\/\/QID3\/SelectableChoice\/6\/3",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of any of the following Complementary and Alternative Medicine (CAM) practice...<\/span> <span class=\"LeftOpDesc\">Energy healing - Currently<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "You indicated use of essential oils. Please elaborate (types of oils, form\/delivery method, frequ...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "You indicated use of essential oils. Please elaborate (types of oils, form\/delivery method, frequency of use, duration of treatment)",
+        "DefaultChoices": false,
+        "DataExportTag": "Q7",
+        "QuestionID": "QID7",
+        "QuestionType": "TE",
+        "Selector": "ML",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "You indicated use of essential oils. Please elaborate (types of oils, form\/delivery method, frequ...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/3\/1",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/3\/1",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Essential oils - Prior to Diagnosis<\/span> <span class=\"OpDesc\">Is Selected<\/span> "
+            },
+            "1": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/3\/2",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/3\/2",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Essential oils - During Treatment<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "2": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/3\/3",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/3\/3",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Essential oils - Currently<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "You indicated use of megavitamin therapy. Please elaborate (vitamin types, dosage if known, frequ...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "You indicated use of megavitamin therapy. Please elaborate (vitamin types, dosage if known, frequency of use, duration of treatment)",
+        "DefaultChoices": false,
+        "DataExportTag": "Q12",
+        "QuestionID": "QID12",
+        "QuestionType": "TE",
+        "Selector": "ML",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "You indicated use of megavitamin therapy. Please elaborate (vitamin types, dosage if known, frequ...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/7\/1",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/7\/1",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Megavitamin therapy - Prior to Diagnosis<\/span> <span class=\"OpDesc\">Is Selected<\/span> "
+            },
+            "1": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/7\/2",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/7\/2",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Megavitamin therapy - During Treatment<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "2": {
+              "LogicType": "Question",
+              "QuestionID": "QID4",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/7\/3",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID4",
+              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/7\/3",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">Or<\/span> <span class=\"QuestionDesc\">Please indicate use of the following CAM therapies at three timepoints: prior to diagnosis, durin...<\/span> <span class=\"LeftOpDesc\">Megavitamin therapy - Currently<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
+              "Conjuction": "Or"
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "You indicated yes in the previous question. Please explain your rationale",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "You indicated yes in the previous question. Please explain your rationale",
+        "DefaultChoices": false,
+        "DataExportTag": "Q11",
+        "QuestionType": "TE",
+        "Selector": "ESTB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "You indicated yes in the previous question. Please explain your rationale",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID9",
+        "DisplayLogic": {
+          "0": {
+            "0": {
+              "LogicType": "Question",
+              "QuestionID": "QID8",
+              "QuestionIsInLoop": "no",
+              "ChoiceLocator": "q:\/\/QID8\/SelectableChoice\/1",
+              "Operator": "Selected",
+              "QuestionIDFromLocator": "QID8",
+              "LeftOperand": "q:\/\/QID8\/SelectableChoice\/1",
+              "Type": "Expression",
+              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Do you believe that use of CAM had a significant impact on your cancer treatment outcome, or serv...<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> "
+            },
+            "Type": "If"
+          },
+          "Type": "BooleanExpression",
+          "inPage": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "OCAC",
+      "PrimaryAttribute": "OCAC_BYs0tHZBo7Ktnix",
+      "SecondaryAttribute": "OC_3lAMriMTjPlM0tX",
+      "TertiaryAttribute": "WebService",
+      "Payload": {
+        "outcomeId": "OC_3lAMriMTjPlM0tX",
+        "contextId": "SV_559z0FV4apn4oo5",
+        "taskRegistryId": "WebService",
+        "version": "2",
+        "triggerAction": "WebService",
+        "requestType": "POST",
+        "contentType": "JSON",
+        "authId": -1,
+        "authName": "None",
+        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "dependencies": [],
+        "keyValues": {
+          "ppm_study": "${e:\/\/Field\/ppm_study}",
+          "ppm_id": "${e:\/\/Field\/ppm_id}",
+          "response_id": "${e:\/\/Field\/ResponseID}",
+          "survey_id": "${e:\/\/Field\/SurveyID}"
+        },
+        "headers": {
+          "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
+        },
+        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "authUser": {
+          "userId": "UR_6gTkor673S0UxHD",
+          "brandId": "hms"
+        },
+        "ownerObject": {
+          "orgId": "hms",
+          "userId": "UR_6gTkor673S0UxHD"
+        },
+        "actionId": "OCAC_BYs0tHZBo7Ktnix",
+        "surveyId": "SV_559z0FV4apn4oo5",
+        "createdAt": 1581423050679,
+        "taskNumber": 1,
+        "elementConfigured": true,
+        "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
+        "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
+        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png",
+        "updatedAt": 1613743999661
+      }
+    },
+    {
+      "SurveyID": "SV_559z0FV4apn4oo5",
+      "Element": "TR",
+      "PrimaryAttribute": "OC_3lAMriMTjPlM0tX",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "OnSurveyResponse",
+      "Payload": {
+        "Name": "New Action",
+        "EventType": "OnSurveyResponse",
+        "Type": "OnSurveyComplete",
+        "LogicV2": {
+          "type": "any",
+          "children": []
+        },
+        "EventData": {
+          "fields": []
+        },
+        "eventContext": {
+          "operations": [
+            "CREATE",
+            "UPDATE"
+          ]
+        },
+        "TriggerAction": "Outcome",
+        "unconfigured": false
+      }
+    }
+  ]
+}
