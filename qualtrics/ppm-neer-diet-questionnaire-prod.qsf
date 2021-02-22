@@ -1,7 +1,7 @@
 {
   "SurveyEntry": {
     "SurveyID": "SV_3VHgb01VFieC8Dz",
-    "SurveyName": "PPM NEER - Diet Questionnaire - DEV",
+    "SurveyName": "PPM NEER - Diet Questionnaire - PROD",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
     "SurveyBrandID": "hms",
@@ -271,7 +271,7 @@
             "Options": {
               "Advanced": "",
               "SurveyTermination": "DisplayMessage",
-              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/neer\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}",
+              "EOSRedirectURL": "https:\/\/p2m2.dbmi.hms.harvard.edu\/dashboard\/neer\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}",
               "EOSMessageLibrary": "UR_6gTkor673S0UxHD",
               "EOSMessage": "MS_0qwvpMUN2Z6F3i5"
             }
@@ -324,7 +324,7 @@
         "SurveyLinkCompletedMessageLibrary": "",
         "ResponseSummary": "No",
         "EOSMessageLibrary": "UR_6gTkor673S0UxHD",
-        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/neer\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EOSRedirectURL": "https:\/\/p2m2.dbmi.hms.harvard.edu\/dashboard\/neer\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
         "EmailThankYou": "false",
         "ThankYouEmailMessageLibrary": null,
         "ThankYouEmailMessage": null,
@@ -338,7 +338,7 @@
         "AvailableLanguages": {
           "EN": []
         },
-        "SurveyName": "PPM NEER - Diet Questionnaire - DEV",
+        "SurveyName": "PPM NEER - Diet Questionnaire - PROD",
         "libraryId": "",
         "nextButtonMid": "",
         "previousButtonMid": "",
@@ -2208,7 +2208,7 @@
         "contentType": "JSON",
         "authId": -1,
         "authName": "None",
-        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "url": "https:\/\/p2m2.dbmi.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "dependencies": [],
         "keyValues": {
           "ppm_study": "${e:\/\/Field\/ppm_study}",
@@ -2219,7 +2219,7 @@
         "headers": {
           "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
         },
-        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "name": "POST https:\/\/p2m2.dbmi.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "authUser": {
           "userId": "UR_6gTkor673S0UxHD",
           "brandId": "hms"
