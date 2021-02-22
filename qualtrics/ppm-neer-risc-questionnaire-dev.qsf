@@ -1,0 +1,1487 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_0diiMJZfVTvZMi2",
+    "SurveyName": "PPM NEER - CD-RISC Resilience Scale - DEV",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_0ozRbOKJViaZzZb",
+    "SurveyBrandID": "hms",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_8tRBI5L1IZQCmah",
+    "SurveyStatus": "Active",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2019-01-22 07:12:30",
+    "CreatorID": "UR_0ozRbOKJViaZzZb",
+    "LastModified": "2021-02-20 05:31:07",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "2020-10-29 07:13:56",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": [
+        {
+          "Type": "Default",
+          "Description": "Default Question Block",
+          "ID": "BL_23uYqpkLMJAzZEp",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID11"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID16"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID13"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID14"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID15"
+            }
+          ]
+        },
+        {
+          "Type": "Trash",
+          "Description": "Trash \/ Unused Questions",
+          "ID": "BL_eDrqeQfY1K4puhT",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID12"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Flow": [
+          {
+            "Type": "EmbeddedData",
+            "FlowID": "FL_2",
+            "EmbeddedData": [
+              {
+                "Description": "ppm_id",
+                "Type": "Recipient",
+                "Field": "ppm_id",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ResponseID",
+                "Type": "Recipient",
+                "Field": "ResponseID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "SurveyID",
+                "Type": "Recipient",
+                "Field": "SurveyID",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "Q_URL",
+                "Type": "Recipient",
+                "Field": "Q_URL",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              },
+              {
+                "Description": "ppm_study",
+                "Type": "Recipient",
+                "Field": "ppm_study",
+                "VariableType": "String",
+                "DataVisibility": [],
+                "AnalyzeText": false
+              }
+            ]
+          },
+          {
+            "ID": "BL_23uYqpkLMJAzZEp",
+            "Type": "Block",
+            "FlowID": "FL_3"
+          },
+          {
+            "Type": "EndSurvey",
+            "FlowID": "FL_4",
+            "EndingType": "Advanced",
+            "Options": {
+              "Advanced": "true",
+              "SurveyTermination": "Redirect",
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/neer\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+            }
+          }
+        ],
+        "Properties": {
+          "Count": 4
+        },
+        "FlowID": "FL_1",
+        "Type": "Root"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "false",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": "None",
+        "SurveyTermination": "DefaultMessage",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": "",
+        "PreviousButton": " \u2190 ",
+        "NextButton": " \u2192 ",
+        "SkinLibrary": "hms",
+        "SkinType": "MQ",
+        "Skin": "hms3",
+        "NewScoring": 1,
+        "ProtectSelectionIds": true
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "16",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Click to write the question text",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Click to write the question text",
+        "DataExportTag": "Q4",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Click to write the question text",
+        "Choices": {
+          "1": {
+            "Display": "Click to write Choice 1"
+          },
+          "2": {
+            "Display": "Click to write Choice 2"
+          },
+          "3": {
+            "Display": "Click to write Choice 3"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID4"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "Click to write the question text",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Click to write the question text",
+        "DataExportTag": "Q5",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Click to write the question text",
+        "Choices": {
+          "1": {
+            "Display": "Click to write Choice 1"
+          },
+          "2": {
+            "Display": "Click to write Choice 2"
+          },
+          "3": {
+            "Display": "Click to write Choice 3"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID5"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "Click to write the question text",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Click to write the question text",
+        "DefaultChoices": false,
+        "DataExportTag": "Q6",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Click to write the question text",
+        "Choices": {
+          "1": {
+            "Display": "Click to write Statement 1"
+          },
+          "2": {
+            "Display": "Click to write Statement 2"
+          },
+          "3": {
+            "Display": "Click to write Statement 3"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 4,
+        "Answers": {
+          "1": {
+            "Display": "Click to write Scale point 1"
+          },
+          "2": {
+            "Display": "Click to write Scale point 2"
+          },
+          "3": {
+            "Display": "Click to write Scale point 3"
+          }
+        },
+        "AnswerOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID6"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "Click to write the question text",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Click to write the question text",
+        "DataExportTag": "Q7",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Click to write the question text",
+        "Choices": {
+          "1": {
+            "Display": "Click to write Choice 1"
+          },
+          "2": {
+            "Display": "Click to write Choice 2"
+          },
+          "3": {
+            "Display": "Click to write Choice 3"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID7"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Click to write the question text",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Click to write the question text",
+        "DataExportTag": "Q8",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Click to write the question text",
+        "Choices": {
+          "1": {
+            "Display": "Click to write Choice 1"
+          },
+          "2": {
+            "Display": "Click to write Choice 2"
+          },
+          "3": {
+            "Display": "Click to write Choice 3"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID8"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_8tRBI5L1IZQCmah",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "For each item, please mark the circle below that best indicates how much you agree with the follo...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>For each item, please mark the circle below that best indicates how much you agree with the following\nstatements as they apply to you. If a particular situation has not occurred recently, answer\naccording to how you think you would have felt.&nbsp;<\/p>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q2",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "For each item, please mark the circle below that best indicates how much you agree with the follo...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 9,
+        "NextAnswerId": 1,
+        "QuestionID": "QID2",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "For each item, please mark the circle below that best indicates how much you agree with the follo...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "For each item, please mark the circle below that best indicates how much you agree with the following statements as they apply to you. If a particular situation has not occurred recently, answer according to how you think you would have felt.&nbsp;",
+        "DefaultChoices": false,
+        "DataExportTag": "Q3",
+        "QuestionType": "SBS",
+        "Selector": "SBSMatrix",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "RepeatHeaders": "none"
+        },
+        "QuestionDescription": "For each item, please mark the circle below that best indicates how much you agree with the follo...",
+        "Choices": {
+          "1": {
+            "Display": "1. I am able to adapt when changes occur."
+          },
+          "2": {
+            "Display": "2. I have at least one close and secure relationship that helps me when I am stressed."
+          },
+          "3": {
+            "Display": "3. When there are no clear solutions to my problems, sometimes fate or God can help."
+          },
+          "4": {
+            "Display": "4. I can deal with whatever comes my way."
+          },
+          "5": {
+            "Display": "5. Past successes give me confidence in dealing with new challenges and difficulties."
+          },
+          "6": {
+            "Display": "6. I try to see the humorous side of things when I am faced with problems."
+          },
+          "7": {
+            "Display": "7. Having to cope with stress can make me stronger."
+          },
+          "8": {
+            "Display": "8. I tend to bounce back after illness, injury, or other hardships."
+          },
+          "9": {
+            "Display": "9. Good or bad, I believe that most things happen for a reason."
+          },
+          "10": {
+            "Display": "10. I give my best effort no matter what the outcome may be."
+          },
+          "11": {
+            "Display": "11. I believe I can achieve my goals, even if there are obstacles."
+          },
+          "12": {
+            "Display": "12. Even when things look hopeless, I don't give up."
+          },
+          "13": {
+            "Display": "13. During times of stress\/crisis, I know where to turn for help."
+          },
+          "14": {
+            "Display": "14. Under pressure, I stay focused and think clearly."
+          },
+          "15": {
+            "Display": "15. I prefer to take the lead in solving problems rather than letting others make all the decisions."
+          },
+          "16": {
+            "Display": "16. I am not easily discouraged by failure."
+          },
+          "17": {
+            "Display": "17. I think of myself as a strong person when dealing with life's challenges and difficulties."
+          },
+          "18": {
+            "Display": "18. I can make unpopular or difficult decisions that affect other people, if it is necessary."
+          },
+          "19": {
+            "Display": "19. I am able to handle unpleasant or painful feelings like sadness, fear, and anger."
+          },
+          "20": {
+            "Display": "20. In dealing with life's problems, sometimes you have to act on a hunch without knowing why."
+          },
+          "21": {
+            "Display": "21. I have a strong sense of purpose in life."
+          },
+          "22": {
+            "Display": "22. I feel in control of my life."
+          },
+          "23": {
+            "Display": "23. I like challenges"
+          },
+          "24": {
+            "Display": "24. I work to attain my goals no matter what roadblocks I encounter along the way."
+          },
+          "25": {
+            "Display": "25. I take pride in my achievements."
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 26,
+        "NextAnswerId": 3,
+        "NumberOfQuestions": 2,
+        "AdditionalQuestions": {
+          "1": {
+            "Answers": {
+              "1": {
+                "Display": "Not true at all (0)"
+              },
+              "2": {
+                "Display": "Rarely true (1)"
+              },
+              "3": {
+                "Display": "Sometimes true (2)"
+              },
+              "4": {
+                "Display": "Often true (3)"
+              },
+              "5": {
+                "Display": "True nearly all the time (4)"
+              }
+            },
+            "QuestionText": "Please select one based on the last month",
+            "RecodeValues": [],
+            "VariableNaming": [],
+            "AnalyzeChoices": [],
+            "QuestionType": "Matrix",
+            "Selector": "Likert",
+            "SubSelector": "SingleAnswer",
+            "ChoiceColumnWidthPixels": null,
+            "DataExportTag": "Q3#1",
+            "QuestionID": "QID3#1",
+            "Choices": {
+              "1": {
+                "Display": "1. I am able to adapt when changes occur."
+              },
+              "2": {
+                "Display": "2. I have at least one close and secure relationship that helps me when I am stressed."
+              },
+              "3": {
+                "Display": "3. When there are no clear solutions to my problems, sometimes fate or God can help."
+              },
+              "4": {
+                "Display": "4. I can deal with whatever comes my way."
+              },
+              "5": {
+                "Display": "5. Past successes give me confidence in dealing with new challenges and difficulties."
+              },
+              "6": {
+                "Display": "6. I try to see the humorous side of things when I am faced with problems."
+              },
+              "7": {
+                "Display": "7. Having to cope with stress can make me stronger."
+              },
+              "8": {
+                "Display": "8. I tend to bounce back after illness, injury, or other hardships."
+              },
+              "9": {
+                "Display": "9. Good or bad, I believe that most things happen for a reason."
+              },
+              "10": {
+                "Display": "10. I give my best effort no matter what the outcome may be."
+              },
+              "11": {
+                "Display": "11. I believe I can achieve my goals, even if there are obstacles."
+              },
+              "12": {
+                "Display": "12. Even when things look hopeless, I don't give up."
+              },
+              "13": {
+                "Display": "13. During times of stress\/crisis, I know where to turn for help."
+              },
+              "14": {
+                "Display": "14. Under pressure, I stay focused and think clearly."
+              },
+              "15": {
+                "Display": "15. I prefer to take the lead in solving problems rather than letting others make all the decisions."
+              },
+              "16": {
+                "Display": "16. I am not easily discouraged by failure."
+              },
+              "17": {
+                "Display": "17. I think of myself as a strong person when dealing with life's challenges and difficulties."
+              },
+              "18": {
+                "Display": "18. I can make unpopular or difficult decisions that affect other people, if it is necessary."
+              },
+              "19": {
+                "Display": "19. I am able to handle unpleasant or painful feelings like sadness, fear, and anger."
+              },
+              "20": {
+                "Display": "20. In dealing with life's problems, sometimes you have to act on a hunch without knowing why."
+              },
+              "21": {
+                "Display": "21. I have a strong sense of purpose in life."
+              },
+              "22": {
+                "Display": "22. I feel in control of my life."
+              },
+              "23": {
+                "Display": "23. I like challenges"
+              },
+              "24": {
+                "Display": "24. I work to attain my goals no matter what roadblocks I encounter along the way."
+              },
+              "25": {
+                "Display": "25. I take pride in my achievements."
+              }
+            },
+            "ChoiceDataExportTags": false,
+            "QuestionDescription": "Please select one based on the last month",
+            "Configuration": {
+              "QuestionDescriptionOption": "UseText"
+            }
+          },
+          "2": {
+            "Answers": {
+              "1": {
+                "Display": "Not true at all (0)"
+              },
+              "2": {
+                "Display": "Rarely true (1)"
+              },
+              "3": {
+                "Display": "Sometimes true (2)"
+              },
+              "4": {
+                "Display": "Often true (3)"
+              },
+              "5": {
+                "Display": "True nearly all the time (4)"
+              }
+            },
+            "QuestionText": "Please select one based on your cancer experience",
+            "RecodeValues": [],
+            "VariableNaming": [],
+            "AnalyzeChoices": [],
+            "QuestionType": "Matrix",
+            "Selector": "Likert",
+            "SubSelector": "SingleAnswer",
+            "ChoiceColumnWidthPixels": null,
+            "DataExportTag": "Q3#2",
+            "QuestionID": "QID3#2",
+            "Choices": {
+              "1": {
+                "Display": "1. I am able to adapt when changes occur."
+              },
+              "2": {
+                "Display": "2. I have at least one close and secure relationship that helps me when I am stressed."
+              },
+              "3": {
+                "Display": "3. When there are no clear solutions to my problems, sometimes fate or God can help."
+              },
+              "4": {
+                "Display": "4. I can deal with whatever comes my way."
+              },
+              "5": {
+                "Display": "5. Past successes give me confidence in dealing with new challenges and difficulties."
+              },
+              "6": {
+                "Display": "6. I try to see the humorous side of things when I am faced with problems."
+              },
+              "7": {
+                "Display": "7. Having to cope with stress can make me stronger."
+              },
+              "8": {
+                "Display": "8. I tend to bounce back after illness, injury, or other hardships."
+              },
+              "9": {
+                "Display": "9. Good or bad, I believe that most things happen for a reason."
+              },
+              "10": {
+                "Display": "10. I give my best effort no matter what the outcome may be."
+              },
+              "11": {
+                "Display": "11. I believe I can achieve my goals, even if there are obstacles."
+              },
+              "12": {
+                "Display": "12. Even when things look hopeless, I don't give up."
+              },
+              "13": {
+                "Display": "13. During times of stress\/crisis, I know where to turn for help."
+              },
+              "14": {
+                "Display": "14. Under pressure, I stay focused and think clearly."
+              },
+              "15": {
+                "Display": "15. I prefer to take the lead in solving problems rather than letting others make all the decisions."
+              },
+              "16": {
+                "Display": "16. I am not easily discouraged by failure."
+              },
+              "17": {
+                "Display": "17. I think of myself as a strong person when dealing with life's challenges and difficulties."
+              },
+              "18": {
+                "Display": "18. I can make unpopular or difficult decisions that affect other people, if it is necessary."
+              },
+              "19": {
+                "Display": "19. I am able to handle unpleasant or painful feelings like sadness, fear, and anger."
+              },
+              "20": {
+                "Display": "20. In dealing with life's problems, sometimes you have to act on a hunch without knowing why."
+              },
+              "21": {
+                "Display": "21. I have a strong sense of purpose in life."
+              },
+              "22": {
+                "Display": "22. I feel in control of my life."
+              },
+              "23": {
+                "Display": "23. I like challenges"
+              },
+              "24": {
+                "Display": "24. I work to attain my goals no matter what roadblocks I encounter along the way."
+              },
+              "25": {
+                "Display": "25. I take pride in my achievements."
+              }
+            },
+            "ChoiceDataExportTags": false,
+            "QuestionDescription": "Please select one based on your cancer experience",
+            "Configuration": {
+              "QuestionDescriptionOption": "UseText"
+            }
+          }
+        },
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID3",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Hello NEER Participant! Thank you very much for agreeing to take this survey. The questions below...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Hello NEER Participant! Thank you very much for agreeing to take this survey. The questions below will ask about your sense of resilience. You will be prompted to complete each question twice, once for how you have felt over the past month, and once for how you felt during your cancer experience.<div><br><\/div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div>For the purposes of this survey, we are defining your<span style=\"font-weight: bolder;\">&nbsp;cancer experience&nbsp;<\/span>as the point of diagnosis throughout the conclusion of active treatment. If you have had multiple cancer experiences, please base these responses on the diagnosis and response that qualified you for this study.&nbsp;&nbsp;<span style=\"font-weight: bolder;\">For any further questions, contact Maggie Vella at margaret_vella@hms.harvard.edu.<\/span><\/div><div><br><\/div><div>You will be able to click through and return to the pages of this survey. Unfortunately, you will not be able to return to your responses and edit at a later session. We estimate this survey will take about&nbsp;<span style=\"font-weight: 700;\">ten minutes to complete.&nbsp;<\/span><\/div><div><br><\/div><div>Please try to answer every question. Your answers will be treated as strictly confidential and will be used only for medical research.<\/div><div><br><\/div>\n\n<div>Please feel free to skip any question below or opt out of the survey entirely. If you choose not to answer any questions, please submit just your name.&nbsp;<\/div>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q1",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Hello NEER Participant! Thank you very much for agreeing to take this survey. The questions below...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID1",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID16",
+      "SecondaryAttribute": "Please enter your e-mail address",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please enter your e-mail address",
+        "DefaultChoices": false,
+        "DataExportTag": "Q16",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Please enter your e-mail address",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID16"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Please enter your first and last name.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please enter your first and last name.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q11",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "AllowFreeResponse": "false"
+        },
+        "QuestionDescription": "Please enter your first and last name.",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID11",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID14",
+      "SecondaryAttribute": "Please feel free to include any other information you'd like us to know, e.g. additional informat...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please feel free to include any other information you'd like us to know, e.g. additional information about your resilience and\/or rationale for your answers.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q14",
+        "QuestionType": "TE",
+        "Selector": "ESTB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "InputWidth": 582,
+          "InputHeight": 29,
+          "AllowFreeResponse": "false"
+        },
+        "QuestionDescription": "Please feel free to include any other information you'd like us to know, e.g. additional informat...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 8,
+        "NextAnswerId": 1,
+        "QuestionID": "QID14"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID13",
+      "SecondaryAttribute": "Please provide the month (if possible) and year you had in mind when answering questions about yo...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please provide the month (if possible) and year you had in mind when answering questions about your treatment.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q13",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "AllowFreeResponse": "false"
+        },
+        "QuestionDescription": "Please provide the month (if possible) and year you had in mind when answering questions about yo...",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID13",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Please select how much you agree with each statement based on the last month.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please select how much you agree with each statement based on the last month.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q9",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please select how much you agree with each statement based on the last month.",
+        "Choices": {
+          "1": {
+            "Display": "1. I am able to adapt when changes occur."
+          },
+          "2": {
+            "Display": "2. I have at least one close and secure relationship that helps me when I am stressed."
+          },
+          "3": {
+            "Display": "3. When there are no clear solutions to my problems, sometimes fate or God can help."
+          },
+          "4": {
+            "Display": "4. I can deal with whatever comes my way."
+          },
+          "5": {
+            "Display": "5. Past successes give me confidence in dealing with new challenges and difficulties."
+          },
+          "6": {
+            "Display": "6. I try to see the humorous side of things when I am faced with problems."
+          },
+          "7": {
+            "Display": "7. Having to cope with stress can make me stronger."
+          },
+          "8": {
+            "Display": "8. I tend to bounce back after illness, injury, or other hardships."
+          },
+          "9": {
+            "Display": "9. Good or bad, I believe that most things happen for a reason."
+          },
+          "10": {
+            "Display": "10. I give my best effort no matter what the outcome may be."
+          },
+          "11": {
+            "Display": "11. I believe I can achieve my goals, even if there are obstacles."
+          },
+          "12": {
+            "Display": "12. Even when things look hopeless, I don't give up."
+          },
+          "13": {
+            "Display": "13. During times of stress\/crisis, I know where to turn for help."
+          },
+          "14": {
+            "Display": "14. Under pressure, I stay focused and think clearly."
+          },
+          "15": {
+            "Display": "15. I prefer to take the lead in solving problems rather than letting others make all the decisions."
+          },
+          "16": {
+            "Display": "16. I am not easily discouraged by failure."
+          },
+          "17": {
+            "Display": "17. I think of myself as a strong person when dealing with life's challenges and difficulties."
+          },
+          "18": {
+            "Display": "18. I can make unpopular or difficult decisions that affect other people, if it is necessary."
+          },
+          "19": {
+            "Display": "19. I am able to handle unpleasant or painful feelings like sadness, fear, and anger."
+          },
+          "20": {
+            "Display": "20. In dealing with life's problems, sometimes you have to act on a hunch without knowing why."
+          },
+          "21": {
+            "Display": "21. I have a strong sense of purpose in life."
+          },
+          "22": {
+            "Display": "22. I feel in control of my life."
+          },
+          "23": {
+            "Display": "23. I like challenges"
+          },
+          "24": {
+            "Display": "24. I work to attain my goals no matter what roadblocks I encounter along the way."
+          },
+          "25": {
+            "Display": "25. I take pride in my achievements."
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 26,
+        "NextAnswerId": 6,
+        "Answers": {
+          "1": {
+            "Display": "Not true at all (0)"
+          },
+          "2": {
+            "Display": "Rarely true (1)"
+          },
+          "3": {
+            "Display": "Sometimes true (2)"
+          },
+          "4": {
+            "Display": "Often true (3)"
+          },
+          "5": {
+            "Display": "True nearly all the time (4)"
+          }
+        },
+        "AnswerOrder": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID9"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Please select how much you agree with each statement based on the time of your cancer experience.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Please select how much you agree with each statement based on the time of your cancer experience.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q10",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true
+        },
+        "QuestionDescription": "Please select how much you agree with each statement based on the time of your cancer experience.",
+        "Choices": {
+          "1": {
+            "Display": "1. I am able to adapt when changes occur."
+          },
+          "2": {
+            "Display": "2. I have at least one close and secure relationship that helps me when I am stressed."
+          },
+          "3": {
+            "Display": "3. When there are no clear solutions to my problems, sometimes fate or God can help."
+          },
+          "4": {
+            "Display": "4. I can deal with whatever comes my way."
+          },
+          "5": {
+            "Display": "5. Past successes give me confidence in dealing with new challenges and difficulties."
+          },
+          "6": {
+            "Display": "6. I try to see the humorous side of things when I am faced with problems."
+          },
+          "7": {
+            "Display": "7. Having to cope with stress can make me stronger."
+          },
+          "8": {
+            "Display": "8. I tend to bounce back after illness, injury, or other hardships."
+          },
+          "9": {
+            "Display": "9. Good or bad, I believe that most things happen for a reason."
+          },
+          "10": {
+            "Display": "10. I give my best effort no matter what the outcome may be."
+          },
+          "11": {
+            "Display": "11. I believe I can achieve my goals, even if there are obstacles."
+          },
+          "12": {
+            "Display": "12. Even when things look hopeless, I don't give up."
+          },
+          "13": {
+            "Display": "13. During times of stress\/crisis, I know where to turn for help."
+          },
+          "14": {
+            "Display": "14. Under pressure, I stay focused and think clearly."
+          },
+          "15": {
+            "Display": "15. I prefer to take the lead in solving problems rather than letting others make all the decisions."
+          },
+          "16": {
+            "Display": "16. I am not easily discouraged by failure."
+          },
+          "17": {
+            "Display": "17. I think of myself as a strong person when dealing with life's challenges and difficulties."
+          },
+          "18": {
+            "Display": "18. I can make unpopular or difficult decisions that affect other people, if it is necessary."
+          },
+          "19": {
+            "Display": "19. I am able to handle unpleasant or painful feelings like sadness, fear, and anger."
+          },
+          "20": {
+            "Display": "20. In dealing with life's problems, sometimes you have to act on a hunch without knowing why."
+          },
+          "21": {
+            "Display": "21. I have a strong sense of purpose in life."
+          },
+          "22": {
+            "Display": "22. I feel in control of my life."
+          },
+          "23": {
+            "Display": "23. I like challenges"
+          },
+          "24": {
+            "Display": "24. I work to attain my goals no matter what roadblocks I encounter along the way."
+          },
+          "25": {
+            "Display": "25. I take pride in my achievements."
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 26,
+        "NextAnswerId": 6,
+        "Answers": {
+          "1": {
+            "Display": "Not true at all (0)"
+          },
+          "2": {
+            "Display": "Rarely true (1)"
+          },
+          "3": {
+            "Display": "Sometimes true (2)"
+          },
+          "4": {
+            "Display": "Often true (3)"
+          },
+          "5": {
+            "Display": "True nearly all the time (4)"
+          }
+        },
+        "AnswerOrder": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "ChoiceDataExportTags": false,
+        "QuestionID": "QID10"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "Second identifier?",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Second identifier?",
+        "DefaultChoices": false,
+        "DataExportTag": "Q12",
+        "QuestionType": "TE",
+        "Selector": "SL",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "AllowFreeResponse": "false"
+        },
+        "QuestionDescription": "Second identifier?",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID12"
+      }
+    },
+    {
+      "SurveyID": "SV_0diiMJZfVTvZMi2",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID15",
+      "SecondaryAttribute": "Thank you for your responses. If you are experiencing feelings of anxiety or depression, please r...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "Thank you for your responses. If you are experiencing feelings of anxiety or depression, please reach out to your primary care physician or contact us for assistance with finding a resource.",
+        "DefaultChoices": false,
+        "DataExportTag": "Q15",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Thank you for your responses. If you are experiencing feelings of anxiety or depression, please r...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID15"
+      }
+    }
+  ]
+}
