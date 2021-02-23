@@ -1,7 +1,7 @@
 {
   "SurveyEntry": {
-    "SurveyID": "SV_eE6zyN1aAwHmoYu",
-    "SurveyName": "PPM RANT - Points of Care Questionnaire - DEV",
+    "SurveyID": "SV_2ttMIBNDmxiKqxg",
+    "SurveyName": "PPM RANT - Points of Care Questionnaire - LOC",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
     "SurveyBrandID": "hms",
@@ -20,7 +20,7 @@
   },
   "SurveyElements": [
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -83,7 +83,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "FL",
       "PrimaryAttribute": "Survey Flow",
       "SecondaryAttribute": null,
@@ -151,7 +151,7 @@
             "Options": {
               "Advanced": "true",
               "SurveyTermination": "Redirect",
-              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
             }
           }
         ],
@@ -162,7 +162,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SO",
       "PrimaryAttribute": "Survey Options",
       "SecondaryAttribute": null,
@@ -216,7 +216,7 @@
         "SurveyLinkCompletedMessageLibrary": "",
         "ResponseSummary": "No",
         "EOSMessageLibrary": "",
-        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
         "EmailThankYou": "false",
         "ThankYouEmailMessageLibrary": null,
         "ThankYouEmailMessage": null,
@@ -234,12 +234,12 @@
         "CustomStyles": {
           "customCSS": ""
         },
-        "SurveyName": "PPM RANT - Points of Care Questionnaire - DEV",
+        "SurveyName": "PPM RANT - Points of Care Questionnaire - LOC",
         "PartialDeletion": null
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SCO",
       "PrimaryAttribute": "Scoring",
       "SecondaryAttribute": null,
@@ -255,7 +255,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "PROJ",
       "PrimaryAttribute": "CORE",
       "SecondaryAttribute": null,
@@ -266,7 +266,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "STAT",
       "PrimaryAttribute": "Survey Statistics",
       "SecondaryAttribute": null,
@@ -277,7 +277,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "QC",
       "PrimaryAttribute": "Survey Question Count",
       "SecondaryAttribute": "38",
@@ -285,7 +285,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "RS",
       "PrimaryAttribute": "RS_bKQe2QTTGipDNcN",
       "SecondaryAttribute": "Default Response Set",
@@ -293,7 +293,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
       "SecondaryAttribute": "Name of the rheumatologist that diagnosed you with rheumatoid arthritis?\u00a0",
@@ -331,7 +331,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "Office address of diagnosing rheumatologist:\u00a0",
@@ -372,7 +372,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "Office phone of diagnosing rheumatologist?\u00a0",
@@ -412,7 +412,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Is the diagnosing rheumatologist your current rheumatologist?\u00a0",
@@ -463,7 +463,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
       "SecondaryAttribute": "Name of your current rheumatologist?",
@@ -518,7 +518,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Office address of your current rheumatologist?\u00a0",
@@ -573,7 +573,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "Office phone of current rheumatologist?\u00a0",
@@ -631,7 +631,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID8",
       "SecondaryAttribute": "Please list the other center(s) or office(s) where you have received rheumatology care:\u00a0",
@@ -668,7 +668,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID9",
       "SecondaryAttribute": "Have you received medical care from any other healthcare centers or hospitals not mentioned above...",
@@ -715,7 +715,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "SQ",
       "PrimaryAttribute": "QID10",
       "SecondaryAttribute": " Please list the additional medical centers where you have received care (separate entries by \";\"):",
@@ -770,7 +770,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "OCAC",
       "PrimaryAttribute": "OCAC_eP3Kouy9rEhIgQJ",
       "SecondaryAttribute": "OC_3V3vmc3ow6P7SbX",
@@ -785,7 +785,7 @@
         "contentType": "JSON",
         "authId": -1,
         "authName": "None",
-        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "url": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "dependencies": [],
         "keyValues": {
           "ppm_id": "${e:\/\/Field\/ppm_id}",
@@ -796,7 +796,7 @@
         "headers": {
           "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
         },
-        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "name": "POST https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "authUser": {
           "userId": "UR_6gTkor673S0UxHD",
           "brandId": "hms"
@@ -818,7 +818,7 @@
       }
     },
     {
-      "SurveyID": "SV_eE6zyN1aAwHmoYu",
+      "SurveyID": "SV_2ttMIBNDmxiKqxg",
       "Element": "TR",
       "PrimaryAttribute": "OC_3V3vmc3ow6P7SbX",
       "SecondaryAttribute": null,

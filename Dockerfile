@@ -45,6 +45,9 @@ COPY docker-entrypoint-init.d/* /docker-entrypoint-init.d/
 # Copy app source
 COPY /app /app
 
+# Add Qualtrics survey exports
+COPY qualtrics/* /qualtrics/
+
 # Set the build env
 ENV DBMI_ENV=prod
 

@@ -1,7 +1,7 @@
 {
   "SurveyEntry": {
-    "SurveyID": "SV_6tiGSw54pSGjHZc",
-    "SurveyName": "PPM RANT - RA Symptom Questionnaire - DEV",
+    "SurveyID": "SV_1zfAuATwGYTHLG6",
+    "SurveyName": "PPM RANT - RA Symptom Questionnaire - LOC",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
     "SurveyBrandID": "hms",
@@ -20,7 +20,7 @@
   },
   "SurveyElements": [
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -304,7 +304,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "FL",
       "PrimaryAttribute": "Survey Flow",
       "SecondaryAttribute": null,
@@ -468,7 +468,7 @@
             "Options": {
               "Advanced": "true",
               "SurveyTermination": "Redirect",
-              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
             }
           }
         ],
@@ -479,7 +479,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SO",
       "PrimaryAttribute": "Survey Options",
       "SecondaryAttribute": null,
@@ -533,7 +533,7 @@
         "SurveyLinkCompletedMessageLibrary": "",
         "ResponseSummary": "No",
         "EOSMessageLibrary": "",
-        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
         "EmailThankYou": "false",
         "ThankYouEmailMessageLibrary": null,
         "ThankYouEmailMessage": null,
@@ -552,11 +552,11 @@
           "customCSS": ""
         },
         "PartialDeletion": null,
-        "SurveyName": "PPM RANT - RA Symptom Questionnaire - DEV"
+        "SurveyName": "PPM RANT - RA Symptom Questionnaire - LOC"
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SCO",
       "PrimaryAttribute": "Scoring",
       "SecondaryAttribute": null,
@@ -572,7 +572,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "PROJ",
       "PrimaryAttribute": "CORE",
       "SecondaryAttribute": null,
@@ -583,7 +583,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "STAT",
       "PrimaryAttribute": "Survey Statistics",
       "SecondaryAttribute": null,
@@ -594,7 +594,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "QC",
       "PrimaryAttribute": "Survey Question Count",
       "SecondaryAttribute": "53",
@@ -602,7 +602,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "RS",
       "PrimaryAttribute": "RS_b9gbcXfTGlsTedL",
       "SecondaryAttribute": "Default Response Set",
@@ -610,7 +610,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
       "SecondaryAttribute": "Considering all the ways RA has affected you, how do you feel your RA is today?",
@@ -670,7 +670,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "On average, how stiff are your joints in the morning?\u00a0",
@@ -730,7 +730,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
@@ -1587,7 +1587,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
@@ -2444,7 +2444,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
       "SecondaryAttribute": "Have you had any joints replaced?\u00a0",
@@ -2503,7 +2503,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID5_1",
       "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
@@ -3000,7 +3000,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID5_2",
       "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
@@ -3497,7 +3497,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -3605,7 +3605,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -3693,7 +3693,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID8",
       "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities:\u00a0",
@@ -3789,7 +3789,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID8_1",
       "SecondaryAttribute": "Please specify any other aids or devices:\u00a0",
@@ -3845,7 +3845,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID9",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
@@ -3921,7 +3921,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID10",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -4029,7 +4029,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID11",
       "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
@@ -4110,7 +4110,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID11_1",
       "SecondaryAttribute": "Please specify any other aids or devices:",
@@ -4165,7 +4165,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID12",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
@@ -4232,7 +4232,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "SQ",
       "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -4316,7 +4316,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "OCAC",
       "PrimaryAttribute": "OCAC_9tUwfRtzqiYgRcV",
       "SecondaryAttribute": "OC_3yfQJmljbI6EbZz",
@@ -4331,7 +4331,7 @@
         "contentType": "JSON",
         "authId": -1,
         "authName": "None",
-        "url": "https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "url": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "dependencies": [],
         "keyValues": {
           "ppm_id": "${e:\/\/Field\/ppm_id}",
@@ -4342,7 +4342,7 @@
         "headers": {
           "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
         },
-        "name": "POST https:\/\/p2m2.aws.dbmi-dev.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "name": "POST https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
         "authUser": {
           "userId": "UR_6gTkor673S0UxHD",
           "brandId": "hms"
@@ -4364,7 +4364,7 @@
       }
     },
     {
-      "SurveyID": "SV_6tiGSw54pSGjHZc",
+      "SurveyID": "SV_1zfAuATwGYTHLG6",
       "Element": "TR",
       "PrimaryAttribute": "OC_3yfQJmljbI6EbZz",
       "SecondaryAttribute": null,
