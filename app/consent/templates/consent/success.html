@@ -6,10 +6,10 @@
 
     <div id="fhirquestionnaire-content">
         <div class="row">
-            <div class="col-sm-2 text-right icon-col">
+            <div class="col-xs-2 text-right icon-col">
                 <h1><span class="glyphicon glyphicon-ok" style="color: green;"></span></h1>
             </div>
-            <div class="col-sm-8 bs-callout bs-callout-success">
+            <div class="col-xs-9 col-sm-8 bs-callout bs-callout-success">
                 <h1>Submission Successful</h1>
                 <p class="lead">You've successfully submitted your consent. An administrator will review your submission and contact you via e-mail.</p>
                 <br />
@@ -17,10 +17,10 @@
         </div>
         {% if demo %}
         <div class="row">
-            <div class="col-sm-2 text-right icon-col">
+            <div class="col-xs-2 text-right icon-col">
                 <h1><span class="glyphicon glyphicon-floppy-remove" style="color: red;"></span></h1>
             </div>
-            <div class="col-sm-8 bs-callout bs-callout-danger">
+            <div class="col-xs-9 col-sm-8 bs-callout bs-callout-danger">
                 <h1>Demo Mode</h1>
                 <p class="lead">You've successfully submitted your consent as a demo, nothing will be saved or persisted. Please contact support if you've reached this page unexpectedly.</p>
                 <br />
@@ -29,7 +29,7 @@
         {% endif %}
         {% if return_url %}
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div class="col-xs-9 col-sm-8 col-xs-offset-2">
                 <div class="no-js"><p> <a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;Click to return to the People-Powered Medicine Dashboard</a>.</p></div>
                 <div class="js"><p><a href="{{ return_url }}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;&nbsp;You are being redirected to the People-Powered Medicine Dashboard</a>.</p></div>
             </div>
