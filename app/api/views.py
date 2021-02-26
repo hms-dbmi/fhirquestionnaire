@@ -933,7 +933,7 @@ class QualtricsView(APIView):
 
                 # We are only processing BooleanExpressions
                 if question["DisplayLogic"]["Type"] != "BooleanExpression":
-                    print(
+                    logger.error(
                         f"PPM/Questionnaire: Unhandled DisplayLogic "
                         f"type {survey_id}/{question_id}: {question['DisplayLogic']}"
                     )
@@ -1133,6 +1133,49 @@ class QualtricsView(APIView):
 
                 # Set type
                 item["type"] = "display"
+
+            # Multiple, matrix-style questions
+            elif question_type == "SBS":
+
+                item["type"] = "group"
+
+                # Add the header as a display item
+                item["item"] = [{
+                    "linkId": f"{link_id}-display",
+                    "type": "display",
+                    "text": question["QuestionText"],
+                    }
+                ]
+
+                # Add this as multiple grouped sets of multiple choice, single answer questions
+                for k, additional_question in question["AdditionalQuestions"].items():
+
+                    # Add another display for the subquestion
+                    item["item"].append({
+                        "linkId": f"{link_id}-{k}-display",
+                        "type": "display",
+                        "text": additional_question["QuestionText"],
+                    })
+
+                    # Get choices
+                    questions = {k: c["Display"] for k, c in additional_question["Choices"].items()}
+
+                    # Preselect choices
+                    answers = [{"valueString": c["Display"]} for k, c in additional_question["Answers"].items()]
+
+                    # Add a question per choice
+                    for sub_k, sub_question in questions.items():
+
+                        # Set subitems
+                        item["item"].append(
+                            {
+                                "linkId": f"{link_id}-{k}-{sub_k}",
+                                "text": sub_question,
+                                "type": "choice",
+                                "option": answers,
+                                "required": required,
+                                }
+                            )
 
             else:
                 logger.error(
