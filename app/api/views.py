@@ -1137,25 +1137,21 @@ class QualtricsView(APIView):
             # Multiple, matrix-style questions
             elif question_type == "SBS":
 
+                # Put them in a group
                 item["type"] = "group"
-
-                # Add the header as a display item
-                item["item"] = [{
-                    "linkId": f"{link_id}-display",
-                    "type": "display",
-                    "text": question["QuestionText"],
-                    }
-                ]
+                item["text"] = question["QuestionText"]
+                item["item"] = []
 
                 # Add this as multiple grouped sets of multiple choice, single answer questions
                 for k, additional_question in question["AdditionalQuestions"].items():
 
                     # Add another display for the subquestion
-                    item["item"].append({
-                        "linkId": f"{link_id}-{k}-display",
-                        "type": "display",
+                    sub_item = {
+                        "linkId": f"{link_id}-{k}",
+                        "type": "group",
                         "text": additional_question["QuestionText"],
-                    })
+                        "item": [],
+                    }
 
                     # Get choices
                     questions = {k: c["Display"] for k, c in additional_question["Choices"].items()}
@@ -1166,16 +1162,19 @@ class QualtricsView(APIView):
                     # Add a question per choice
                     for sub_k, sub_question in questions.items():
 
+                        # Remove prefixes, if set
+                        sub_question = re.sub(r"^[\d]{1,4}\.\s", "", sub_question)
+
                         # Set subitems
-                        item["item"].append(
-                            {
-                                "linkId": f"{link_id}-{k}-{sub_k}",
-                                "text": sub_question,
-                                "type": "choice",
-                                "option": answers,
-                                "required": required,
-                                }
-                            )
+                        sub_item["item"].append({
+                            "linkId": f"{link_id}-{k}-{sub_k}",
+                            "text": sub_question,
+                            "type": "choice",
+                            "option": answers,
+                            "required": required,
+                            })
+
+                    item["item"].append(sub_item)
 
             else:
                 logger.error(
