@@ -28,7 +28,7 @@
       "Payload": {
         "1": {
           "Type": "Trash",
-          "Description": "Trash \/ Unused Questions",
+          "Description": "Trash / Unused Questions",
           "ID": "BL_5zkiwVkTejIv79z",
           "BlockElements": []
         },
@@ -70,9 +70,9 @@
             "RandomizeQuestions": "false",
             "Looping": "Question",
             "LoopingOptions": {
-              "Locator": "q:\/\/QID5\/LoopAndMerge\/MergeOnNumericResponse?v=20",
+              "Locator": "q://QID5/LoopAndMerge/MergeOnNumericResponse?v=20",
               "QID": "QID5",
-              "ChoiceGroupLocator": "q:\/\/QID5\/LoopAndMerge\/MergeOnNumericResponse",
+              "ChoiceGroupLocator": "q://QID5/LoopAndMerge/MergeOnNumericResponse",
               "Static": {
                 "1": {
                   "2": "first"
@@ -485,7 +485,7 @@
             "Options": {
               "Advanced": "true",
               "SurveyTermination": "Redirect",
-              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+              "EOSRedirectURL": "https://p2m2.dbmi-loc.hms.harvard.edu/dashboard/rant/?ppm_id=${e://Field/ppm_id}&ppm_study=${e://Field/ppm_study}&qualtrics_survey=${e://Field/SurveyID}&response_id=${e://Field/ResponseID}"
             }
           }
         ],
@@ -523,8 +523,8 @@
         "ProgressBarDisplay": "None",
         "PartialData": "+1 week",
         "ValidationMessage": null,
-        "PreviousButton": " \u2190 ",
-        "NextButton": " \u2192 ",
+        "PreviousButton": " ← ",
+        "NextButton": " → ",
         "SkinLibrary": "hms",
         "SkinType": "templated",
         "Skin": {
@@ -532,7 +532,7 @@
           "templateId": "*base",
           "overrides": {
             "logo": {
-              "url": "https:\/\/hms.az1.qualtrics.com\/CP\/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
+              "url": "https://hms.az1.qualtrics.com/CP/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
             },
             "questionsContainer": {
               "on": true
@@ -552,13 +552,13 @@
         "AnonymizeResponse": "No",
         "Password": "ppmisgreat",
         "RefererCheck": "No",
-        "RefererURL": "http:\/\/",
+        "RefererURL": "http://",
         "UseCustomSurveyLinkCompletedMessage": null,
         "SurveyLinkCompletedMessage": "",
         "SurveyLinkCompletedMessageLibrary": "",
         "ResponseSummary": "No",
         "EOSMessageLibrary": "",
-        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EOSRedirectURL": "https://p2m2.dbmi-loc.hms.harvard.edu/dashboard/rant/?qualtrics_survey=${e://Field/SurveyID}&response_id=${e://Field/ResponseID}&ppm_id=${e://Field/ppm_id}&ppm_study=${e://Field/ppm_study}&survey_url=${e://Field/Q_URL}",
         "EmailThankYou": "false",
         "ThankYouEmailMessageLibrary": null,
         "ThankYouEmailMessage": null,
@@ -634,7 +634,7 @@
       "SecondaryAttribute": "What is your height?",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>What is your height?<\/p>",
+        "QuestionText": "<p>What is your height?</p>",
         "DefaultChoices": false,
         "DataExportTag": "QID1",
         "QuestionID": "QID1",
@@ -1187,9 +1187,9 @@
               "Logic": {
                 "0": {
                   "0": {
-                    "ChoiceLocator": "q:\/\/QID2\/ChoiceTextEntryValue",
-                    "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">What is your weight (lbs)?<\/span> <span class=\"LeftOpDesc\">Text Response<\/span> <span class=\"OpDesc\">Is Greater Than<\/span> <span class=\"RightOpDesc\"> 0 <\/span>",
-                    "LeftOperand": "q:\/\/QID2\/ChoiceTextEntryValue",
+                    "ChoiceLocator": "q://QID2/ChoiceTextEntryValue",
+                    "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">What is your weight (lbs)?</span> <span class=\"LeftOpDesc\">Text Response</span> <span class=\"OpDesc\">Is Greater Than</span> <span class=\"RightOpDesc\"> 0 </span>",
+                    "LeftOperand": "q://QID2/ChoiceTextEntryValue",
                     "LogicType": "Question",
                     "Operator": "GreaterThan",
                     "QuestionID": "QID2",
@@ -1227,7 +1227,7 @@
       "SecondaryAttribute": "Are you concerned that you've had COVID since March 1st, 2020?",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Are you concerned that you've had COVID since March 1st, 2020?<\/p>",
+        "QuestionText": "<p>Are you concerned that you've had COVID since March 1st, 2020?</p>",
         "DataExportTag": "QID3",
         "QuestionType": "MC",
         "Selector": "SAVR",
@@ -1330,10 +1330,10 @@
       "SurveyID": "SV_0v6hwx8oOdP0BCK",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
-      "SecondaryAttribute": "How many times have you felt unwell\/ill since March 1st, 2020?",
+      "SecondaryAttribute": "How many times have you felt unwell/ill since March 1st, 2020?",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "How many times have you felt unwell\/ill since March 1st, 2020?",
+        "QuestionText": "How many times have you felt unwell/ill since March 1st, 2020?",
         "DefaultChoices": false,
         "DataExportTag": "QID4_1",
         "QuestionType": "TE",
@@ -1341,7 +1341,7 @@
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "How many times have you felt unwell\/ill since March 1st, 2020?",
+        "QuestionDescription": "How many times have you felt unwell/ill since March 1st, 2020?",
         "Validation": {
           "Settings": {
             "ForceResponse": "OFF",
@@ -1373,9 +1373,9 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID4\/SelectableChoice\/23",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you felt ill since March 1st, 2020 through now?<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID4\/SelectableChoice\/23",
+              "ChoiceLocator": "q://QID4/SelectableChoice/23",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Have you felt ill since March 1st, 2020 through now?</span> <span class=\"LeftOpDesc\">Yes</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID4/SelectableChoice/23",
               "LogicType": "Question",
               "Operator": "Selected",
               "QuestionID": "QID4",
@@ -1394,10 +1394,10 @@
       "SurveyID": "SV_0v6hwx8oOdP0BCK",
       "Element": "SQ",
       "PrimaryAttribute": "QID6",
-      "SecondaryAttribute": "For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
+      "SecondaryAttribute": "For the ${lm://Field/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "For the ${lm:\/\/Field\/2} time you were sick&nbsp;since March 1st, 2020, when was the onset of symptoms? (MM\/YYYY)",
+        "QuestionText": "For the ${lm://Field/2} time you were sick&nbsp;since March 1st, 2020, when was the onset of symptoms? (MM/YYYY)",
         "DefaultChoices": false,
         "DataExportTag": "Q5",
         "QuestionType": "TE",
@@ -1405,7 +1405,7 @@
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
+        "QuestionDescription": "For the ${lm://Field/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...",
         "Validation": {
           "Settings": {
             "ForceResponse": "ON",
@@ -1418,9 +1418,9 @@
               "Logic": {
                 "0": {
                   "0": {
-                    "ChoiceLocator": "q:\/\/QID6\/ChoiceTextEntryValue",
-                    "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">For the ${lm:\/\/Field\/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...<\/span> <span class=\"LeftOpDesc\">Text Response<\/span> <span class=\"OpDesc\">Matches Regex<\/span> <span class=\"RightOpDesc\"> ^(?!0?1\\\/2020)(?!0?2\\\/2020)(1[0-2]|0[1-9]|\\d)\\\/((20)?2[0,1,2])$ <\/span>",
-                    "LeftOperand": "q:\/\/QID6\/ChoiceTextEntryValue",
+                    "ChoiceLocator": "q://QID6/ChoiceTextEntryValue",
+                    "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">For the ${lm://Field/2} time you were sick since March 1st, 2020, when was the onset of symptoms?...</span> <span class=\"LeftOpDesc\">Text Response</span> <span class=\"OpDesc\">Matches Regex</span> <span class=\"RightOpDesc\"> ^(?!0?1\/2020)(?!0?2\/2020)(1[0-2]|0[1-9]|\\d)\/((20)?2[0,1,2])$ </span>",
+                    "LeftOperand": "q://QID6/ChoiceTextEntryValue",
                     "LogicType": "Question",
                     "LoopAndMergeLoops": "current",
                     "LoopTarget": "none",
@@ -1428,7 +1428,7 @@
                     "QuestionID": "QID6",
                     "QuestionIDFromLocator": "QID6",
                     "QuestionIsInLoop": "yes",
-                    "RightOperand": "^(?!0?1\\\/2020)(?!0?2\\\/2020)(1[0-2]|0[1-9]|\\d)\\\/((20)?2[0,1,2])$",
+                    "RightOperand": "^(?!0?1\/2020)(?!0?2\/2020)(1[0-2]|0[1-9]|\\d)\/((20)?2[0,1,2])$",
                     "Type": "Expression"
                   },
                   "Type": "If"
@@ -1436,7 +1436,7 @@
                 "Type": "BooleanExpression"
               },
               "Message": {
-                "description": "Require valid date 03\/2020 and later",
+                "description": "Require valid date 03/2020 and later",
                 "libraryID": "UR_6gTkor673S0UxHD",
                 "messageID": "MS_4YGwtMGdLTUVMFL",
                 "subMessageID": "VE_CUSTOM_VALIDATION_0"
@@ -1462,10 +1462,10 @@
       "SurveyID": "SV_0v6hwx8oOdP0BCK",
       "Element": "SQ",
       "PrimaryAttribute": "QID7",
-      "SecondaryAttribute": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...",
+      "SecondaryAttribute": "Please answer the question according to the ${lm://Field/2} time you felt unwell/ill. Which of th...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of the following symptoms did you have?",
+        "QuestionText": "Please answer the question according to the ${lm://Field/2} time you felt unwell/ill. Which of the following symptoms did you have?",
         "DefaultChoices": false,
         "DataExportTag": "Q6",
         "QuestionType": "Matrix",
@@ -1479,7 +1479,7 @@
           "WhiteSpace": "OFF",
           "MobileFirst": true
         },
-        "QuestionDescription": "Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...",
+        "QuestionDescription": "Please answer the question according to the ${lm://Field/2} time you felt unwell/ill. Which of th...",
         "Choices": {
           "1": {
             "Display": "Fever"
@@ -1500,7 +1500,7 @@
             "Display": "Sore or painful throat"
           },
           "7": {
-            "Display": "Loss of smell\/taste"
+            "Display": "Loss of smell/taste"
           },
           "8": {
             "Display": "Hoarse voice"
@@ -1521,7 +1521,7 @@
             "Display": "Raised, red, itchy, welts on the skin or sudden swelling of the face or lips"
           },
           "14": {
-            "Display": "Red\/purple sores or blisters on your feet"
+            "Display": "Red/purple sores or blisters on your feet"
           },
           "15": {
             "Display": "Confusion, disorientation or drowsiness"
@@ -1617,9 +1617,9 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID7\/SelectableChoice\/17\/1",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please answer the question according to the ${lm:\/\/Field\/2} time you felt unwell\/ill. Which of th...<\/span> <span class=\"LeftOpDesc\">Headache - Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID7\/SelectableChoice\/17\/1",
+              "ChoiceLocator": "q://QID7/SelectableChoice/17/1",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Please answer the question according to the ${lm://Field/2} time you felt unwell/ill. Which of th...</span> <span class=\"LeftOpDesc\">Headache - Yes</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID7/SelectableChoice/17/1",
               "LogicType": "Question",
               "LoopAndMergeLoops": "current",
               "LoopTarget": "none",
@@ -1859,18 +1859,18 @@
         "contentType": "JSON",
         "authId": -1,
         "authName": "None",
-        "url": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "url": "https://p2m2.dbmi-loc.hms.harvard.edu/sources/api/qualtrics/response/",
         "dependencies": [],
         "keyValues": {
-          "ppm_id": "${e:\/\/Field\/ppm_id}",
-          "response_id": "${e:\/\/Field\/ResponseID}",
-          "ppm_study": "${e:\/\/Field\/ppm_study}",
-          "survey_id": "${e:\/\/Field\/SurveyID}"
+          "ppm_id": "${e://Field/ppm_id}",
+          "response_id": "${e://Field/ResponseID}",
+          "ppm_study": "${e://Field/ppm_study}",
+          "survey_id": "${e://Field/SurveyID}"
         },
         "headers": {
           "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
         },
-        "name": "POST https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "name": "POST https://p2m2.dbmi-loc.hms.harvard.edu/sources/api/qualtrics/response/",
         "authUser": {
           "userId": "UR_6gTkor673S0UxHD",
           "brandId": "hms"
@@ -1888,7 +1888,7 @@
         "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
         "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
         "credentials": [],
-        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png"
+        "icon": "https://www.xm-apps-static.com/assets-stage/v1/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf/1.0.1/HkFThd8rahViMbKQ/images/logo-small.png"
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "SurveyEntry": {
-    "SurveyID": "SV_0pPq52M6N4Pt87I",
+    "SurveyID": "SV_4MkX60qlyZeT3XE",
     "SurveyName": "PPM RANT - RA Symptom Questionnaire - LOC",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
@@ -20,7 +20,7 @@
   },
   "SurveyElements": [
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -120,32 +120,66 @@
         "7": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID6",
+          "Description": "QID5S1",
           "ID": "BL_8caZxtesCpw9cb3",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID6"
+              "QuestionID": "QID5S1"
             }
           ]
         },
         "8": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID7",
+          "Description": "QID5S2",
           "ID": "BL_0SxpO9HhEHO2b2t",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID7"
+              "QuestionID": "QID5S2"
             }
           ]
         },
         "9": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID8",
+          "Description": "QID6",
           "ID": "BL_a4amO0JxajBE60J",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "10": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID7",
+          "ID": "BL_8HCR8ROkkfCcg2p",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "11": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID8",
+          "ID": "BL_enyiPVi0MbTbXud",
           "BlockElements": [
             {
               "Type": "Question",
@@ -158,11 +192,23 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "10": {
+        "12": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID8S1",
+          "ID": "BL_01vJ6CGJdVE28wm",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID8S1"
+            }
+          ]
+        },
+        "13": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID9",
-          "ID": "BL_8HCR8ROkkfCcg2p",
+          "ID": "BL_0eyliQhx3XVjjQV",
           "BlockElements": [
             {
               "Type": "Question",
@@ -175,11 +221,11 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "11": {
+        "14": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID10",
-          "ID": "BL_enyiPVi0MbTbXud",
+          "ID": "BL_7VUR8m5n0UiPebb",
           "BlockElements": [
             {
               "Type": "Question",
@@ -192,23 +238,40 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "12": {
+        "15": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID11",
-          "ID": "BL_01vJ6CGJdVE28wm",
+          "ID": "BL_eS8h9tB9izI6TZz",
           "BlockElements": [
             {
               "Type": "Question",
               "QuestionID": "QID11"
             }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "16": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID11S1",
+          "ID": "BL_3VFocYMxrqTrUzk",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID11S1"
+            }
           ]
         },
-        "13": {
+        "17": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID12",
-          "ID": "BL_0eyliQhx3XVjjQV",
+          "ID": "BL_3O915vTWsYuUdBH",
           "BlockElements": [
             {
               "Type": "Question",
@@ -221,11 +284,11 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "14": {
+        "18": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID13",
-          "ID": "BL_7VUR8m5n0UiPebb",
+          "ID": "BL_bEDVKsAZKqYBm9n",
           "BlockElements": [
             {
               "Type": "Question",
@@ -237,74 +300,11 @@
             "RandomizeQuestions": "false",
             "BlockVisibility": "Expanded"
           }
-        },
-        "15": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID14",
-          "ID": "BL_eS8h9tB9izI6TZz",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID14"
-            }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
-        },
-        "16": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID15",
-          "ID": "BL_3VFocYMxrqTrUzk",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID15"
-            }
-          ]
-        },
-        "17": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID16",
-          "ID": "BL_3O915vTWsYuUdBH",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID16"
-            }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
-        },
-        "18": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID17",
-          "ID": "BL_bEDVKsAZKqYBm9n",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID17"
-            }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
         }
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "FL",
       "PrimaryAttribute": "Survey Flow",
       "SecondaryAttribute": null,
@@ -479,7 +479,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SO",
       "PrimaryAttribute": "Survey Options",
       "SecondaryAttribute": null,
@@ -555,7 +555,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SCO",
       "PrimaryAttribute": "Scoring",
       "SecondaryAttribute": null,
@@ -571,7 +571,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "PROJ",
       "PrimaryAttribute": "CORE",
       "SecondaryAttribute": null,
@@ -582,7 +582,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "STAT",
       "PrimaryAttribute": "Survey Statistics",
       "SecondaryAttribute": null,
@@ -593,7 +593,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "QC",
       "PrimaryAttribute": "Survey Question Count",
       "SecondaryAttribute": "53",
@@ -601,7 +601,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "RS",
       "PrimaryAttribute": "RS_cUesy9GfqKS7Iou",
       "SecondaryAttribute": "Default Response Set",
@@ -609,7 +609,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
       "SecondaryAttribute": "Considering all the ways RA has affected you, how do you feel your RA is today?",
@@ -669,7 +669,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "On average, how stiff are your joints in the morning? ",
@@ -729,7 +729,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "Which joints on your left side are currently tender and/or swollen? Click on the images for left...",
@@ -1586,7 +1586,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
       "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Which joints on your right side are currently tender and/or swollen? Click on the images for righ...",
@@ -2443,7 +2443,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
       "SecondaryAttribute": "Have you had any joints replaced? ",
@@ -2502,9 +2502,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID6",
+      "PrimaryAttribute": "QID5S1",
       "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -2987,7 +2987,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID6",
+        "QuestionID": "QID5S1",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -2999,9 +2999,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID7",
+      "PrimaryAttribute": "QID5S2",
       "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -3484,7 +3484,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID7",
+        "QuestionID": "QID5S2",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3496,15 +3496,15 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8",
+      "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID8",
+        "DataExportTag": "QID6",
         "QuestionType": "Matrix",
         "Selector": "Likert",
         "SubSelector": "SingleAnswer",
@@ -3589,7 +3589,7 @@
           "4"
         ],
         "ChoiceDataExportTags": false,
-        "QuestionID": "QID8",
+        "QuestionID": "QID6",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3604,9 +3604,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID9",
+      "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
@@ -3677,8 +3677,8 @@
         ],
         "ChoiceDataExportTags": false,
         "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
-        "DataExportTag": "QID9",
-        "QuestionID": "QID9",
+        "DataExportTag": "QID7",
+        "QuestionID": "QID7",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3692,15 +3692,15 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID10",
+      "PrimaryAttribute": "QID8",
       "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities: ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID10",
+        "DataExportTag": "QID8",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
@@ -3767,7 +3767,7 @@
         "Language": [],
         "NextChoiceId": 11,
         "NextAnswerId": 1,
-        "QuestionID": "QID10",
+        "QuestionID": "QID8",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3788,15 +3788,15 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11",
+      "PrimaryAttribute": "QID8S1",
       "SecondaryAttribute": "Please specify any other aids or devices: ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please specify any other aids or devices:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID11",
+        "DataExportTag": "QID8S1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -3817,7 +3817,7 @@
         "SearchSource": {
           "AllowFreeResponse": "false"
         },
-        "QuestionID": "QID11",
+        "QuestionID": "QID8S1",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3826,13 +3826,13 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q://QID10/SelectableChoice/9",
+              "ChoiceLocator": "q://QID8/SelectableChoice/9",
               "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Please check any aids or devices that you use for any of the above activities:&nbsp;</span> <span class=\"LeftOpDesc\">Other</span> <span class=\"OpDesc\">Is Selected</span> ",
-              "LeftOperand": "q://QID10/SelectableChoice/9",
+              "LeftOperand": "q://QID8/SelectableChoice/9",
               "LogicType": "Question",
               "Operator": "Selected",
-              "QuestionID": "QID10",
-              "QuestionIDFromLocator": "QID10",
+              "QuestionID": "QID8",
+              "QuestionIDFromLocator": "QID8",
               "QuestionIsInLoop": "no",
               "Type": "Expression"
             },
@@ -3844,15 +3844,15 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID12",
+      "PrimaryAttribute": "QID9",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person: ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID12",
+        "DataExportTag": "QID9",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
@@ -3903,7 +3903,7 @@
         "Language": [],
         "NextChoiceId": 7,
         "NextAnswerId": 1,
-        "QuestionID": "QID12",
+        "QuestionID": "QID9",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3920,9 +3920,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID13",
+      "PrimaryAttribute": "QID10",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
@@ -4017,8 +4017,8 @@
           "Private": false,
           "Hidden": false
         },
-        "DataExportTag": "QID13",
-        "QuestionID": "QID13",
+        "DataExportTag": "QID10",
+        "QuestionID": "QID10",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -4028,15 +4028,15 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID14",
+      "PrimaryAttribute": "QID11",
       "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities: ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID14",
+        "DataExportTag": "QID11",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
@@ -4091,7 +4091,7 @@
         "Language": [],
         "NextChoiceId": 8,
         "NextAnswerId": 1,
-        "QuestionID": "QID14",
+        "QuestionID": "QID11",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -4109,16 +4109,16 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID15",
+      "PrimaryAttribute": "QID11S1",
       "SecondaryAttribute": "Please specify any other aids or devices:",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Please specify any other aids or devices:",
         "DefaultChoices": false,
         "DataExportTag": "Q20",
-        "QuestionID": "QID15",
+        "QuestionID": "QID11S1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -4128,13 +4128,13 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q://QID14/SelectableChoice/6",
+              "ChoiceLocator": "q://QID11/SelectableChoice/6",
               "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Please check and aids or devices that you usually use for any of the above activities:&nbsp;</span> <span class=\"LeftOpDesc\">Other</span> <span class=\"OpDesc\">Is Selected</span> ",
-              "LeftOperand": "q://QID14/SelectableChoice/6",
+              "LeftOperand": "q://QID11/SelectableChoice/6",
               "LogicType": "Question",
               "Operator": "Selected",
-              "QuestionID": "QID14",
-              "QuestionIDFromLocator": "QID14",
+              "QuestionID": "QID11",
+              "QuestionIDFromLocator": "QID11",
               "QuestionIsInLoop": "no",
               "Type": "Expression"
             },
@@ -4164,9 +4164,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID16",
+      "PrimaryAttribute": "QID12",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person: ",
       "TertiaryAttribute": null,
       "Payload": {
@@ -4216,8 +4216,8 @@
         "NextChoiceId": 8,
         "NextAnswerId": 1,
         "QuestionText_Unsafe": "<p>\n\t\t\n\t\n\t\n\t\t</p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
-        "DataExportTag": "QID16",
-        "QuestionID": "QID16",
+        "DataExportTag": "QID12",
+        "QuestionID": "QID12",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -4231,9 +4231,9 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "SQ",
-      "PrimaryAttribute": "QID17",
+      "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
@@ -4304,8 +4304,8 @@
           "Private": false,
           "Hidden": false
         },
-        "DataExportTag": "QID17",
-        "QuestionID": "QID17",
+        "DataExportTag": "QID13",
+        "QuestionID": "QID13",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -4315,7 +4315,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "OCAC",
       "PrimaryAttribute": "OCAC_9tUwfRtzqiYgRcV",
       "SecondaryAttribute": "OC_3yfQJmljbI6EbZz",
@@ -4363,7 +4363,7 @@
       }
     },
     {
-      "SurveyID": "SV_0pPq52M6N4Pt87I",
+      "SurveyID": "SV_4MkX60qlyZeT3XE",
       "Element": "TR",
       "PrimaryAttribute": "OC_3yfQJmljbI6EbZz",
       "SecondaryAttribute": null,

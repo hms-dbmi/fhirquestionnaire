@@ -1,6 +1,6 @@
 {
   "SurveyEntry": {
-    "SurveyID": "SV_5svxp7BZaMzlNEa",
+    "SurveyID": "SV_3VtLtbkSpwuLY5U",
     "SurveyName": "PPM RANT - RA Symptom Questionnaire - PROD",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
@@ -20,7 +20,7 @@
   },
   "SurveyElements": [
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -120,24 +120,24 @@
         "7": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5UNDERSCORE1",
+          "Description": "QID5S1",
           "ID": "BL_8caZxtesCpw9cb3",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5UNDERSCORE1"
+              "QuestionID": "QID5S1"
             }
           ]
         },
         "8": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5UNDERSCORE2",
+          "Description": "QID5S2",
           "ID": "BL_0SxpO9HhEHO2b2t",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5UNDERSCORE2"
+              "QuestionID": "QID5S2"
             }
           ]
         },
@@ -195,12 +195,12 @@
         "12": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID8UNDERSCORE1",
+          "Description": "QID8S1",
           "ID": "BL_01vJ6CGJdVE28wm",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID8UNDERSCORE1"
+              "QuestionID": "QID8S1"
             }
           ]
         },
@@ -258,12 +258,12 @@
         "16": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID11UNDERSCORE1",
+          "Description": "QID11S1",
           "ID": "BL_3VFocYMxrqTrUzk",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID11UNDERSCORE1"
+              "QuestionID": "QID11S1"
             }
           ]
         },
@@ -304,7 +304,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "FL",
       "PrimaryAttribute": "Survey Flow",
       "SecondaryAttribute": null,
@@ -479,7 +479,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SO",
       "PrimaryAttribute": "Survey Options",
       "SecondaryAttribute": null,
@@ -556,7 +556,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SCO",
       "PrimaryAttribute": "Scoring",
       "SecondaryAttribute": null,
@@ -572,7 +572,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "PROJ",
       "PrimaryAttribute": "CORE",
       "SecondaryAttribute": null,
@@ -583,7 +583,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "STAT",
       "PrimaryAttribute": "Survey Statistics",
       "SecondaryAttribute": null,
@@ -594,7 +594,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "QC",
       "PrimaryAttribute": "Survey Question Count",
       "SecondaryAttribute": "53",
@@ -602,7 +602,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "RS",
       "PrimaryAttribute": "RS_b9gbcXfTGlsTedL",
       "SecondaryAttribute": "Default Response Set",
@@ -610,7 +610,7 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
       "SecondaryAttribute": "Considering all the ways RA has affected you, how do you feel your RA is today?",
@@ -670,7 +670,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "On average, how stiff are your joints in the morning?\u00a0",
@@ -730,7 +730,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
@@ -1587,7 +1587,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
@@ -2444,7 +2444,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
       "SecondaryAttribute": "Have you had any joints replaced?\u00a0",
@@ -2503,9 +2503,9 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5UNDERSCORE1",
+      "PrimaryAttribute": "QID5S1",
       "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -2988,7 +2988,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5UNDERSCORE1",
+        "QuestionID": "QID5S1",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3000,9 +3000,9 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5UNDERSCORE2",
+      "PrimaryAttribute": "QID5S2",
       "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -3485,7 +3485,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5UNDERSCORE2",
+        "QuestionID": "QID5S2",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3497,7 +3497,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -3605,7 +3605,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -3693,7 +3693,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID8",
       "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities:\u00a0",
@@ -3789,15 +3789,15 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8UNDERSCORE1",
+      "PrimaryAttribute": "QID8S1",
       "SecondaryAttribute": "Please specify any other aids or devices:\u00a0",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID8UNDERSCORE1",
+        "DataExportTag": "QID8S1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -3818,7 +3818,7 @@
         "SearchSource": {
           "AllowFreeResponse": "false"
         },
-        "QuestionID": "QID8UNDERSCORE1",
+        "QuestionID": "QID8S1",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3845,7 +3845,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID9",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
@@ -3921,7 +3921,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID10",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -4029,7 +4029,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID11",
       "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
@@ -4110,16 +4110,16 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11UNDERSCORE1",
+      "PrimaryAttribute": "QID11S1",
       "SecondaryAttribute": "Please specify any other aids or devices:",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Please specify any other aids or devices:",
         "DefaultChoices": false,
         "DataExportTag": "Q20",
-        "QuestionID": "QID11UNDERSCORE1",
+        "QuestionID": "QID11S1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -4165,7 +4165,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID12",
       "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
@@ -4232,7 +4232,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "SQ",
       "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
@@ -4316,7 +4316,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "OCAC",
       "PrimaryAttribute": "OCAC_9tUwfRtzqiYgRcV",
       "SecondaryAttribute": "OC_3yfQJmljbI6EbZz",
@@ -4364,7 +4364,7 @@
       }
     },
     {
-      "SurveyID": "SV_5svxp7BZaMzlNEa",
+      "SurveyID": "SV_3VtLtbkSpwuLY5U",
       "Element": "TR",
       "PrimaryAttribute": "OC_3yfQJmljbI6EbZz",
       "SecondaryAttribute": null,
