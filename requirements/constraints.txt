@@ -2,7 +2,7 @@ certifi==2020.12.5
 cffi==1.14.5
 chardet==4.0.0
 cryptography==3.4.6
-Django==2.2.18
+Django==2.2.24
 django-bootstrap3==14.2.0
 django-crispy-forms==1.11.0
 django-dbmi-client==0.4.2
