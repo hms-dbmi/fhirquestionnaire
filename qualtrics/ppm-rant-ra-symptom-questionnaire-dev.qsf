@@ -120,24 +120,24 @@
         "7": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5_1",
+          "Description": "QID5UNDERSCORE1",
           "ID": "BL_8caZxtesCpw9cb3",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5_1"
+              "QuestionID": "QID5UNDERSCORE1"
             }
           ]
         },
         "8": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5_2",
+          "Description": "QID5UNDERSCORE2",
           "ID": "BL_0SxpO9HhEHO2b2t",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5_2"
+              "QuestionID": "QID5UNDERSCORE2"
             }
           ]
         },
@@ -195,12 +195,12 @@
         "12": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID8_1",
+          "Description": "QID8UNDERSCORE1",
           "ID": "BL_01vJ6CGJdVE28wm",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID8_1"
+              "QuestionID": "QID8UNDERSCORE1"
             }
           ]
         },
@@ -258,12 +258,12 @@
         "16": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID11_1",
+          "Description": "QID11UNDERSCORE1",
           "ID": "BL_3VFocYMxrqTrUzk",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID11_1"
+              "QuestionID": "QID11UNDERSCORE1"
             }
           ]
         },
@@ -2505,7 +2505,7 @@
     {
       "SurveyID": "SV_6tiGSw54pSGjHZc",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5_1",
+      "PrimaryAttribute": "QID5UNDERSCORE1",
       "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -2988,7 +2988,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5_1",
+        "QuestionID": "QID5UNDERSCORE1",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3002,7 +3002,7 @@
     {
       "SurveyID": "SV_6tiGSw54pSGjHZc",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5_2",
+      "PrimaryAttribute": "QID5UNDERSCORE2",
       "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
       "TertiaryAttribute": null,
       "Payload": {
@@ -3485,7 +3485,7 @@
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5_2",
+        "QuestionID": "QID5UNDERSCORE2",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3791,13 +3791,13 @@
     {
       "SurveyID": "SV_6tiGSw54pSGjHZc",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8_1",
+      "PrimaryAttribute": "QID8UNDERSCORE1",
       "SecondaryAttribute": "Please specify any other aids or devices:\u00a0",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID8_1",
+        "DataExportTag": "QID8UNDERSCORE1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -3818,7 +3818,7 @@
         "SearchSource": {
           "AllowFreeResponse": "false"
         },
-        "QuestionID": "QID8_1",
+        "QuestionID": "QID8UNDERSCORE1",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -4112,14 +4112,14 @@
     {
       "SurveyID": "SV_6tiGSw54pSGjHZc",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11_1",
+      "PrimaryAttribute": "QID11UNDERSCORE1",
       "SecondaryAttribute": "Please specify any other aids or devices:",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Please specify any other aids or devices:",
         "DefaultChoices": false,
         "DataExportTag": "Q20",
-        "QuestionID": "QID11_1",
+        "QuestionID": "QID11UNDERSCORE1",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {

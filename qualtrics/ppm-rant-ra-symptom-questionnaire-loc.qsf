@@ -1,26 +1,26 @@
 {
   "SurveyEntry": {
-    "SurveyID": "SV_1zfAuATwGYTHLG6",
+    "SurveyID": "SV_0pPq52M6N4Pt87I",
     "SurveyName": "PPM RANT - RA Symptom Questionnaire - LOC",
     "SurveyDescription": null,
     "SurveyOwnerID": "UR_6gTkor673S0UxHD",
     "SurveyBrandID": "hms",
     "DivisionID": null,
     "SurveyLanguage": "EN",
-    "SurveyActiveResponseSet": "RS_b9gbcXfTGlsTedL",
+    "SurveyActiveResponseSet": "RS_cUesy9GfqKS7Iou",
     "SurveyStatus": "Active",
     "SurveyStartDate": "0000-00-00 00:00:00",
     "SurveyExpirationDate": "0000-00-00 00:00:00",
-    "SurveyCreationDate": "2020-11-20 14:37:43",
+    "SurveyCreationDate": "2021-03-10 05:12:58",
     "CreatorID": "UR_6gTkor673S0UxHD",
-    "LastModified": "2021-02-01 14:49:59",
+    "LastModified": "2021-03-10 05:30:07",
     "LastAccessed": "0000-00-00 00:00:00",
-    "LastActivated": "2020-11-20 14:55:30",
+    "LastActivated": "2021-03-10 05:13:13",
     "Deleted": null
   },
   "SurveyElements": [
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -28,7 +28,7 @@
       "Payload": {
         "1": {
           "Type": "Trash",
-          "Description": "Trash \/ Unused Questions",
+          "Description": "Trash / Unused Questions",
           "ID": "BL_5zkiwVkTejIv79z",
           "BlockElements": []
         },
@@ -120,66 +120,32 @@
         "7": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5_1",
+          "Description": "QID6",
           "ID": "BL_8caZxtesCpw9cb3",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5_1"
+              "QuestionID": "QID6"
             }
           ]
         },
         "8": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID5_2",
+          "Description": "QID7",
           "ID": "BL_0SxpO9HhEHO2b2t",
           "BlockElements": [
             {
               "Type": "Question",
-              "QuestionID": "QID5_2"
+              "QuestionID": "QID7"
             }
           ]
         },
         "9": {
           "Type": "Standard",
           "SubType": "",
-          "Description": "QID6",
-          "ID": "BL_a4amO0JxajBE60J",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID6"
-            }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
-        },
-        "10": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID7",
-          "ID": "BL_8HCR8ROkkfCcg2p",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID7"
-            }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
-        },
-        "11": {
-          "Type": "Standard",
-          "SubType": "",
           "Description": "QID8",
-          "ID": "BL_enyiPVi0MbTbXud",
+          "ID": "BL_a4amO0JxajBE60J",
           "BlockElements": [
             {
               "Type": "Question",
@@ -192,23 +158,11 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "12": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID8_1",
-          "ID": "BL_01vJ6CGJdVE28wm",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID8_1"
-            }
-          ]
-        },
-        "13": {
+        "10": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID9",
-          "ID": "BL_0eyliQhx3XVjjQV",
+          "ID": "BL_8HCR8ROkkfCcg2p",
           "BlockElements": [
             {
               "Type": "Question",
@@ -221,11 +175,11 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "14": {
+        "11": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID10",
-          "ID": "BL_7VUR8m5n0UiPebb",
+          "ID": "BL_enyiPVi0MbTbXud",
           "BlockElements": [
             {
               "Type": "Question",
@@ -238,40 +192,23 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "15": {
+        "12": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID11",
-          "ID": "BL_eS8h9tB9izI6TZz",
+          "ID": "BL_01vJ6CGJdVE28wm",
           "BlockElements": [
             {
               "Type": "Question",
               "QuestionID": "QID11"
             }
-          ],
-          "Options": {
-            "BlockLocking": "false",
-            "RandomizeQuestions": "false",
-            "BlockVisibility": "Expanded"
-          }
-        },
-        "16": {
-          "Type": "Standard",
-          "SubType": "",
-          "Description": "QID11_1",
-          "ID": "BL_3VFocYMxrqTrUzk",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID11_1"
-            }
           ]
         },
-        "17": {
+        "13": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID12",
-          "ID": "BL_3O915vTWsYuUdBH",
+          "ID": "BL_0eyliQhx3XVjjQV",
           "BlockElements": [
             {
               "Type": "Question",
@@ -284,11 +221,11 @@
             "BlockVisibility": "Expanded"
           }
         },
-        "18": {
+        "14": {
           "Type": "Standard",
           "SubType": "",
           "Description": "QID13",
-          "ID": "BL_bEDVKsAZKqYBm9n",
+          "ID": "BL_7VUR8m5n0UiPebb",
           "BlockElements": [
             {
               "Type": "Question",
@@ -300,11 +237,74 @@
             "RandomizeQuestions": "false",
             "BlockVisibility": "Expanded"
           }
+        },
+        "15": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID14",
+          "ID": "BL_eS8h9tB9izI6TZz",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID14"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "16": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID15",
+          "ID": "BL_3VFocYMxrqTrUzk",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID15"
+            }
+          ]
+        },
+        "17": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID16",
+          "ID": "BL_3O915vTWsYuUdBH",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID16"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
+        },
+        "18": {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "QID17",
+          "ID": "BL_bEDVKsAZKqYBm9n",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID17"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Expanded"
+          }
         }
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "FL",
       "PrimaryAttribute": "Survey Flow",
       "SecondaryAttribute": null,
@@ -468,7 +468,7 @@
             "Options": {
               "Advanced": "true",
               "SurveyTermination": "Redirect",
-              "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}"
+              "EOSRedirectURL": "https://p2m2.aws.dbmi-loc.hms.harvard.edu/dashboard/rant/?ppm_id=${e://Field/ppm_id}&ppm_study=${e://Field/ppm_study}&qualtrics_survey=${e://Field/SurveyID}&response_id=${e://Field/ResponseID}"
             }
           }
         ],
@@ -479,7 +479,7 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SO",
       "PrimaryAttribute": "Survey Options",
       "SecondaryAttribute": null,
@@ -498,8 +498,8 @@
         "ProgressBarDisplay": "Text",
         "PartialData": "+1 week",
         "ValidationMessage": null,
-        "PreviousButton": " \u2190 ",
-        "NextButton": " \u2192 ",
+        "PreviousButton": " ← ",
+        "NextButton": " → ",
         "SkinLibrary": "hms",
         "SkinType": "templated",
         "Skin": {
@@ -507,7 +507,7 @@
           "templateId": "*base",
           "overrides": {
             "logo": {
-              "url": "https:\/\/hms.az1.qualtrics.com\/CP\/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
+              "url": "https://hms.az1.qualtrics.com/CP/Graphic.php?IM=IM_6PWdFbCua2JhdOd"
             },
             "questionsContainer": {
               "on": true
@@ -527,13 +527,13 @@
         "AnonymizeResponse": "No",
         "Password": "ppmisgreat",
         "RefererCheck": "No",
-        "RefererURL": "http:\/\/",
+        "RefererURL": "http://",
         "UseCustomSurveyLinkCompletedMessage": null,
         "SurveyLinkCompletedMessage": "",
         "SurveyLinkCompletedMessageLibrary": "",
         "ResponseSummary": "No",
         "EOSMessageLibrary": "",
-        "EOSRedirectURL": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/dashboard\/rant\/?qualtrics_survey=${e:\/\/Field\/SurveyID}&response_id=${e:\/\/Field\/ResponseID}&ppm_id=${e:\/\/Field\/ppm_id}&ppm_study=${e:\/\/Field\/ppm_study}&survey_url=${e:\/\/Field\/Q_URL}",
+        "EOSRedirectURL": "https://p2m2.aws.dbmi-loc.hms.harvard.edu/dashboard/rant/?qualtrics_survey=${e://Field/SurveyID}&response_id=${e://Field/ResponseID}&ppm_id=${e://Field/ppm_id}&ppm_study=${e://Field/ppm_study}&survey_url=${e://Field/Q_URL}",
         "EmailThankYou": "false",
         "ThankYouEmailMessageLibrary": null,
         "ThankYouEmailMessage": null,
@@ -551,12 +551,11 @@
         "CustomStyles": {
           "customCSS": ""
         },
-        "PartialDeletion": null,
-        "SurveyName": "PPM RANT - RA Symptom Questionnaire - LOC"
+        "PartialDeletion": null
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SCO",
       "PrimaryAttribute": "Scoring",
       "SecondaryAttribute": null,
@@ -572,7 +571,7 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "PROJ",
       "PrimaryAttribute": "CORE",
       "SecondaryAttribute": null,
@@ -583,7 +582,7 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "STAT",
       "PrimaryAttribute": "Survey Statistics",
       "SecondaryAttribute": null,
@@ -594,7 +593,7 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "QC",
       "PrimaryAttribute": "Survey Question Count",
       "SecondaryAttribute": "53",
@@ -602,15 +601,15 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "RS",
-      "PrimaryAttribute": "RS_b9gbcXfTGlsTedL",
+      "PrimaryAttribute": "RS_cUesy9GfqKS7Iou",
       "SecondaryAttribute": "Default Response Set",
       "TertiaryAttribute": null,
       "Payload": null
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
       "SecondaryAttribute": "Considering all the ways RA has affected you, how do you feel your RA is today?",
@@ -670,13 +669,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
-      "SecondaryAttribute": "On average, how stiff are your joints in the morning?\u00a0",
+      "SecondaryAttribute": "On average, how stiff are your joints in the morning? ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>On average, how stiff are your joints in the morning?&nbsp;<\/p>",
+        "QuestionText": "<p>On average, how stiff are your joints in the morning?&nbsp;</p>",
         "DefaultChoices": false,
         "QuestionType": "Slider",
         "Selector": "HSLIDER",
@@ -692,7 +691,7 @@
           "MobileFirst": true,
           "SnapToGrid": false
         },
-        "QuestionDescription": "On average, how stiff are your joints in the morning?\u00a0",
+        "QuestionDescription": "On average, how stiff are your joints in the morning? ",
         "Choices": {
           "11": {
             "Display": "&nbsp;"
@@ -720,7 +719,7 @@
             "Display": "(Very Poor)"
           }
         },
-        "QuestionText_Unsafe": "<p>On average, how stiff are your joints in the morning?&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>On average, how stiff are your joints in the morning?&nbsp;</p>",
         "DataExportTag": "QID2",
         "QuestionID": "QID2",
         "DataVisibility": {
@@ -730,20 +729,20 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
-      "SecondaryAttribute": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
+      "SecondaryAttribute": "Which joints on your left side are currently tender and/or swollen? Click on the images for left...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Which joints on your <strong>left side<\/strong> are currently tender and\/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "QuestionText": "<p>Which joints on your <strong>left side</strong> are currently tender and/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.</p>",
         "DefaultChoices": false,
         "QuestionType": "HotSpot",
         "Selector": "OnOff",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Which joints on your left side are currently tender and\/or swollen? Click on the images for left...",
+        "QuestionDescription": "Which joints on your left side are currently tender and/or swollen? Click on the images for left...",
         "Choices": {
           "93": {
             "Display": "left-elbow-tender"
@@ -1573,7 +1572,7 @@
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Which joints on your <strong>left side<\/strong> are currently tender and\/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "QuestionText_Unsafe": "<p>Which joints on your <strong>left side</strong> are currently tender and/or swollen? Click on the images for left shoulder, elbow, knee, fingers, and thumb.</p>",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -1587,20 +1586,20 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
       "PrimaryAttribute": "QID4",
-      "SecondaryAttribute": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
+      "SecondaryAttribute": "Which joints on your right side are currently tender and/or swollen? Click on the images for righ...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Which joints on your <strong>right side<\/strong> are currently tender and\/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "QuestionText": "<p>Which joints on your <strong>right side</strong> are currently tender and/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.</p>",
         "DefaultChoices": false,
         "QuestionType": "HotSpot",
         "Selector": "OnOff",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Which joints on your right side are currently tender and\/or swollen? Click on the images for righ...",
+        "QuestionDescription": "Which joints on your right side are currently tender and/or swollen? Click on the images for righ...",
         "Choices": {
           "65": {
             "Display": "right-shoulder-swollen"
@@ -2430,7 +2429,7 @@
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Which joints on your <strong>right side<\/strong> are currently tender and\/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.<\/p>",
+        "QuestionText_Unsafe": "<p>Which joints on your <strong>right side</strong> are currently tender and/or swollen? Click on the images for right shoulder, elbow, knee, fingers, and thumb.</p>",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -2444,13 +2443,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
       "PrimaryAttribute": "QID5",
-      "SecondaryAttribute": "Have you had any joints replaced?\u00a0",
+      "SecondaryAttribute": "Have you had any joints replaced? ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Have you had any joints replaced?&nbsp;<\/p>",
+        "QuestionText": "<p>Have you had any joints replaced?&nbsp;</p>",
         "DefaultChoices": false,
         "DataExportTag": "QID5",
         "QuestionType": "MC",
@@ -2466,7 +2465,7 @@
             }
           }
         },
-        "QuestionDescription": "Have you had any joints replaced?\u00a0",
+        "QuestionDescription": "Have you had any joints replaced? ",
         "Choices": {
           "23": {
             "Display": "Yes"
@@ -2491,7 +2490,7 @@
         "NextChoiceId": 25,
         "NextAnswerId": 1,
         "QuestionID": "QID5",
-        "QuestionText_Unsafe": "<p>Have you had any joints replaced?&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Have you had any joints replaced?&nbsp;</p>",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -2503,13 +2502,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5_1",
+      "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Which joints on your left side have you had replaced? (Please reference the illustration for join...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Which joints on your left side have you had replaced?\n(Please reference the illustration for joints of the\nhands and wrists)&nbsp;<\/p>",
+        "QuestionText": "<p>Which joints on your left side have you had replaced?\n(Please reference the illustration for joints of the\nhands and wrists)&nbsp;</p>",
         "DefaultChoices": false,
         "DataExportTag": "Q19",
         "QuestionType": "HotSpot",
@@ -2566,9 +2565,9 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID5\/SelectableChoice\/23",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID5\/SelectableChoice\/23",
+              "ChoiceLocator": "q://QID5/SelectableChoice/23",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;</span> <span class=\"LeftOpDesc\">Yes</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID5/SelectableChoice/23",
               "LogicType": "Question",
               "Operator": "Selected",
               "QuestionID": "QID5",
@@ -2612,383 +2611,383 @@
           {
             "ChoiceID": "19",
             "Description": "Shoulder",
-            "Height": 49.43945720250525255323736928403377532958984375,
+            "Height": 49.43945720250525,
             "Shapes": [
               [
                 {
-                  "X": 222.461031833150400416343472898006439208984375,
-                  "Y": 245.68789144050106187933124601840972900390625
+                  "X": 222.4610318331504,
+                  "Y": 245.68789144050106
                 },
                 {
-                  "X": 273.4577387486278894357383251190185546875,
-                  "Y": 245.68789144050106187933124601840972900390625
+                  "X": 273.4577387486279,
+                  "Y": 245.68789144050106
                 },
                 {
-                  "X": 273.4577387486278894357383251190185546875,
-                  "Y": 295.12734864300631443256861530244350433349609375
+                  "X": 273.4577387486279,
+                  "Y": 295.1273486430063
                 },
                 {
-                  "X": 222.461031833150400416343472898006439208984375,
-                  "Y": 295.12734864300631443256861530244350433349609375
+                  "X": 222.4610318331504,
+                  "Y": 295.1273486430063
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 50.996706915477489019394852221012115478515625,
-            "X": 222.461031833150400416343472898006439208984375,
-            "Y": 245.68789144050106187933124601840972900390625
+            "Width": 50.99670691547749,
+            "X": 222.4610318331504,
+            "Y": 245.68789144050106
           },
           {
             "ChoiceID": "35",
             "Description": "Elbow",
-            "Height": 49.43945720250525255323736928403377532958984375,
+            "Height": 49.43945720250525,
             "Shapes": [
               [
                 {
-                  "X": 274.461031833150400416343472898006439208984375,
-                  "Y": 432.68789144050106187933124601840972900390625
+                  "X": 274.4610318331504,
+                  "Y": 432.68789144050106
                 },
                 {
-                  "X": 325.4577387486278894357383251190185546875,
-                  "Y": 432.68789144050106187933124601840972900390625
+                  "X": 325.4577387486279,
+                  "Y": 432.68789144050106
                 },
                 {
-                  "X": 325.4577387486278894357383251190185546875,
-                  "Y": 482.12734864300631443256861530244350433349609375
+                  "X": 325.4577387486279,
+                  "Y": 482.1273486430063
                 },
                 {
-                  "X": 274.461031833150400416343472898006439208984375,
-                  "Y": 482.12734864300631443256861530244350433349609375
+                  "X": 274.4610318331504,
+                  "Y": 482.1273486430063
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 50.996706915477489019394852221012115478515625,
-            "X": 274.461031833150400416343472898006439208984375,
-            "Y": 432.68789144050106187933124601840972900390625
+            "Width": 50.99670691547749,
+            "X": 274.4610318331504,
+            "Y": 432.68789144050106
           },
           {
             "ChoiceID": "36",
             "Description": "Knee",
-            "Height": 49.43945720250530939665623009204864501953125,
+            "Height": 49.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 164.461031833150400416343472898006439208984375,
-                  "Y": 909.68789144050106187933124601840972900390625
+                  "X": 164.4610318331504,
+                  "Y": 909.6878914405011
                 },
                 {
-                  "X": 215.4577387486278894357383251190185546875,
-                  "Y": 909.68789144050106187933124601840972900390625
+                  "X": 215.4577387486279,
+                  "Y": 909.6878914405011
                 },
                 {
-                  "X": 215.4577387486278894357383251190185546875,
-                  "Y": 959.1273486430063712759874761104583740234375
+                  "X": 215.4577387486279,
+                  "Y": 959.1273486430064
                 },
                 {
-                  "X": 164.461031833150400416343472898006439208984375,
-                  "Y": 959.1273486430063712759874761104583740234375
+                  "X": 164.4610318331504,
+                  "Y": 959.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 50.996706915477489019394852221012115478515625,
-            "X": 164.461031833150400416343472898006439208984375,
-            "Y": 909.68789144050106187933124601840972900390625
+            "Width": 50.99670691547749,
+            "X": 164.4610318331504,
+            "Y": 909.6878914405011
           },
           {
             "ChoiceID": "38",
             "Description": "MCP thumb",
-            "Height": 36.43945720250530939665623009204864501953125,
+            "Height": 36.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 821.461031833150400416343472898006439208984375,
-                  "Y": 817.68789144050106187933124601840972900390625
+                  "X": 821.4610318331504,
+                  "Y": 817.6878914405011
                 },
                 {
-                  "X": 857.4577387486278894357383251190185546875,
-                  "Y": 817.68789144050106187933124601840972900390625
+                  "X": 857.4577387486279,
+                  "Y": 817.6878914405011
                 },
                 {
-                  "X": 857.4577387486278894357383251190185546875,
-                  "Y": 854.1273486430063712759874761104583740234375
+                  "X": 857.4577387486279,
+                  "Y": 854.1273486430064
                 },
                 {
-                  "X": 821.461031833150400416343472898006439208984375,
-                  "Y": 854.1273486430063712759874761104583740234375
+                  "X": 821.4610318331504,
+                  "Y": 854.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 35.996706915477489019394852221012115478515625,
-            "X": 821.461031833150400416343472898006439208984375,
-            "Y": 817.68789144050106187933124601840972900390625
+            "Width": 35.99670691547749,
+            "X": 821.4610318331504,
+            "Y": 817.6878914405011
           },
           {
             "ChoiceID": "39",
             "Description": "PIP thumb",
-            "Height": 37.43945720250530939665623009204864501953125,
+            "Height": 37.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 871.461031833150400416343472898006439208984375,
-                  "Y": 732.68789144050106187933124601840972900390625
+                  "X": 871.4610318331504,
+                  "Y": 732.6878914405011
                 },
                 {
-                  "X": 909.4577387486278894357383251190185546875,
-                  "Y": 732.68789144050106187933124601840972900390625
+                  "X": 909.4577387486279,
+                  "Y": 732.6878914405011
                 },
                 {
-                  "X": 909.4577387486278894357383251190185546875,
-                  "Y": 770.1273486430063712759874761104583740234375
+                  "X": 909.4577387486279,
+                  "Y": 770.1273486430064
                 },
                 {
-                  "X": 871.461031833150400416343472898006439208984375,
-                  "Y": 770.1273486430063712759874761104583740234375
+                  "X": 871.4610318331504,
+                  "Y": 770.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 37.996706915477489019394852221012115478515625,
-            "X": 871.461031833150400416343472898006439208984375,
-            "Y": 732.68789144050106187933124601840972900390625
+            "Width": 37.99670691547749,
+            "X": 871.4610318331504,
+            "Y": 732.6878914405011
           },
           {
             "ChoiceID": "40",
             "Description": "MCP pinky",
-            "Height": 36.43945720250530939665623009204864501953125,
+            "Height": 36.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 498.461031833150400416343472898006439208984375,
-                  "Y": 661.68789144050106187933124601840972900390625
+                  "X": 498.4610318331504,
+                  "Y": 661.6878914405011
                 },
                 {
-                  "X": 537.4577387486278894357383251190185546875,
-                  "Y": 661.68789144050106187933124601840972900390625
+                  "X": 537.4577387486279,
+                  "Y": 661.6878914405011
                 },
                 {
-                  "X": 537.4577387486278894357383251190185546875,
-                  "Y": 698.1273486430063712759874761104583740234375
+                  "X": 537.4577387486279,
+                  "Y": 698.1273486430064
                 },
                 {
-                  "X": 498.461031833150400416343472898006439208984375,
-                  "Y": 698.1273486430063712759874761104583740234375
+                  "X": 498.4610318331504,
+                  "Y": 698.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 38.996706915477489019394852221012115478515625,
-            "X": 498.461031833150400416343472898006439208984375,
-            "Y": 661.68789144050106187933124601840972900390625
+            "Width": 38.99670691547749,
+            "X": 498.4610318331504,
+            "Y": 661.6878914405011
           },
           {
             "ChoiceID": "41",
             "Description": "PIP pinky",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 448.461031833150400416343472898006439208984375,
-                  "Y": 583.68789144050106187933124601840972900390625
+                  "X": 448.4610318331504,
+                  "Y": 583.6878914405011
                 },
                 {
-                  "X": 489.4577387486278894357383251190185546875,
-                  "Y": 583.68789144050106187933124601840972900390625
+                  "X": 489.4577387486279,
+                  "Y": 583.6878914405011
                 },
                 {
-                  "X": 489.4577387486278894357383251190185546875,
-                  "Y": 622.1273486430063712759874761104583740234375
+                  "X": 489.4577387486279,
+                  "Y": 622.1273486430064
                 },
                 {
-                  "X": 448.461031833150400416343472898006439208984375,
-                  "Y": 622.1273486430063712759874761104583740234375
+                  "X": 448.4610318331504,
+                  "Y": 622.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 40.996706915477489019394852221012115478515625,
-            "X": 448.461031833150400416343472898006439208984375,
-            "Y": 583.68789144050106187933124601840972900390625
+            "Width": 40.99670691547749,
+            "X": 448.4610318331504,
+            "Y": 583.6878914405011
           },
           {
             "ChoiceID": "42",
             "Description": "MCP ring",
-            "Height": 37.43945720250530939665623009204864501953125,
+            "Height": 37.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 578.461031833150400416343472898006439208984375,
-                  "Y": 609.68789144050106187933124601840972900390625
+                  "X": 578.4610318331504,
+                  "Y": 609.6878914405011
                 },
                 {
-                  "X": 617.4577387486278894357383251190185546875,
-                  "Y": 609.68789144050106187933124601840972900390625
+                  "X": 617.4577387486279,
+                  "Y": 609.6878914405011
                 },
                 {
-                  "X": 617.4577387486278894357383251190185546875,
-                  "Y": 647.1273486430063712759874761104583740234375
+                  "X": 617.4577387486279,
+                  "Y": 647.1273486430064
                 },
                 {
-                  "X": 578.461031833150400416343472898006439208984375,
-                  "Y": 647.1273486430063712759874761104583740234375
+                  "X": 578.4610318331504,
+                  "Y": 647.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 38.996706915477489019394852221012115478515625,
-            "X": 578.461031833150400416343472898006439208984375,
-            "Y": 609.68789144050106187933124601840972900390625
+            "Width": 38.99670691547749,
+            "X": 578.4610318331504,
+            "Y": 609.6878914405011
           },
           {
             "ChoiceID": "43",
             "Description": "PIP ring",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 563.461031833150400416343472898006439208984375,
-                  "Y": 519.68789144050106187933124601840972900390625
+                  "X": 563.4610318331504,
+                  "Y": 519.6878914405011
                 },
                 {
-                  "X": 603.4577387486278894357383251190185546875,
-                  "Y": 519.68789144050106187933124601840972900390625
+                  "X": 603.4577387486279,
+                  "Y": 519.6878914405011
                 },
                 {
-                  "X": 603.4577387486278894357383251190185546875,
-                  "Y": 558.1273486430063712759874761104583740234375
+                  "X": 603.4577387486279,
+                  "Y": 558.1273486430064
                 },
                 {
-                  "X": 563.461031833150400416343472898006439208984375,
-                  "Y": 558.1273486430063712759874761104583740234375
+                  "X": 563.4610318331504,
+                  "Y": 558.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 563.461031833150400416343472898006439208984375,
-            "Y": 519.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 563.4610318331504,
+            "Y": 519.6878914405011
           },
           {
             "ChoiceID": "44",
             "Description": "MCP middle",
-            "Height": 39.43945720250530939665623009204864501953125,
+            "Height": 39.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 668.461031833150400416343472898006439208984375,
-                  "Y": 573.68789144050106187933124601840972900390625
+                  "X": 668.4610318331504,
+                  "Y": 573.6878914405011
                 },
                 {
-                  "X": 706.4577387486278894357383251190185546875,
-                  "Y": 573.68789144050106187933124601840972900390625
+                  "X": 706.4577387486279,
+                  "Y": 573.6878914405011
                 },
                 {
-                  "X": 706.4577387486278894357383251190185546875,
-                  "Y": 613.1273486430063712759874761104583740234375
+                  "X": 706.4577387486279,
+                  "Y": 613.1273486430064
                 },
                 {
-                  "X": 668.461031833150400416343472898006439208984375,
-                  "Y": 613.1273486430063712759874761104583740234375
+                  "X": 668.4610318331504,
+                  "Y": 613.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 37.996706915477489019394852221012115478515625,
-            "X": 668.461031833150400416343472898006439208984375,
-            "Y": 573.68789144050106187933124601840972900390625
+            "Width": 37.99670691547749,
+            "X": 668.4610318331504,
+            "Y": 573.6878914405011
           },
           {
             "ChoiceID": "45",
             "Description": "PIP middle",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 667.461031833150400416343472898006439208984375,
-                  "Y": 492.68789144050106187933124601840972900390625
+                  "X": 667.4610318331504,
+                  "Y": 492.68789144050106
                 },
                 {
-                  "X": 708.4577387486278894357383251190185546875,
-                  "Y": 492.68789144050106187933124601840972900390625
+                  "X": 708.4577387486279,
+                  "Y": 492.68789144050106
                 },
                 {
-                  "X": 708.4577387486278894357383251190185546875,
-                  "Y": 531.1273486430063712759874761104583740234375
+                  "X": 708.4577387486279,
+                  "Y": 531.1273486430064
                 },
                 {
-                  "X": 667.461031833150400416343472898006439208984375,
-                  "Y": 531.1273486430063712759874761104583740234375
+                  "X": 667.4610318331504,
+                  "Y": 531.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 40.996706915477489019394852221012115478515625,
-            "X": 667.461031833150400416343472898006439208984375,
-            "Y": 492.68789144050106187933124601840972900390625
+            "Width": 40.99670691547749,
+            "X": 667.4610318331504,
+            "Y": 492.68789144050106
           },
           {
             "ChoiceID": "46",
             "Description": "PIP index",
-            "Height": 39.43945720250530939665623009204864501953125,
+            "Height": 39.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 787.461031833150400416343472898006439208984375,
-                  "Y": 529.68789144050106187933124601840972900390625
+                  "X": 787.4610318331504,
+                  "Y": 529.6878914405011
                 },
                 {
-                  "X": 827.4577387486278894357383251190185546875,
-                  "Y": 529.68789144050106187933124601840972900390625
+                  "X": 827.4577387486279,
+                  "Y": 529.6878914405011
                 },
                 {
-                  "X": 827.4577387486278894357383251190185546875,
-                  "Y": 569.1273486430063712759874761104583740234375
+                  "X": 827.4577387486279,
+                  "Y": 569.1273486430064
                 },
                 {
-                  "X": 787.461031833150400416343472898006439208984375,
-                  "Y": 569.1273486430063712759874761104583740234375
+                  "X": 787.4610318331504,
+                  "Y": 569.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 787.461031833150400416343472898006439208984375,
-            "Y": 529.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 787.4610318331504,
+            "Y": 529.6878914405011
           },
           {
             "ChoiceID": "47",
             "Description": "MCP index",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 762.461031833150400416343472898006439208984375,
-                  "Y": 606.68789144050106187933124601840972900390625
+                  "X": 762.4610318331504,
+                  "Y": 606.6878914405011
                 },
                 {
-                  "X": 800.4577387486278894357383251190185546875,
-                  "Y": 606.68789144050106187933124601840972900390625
+                  "X": 800.4577387486279,
+                  "Y": 606.6878914405011
                 },
                 {
-                  "X": 800.4577387486278894357383251190185546875,
-                  "Y": 645.1273486430063712759874761104583740234375
+                  "X": 800.4577387486279,
+                  "Y": 645.1273486430064
                 },
                 {
-                  "X": 762.461031833150400416343472898006439208984375,
-                  "Y": 645.1273486430063712759874761104583740234375
+                  "X": 762.4610318331504,
+                  "Y": 645.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 37.996706915477489019394852221012115478515625,
-            "X": 762.461031833150400416343472898006439208984375,
-            "Y": 606.68789144050106187933124601840972900390625
+            "Width": 37.99670691547749,
+            "X": 762.4610318331504,
+            "Y": 606.6878914405011
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5_1",
+        "QuestionID": "QID6",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3000,13 +2999,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5_2",
+      "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "Which joints on your right side have you had replaced? (Please reference the illustration for joi...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Which joints on your right side have you had replaced? (Please reference the illustration for joints of the hands and wrists)&nbsp;<\/p>",
+        "QuestionText": "<p>Which joints on your right side have you had replaced? (Please reference the illustration for joints of the hands and wrists)&nbsp;</p>",
         "DefaultChoices": false,
         "DataExportTag": "Q21",
         "QuestionType": "HotSpot",
@@ -3063,9 +3062,9 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID5\/SelectableChoice\/23",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;<\/span> <span class=\"LeftOpDesc\">Yes<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID5\/SelectableChoice\/23",
+              "ChoiceLocator": "q://QID5/SelectableChoice/23",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Have you had any joints replaced?&nbsp;</span> <span class=\"LeftOpDesc\">Yes</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID5/SelectableChoice/23",
               "LogicType": "Question",
               "Operator": "Selected",
               "QuestionID": "QID5",
@@ -3109,383 +3108,383 @@
           {
             "ChoiceID": "19",
             "Description": "Shoulder",
-            "Height": 49.43945720250525255323736928403377532958984375,
+            "Height": 49.43945720250525,
             "Shapes": [
               [
                 {
-                  "X": 715.461031833150400416343472898006439208984375,
-                  "Y": 244.68789144050106187933124601840972900390625
+                  "X": 715.4610318331504,
+                  "Y": 244.68789144050106
                 },
                 {
-                  "X": 765.4577387486278894357383251190185546875,
-                  "Y": 244.68789144050106187933124601840972900390625
+                  "X": 765.4577387486279,
+                  "Y": 244.68789144050106
                 },
                 {
-                  "X": 765.4577387486278894357383251190185546875,
-                  "Y": 294.12734864300631443256861530244350433349609375
+                  "X": 765.4577387486279,
+                  "Y": 294.1273486430063
                 },
                 {
-                  "X": 715.461031833150400416343472898006439208984375,
-                  "Y": 294.12734864300631443256861530244350433349609375
+                  "X": 715.4610318331504,
+                  "Y": 294.1273486430063
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 49.996706915477489019394852221012115478515625,
-            "X": 715.461031833150400416343472898006439208984375,
-            "Y": 244.68789144050106187933124601840972900390625
+            "Width": 49.99670691547749,
+            "X": 715.4610318331504,
+            "Y": 244.68789144050106
           },
           {
             "ChoiceID": "35",
             "Description": "Elbow",
-            "Height": 49.43945720250530939665623009204864501953125,
+            "Height": 49.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 664.461031833150400416343472898006439208984375,
-                  "Y": 432.68789144050106187933124601840972900390625
+                  "X": 664.4610318331504,
+                  "Y": 432.68789144050106
                 },
                 {
-                  "X": 713.4577387486278894357383251190185546875,
-                  "Y": 432.68789144050106187933124601840972900390625
+                  "X": 713.4577387486279,
+                  "Y": 432.68789144050106
                 },
                 {
-                  "X": 713.4577387486278894357383251190185546875,
-                  "Y": 482.1273486430063712759874761104583740234375
+                  "X": 713.4577387486279,
+                  "Y": 482.12734864300637
                 },
                 {
-                  "X": 664.461031833150400416343472898006439208984375,
-                  "Y": 482.1273486430063712759874761104583740234375
+                  "X": 664.4610318331504,
+                  "Y": 482.12734864300637
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 48.996706915477489019394852221012115478515625,
-            "X": 664.461031833150400416343472898006439208984375,
-            "Y": 432.68789144050106187933124601840972900390625
+            "Width": 48.99670691547749,
+            "X": 664.4610318331504,
+            "Y": 432.68789144050106
           },
           {
             "ChoiceID": "36",
             "Description": "Knee",
-            "Height": 48.43945720250530939665623009204864501953125,
+            "Height": 48.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 780.461031833150400416343472898006439208984375,
-                  "Y": 910.68789144050106187933124601840972900390625
+                  "X": 780.4610318331504,
+                  "Y": 910.6878914405011
                 },
                 {
-                  "X": 830.4577387486278894357383251190185546875,
-                  "Y": 910.68789144050106187933124601840972900390625
+                  "X": 830.4577387486279,
+                  "Y": 910.6878914405011
                 },
                 {
-                  "X": 830.4577387486278894357383251190185546875,
-                  "Y": 959.1273486430063712759874761104583740234375
+                  "X": 830.4577387486279,
+                  "Y": 959.1273486430064
                 },
                 {
-                  "X": 780.461031833150400416343472898006439208984375,
-                  "Y": 959.1273486430063712759874761104583740234375
+                  "X": 780.4610318331504,
+                  "Y": 959.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 49.996706915477489019394852221012115478515625,
-            "X": 780.461031833150400416343472898006439208984375,
-            "Y": 910.68789144050106187933124601840972900390625
+            "Width": 49.99670691547749,
+            "X": 780.4610318331504,
+            "Y": 910.6878914405011
           },
           {
             "ChoiceID": "38",
             "Description": "MCP thumb",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 126.461031833150400416343472898006439208984375,
-                  "Y": 816.68789144050106187933124601840972900390625
+                  "X": 126.4610318331504,
+                  "Y": 816.6878914405011
                 },
                 {
-                  "X": 166.4577387486278894357383251190185546875,
-                  "Y": 816.68789144050106187933124601840972900390625
+                  "X": 166.4577387486279,
+                  "Y": 816.6878914405011
                 },
                 {
-                  "X": 166.4577387486278894357383251190185546875,
-                  "Y": 855.1273486430063712759874761104583740234375
+                  "X": 166.4577387486279,
+                  "Y": 855.1273486430064
                 },
                 {
-                  "X": 126.461031833150400416343472898006439208984375,
-                  "Y": 855.1273486430063712759874761104583740234375
+                  "X": 126.4610318331504,
+                  "Y": 855.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 126.461031833150400416343472898006439208984375,
-            "Y": 816.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 126.4610318331504,
+            "Y": 816.6878914405011
           },
           {
             "ChoiceID": "39",
             "Description": "PIP thumb",
-            "Height": 35.43945720250530939665623009204864501953125,
+            "Height": 35.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 76.461031833150400416343472898006439208984375,
-                  "Y": 734.68789144050106187933124601840972900390625
+                  "X": 76.4610318331504,
+                  "Y": 734.6878914405011
                 },
                 {
-                  "X": 116.4577387486278894357383251190185546875,
-                  "Y": 734.68789144050106187933124601840972900390625
+                  "X": 116.45773874862789,
+                  "Y": 734.6878914405011
                 },
                 {
-                  "X": 116.4577387486278894357383251190185546875,
-                  "Y": 770.1273486430063712759874761104583740234375
+                  "X": 116.45773874862789,
+                  "Y": 770.1273486430064
                 },
                 {
-                  "X": 76.461031833150400416343472898006439208984375,
-                  "Y": 770.1273486430063712759874761104583740234375
+                  "X": 76.4610318331504,
+                  "Y": 770.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 76.461031833150400416343472898006439208984375,
-            "Y": 734.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 76.4610318331504,
+            "Y": 734.6878914405011
           },
           {
             "ChoiceID": "40",
             "Description": "MCP pinky",
-            "Height": 37.43945720250530939665623009204864501953125,
+            "Height": 37.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 451.461031833150400416343472898006439208984375,
-                  "Y": 661.68789144050106187933124601840972900390625
+                  "X": 451.4610318331504,
+                  "Y": 661.6878914405011
                 },
                 {
-                  "X": 488.4577387486278894357383251190185546875,
-                  "Y": 661.68789144050106187933124601840972900390625
+                  "X": 488.4577387486279,
+                  "Y": 661.6878914405011
                 },
                 {
-                  "X": 488.4577387486278894357383251190185546875,
-                  "Y": 699.1273486430063712759874761104583740234375
+                  "X": 488.4577387486279,
+                  "Y": 699.1273486430064
                 },
                 {
-                  "X": 451.461031833150400416343472898006439208984375,
-                  "Y": 699.1273486430063712759874761104583740234375
+                  "X": 451.4610318331504,
+                  "Y": 699.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 36.996706915477489019394852221012115478515625,
-            "X": 451.461031833150400416343472898006439208984375,
-            "Y": 661.68789144050106187933124601840972900390625
+            "Width": 36.99670691547749,
+            "X": 451.4610318331504,
+            "Y": 661.6878914405011
           },
           {
             "ChoiceID": "41",
             "Description": "PIP pinky",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 498.461031833150400416343472898006439208984375,
-                  "Y": 584.68789144050106187933124601840972900390625
+                  "X": 498.4610318331504,
+                  "Y": 584.6878914405011
                 },
                 {
-                  "X": 537.4577387486278894357383251190185546875,
-                  "Y": 584.68789144050106187933124601840972900390625
+                  "X": 537.4577387486279,
+                  "Y": 584.6878914405011
                 },
                 {
-                  "X": 537.4577387486278894357383251190185546875,
-                  "Y": 623.1273486430063712759874761104583740234375
+                  "X": 537.4577387486279,
+                  "Y": 623.1273486430064
                 },
                 {
-                  "X": 498.461031833150400416343472898006439208984375,
-                  "Y": 623.1273486430063712759874761104583740234375
+                  "X": 498.4610318331504,
+                  "Y": 623.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 38.996706915477489019394852221012115478515625,
-            "X": 498.461031833150400416343472898006439208984375,
-            "Y": 584.68789144050106187933124601840972900390625
+            "Width": 38.99670691547749,
+            "X": 498.4610318331504,
+            "Y": 584.6878914405011
           },
           {
             "ChoiceID": "42",
             "Description": "MCP ring",
-            "Height": 37.43945720250530939665623009204864501953125,
+            "Height": 37.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 370.461031833150400416343472898006439208984375,
-                  "Y": 609.68789144050106187933124601840972900390625
+                  "X": 370.4610318331504,
+                  "Y": 609.6878914405011
                 },
                 {
-                  "X": 407.45773874862783259231946431100368499755859375,
-                  "Y": 609.68789144050106187933124601840972900390625
+                  "X": 407.45773874862783,
+                  "Y": 609.6878914405011
                 },
                 {
-                  "X": 407.45773874862783259231946431100368499755859375,
-                  "Y": 647.1273486430063712759874761104583740234375
+                  "X": 407.45773874862783,
+                  "Y": 647.1273486430064
                 },
                 {
-                  "X": 370.461031833150400416343472898006439208984375,
-                  "Y": 647.1273486430063712759874761104583740234375
+                  "X": 370.4610318331504,
+                  "Y": 647.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 36.99670691547743217597599141299724578857421875,
-            "X": 370.461031833150400416343472898006439208984375,
-            "Y": 609.68789144050106187933124601840972900390625
+            "Width": 36.99670691547743,
+            "X": 370.4610318331504,
+            "Y": 609.6878914405011
           },
           {
             "ChoiceID": "43",
             "Description": "PIP ring",
-            "Height": 37.43945720250530939665623009204864501953125,
+            "Height": 37.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 383.461031833150400416343472898006439208984375,
-                  "Y": 520.68789144050106187933124601840972900390625
+                  "X": 383.4610318331504,
+                  "Y": 520.6878914405011
                 },
                 {
-                  "X": 422.45773874862783259231946431100368499755859375,
-                  "Y": 520.68789144050106187933124601840972900390625
+                  "X": 422.45773874862783,
+                  "Y": 520.6878914405011
                 },
                 {
-                  "X": 422.45773874862783259231946431100368499755859375,
-                  "Y": 558.1273486430063712759874761104583740234375
+                  "X": 422.45773874862783,
+                  "Y": 558.1273486430064
                 },
                 {
-                  "X": 383.461031833150400416343472898006439208984375,
-                  "Y": 558.1273486430063712759874761104583740234375
+                  "X": 383.4610318331504,
+                  "Y": 558.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 38.99670691547743217597599141299724578857421875,
-            "X": 383.461031833150400416343472898006439208984375,
-            "Y": 520.68789144050106187933124601840972900390625
+            "Width": 38.99670691547743,
+            "X": 383.4610318331504,
+            "Y": 520.6878914405011
           },
           {
             "ChoiceID": "44",
             "Description": "MCP middle",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 279.461031833150400416343472898006439208984375,
-                  "Y": 574.68789144050106187933124601840972900390625
+                  "X": 279.4610318331504,
+                  "Y": 574.6878914405011
                 },
                 {
-                  "X": 319.4577387486278894357383251190185546875,
-                  "Y": 574.68789144050106187933124601840972900390625
+                  "X": 319.4577387486279,
+                  "Y": 574.6878914405011
                 },
                 {
-                  "X": 319.4577387486278894357383251190185546875,
-                  "Y": 613.1273486430063712759874761104583740234375
+                  "X": 319.4577387486279,
+                  "Y": 613.1273486430064
                 },
                 {
-                  "X": 279.461031833150400416343472898006439208984375,
-                  "Y": 613.1273486430063712759874761104583740234375
+                  "X": 279.4610318331504,
+                  "Y": 613.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 279.461031833150400416343472898006439208984375,
-            "Y": 574.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 279.4610318331504,
+            "Y": 574.6878914405011
           },
           {
             "ChoiceID": "45",
             "Description": "PIP middle",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 279.461031833150400416343472898006439208984375,
-                  "Y": 492.68789144050106187933124601840972900390625
+                  "X": 279.4610318331504,
+                  "Y": 492.68789144050106
                 },
                 {
-                  "X": 319.4577387486278894357383251190185546875,
-                  "Y": 492.68789144050106187933124601840972900390625
+                  "X": 319.4577387486279,
+                  "Y": 492.68789144050106
                 },
                 {
-                  "X": 319.4577387486278894357383251190185546875,
-                  "Y": 531.1273486430063712759874761104583740234375
+                  "X": 319.4577387486279,
+                  "Y": 531.1273486430064
                 },
                 {
-                  "X": 279.461031833150400416343472898006439208984375,
-                  "Y": 531.1273486430063712759874761104583740234375
+                  "X": 279.4610318331504,
+                  "Y": 531.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 39.996706915477489019394852221012115478515625,
-            "X": 279.461031833150400416343472898006439208984375,
-            "Y": 492.68789144050106187933124601840972900390625
+            "Width": 39.99670691547749,
+            "X": 279.4610318331504,
+            "Y": 492.68789144050106
           },
           {
             "ChoiceID": "46",
             "Description": "PIP index",
-            "Height": 38.43945720250530939665623009204864501953125,
+            "Height": 38.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 160.461031833150400416343472898006439208984375,
-                  "Y": 529.68789144050106187933124601840972900390625
+                  "X": 160.4610318331504,
+                  "Y": 529.6878914405011
                 },
                 {
-                  "X": 199.4577387486278894357383251190185546875,
-                  "Y": 529.68789144050106187933124601840972900390625
+                  "X": 199.4577387486279,
+                  "Y": 529.6878914405011
                 },
                 {
-                  "X": 199.4577387486278894357383251190185546875,
-                  "Y": 568.1273486430063712759874761104583740234375
+                  "X": 199.4577387486279,
+                  "Y": 568.1273486430064
                 },
                 {
-                  "X": 160.461031833150400416343472898006439208984375,
-                  "Y": 568.1273486430063712759874761104583740234375
+                  "X": 160.4610318331504,
+                  "Y": 568.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 38.996706915477489019394852221012115478515625,
-            "X": 160.461031833150400416343472898006439208984375,
-            "Y": 529.68789144050106187933124601840972900390625
+            "Width": 38.99670691547749,
+            "X": 160.4610318331504,
+            "Y": 529.6878914405011
           },
           {
             "ChoiceID": "47",
             "Description": "MCP index",
-            "Height": 36.43945720250530939665623009204864501953125,
+            "Height": 36.43945720250531,
             "Shapes": [
               [
                 {
-                  "X": 186.461031833150400416343472898006439208984375,
-                  "Y": 607.68789144050106187933124601840972900390625
+                  "X": 186.4610318331504,
+                  "Y": 607.6878914405011
                 },
                 {
-                  "X": 223.4577387486278894357383251190185546875,
-                  "Y": 607.68789144050106187933124601840972900390625
+                  "X": 223.4577387486279,
+                  "Y": 607.6878914405011
                 },
                 {
-                  "X": 223.4577387486278894357383251190185546875,
-                  "Y": 644.1273486430063712759874761104583740234375
+                  "X": 223.4577387486279,
+                  "Y": 644.1273486430064
                 },
                 {
-                  "X": 186.461031833150400416343472898006439208984375,
-                  "Y": 644.1273486430063712759874761104583740234375
+                  "X": 186.4610318331504,
+                  "Y": 644.1273486430064
                 }
               ]
             ],
             "Type": "Polygon",
-            "Width": 36.996706915477489019394852221012115478515625,
-            "X": 186.461031833150400416343472898006439208984375,
-            "Y": 607.68789144050106187933124601840972900390625
+            "Width": 36.99670691547749,
+            "X": 186.4610318331504,
+            "Y": 607.6878914405011
           }
         ],
         "Visibility": "AlwaysVisible",
-        "QuestionID": "QID5_2",
+        "QuestionID": "QID7",
         "Answers": {
           "1": {
             "Display": "Off"
@@ -3497,15 +3496,15 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID6",
-      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID6",
+        "DataExportTag": "QID8",
         "QuestionType": "Matrix",
         "Selector": "Likert",
         "SubSelector": "SingleAnswer",
@@ -3517,7 +3516,7 @@
           "WhiteSpace": "OFF",
           "MobileFirst": true
         },
-        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
         "Choices": {
           "1": {
             "Display": "Dress yourself including tying shoelaces and doing buttons?"
@@ -3590,12 +3589,12 @@
           "4"
         ],
         "ChoiceDataExportTags": false,
-        "QuestionID": "QID6",
+        "QuestionID": "QID8",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -3605,13 +3604,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID7",
-      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DefaultChoices": false,
         "QuestionType": "Matrix",
         "Selector": "Likert",
@@ -3624,7 +3623,7 @@
           "WhiteSpace": "OFF",
           "MobileFirst": true
         },
-        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
         "Choices": {
           "1": {
             "Display": "Walk outdoors on flat ground?"
@@ -3677,9 +3676,9 @@
           "4"
         ],
         "ChoiceDataExportTags": false,
-        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
-        "DataExportTag": "QID7",
-        "QuestionID": "QID7",
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
+        "DataExportTag": "QID9",
+        "QuestionID": "QID9",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -3693,22 +3692,22 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8",
-      "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities:\u00a0",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Please check any aids or devices that you use for any of the above activities: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;<\/p>",
+        "QuestionText": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID8",
+        "DataExportTag": "QID10",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Please check any aids or devices that you use for any of the above activities:\u00a0",
+        "QuestionDescription": "Please check any aids or devices that you use for any of the above activities: ",
         "Choices": {
           "1": {
             "Display": "Cane"
@@ -3768,12 +3767,12 @@
         "Language": [],
         "NextChoiceId": 11,
         "NextAnswerId": 1,
-        "QuestionID": "QID8",
+        "QuestionID": "QID10",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please check any aids or devices that you use for any of the above activities:&nbsp;</p>",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -3789,21 +3788,21 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8_1",
-      "SecondaryAttribute": "Please specify any other aids or devices:\u00a0",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Please specify any other aids or devices: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
+        "QuestionText": "<p>Please specify any other aids or devices:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID8_1",
+        "DataExportTag": "QID11",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Please specify any other aids or devices:\u00a0",
+        "QuestionDescription": "Please specify any other aids or devices: ",
         "Validation": {
           "Settings": {
             "ForceResponse": "ON",
@@ -3818,22 +3817,22 @@
         "SearchSource": {
           "AllowFreeResponse": "false"
         },
-        "QuestionID": "QID8_1",
+        "QuestionID": "QID11",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Please specify any other aids or devices:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please specify any other aids or devices:&nbsp;</p>",
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID8\/SelectableChoice\/9",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please check any aids or devices that you use for any of the above activities:&nbsp;<\/span> <span class=\"LeftOpDesc\">Other<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID8\/SelectableChoice\/9",
+              "ChoiceLocator": "q://QID10/SelectableChoice/9",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Please check any aids or devices that you use for any of the above activities:&nbsp;</span> <span class=\"LeftOpDesc\">Other</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID10/SelectableChoice/9",
               "LogicType": "Question",
               "Operator": "Selected",
-              "QuestionID": "QID8",
-              "QuestionIDFromLocator": "QID8",
+              "QuestionID": "QID10",
+              "QuestionIDFromLocator": "QID10",
               "QuestionIsInLoop": "no",
               "Type": "Expression"
             },
@@ -3845,22 +3844,22 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID9",
-      "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "Please check any categories for which you usually need help from another person: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "QuestionText": "<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID9",
+        "DataExportTag": "QID12",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Please check any categories for which you usually need help from another person:\u00a0",
+        "QuestionDescription": "Please check any categories for which you usually need help from another person: ",
         "Choices": {
           "1": {
             "Display": "Dressing or grooming"
@@ -3904,12 +3903,12 @@
         "Language": [],
         "NextChoiceId": 7,
         "NextAnswerId": 1,
-        "QuestionID": "QID9",
+        "QuestionID": "QID12",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -3921,13 +3920,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID10",
-      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "PrimaryAttribute": "QID13",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DefaultChoices": false,
         "QuestionType": "Matrix",
         "Selector": "Likert",
@@ -3940,7 +3939,7 @@
           "WhiteSpace": "OFF",
           "MobileFirst": true
         },
-        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
         "Choices": {
           "1": {
             "Display": "Wash and dry your body?"
@@ -4013,13 +4012,13 @@
           "4"
         ],
         "ChoiceDataExportTags": false,
-        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "DataExportTag": "QID10",
-        "QuestionID": "QID10",
+        "DataExportTag": "QID13",
+        "QuestionID": "QID13",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -4029,22 +4028,22 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11",
-      "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
+      "PrimaryAttribute": "QID14",
+      "SecondaryAttribute": "Please check and aids or devices that you usually use for any of the above activities: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/p>",
+        "QuestionText": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;</p>",
         "DefaultChoices": false,
-        "DataExportTag": "QID11",
+        "DataExportTag": "QID14",
         "QuestionType": "MC",
         "Selector": "MAVR",
         "SubSelector": "TX",
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Please check and aids or devices that you usually use for any of the above activities:\u00a0",
+        "QuestionDescription": "Please check and aids or devices that you usually use for any of the above activities: ",
         "Choices": {
           "1": {
             "Display": "Raised toilet seat"
@@ -4092,12 +4091,12 @@
         "Language": [],
         "NextChoiceId": 8,
         "NextAnswerId": 1,
-        "QuestionID": "QID11",
+        "QuestionID": "QID14",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please check and aids or devices that you usually use for any of the above activities:&nbsp;</p>",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -4110,16 +4109,16 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11_1",
+      "PrimaryAttribute": "QID15",
       "SecondaryAttribute": "Please specify any other aids or devices:",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Please specify any other aids or devices:",
         "DefaultChoices": false,
         "DataExportTag": "Q20",
-        "QuestionID": "QID11_1",
+        "QuestionID": "QID15",
         "QuestionType": "TE",
         "Selector": "SL",
         "Configuration": {
@@ -4129,13 +4128,13 @@
         "DisplayLogic": {
           "0": {
             "0": {
-              "ChoiceLocator": "q:\/\/QID11\/SelectableChoice\/6",
-              "Description": "<span class=\"ConjDesc\">If<\/span> <span class=\"QuestionDesc\">Please check and aids or devices that you usually use for any of the above activities:&nbsp;<\/span> <span class=\"LeftOpDesc\">Other<\/span> <span class=\"OpDesc\">Is Selected<\/span> ",
-              "LeftOperand": "q:\/\/QID11\/SelectableChoice\/6",
+              "ChoiceLocator": "q://QID14/SelectableChoice/6",
+              "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">Please check and aids or devices that you usually use for any of the above activities:&nbsp;</span> <span class=\"LeftOpDesc\">Other</span> <span class=\"OpDesc\">Is Selected</span> ",
+              "LeftOperand": "q://QID14/SelectableChoice/6",
               "LogicType": "Question",
               "Operator": "Selected",
-              "QuestionID": "QID11",
-              "QuestionIDFromLocator": "QID11",
+              "QuestionID": "QID14",
+              "QuestionIDFromLocator": "QID14",
               "QuestionIsInLoop": "no",
               "Type": "Expression"
             },
@@ -4165,13 +4164,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID12",
-      "SecondaryAttribute": "Please check any categories for which you usually need help from another person:\u00a0",
+      "PrimaryAttribute": "QID16",
+      "SecondaryAttribute": "Please check any categories for which you usually need help from another person: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>\n\t\t\n\t\n\t\n\t\t<\/p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
+        "QuestionText": "<p>\n\t\t\n\t\n\t\n\t\t</p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
         "DefaultChoices": false,
         "QuestionType": "MC",
         "Selector": "MAVR",
@@ -4179,7 +4178,7 @@
         "Configuration": {
           "QuestionDescriptionOption": "UseText"
         },
-        "QuestionDescription": "Please check any categories for which you usually need help from another person:\u00a0",
+        "QuestionDescription": "Please check any categories for which you usually need help from another person: ",
         "Choices": {
           "1": {
             "Display": "Hygiene"
@@ -4216,9 +4215,9 @@
         "Language": [],
         "NextChoiceId": 8,
         "NextAnswerId": 1,
-        "QuestionText_Unsafe": "<p>\n\t\t\n\t\n\t\n\t\t<\/p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;<\/p>",
-        "DataExportTag": "QID12",
-        "QuestionID": "QID12",
+        "QuestionText_Unsafe": "<p>\n\t\t\n\t\n\t\n\t\t</p>\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t<p>Please check any categories for which you usually need help from another person:&nbsp;</p>",
+        "DataExportTag": "QID16",
+        "QuestionID": "QID16",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
@@ -4232,13 +4231,13 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "SQ",
-      "PrimaryAttribute": "QID13",
-      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+      "PrimaryAttribute": "QID17",
+      "SecondaryAttribute": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DefaultChoices": false,
         "QuestionType": "Matrix",
         "Selector": "Likert",
@@ -4251,7 +4250,7 @@
           "WhiteSpace": "OFF",
           "MobileFirst": true
         },
-        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK:\u00a0",
+        "QuestionDescription": "Please mark the circle in the box which describes your usual activities over the PAST WEEK: ",
         "Choices": {
           "1": {
             "Display": "Get a good night's sleep?"
@@ -4300,13 +4299,13 @@
           "4"
         ],
         "ChoiceDataExportTags": false,
-        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;<\/p>",
+        "QuestionText_Unsafe": "<p>Please mark the circle in the box which describes your usual activities over the PAST WEEK:&nbsp;</p>",
         "DataVisibility": {
           "Private": false,
           "Hidden": false
         },
-        "DataExportTag": "QID13",
-        "QuestionID": "QID13",
+        "DataExportTag": "QID17",
+        "QuestionID": "QID17",
         "RecodeValues": {
           "1": "1",
           "2": "2",
@@ -4316,7 +4315,7 @@
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "OCAC",
       "PrimaryAttribute": "OCAC_9tUwfRtzqiYgRcV",
       "SecondaryAttribute": "OC_3yfQJmljbI6EbZz",
@@ -4331,18 +4330,18 @@
         "contentType": "JSON",
         "authId": -1,
         "authName": "None",
-        "url": "https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "url": "https://p2m2.aws.dbmi-loc.hms.harvard.edu/sources/api/qualtrics/response/",
         "dependencies": [],
         "keyValues": {
-          "ppm_id": "${e:\/\/Field\/ppm_id}",
-          "response_id": "${e:\/\/Field\/ResponseID}",
-          "ppm_study": "${e:\/\/Field\/ppm_study}",
-          "survey_id": "${e:\/\/Field\/SurveyID}"
+          "ppm_id": "${e://Field/ppm_id}",
+          "response_id": "${e://Field/ResponseID}",
+          "ppm_study": "${e://Field/ppm_study}",
+          "survey_id": "${e://Field/SurveyID}"
         },
         "headers": {
           "X-PPM-TOKEN": "803925a57c004dc1922a1715b5f73ab4"
         },
-        "name": "POST https:\/\/p2m2.aws.dbmi-loc.hms.harvard.edu\/sources\/api\/qualtrics\/response\/",
+        "name": "POST https://p2m2.aws.dbmi-loc.hms.harvard.edu/sources/api/qualtrics/response/",
         "authUser": {
           "userId": "UR_6gTkor673S0UxHD",
           "brandId": "hms"
@@ -4360,11 +4359,11 @@
         "id": "PLUG_7b318b05-433e-4e0c-bef8-520ebe5a0c9a",
         "replacementAppId": "APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf",
         "credentials": [],
-        "icon": "https:\/\/www.xm-apps-static.com\/assets-stage\/v1\/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf\/1.0.1\/HkFThd8rahViMbKQ\/images\/logo-small.png"
+        "icon": "https://www.xm-apps-static.com/assets-stage/v1/APP_42a7f4b6-bb84-4c66-94cc-e3e1208e62bf/1.0.1/HkFThd8rahViMbKQ/images/logo-small.png"
       }
     },
     {
-      "SurveyID": "SV_1zfAuATwGYTHLG6",
+      "SurveyID": "SV_0pPq52M6N4Pt87I",
       "Element": "TR",
       "PrimaryAttribute": "OC_3yfQJmljbI6EbZz",
       "SecondaryAttribute": null,
