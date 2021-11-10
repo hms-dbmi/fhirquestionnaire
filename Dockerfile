@@ -7,7 +7,6 @@ RUN apt-get update \
         ca-certificates \
         bzip2 \
         gcc \
-        default-libmysqlclient-dev \
         libssl-dev \
         libfontconfig \
     && rm -rf /var/lib/apt/lists/*
@@ -36,7 +35,6 @@ COPY --from=builder /root/wheels /root/wheels
 # Install requirements
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        default-libmysqlclient-dev \
         libfontconfig \
     && rm -rf /var/lib/apt/lists/*
 
