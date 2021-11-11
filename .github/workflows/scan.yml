@@ -30,8 +30,8 @@ jobs:
     - name: Set image name
       id: setimagename
       run: |
-          echo "Image name: ${{ env.GITHUB_REPOSITORY }}"
-          echo "::set-output name=imagename::${{ env.GITHUB_REPOSITORY }}"
+          echo "Image name: $GITHUB_REPOSITORY:$GITHUB_SHA"
+          echo "::set-output name=imagename::$GITHUB_REPOSITORY:$GITHUB_SHA"
 
     - name: Build the image
       id: buildimage
