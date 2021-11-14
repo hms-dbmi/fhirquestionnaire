@@ -40,16 +40,19 @@ class PDFGenerator(object):
         call the following command:
             phantomjs rasterize.js URL filename [paperwidth*paperheight|paperformat] [zoom]
         """
+        phantomjs_env = os.environ.copy()
+        phantomjs_env["OPENSSL_CONF"] = "/etc/openssl/"
         command = [
             pdf_settings.PHANTOMJS_BIN_PATH,
             '--ssl-protocol=any',
+            '--ignore-ssl-errors=yes',
             self.script,
             self.html_file,
             self.pdf_file,
             self.paperformat,
             str(self.zoom)
         ]
-        return subprocess.call(command)
+        return subprocess.call(command, env=phantomjs_env)
 
     def __set_pdf_data(self):
         with open(self.pdf_file, "rb") as pdf:
