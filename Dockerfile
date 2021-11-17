@@ -1,7 +1,4 @@
-FROM python:3.6-slim-stretch AS builder
-
-# Install python requirements
-COPY requirements /requirements
+FROM hmsdbmitc/dbmisvc:debian11-slim-python3.6-0.2.0 AS builder
 
 # Install requirements
 RUN apt-get update \
@@ -9,44 +6,55 @@ RUN apt-get update \
         curl \
         ca-certificates \
         bzip2 \
+        gcc \
+        libssl-dev \
         libfontconfig \
-        libmariadbclient-dev \
-        g++ libssl-dev \
-    && pip install -r /requirements/requirements.txt
+    && rm -rf /var/lib/apt/lists/*
 
 # Install requirements for PDF generation
 RUN mkdir /tmp/phantomjs \
     && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
            | tar -xj --strip-components=1 -C /tmp/phantomjs
 
-FROM hmsdbmitc/dbmisvc:slim-python3.6-0.1.0
+# Add requirements
+ADD requirements.* /
 
-# Install python requirements
-COPY requirements /requirements
+# Build Python wheels with hash checking
+RUN pip install -U wheel \
+    && pip wheel -r /requirements.txt \
+        --wheel-dir=/root/wheels
+
+FROM hmsdbmitc/dbmisvc:debian11-slim-python3.6-0.2.0
+
+# Copy PhantomJS binary
+COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+
+# Copy Python wheels from builder
+COPY --from=builder /root/wheels /root/wheels
 
 # Install requirements
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libfontconfig \
-        libmariadbclient-dev
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy pip packages from builder
-COPY --from=builder /root/.cache /root/.cache
+# Add requirements files
+ADD requirements.* /
 
-# Install Python packages
-RUN pip install -r /requirements/requirements.txt
-
-# Copy PhantomJS binary
-COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+# Install Python packages from wheels
+RUN pip install --no-index \
+        --find-links=/root/wheels \
+        --force-reinstall \
+        # Use requirements without hashes to allow using wheels.
+        # For some reason the hashes of the wheels change between stages
+        # and Pip errors out on the mismatches.
+        -r /requirements.in
 
 # Add additional init scripts
 COPY docker-entrypoint-init.d/* /docker-entrypoint-init.d/
 
 # Copy app source
 COPY /app /app
-
-# Add Qualtrics survey exports
-COPY qualtrics/* /qualtrics/
 
 # Set the build env
 ENV DBMI_ENV=prod
