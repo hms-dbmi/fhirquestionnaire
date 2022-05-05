@@ -1,4 +1,4 @@
-FROM hmsdbmitc/dbmisvc:debian11-slim-python3.6-0.2.0 AS builder
+FROM hmsdbmitc/dbmisvc:debian11-slim-python3.10-v0.3.3 AS builder
 
 # Install requirements
 RUN apt-get update \
@@ -9,12 +9,10 @@ RUN apt-get update \
         gcc \
         libssl-dev \
         libfontconfig \
+        # WeasyPrint dependencies
+        libpango-1.0-0 \
+        libpangoft2-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
-
-# Install requirements for PDF generation
-RUN mkdir /tmp/phantomjs \
-    && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-           | tar -xj --strip-components=1 -C /tmp/phantomjs
 
 # Add requirements
 ADD requirements.* /
@@ -24,10 +22,7 @@ RUN pip install -U wheel \
     && pip wheel -r /requirements.txt \
         --wheel-dir=/root/wheels
 
-FROM hmsdbmitc/dbmisvc:debian11-slim-python3.6-0.2.0
-
-# Copy PhantomJS binary
-COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+FROM hmsdbmitc/dbmisvc:debian11-slim-python3.10-v0.3.3
 
 # Copy Python wheels from builder
 COPY --from=builder /root/wheels /root/wheels
@@ -36,6 +31,9 @@ COPY --from=builder /root/wheels /root/wheels
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libfontconfig \
+        # WeasyPrint dependencies
+        libpango-1.0-0 \
+        libpangoft2-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Add requirements files

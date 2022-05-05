@@ -1,10 +1,9 @@
 from datetime import datetime
-from django.http.response import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseServerError
+from django.http.response import Http404
+from django.http import HttpResponse
 from django.template.exceptions import TemplateDoesNotExist
-from fhirclient.models.fhirabstractbase import FHIRValidationError
 import requests
 import hashlib
-import json
 import re
 from dateutil.parser import parse
 from django.template import loader
@@ -14,8 +13,9 @@ from rest_framework import status
 from fhirclient.models.bundle import Bundle, BundleEntry, BundleEntryRequest
 from fhirclient.models.questionnaire import Questionnaire
 from fhirclient.models.parameters import Parameters
-from fhirclient.models.questionnaireresponse import QuestionnaireResponse
 from furl import furl
+from weasyprint import HTML, CSS
+from weasyprint.text.fonts import FontConfiguration
 
 from dbmi_client.authz import DBMIAdminPermission
 from fhirquestionnaire.ppmauth import PPMAdminOrOwnerPermission
@@ -201,10 +201,40 @@ class ConsentView(APIView):
         except TemplateDoesNotExist:
             template_name = 'consent/pdf/consent.html'
 
-        # Submit consent PDF
-        logger.debug(f"PPM/{study}: Rendering consent with template: {template_name}")
-        response = render_pdf(f'People-Powered Medicine {study_title} Consent', request, template_name,
-                              context=bundle.get('composition'), options={})
+        # Render to string.
+        content = loader.render_to_string(template_name, bundle.get('composition'), request)
+
+        # Replace checkbox inputs
+        content = re.sub(r"<input[^>]+type=\"checkbox\"[^>]+(checked)[^>]*(\/|><\/input)>", '<span class="fake-checkbox fake-checkbox-checked">☑</span>', content)
+        content = re.sub(r"<input[^>]+type=\"checkbox\"((?![^>]*\schecked\s?[^>]*)[^>]*)(\/|><\/input)>", '<span class="fake-checkbox fake-checkbox-unchecked">☐</span>', content)
+
+        # Create the PDF
+        font_config = FontConfiguration()
+        html = HTML(string=content)
+        css = CSS(string='''
+            table {
+                border: 1px solid;
+            }
+            input:before {
+                content:attr(value)
+            }
+            .fake-checkbox {
+                margin-right: 1em;
+                vertical-align: middle;
+            }
+            ''', font_config=font_config
+        )
+
+        # Render the PDF to bytes
+        pdf = html.write_pdf(
+            stylesheets=[css],
+            font_config=font_config,
+            presentational_hints=True,
+        )
+
+        # Create response
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="People-Powered Medicine {study_title} Consent.pdf"'
 
         # Hash the content
         hash = hashlib.md5(response.content).hexdigest()
@@ -228,7 +258,6 @@ class ConsentView(APIView):
         P2MD.uploaded_consent(request, study, ppm_id, uuid, location)
 
         return True
-
 
 class ConsentsView(APIView):
     """

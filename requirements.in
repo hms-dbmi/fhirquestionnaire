@@ -8,3 +8,4 @@ djangorestframework<4.0
 ppm-utils==0.15.2
 raven<7.0
 requests<3.0
+weasyprint<54.0
