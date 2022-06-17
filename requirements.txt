@@ -4,9 +4,9 @@
 #
 #    pip-compile --allow-unsafe --generate-hashes --output-file=requirements.txt requirements.in
 #
-certifi==2022.5.18.1 \
-    --hash=sha256:9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7 \
-    --hash=sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a
+certifi==2022.6.15 \
+    --hash=sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d \
+    --hash=sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412
     # via requests
 cffi==1.15.0 \
     --hash=sha256:00c878c90cb53ccfaae6b8bc18ad05d2036553e6d9d1d9dbcf323bbe83854ca3 \
@@ -157,9 +157,9 @@ orderedmultidict==1.0.1 \
     --hash=sha256:04070bbb5e87291cc9bfa51df413677faf2141c73c61d2a5f7b26bea3cd882ad \
     --hash=sha256:43c839a17ee3cdd62234c47deca1a8508a3f2ca1d0678a3bf791c87cf84adbf3
     # via furl
-ppm-utils==0.15.2 \
-    --hash=sha256:a7afd118f0fb9b79c3351a36d8b88ec86b7f6ade0d08cff4fe8fbe5267bb5223 \
-    --hash=sha256:c27f6b0e77f21c4ab302eebae6659c25da9b2817de841583840eda43a085bfaf
+ppm-utils==0.15.3 \
+    --hash=sha256:3b35313c90a39deb007949c7e1d1d1f9defc2d3da94b7be66af9db0e3feafc2f \
+    --hash=sha256:9dd11da784ee202b36d00f114726bdcfab69e4ed612594c35ce4051fda3f3eb5
     # via -r requirements.in
 pycparser==2.21 \
     --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \
