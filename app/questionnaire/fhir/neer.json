@@ -60,17 +60,29 @@
       "linkId": "question-10",
       "text": "Which relatives?",
       "type": "text",
+      "enableWhen": [
+        {
+          "question": "question-9",
+          "answerBoolean": true
+        }
+      ],
       "required": true
     },
     {
       "linkId": "question-11",
       "text": "Which cancers?",
       "type": "text",
+      "enableWhen": [
+        {
+          "question": "question-9",
+          "answerBoolean": true
+        }
+      ],
       "required": true
     },
     {
       "linkId": "question-12",
-      "text": "Cancer Diagnosis",
+      "text": "Your Cancer Diagnosis",
       "type": "text",
       "required": true
     },

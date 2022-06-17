@@ -151,6 +151,13 @@ class FHIRQuestionnaireForm(forms.Form):
             if self._get_dependent_items(item.linkId):
                 attrs['data-details'] = item.linkId
 
+            # Enable conditional attributes for items that are not grouped
+            if item.enableWhen:
+
+                # Get attributes
+                for enable_when in item.enableWhen:
+                    attrs.update(self._get_form_layout_item_attributes(item, enable_when))
+
             # Check type
             if (item.type == 'string' or item.type == 'text') and item.option:
 
@@ -419,6 +426,35 @@ class FHIRQuestionnaireForm(forms.Form):
 
         return fieldset
 
+    def _get_form_layout_item_attributes(self, item, enable_when):
+        """
+        This method sets up the properties for an item that is conditionally
+        shown or hidden based on other inputs.
+
+        :param item: The current Questionnaire Item
+        :type item: Item
+        :param enable_when: The conditional item
+        :type enable_when: EnableWhen
+        :return: The attributes for the inputs
+        :rtype: dict
+        """
+        # Set attributes
+        attrs = {
+            'data-parent': enable_when.question,
+            'data-detached': "true",
+            'data-required': "true" if item.required else "false",
+            'id': 'id_{}_{}'.format(enable_when.question, item.linkId),
+            'data-container-selector': 'div.form-group',
+        }
+
+        # Check conditional type
+        if hasattr(enable_when, "answerString") and enable_when.answerString is not None:
+            attrs['data-enabled-when'] = '{}={}'.format(enable_when.question, enable_when.answerString)
+        elif hasattr(enable_when, "answerBoolean") and enable_when.answerBoolean is not None:
+            attrs['data-enabled-when'] = '{}={}'.format(enable_when.question, int(enable_when.answerBoolean == True))
+
+        return attrs
+
     def _get_form_layout_group_attributes(self, parent, item):
         """
         This method sets up the properties for a group that is conditionally
@@ -433,9 +469,9 @@ class FHIRQuestionnaireForm(forms.Form):
         """
         # Set attributes
         attrs = {
-            'data_parent': parent.linkId,
-            'data_detached': "true",
-            'data_required': "true" if parent.required else "false",
+            'data-parent': parent.linkId,
+            'data-detached': "true",
+            'data-required': "true" if parent.required else "false",
             'id': 'id_{}_{}'.format(parent.linkId, item.linkId)
         }
         for enable_when in item.enableWhen:
