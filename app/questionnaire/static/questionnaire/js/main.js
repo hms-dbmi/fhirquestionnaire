@@ -12,7 +12,7 @@ $(function() {
     function showDependent(container, checkbox) {
 
         // Check for repositioning
-        if(!$(container).data('detached')) {
+        if( ! $(container).find("[data-detached='true']").addBack("[data-detached='true']").length ) {
 
             // Place the element next to the input
             $(checkbox).parent().parent().append(container);
@@ -114,11 +114,20 @@ $(function() {
         // Get all dependent inputs
         $.each(dependents, function() {
 
-            // Get the element
-            var container = $(this);
+            // Check for a container class
+            if( $(this).data("container-selector") ) {
+
+                // Get that element
+                var container = $(this).closest( $(this).data("container-selector") );
+
+            } else {
+
+                // Get the element
+                var container = $(this);
+            }
 
             // Get the value it depends on this radio being
-            var dependentValue = $(container).data('enabled-when').replace(_name + '\=', '');
+            var dependentValue = $(this).data('enabled-when').replace(_name + '\=', '');
 
             // Compare the input's needed value to the current value
             if(dependentValue === value) {

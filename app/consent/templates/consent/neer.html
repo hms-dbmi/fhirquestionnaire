@@ -41,7 +41,7 @@
 
                     {% csrf_token %}
 
-                    <h1>Signature</h1>
+                    <h1>Statement of Consent</h1>
                      <p>I have read the information in this consent form including risks and possible benefits. All my questions about the research have been answered to my satisfaction. I understand that I am free to withdraw at any time without penalty or loss of benefits to which I am otherwise entitled.</p>
                      <p>Please indicate if you DO NOT wish to provide a blood sample for this study. Blood samples will be stored and later analyzed for genetic data.</p>
                      <div class="form-group">
@@ -51,7 +51,7 @@
                            </label>
                         </div>
                      </div>
-                     <p>Please indicate if you DO NOT give us permission to access samples from your tumor that may be stored (for instance, from previous biopsies).</p>
+                     <p>Please indicate if you DO NOT wish to provide a stool sample for this study.  Stool samples will be used to examine the “microbiome”, or bacteria, present in your body.</p>
                      <div class="form-group">
                         <div class="checkbox col-md-12">
                            <label>
@@ -59,7 +59,7 @@
                            </label>
                         </div>
                      </div>
-                     <p>Please indicate if you DO NOT wish to wear a Fitbit™ for this study.</p>
+                     <p>Please indicate if you DO NOT give us permission to access samples from your tumor that may be stored (for instance, from previous biopsies).</p>
                      <div class="form-group">
                         <div class="checkbox col-md-12">
                            <label>
@@ -67,11 +67,19 @@
                            </label>
                         </div>
                      </div>
-                     <p>Please indicate if you DO NOT wish to be contacted with additional questionnaires for this study.</p>
+                     <p>Please indicate if you DO NOT wish to wear a Fitbit™ for this study.</p>
                      <div class="form-group">
                         <div class="checkbox col-md-12">
                            <label>
                               <input name="exceptions" value="{{ form.exceptions.field.choices.3.0 }}" type="checkbox">{{ form.exceptions.field.choices.3.1 }}
+                           </label>
+                        </div>
+                     </div>
+                     <p>Please indicate if you DO NOT wish to be contacted with additional questionnaires for this study.</p>
+                     <div class="form-group">
+                        <div class="checkbox col-md-12">
+                           <label>
+                              <input name="exceptions" value="{{ form.exceptions.field.choices.4.0 }}" type="checkbox">{{ form.exceptions.field.choices.4.1 }}
                            </label>
                         </div>
                      </div>
