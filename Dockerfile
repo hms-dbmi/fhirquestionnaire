@@ -12,9 +12,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Install requirements for PDF generation
-RUN mkdir /tmp/phantomjs \
-    && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-           | tar -xj --strip-components=1 -C /tmp/phantomjs
+ADD phantomjs-2.1.1-linux-x86_64.tar.bz2 /tmp/
 
 # Add requirements
 ADD requirements.* /
@@ -27,7 +25,7 @@ RUN pip install -U wheel \
 FROM hmsdbmitc/dbmisvc:debian11-slim-python3.10-0.5.0
 
 # Copy PhantomJS binary
-COPY --from=builder /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+COPY --from=builder /tmp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 
 # Copy Python wheels from builder
 COPY --from=builder /root/wheels /root/wheels
