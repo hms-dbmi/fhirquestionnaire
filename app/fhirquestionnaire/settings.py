@@ -205,7 +205,7 @@ EMAIL_HOST_PASSWORD = get_str("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = get_str("EMAIL_PORT")
 TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
 CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
-DEFAULT_FROM_EMAIL = "ppm-no-reply@dbmi.hms.harvard.edu"
+DEFAULT_FROM_EMAIL = get_str('EMAIL_FROM_ADDRESS', required=True)
 
 # Check for sentry
 RAVEN_URL = get_str("RAVEN_URL", required=True)
