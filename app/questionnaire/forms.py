@@ -7,8 +7,8 @@ from django.utils import timezone
 from django.conf import settings
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Div, Field
-from bootstrap_datepicker_plus import DatePickerInput, MonthPickerInput
-from django.utils.translation import gettext_lazy as _, ngettext_lazy
+from bootstrap_datepicker_plus.widgets import DatePickerInput, MonthPickerInput
+from django.utils.translation import gettext_lazy as _
 
 from fhirclient import client
 from fhirclient.server import FHIRNotFoundException

@@ -6,7 +6,7 @@ from django.utils import timezone
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import mark_safe
-from bootstrap_datepicker_plus import DatePickerInput, MonthPickerInput
+from bootstrap_datepicker_plus.widgets import DatePickerInput, MonthPickerInput
 from ppmutils.ppm import PPM
 
 from consent.apps import ConsentConfig

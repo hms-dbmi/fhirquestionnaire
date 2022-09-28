@@ -1,5 +1,4 @@
-from django.urls import include, re_path
-from rest_framework import routers
+from django.urls import re_path
 
 from api.apps import ApiConfig
 from api import views
