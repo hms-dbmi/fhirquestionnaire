@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from contact import views
 
@@ -6,5 +6,5 @@ app_name = "contact"
 
 # Add views.
 urlpatterns = [
-    url(r'^$', views.ContactView.as_view(), name='contact'),
+    re_path(r'^$', views.ContactView.as_view(), name='contact'),
 ]
