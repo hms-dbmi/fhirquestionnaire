@@ -16,7 +16,7 @@ import logging
 from django.contrib.messages import constants as message_constants
 
 from dbmi_client import logging as dbmi_logging
-from dbmi_client.environment import get_bool, get_str, get_int, get_list
+from dbmi_client.environment import get_bool, get_str, get_int, get_list, get_dict
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -164,9 +164,8 @@ DBMI_CLIENT_CONFIG = {
     'AUTHZ_ADMIN_PERMISSION': 'ADMIN',
     'JWT_COOKIE_DOMAIN': get_str('COOKIE_DOMAIN', required=True),
 
-    # Auth0
-    'AUTH0_TENANT': get_str('AUTH0_TENANT', required=True),
-    'AUTH0_CLIENT_ID': get_str('AUTH0_CLIENT_ID', required=True),
+    # Auth configuration
+    'AUTH_CLIENTS': get_dict('AUTH_CLIENTS', required=True),
     'AUTHN_TITLE': 'People-Powered Medicine',
     'AUTHN_ICON_URL': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
 
