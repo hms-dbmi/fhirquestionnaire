@@ -16,7 +16,7 @@ import logging
 from django.contrib.messages import constants as message_constants
 
 from dbmi_client import logging as dbmi_logging
-from dbmi_client.environment import get_bool, get_str, get_int, get_list
+from dbmi_client.environment import get_bool, get_str, get_int, get_list, get_dict
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'api',
     'pdf',
     'bootstrap_datepicker_plus',
+    'django_ses',
 ]
 
 MIDDLEWARE = [
@@ -164,9 +165,8 @@ DBMI_CLIENT_CONFIG = {
     'AUTHZ_ADMIN_PERMISSION': 'ADMIN',
     'JWT_COOKIE_DOMAIN': get_str('COOKIE_DOMAIN', required=True),
 
-    # Auth0
-    'AUTH0_TENANT': get_str('AUTH0_TENANT', required=True),
-    'AUTH0_CLIENT_ID': get_str('AUTH0_CLIENT_ID', required=True),
+    # Auth configuration
+    'AUTH_CLIENTS': get_dict('AUTH_CLIENTS', required=True),
     'AUTHN_TITLE': 'People-Powered Medicine',
     'AUTHN_ICON_URL': 'https://peoplepoweredmedicine.org/img/ppm_RGB_115x30.svg',
 
@@ -196,13 +196,25 @@ PPM_P2MD_URL = get_str("PPM_P2MD_URL", required=True)
 # Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-# Get email details and enable SSL for SSL backend
-EMAIL_BACKEND = get_str("EMAIL_BACKEND", 'django_smtp_ssl.SSLEmailBackend')
-EMAIL_USE_SSL = EMAIL_BACKEND == 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = get_str("EMAIL_HOST", required=True)
-EMAIL_HOST_USER = get_str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = get_str("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = get_str("EMAIL_PORT")
+# Determine email backend
+EMAIL_BACKEND = get_str("EMAIL_BACKEND", required=True)
+
+# SMTP Email configuration
+EMAIL_SMTP = EMAIL_BACKEND == "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_SSL = get_bool("EMAIL_USE_SSL", default=EMAIL_SMTP)
+EMAIL_HOST = get_str("EMAIL_HOST", required=EMAIL_SMTP)
+EMAIL_HOST_USER = get_str("EMAIL_HOST_USER", required=EMAIL_SMTP)
+EMAIL_HOST_PASSWORD = get_str("EMAIL_HOST_PASSWORD", required=EMAIL_SMTP)
+EMAIL_PORT = get_str("EMAIL_PORT", required=EMAIL_SMTP)
+
+# AWS SES Email configuration
+EMAIL_SES = EMAIL_BACKEND == "django_ses.SESBackend"
+AWS_SES_CONFIGURATION_SET = get_str("EMAIL_SES_CONFIGURATION_SET", required=False)
+AWS_SES_SOURCE_ARN=get_str("EMAIL_SES_IDENTITY", required=False)
+AWS_SES_FROM_ARN=get_str("EMAIL_SES_IDENTITY", required=False)
+AWS_SES_RETURN_PATH_ARN=get_str("EMAIL_SES_IDENTITY", required=False)
+USE_SES_V2 = True
+
 TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
 CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
 DEFAULT_FROM_EMAIL = get_str('EMAIL_FROM_ADDRESS', required=True)
