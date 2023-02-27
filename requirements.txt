@@ -8,13 +8,13 @@ asgiref==3.6.0 \
     --hash=sha256:71e68008da809b957b7ee4b43dbccff33d1b23519fb8344e33f049897077afac \
     --hash=sha256:9567dfe7bd8d3c8c892227827c41cce860b368104c3431da67a0c5a65a949506
     # via django
-boto3==1.26.69 \
-    --hash=sha256:9a0a29179957cb26fa8c3c1fddf66b18efaeaf633e08db5fb53815ffb0421419 \
-    --hash=sha256:eb8cde24a4c5755c35126e8cd460e6b51c63d04292419e7e95721232720c7e5b
+boto3==1.26.79 \
+    --hash=sha256:049de631cc03726a14b8eb24ac9ec2a48b0624197796f36166da809fdc9b9a7f \
+    --hash=sha256:73d7bd1f16118ef0dfe936e0420cd76b02d1aedb75330ebda51168458ab752ac
     # via django-ses
-botocore==1.29.69 \
-    --hash=sha256:2a4ab8bcb3177daa425019e125c09996b9a6a1a62bb0baaaeeb86ffd552719cc \
-    --hash=sha256:7e1bebca013544fbc298cb58603bfccd5f71b49c720a5c33c07cf5dfc8145a1f
+botocore==1.29.79 \
+    --hash=sha256:5f254f019e8641f8b2ba6dddc1f7541e8c6d25d976802392710b2fc4bac925b1 \
+    --hash=sha256:c7ded44062bed3b928944cfb09e1578ed3fed0e4c98de4f233f3c2056a8d491e
     # via
     #   boto3
     #   s3transfer
@@ -203,9 +203,9 @@ cryptography==39.0.1 \
     --hash=sha256:fdd188c8a6ef8769f148f88f859884507b954cc64db6b52f66ef199bb9ad660a \
     --hash=sha256:fe913f20024eb2cb2f323e42a64bdf2911bb9738a15dba7d3cce48151034e3a8
     # via django-dbmi-client
-django==4.1.6 \
-    --hash=sha256:bceb0fe1a386781af0788cae4108622756cd05e7775448deec04a71ddf87685d \
-    --hash=sha256:c6fe7ebe7c017fe59f1029821dae0acb5a2ddcd6c9a0138fd20a8bfefac914bc
+django==4.1.7 \
+    --hash=sha256:44f714b81c5f190d9d2ddad01a532fe502fa01c4cb8faf1d081f4264ed15dcd8 \
+    --hash=sha256:f2f431e75adc40039ace496ad3b9f17227022e8b11566f4b363da44c7e44761e
     # via
     #   -r requirements.in
     #   django-bootstrap-datepicker-plus
