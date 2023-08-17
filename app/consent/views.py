@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import View
 
 from dbmi_client.settings import dbmi_settings
-from dbmi_client.auth import dbmi_user
+from dbmi_client.auth import dbmi_user, dbmi_admin
 from dbmi_client.authn import get_jwt_email
 
 from ppmutils.ppm import PPM
@@ -721,6 +721,38 @@ class DownloadView(View):
         except Exception as e:
             logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
                  'request': request, 'project': study,
+            })
+
+        raise SystemError('Could not render consent document')
+
+
+class AdminDownloadView(View):
+    """
+    This is a temporary viewset to retroactively populate participants' datasets
+    with renders of their signed consents and then redirecting them to P2MD where
+    the actual download will take place. This view differes from DownloadView in that
+    it is a view meant to be used by administrators.
+    """
+
+    @method_decorator(dbmi_admin)
+    def get(self, request, *args, **kwargs):
+
+        # Get the study and PPM ID
+        study = kwargs['study']
+        ppm_id = kwargs['ppm_id']
+
+        try:
+            # Check FHIR
+            if not PPMFHIR.get_consent_document_reference(patient=ppm_id, study=study, flatten_return=True):
+
+                # Save it
+                APIConsentView.create_consent_document_reference(request=request, study=study, ppm_id=ppm_id)
+
+            return HttpResponseRedirect(redirect_to=P2MD.get_consent_url(study=study, ppm_id=ppm_id))
+
+        except Exception as e:
+            logger.error("Error while rendering consent: {}".format(e), exc_info=True, extra={
+                 'request': request, 'project': study, 'ppm_id': ppm_id,
             })
 
         raise SystemError('Could not render consent document')
