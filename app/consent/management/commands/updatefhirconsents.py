@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from consent.apps import ConsentConfig
-from fhirquestionnaire.fhir import FHIR
+from ppmutils.fhir import FHIR
 
 
 class Command(BaseCommand):
@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     name = '{}/{}'.format(resource['resourceType'], resource['id'])
 
                     # Do the update
-                    if FHIR.update_resource(resource):
+                    if FHIR.fhir_create(resource['resourceType'], resource, resource['id']):
                         self.stdout.write(self.style.SUCCESS('Successfully updated FHIR resource: {}'.format(name)))
 
                     else:
@@ -44,5 +44,5 @@ class Command(BaseCommand):
                 except ValueError:
                     raise CommandError('Resource could not be read: {}'.format(file_path))
 
-                except KeyError:
-                    raise CommandError('FHIR Resource does not contain ID and/or ResourceType: {}'.format(file_path))
+                except KeyError as e:
+                    raise CommandError('FHIR Resource \'{}\' does not contain ID and/or ResourceType: {}'.format(file_path, e))
