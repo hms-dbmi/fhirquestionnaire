@@ -1,4 +1,4 @@
-FROM hmsdbmitc/dbmisvc:debian11-slim-python3.10-0.5.1 AS builder
+FROM hmsdbmitc/dbmisvc:debian12-slim-python3.11-0.6.1 AS builder
 
 # Install requirements
 RUN apt-get update \
@@ -22,7 +22,7 @@ RUN pip install -U wheel \
     && pip wheel -r /requirements.txt \
         --wheel-dir=/root/wheels
 
-FROM hmsdbmitc/dbmisvc:debian11-slim-python3.10-0.5.1
+FROM hmsdbmitc/dbmisvc:debian12-slim-python3.11-0.6.1
 
 # Copy PhantomJS binary
 COPY --from=builder /tmp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
