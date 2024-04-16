@@ -15,7 +15,6 @@ jobs:
     secrets:
       DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
       DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     with:
       repository: ${{ github.repository }}
       commit: ${{ github.sha }}
