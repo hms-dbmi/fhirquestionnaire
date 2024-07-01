@@ -14,6 +14,33 @@
   "subjectType": [
     "patient"
   ],
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "program",
+        "display": "Program"
+      },
+       "valueReference": {"reference": "ResearchStudy/ppm-neer"}
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "task",
+        "display": "Workflow Task"
+      },
+       "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://peoplepoweredmedicine.org/fhir/questionnaire/context",
+            "code": "ppm-neer",
+            "display": "ppm-neer"
+          }
+        ],
+        "text": "ppm-neer"
+      }
+    }
+  ],
   "item": [
     {
       "linkId": "display-1",

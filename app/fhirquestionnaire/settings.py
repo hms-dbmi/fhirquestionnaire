@@ -188,8 +188,6 @@ REST_FRAMEWORK = {
 }
 
 # App configurations
-FHIR_APP_ID = get_str("FHIR_APP_ID", required=True)
-FHIR_URL = get_str("FHIR_URL", required=True)
 RETURN_URL = get_str("RETURN_URL", required=True)
 PPM_P2MD_URL = get_str("PPM_P2MD_URL", required=True)
 
