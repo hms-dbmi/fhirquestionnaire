@@ -87,6 +87,9 @@ class FHIR:
         # Generate composition
         composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, contract])
 
+        # Add the study reference
+        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(study)}"}]})
+
         # Add it to the resources
         resources.append(composition)
 
@@ -212,6 +215,9 @@ class FHIR:
         # Generate composition
         composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, contract])
 
+        # Add the study reference
+        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(PPM.Study.ASD)}"}]})
+
         # Bundle it into a transaction
         bundle = PPMFHIR.Resources.bundle([questionnaire_response, consent, contract, composition, quiz_questionnaire_response])
 
@@ -336,6 +342,9 @@ class FHIR:
 
         # Generate composition
         composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, signature_contract, explained_contract])
+
+        # Add the study reference
+        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(PPM.Study.ASD)}"}]})
 
         # Map exception codes to linkId
         ward_exception_codes = {
