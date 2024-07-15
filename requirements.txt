@@ -311,9 +311,9 @@ orderedmultidict==1.0.1 \
     --hash=sha256:04070bbb5e87291cc9bfa51df413677faf2141c73c61d2a5f7b26bea3cd882ad \
     --hash=sha256:43c839a17ee3cdd62234c47deca1a8508a3f2ca1d0678a3bf791c87cf84adbf3
     # via furl
-ppm-utils==2.0.4 \
-    --hash=sha256:8c20e7edf44cd107425a5f7d5281e63408013eac1e69e6f2ce307895c0752b53 \
-    --hash=sha256:92755026bd29224025a2c9ad04552a482420891aba86fe81ade3680463994b7f
+ppm-utils==2.0.5 \
+    --hash=sha256:eefe497da10c690dffc6a85b88a60d4d9efc0f0c48ec720fa549c8ca82c726a5 \
+    --hash=sha256:f4d3a29c84c46047070144729b533d46294945f6762d23cfd5fc504c0d8ed1a7
     # via -r requirements.in
 proto-plus==1.24.0 \
     --hash=sha256:30b72a5ecafe4406b0d339db35b56c4059064e69227b8c3bda7462397f966445 \

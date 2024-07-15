@@ -85,10 +85,7 @@ class FHIR:
         text = '<div>{}</div>'.format(render_to_string('consent/{}/_consent.html'.format(study)))
 
         # Generate composition
-        composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, contract])
-
-        # Add the study reference
-        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(study)}"}]})
+        composition = PPMFHIR.Resources.composition(patient, timestamp, text, PPM.Study.get(study), [consent, contract])
 
         # Add it to the resources
         resources.append(composition)
@@ -213,10 +210,7 @@ class FHIR:
         text = '<div>{}</div>'.format(render_to_string('consent/asd/_individual_consent.html'))
 
         # Generate composition
-        composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, contract])
-
-        # Add the study reference
-        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(PPM.Study.ASD)}"}]})
+        composition = PPMFHIR.Resources.composition(patient, timestamp, text, PPM.Study.ASD, [consent, contract])
 
         # Bundle it into a transaction
         bundle = PPMFHIR.Resources.bundle([questionnaire_response, consent, contract, composition, quiz_questionnaire_response])
@@ -341,10 +335,7 @@ class FHIR:
         text = '<div>{}</div>'.format(render_to_string('consent/asd/_guardian_consent.html'))
 
         # Generate composition
-        composition = PPMFHIR.Resources.composition(patient, timestamp, text, [consent, signature_contract, explained_contract])
-
-        # Add the study reference
-        composition.setdefault("section", []).append({"entry": [{"reference": f"ResearchStudy/{PPM.Study.fhir_id(PPM.Study.ASD)}"}]})
+        composition = PPMFHIR.Resources.composition(patient, timestamp, text, PPM.Study.ASD, [consent, signature_contract, explained_contract])
 
         # Map exception codes to linkId
         ward_exception_codes = {
