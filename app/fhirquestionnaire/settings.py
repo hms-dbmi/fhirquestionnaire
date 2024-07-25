@@ -224,6 +224,8 @@ DEFAULT_FROM_EMAIL = get_str('EMAIL_FROM_ADDRESS', required=True)
 # Configure  Sentry
 reporting.sentry(
     sentry_dsn=get_str("SENTRY_DSN", required=True),
+    release=get_str("DBMI_APP_VERSION"),
+    environment=get_str("DBMI_ENV", "prod"),
     sentry_trace_rate=get_float("SENTRY_TRACES_RATE", default=0.0),
     sentry_profile_rate=get_float("SENTRY_PROFILES_RATE", default=0.0),
 )
