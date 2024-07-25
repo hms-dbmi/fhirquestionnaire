@@ -41,7 +41,7 @@ LABEL org.label-schema.schema-version=1.0 \
     org.label-schema.vcf-ref=${COMMIT}
 
 # Copy PhantomJS binary
-COPY --from=builder /tmp/phantomjs-2.1.1-arm64/bin/phantomjs /usr/local/bin/phantomjs
+COPY --from=builder /tmp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 
 # Copy Python wheels from builder
 COPY --from=builder /root/wheels /root/wheels
