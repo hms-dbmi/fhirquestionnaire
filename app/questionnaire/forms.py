@@ -10,9 +10,10 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Di
 from bootstrap_datepicker_plus.widgets import DatePickerInput, MonthPickerInput
 from django.utils.translation import gettext_lazy as _
 
+from fhirclient import client
+from fhirclient.server import FHIRNotFoundException
 from fhirclient.models.questionnaire import Questionnaire
 from ppmutils.ppm import PPM
-from ppmutils.fhir import FHIR as PPMFHIR
 
 from fhirquestionnaire.fhir import FHIR
 
@@ -49,15 +50,17 @@ class FHIRQuestionnaireForm(forms.Form):
         super(FHIRQuestionnaireForm, self).__init__(*args, **kwargs)
 
         try:
+            # Prepare the client
+            fhir = client.FHIRClient(settings={'app_id': settings.FHIR_APP_ID, 'api_base': settings.FHIR_URL})
+
             # Get the questionnaire
-            questionnaire = Questionnaire(PPMFHIR.fhir_read("Questionnaire", questionnaire_id))
+            questionnaire = Questionnaire.read(questionnaire_id, fhir.server)
 
             # Retain it
             self.questionnaire_id = questionnaire_id
             self.questionnaire = questionnaire
 
-        except Exception as e:
-            logger.exception(f"PPM/FHIR: Questionnaire/{questionnaire_id} not found: {e}", exc_info=True)
+        except FHIRNotFoundException:
             raise FHIR.QuestionnaireDoesNotExist
 
         # Get fields
@@ -156,11 +159,11 @@ class FHIRQuestionnaireForm(forms.Form):
                     attrs.update(self._get_form_layout_item_attributes(item, enable_when))
 
             # Check type
-            if (item.type == 'string' or item.type == 'text') and item.answerOption:
+            if (item.type == 'string' or item.type == 'text') and item.option:
 
                 # Set the choices
                 choices = ()
-                for option in item.answerOption:
+                for option in item.option:
 
                     # Assume valueString
                     if not option.valueString:
@@ -177,16 +180,16 @@ class FHIRQuestionnaireForm(forms.Form):
                     required=required
                 )
 
-            elif item.type == 'string' or item.type == 'text' or (item.type == 'question' and not item.answerOption):
+            elif item.type == 'string' or item.type == 'text' or (item.type == 'question' and not item.option):
 
-                if item.initial:
+                if item.initialString:
 
                     # Make this a textbox-style input with minimum width
                     fields[item.linkId] = forms.CharField(
                         label=item.text,
                         required=required,
                         widget=forms.Textarea(attrs={**{
-                            'placeholder': next((i.valueString for i in item.initial), ""),
+                            'placeholder': item.initialString,
                             'pattern': ".{6,}",
                             'title': 'Please be as descriptive as possible for this question',
                             'oninvalid': "setCustomValidity('Please be as "
@@ -287,7 +290,7 @@ class FHIRQuestionnaireForm(forms.Form):
 
                 # Set the choices
                 choices = ()
-                for option in item.answerOption:
+                for option in item.option:
 
                     # Assume valueString
                     if not option.valueString:
@@ -296,30 +299,19 @@ class FHIRQuestionnaireForm(forms.Form):
                     else:
                         choices = choices + ((option.valueString, option.valueString),)
 
-                # Check if repeats
-                if item.repeats:
-                    # Set the input
-                    fields[item.linkId] = forms.MultipleChoiceField(
-                        label=item.text,
-                        choices=choices,
-                        widget=forms.CheckboxSelectMultiple(attrs=attrs),
-                        required=required
-                    )
+                # Set the input
+                fields[item.linkId] = forms.TypedChoiceField(
+                    label=item.text,
+                    choices=choices,
+                    widget=forms.CheckboxSelectMultiple(attrs=attrs),
+                    required=required
+                )
 
-                else:
-                    # Set the input
-                    fields[item.linkId] = forms.TypedChoiceField(
-                        label=item.text,
-                        choices=choices,
-                        widget=forms.RadioSelect(attrs=attrs),
-                        required=required
-                    )
-
-            elif item.type == 'question' and item.answerOption:
+            elif item.type == 'question' and item.option:
 
                 # Set the choices
                 choices = ()
-                for option in item.answerOption:
+                for option in item.option:
 
                     # Assume valueString
                     if not option.valueString:

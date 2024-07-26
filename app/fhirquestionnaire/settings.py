@@ -16,8 +16,7 @@ import logging
 from django.contrib.messages import constants as message_constants
 
 from dbmi_client import logging as dbmi_logging
-from dbmi_client.environment import get_bool, get_str, get_int, get_list, get_dict, get_float
-from dbmi_client import reporting
+from dbmi_client.environment import get_bool, get_str, get_int, get_list, get_dict
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,6 +50,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'crispy_forms',
     'health_check',
+    'raven.contrib.django.raven_compat',
     'dbmi_client',
     'api',
     'pdf',
@@ -188,6 +188,8 @@ REST_FRAMEWORK = {
 }
 
 # App configurations
+FHIR_APP_ID = get_str("FHIR_APP_ID", required=True)
+FHIR_URL = get_str("FHIR_URL", required=True)
 RETURN_URL = get_str("RETURN_URL", required=True)
 PPM_P2MD_URL = get_str("PPM_P2MD_URL", required=True)
 
@@ -217,18 +219,12 @@ TEST_EMAIL_ACCOUNTS = get_str("TEST_EMAIL_ACCOUNTS", "")
 CONTACT_FORM_RECIPIENTS = get_str('CONTACT_FORM_RECIPIENTS', required=True)
 DEFAULT_FROM_EMAIL = get_str('EMAIL_FROM_ADDRESS', required=True)
 
-#####################################################################################
-# Logging Configurations
-#####################################################################################
-
-# Configure  Sentry
-reporting.sentry(
-    sentry_dsn=get_str("SENTRY_DSN", required=True),
-    release=get_str("DBMI_APP_VERSION"),
-    environment=get_str("DBMI_ENV", "prod"),
-    sentry_trace_rate=get_float("SENTRY_TRACES_RATE", default=0.0),
-    sentry_profile_rate=get_float("SENTRY_PROFILES_RATE", default=0.0),
-)
+# Check for sentry
+RAVEN_URL = get_str("RAVEN_URL", required=True)
+if RAVEN_URL:
+    RAVEN_CONFIG = {
+        'dsn': RAVEN_URL,
+    }
 
 # Output the standard logging configuration
-LOGGING = dbmi_logging.config('QUESTIONNAIRE', root_level=logging.DEBUG)
+LOGGING = dbmi_logging.config('QUESTIONNAIRE', sentry=True, root_level=logging.DEBUG)

@@ -114,7 +114,7 @@ def _quiz_fields(questionnaire_id):
                 label=question['text'],
                 required=True,
                 widget=forms.RadioSelect,
-                choices=tuple([(option['valueString'], option['valueString']) for option in question["answerOption"]])
+                choices=tuple([(option['valueString'], option['valueString']) for option in question['option']])
             )
 
         return fields

@@ -49,7 +49,7 @@ class ConsentView(APIView):
 
         try:
             # Check patient
-            if not FHIR.get_patient(patient=ppm_id):
+            if not FHIR.query_patient(patient=ppm_id):
                 return Response(f'Participant {ppm_id} does not exist', status=status.HTTP_404_NOT_FOUND)
 
             # Check FHIR
@@ -82,7 +82,7 @@ class ConsentView(APIView):
 
         try:
             # Check patient
-            if not FHIR.get_patient(patient=ppm_id):
+            if not FHIR.query_patient(patient=ppm_id):
                 return Response(f'Participant {ppm_id} does not exist', status=status.HTTP_404_NOT_FOUND)
 
             # Check if we should overwrite
@@ -140,8 +140,18 @@ class ConsentView(APIView):
             # Get their consent composition
             composition = FHIR.get_consent_composition(patient=ppm_id, study=study)
             if not composition:
-                logger.error(f'PPM/{study}/{ppm_id}: No consent compositions')
-                return False
+                compositions = FHIR.query_consent_compositions(patient=ppm_id)
+                if not compositions:
+                    logger.error(f'PPM/{study}/{ppm_id}: No consent compositions')
+                    return False
+
+                elif len(compositions) > 1:
+                    logger.error(f'PPM/{study}/{ppm_id}: Too many generic consent '
+                                 f'compositions: {[r["resource"]["id"] for r in compositions]}')
+                    return False
+
+                else:
+                    composition = compositions[0]
 
             # Update it
             if FHIR.update_consent_composition(patient=ppm_id, study=study, composition=composition):
@@ -179,7 +189,7 @@ class ConsentView(APIView):
             ppm_id = FHIR.query_patient_id(get_jwt_email(request=request, verify=False))
 
         # Pull their record
-        participant = FHIR.get_participant(patient=ppm_id, flatten_return=True)
+        bundle = FHIR.query_participant(patient=ppm_id, flatten_return=True)
 
         # Get study title
         study_title = PPM.Study.title(study)
@@ -194,7 +204,7 @@ class ConsentView(APIView):
         # Submit consent PDF
         logger.debug(f"PPM/{study}: Rendering consent with template: {template_name}")
         response = render_pdf(f'People-Powered Medicine {study_title} Consent', request, template_name,
-                              context=participant.get('composition'), options={})
+                              context=bundle.get('composition'), options={})
 
         # Hash the content
         hash = hashlib.md5(response.content).hexdigest()
@@ -399,9 +409,9 @@ class QuestionnaireView(APIView):
         if questionnaire_id:
 
             # Try to fetch it
-            questionnaire = FHIR.fhir_read(
-                resource_type="Questionnaire",
-                resource_id=questionnaire_id,
+            questionnaire = FHIR.get_questionnaire(
+                questionnaire_id=questionnaire_id,
+                flatten_return=False
             )
 
             # Return it or 404

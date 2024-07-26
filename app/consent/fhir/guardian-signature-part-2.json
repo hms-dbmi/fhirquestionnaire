@@ -14,33 +14,6 @@
   "subjectType": [
     "patient"
   ],
-  "useContext": [
-    {
-      "code": {
-        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
-        "code": "program",
-        "display": "Program"
-      },
-       "valueReference": {"reference": "ResearchStudy/ppm-asd"}
-    },
-    {
-      "code": {
-        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
-        "code": "task",
-        "display": "Workflow Task"
-      },
-       "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "https://peoplepoweredmedicine.org/fhir/questionnaire/context",
-            "code": "ppm-asd",
-            "display": "ppm-asd"
-          }
-        ],
-        "text": "ppm-asd"
-      }
-    }
-  ],
   "item": [
     {
       "linkId": "display-1",
@@ -50,9 +23,9 @@
     {
       "linkId": "question-1",
       "text": "I acknowledge that I have explained this study to my child or individual in my care who will be participating.",
-      "type": "choice",
+      "type": "question",
       "required": true,
-      "answerOption": [
+      "option": [
         {
           "valueString": "yes"
         },
@@ -68,8 +41,7 @@
           "enableWhen": [
             {
               "question": "question-1",
-              "answerString": "no",
-              "operator": "="
+              "answerString": "no"
             }
           ],
           "required": true

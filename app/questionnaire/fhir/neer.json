@@ -9,33 +9,6 @@
       }
     ]
   },
-  "useContext": [
-    {
-      "code": {
-        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
-        "code": "program",
-        "display": "Program"
-      },
-       "valueReference": {"reference": "ResearchStudy/ppm-neer"}
-    },
-    {
-      "code": {
-        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
-        "code": "task",
-        "display": "Workflow Task"
-      },
-       "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "https://peoplepoweredmedicine.org/fhir/questionnaire/context",
-            "code": "ppm-neer",
-            "display": "ppm-neer"
-          }
-        ],
-        "text": "ppm-neer"
-      }
-    }
-  ],
   "status": "active",
   "date": "2017-06-07",
   "subjectType": [
@@ -63,9 +36,9 @@
     {
       "linkId": "question-8",
       "text": "Gender",
-      "type": "choice",
+      "type": "text",
       "required": true,
-      "answerOption": [
+      "option": [
         {
           "valueString": "Male"
         },
@@ -90,8 +63,7 @@
       "enableWhen": [
         {
           "question": "question-9",
-          "answerBoolean": true,
-          "operator": "="
+          "answerBoolean": true
         }
       ],
       "required": true
@@ -103,8 +75,7 @@
       "enableWhen": [
         {
           "question": "question-9",
-          "answerBoolean": true,
-          "operator": "="
+          "answerBoolean": true
         }
       ],
       "required": true
@@ -179,7 +150,7 @@
     {
       "linkId": "question-22",
       "text": "Why do you describe yourself as a “super” responder:",
-      "initial": [{"valueString": "Please provide a detailed answer, as this will help us determine your eligibility for the study"}],
+      "initialString": "Please provide a detailed answer, as this will help us determine your eligibility for the study",
       "type": "text",
       "required": true
     },

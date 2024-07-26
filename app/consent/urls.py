@@ -8,7 +8,7 @@ app_name = "consent"
 urlpatterns = [
     re_path(r'^p/(?P<study>[a-z\-_]+)/$', views.StudyView.as_view(), name='study'),
     re_path(r'^d/(?P<study>[a-z\-_]+)/$', views.DownloadView.as_view(), name='download'),
-    re_path(r'^d/(?P<study>[a-z\-_]+)/(?P<ppm_id>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[\d]+)/$', views.AdminDownloadView.as_view(), name='admin-download'),
+    re_path(r'^d/(?P<study>[a-z\-_]+)/(?P<ppm_id>[\d]+)/$', views.AdminDownloadView.as_view(), name='admin-download'),
 
     re_path(r'^c/asd/$', views.ASDView.as_view(), name='asd'),
     re_path(r'^c/asd/quiz/$', views.ASDQuizView.as_view(), name='asd-quiz'),
