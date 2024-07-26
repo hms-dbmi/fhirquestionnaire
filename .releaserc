@@ -19,7 +19,11 @@
         ["@semantic-release/git", {
             "assets": ["pyproject.toml", "CHANGELOG.md"]
         }],
-        "@semantic-release/github"
+        ["@semantic-release/github", {
+            "successComment": false,
+            "failComment": false,
+            "failTitle": false
+        }]
     ],
     "preset": "angular"
 }
