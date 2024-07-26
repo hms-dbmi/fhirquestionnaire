@@ -14,13 +14,40 @@
   "subjectType": [
     "patient"
   ],
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "program",
+        "display": "Program"
+      },
+       "valueReference": {"reference": "ResearchStudy/ppm-asd"}
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "task",
+        "display": "Workflow Task"
+      },
+       "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://peoplepoweredmedicine.org/fhir/questionnaire/context",
+            "code": "ppm-asd",
+            "display": "ppm-asd"
+          }
+        ],
+        "text": "ppm-asd"
+      }
+    }
+  ],
   "item": [
     {
       "linkId": "question-1",
       "text": "In this consent, which is TRUE?",
-      "type": "question",
+      "type": "choice",
       "required": true,
-      "option": [
+      "answerOption": [
         {
           "valueString": "You agreed that you could be contacted in the future."
         },
@@ -35,9 +62,9 @@
     {
       "linkId": "question-2",
       "text": "Which of the following is TRUE?",
-      "type": "question",
+      "type": "choice",
       "required": true,
-      "option": [
+      "answerOption": [
         {
           "valueString": "This study will store your social web data (e.g., Facebook, Twitter) with your permission, along with your health record data."
         },
@@ -52,9 +79,9 @@
     {
       "linkId": "question-3",
       "text": "Which of the following is FALSE?",
-      "type": "question",
+      "type": "choice",
       "required": true,
-      "option": [
+      "answerOption": [
         {
           "valueString": "We will use your donated saliva sample for DNA (genetic code) sequencing."
         },
@@ -69,9 +96,9 @@
     {
       "linkId": "question-4",
       "text": "Which of the following is FALSE?",
-      "type": "question",
+      "type": "choice",
       "required": true,
-      "option": [
+      "answerOption": [
         {
           "valueString": "You can download all data you give us that we store and send it wherever you wish."
         },
