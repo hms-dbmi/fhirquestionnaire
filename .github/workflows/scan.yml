@@ -1,6 +1,8 @@
 name: Scan
 
 on:
+  pull_request:
+    branches: [ master, development ]
   schedule:
     - cron: '0 12 * * 1' # runs at 12:00 UTC on Mondays
   workflow_dispatch:
