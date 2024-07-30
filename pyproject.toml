@@ -1,6 +1,6 @@
 [project]
 name = "fhirquestionnaire"
-version = "1.0.0-rc.1"
+version = "1.0.0"
 description = "The questionnaire service for PPM studies"
 readme = "README.md"
 requires-python = ">=3.9"
