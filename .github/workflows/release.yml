@@ -57,3 +57,4 @@ jobs:
       role: ${{ vars[ format('BLHMSDBMI_PPM_DEPLOYMENT_{0}_ROLE_ARN', needs.metadata.outputs.branch) ] }}
       bucket: ${{ vars[ format('BLHMSDBMI_PPM_DEPLOYMENT_{0}_BUCKET', needs.metadata.outputs.branch) ] }}
       force: ${{ fromJson(needs.metadata.outputs.force) }}
+      backmerge: development
