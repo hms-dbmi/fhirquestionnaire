@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.0...v1.0.1) (2024-08-26)
+
+
+### Bug Fixes
+
+* **reporting:** Set Sentry recommended release version convention; setup backmerge upon release ([85cf9ec](https://github.com/hms-dbmi/fhirquestionnaire/commit/85cf9ecd269936a40b3ded51e0a8b22ba15ee69e))
+* **requirements:** Updated Python requirements ([3a4c611](https://github.com/hms-dbmi/fhirquestionnaire/commit/3a4c611bb20567b08870a85037e037dc1ca77d44))
+
 ## [1.0.1-rc.2](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.1-rc.1...v1.0.1-rc.2) (2024-08-26)
 
 
