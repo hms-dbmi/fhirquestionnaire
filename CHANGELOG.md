@@ -1,3 +1,10 @@
+## [1.0.5-rc.1](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.4...v1.0.5-rc.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* **requirements:** Updated Python requirements ([ce7128d](https://github.com/hms-dbmi/fhirquestionnaire/commit/ce7128d6f3f74d62c478a434625fc592509d38d8))
+
 ## [1.0.4](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.3...v1.0.4) (2024-09-24)
 
 
