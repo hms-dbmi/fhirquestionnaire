@@ -1,4 +1,6 @@
-FROM hmsdbmitc/dbmisvc:debian12-slim-python3.11-0.6.2 AS builder
+ARG DBMISVC_IMAGE=hmsdbmitc/dbmisvc:debian12-slim-python3.11-0.7.1
+
+FROM ${DBMISVC_IMAGE} AS builder
 
 # Install requirements
 RUN apt-get update \
@@ -22,7 +24,7 @@ RUN pip install -U wheel \
     && pip wheel -r /requirements.txt \
         --wheel-dir=/root/wheels
 
-FROM hmsdbmitc/dbmisvc:debian12-slim-python3.11-0.6.2
+FROM ${DBMISVC_IMAGE}
 
 ARG APP_NAME="ppm-questionnaire"
 ARG APP_CODENAME="fhirquestionnaire"
