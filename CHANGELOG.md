@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.5...v1.0.6) (2025-04-04)
+
+
+### Bug Fixes
+
+* **Dockerfile:** Updated base image ([92255f2](https://github.com/hms-dbmi/fhirquestionnaire/commit/92255f2814f1ad9958314edad64de4bc885f4dfb))
+* **requirements:** Updated Python requirements ([0b54d0a](https://github.com/hms-dbmi/fhirquestionnaire/commit/0b54d0abeb93d16f7aa6f736625aef390845e920))
+
 ## [1.0.6-rc.1](https://github.com/hms-dbmi/fhirquestionnaire/compare/v1.0.5...v1.0.6-rc.1) (2025-04-04)
 
 
